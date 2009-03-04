@@ -12,12 +12,22 @@ purple='35'
 cyan='36'
 white='37'
 
-# System => color map ('UC': 'User Color', 'LC': 'Location Color')
+# Hostname styles
+full='\H'
+short='\h'
+
+# System => color/hostname map:
+#   UC: username color
+#   LC: location/cwd color
+#   HD: hostname display (\h vs \H)
+# Defaults:
+UC=$green
+LC=$blue
+HD=$full
 case $( hostname ) in
     sunner | jeff ) UC=$yellow LC=$green ;;
-    bitprophet.org ) UC=$cyan LC=$blue ;;
-    *-production ) UC=$red LC=$blue ;;
-    * ) UC=$green LC=$blue ;;
+    bitprophet.org ) UC=$cyan ;;
+    *-production ) UC=$red HD=$short ;;
 esac
 
 # Prompt itself
