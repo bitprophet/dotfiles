@@ -1,5 +1,5 @@
-# Could just force-add these files and leave just the first 2 lines here,
-# but this way I have a nice explicit list for documentation's sake.
+# Could just force-add these files and leave this as '*', but this way I have a
+# nice explicit list for documentation's sake.
 
 # Ignore everything by default.
 *

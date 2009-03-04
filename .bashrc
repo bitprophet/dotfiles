@@ -44,10 +44,18 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # Global or semi-global exports 
 export TERM="xterm-color"
-export MANPATH=/opt/local/share/man:$MANPATH
-export PATH=/opt/local/bin:/opt/local/sbin:/Library/Application\ Support/VMWare\ Fusion:$PATH
 export DISPLAY=:0.0
 export EDITOR=vim
+
+# MANPATH
+ports_manpath=/opt/local/share/man
+export MANPATH=$ports_manpath:$MANPATH
+
+# PATH
+ports_path=/opt/local/bin:/opt/local/sbin
+vmware_path=/Library/Application\ Support/VMWare\ Fusion
+redhat_sucks_path=/sbin:/usr/sbin
+export PATH=$ports_path:$vmware_path:$redhat_sucks_path:$PATH
 
 # Global or semi-global aliases
 alias svim='sudo vim'
