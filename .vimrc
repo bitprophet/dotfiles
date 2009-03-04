@@ -28,8 +28,9 @@ set ignorecase
 
 " Basic options
 set autoindent
-set smarttab
+set smartindent
 set preserveindent
+set smarttab
 set ruler
 set showcmd
 set expandtab
@@ -50,8 +51,6 @@ set wildmenu
 set wildmode=list:longest
 nmap <CR> o<ESC>
 set backspace=indent,eol,start
-set autoindent
-set smartindent
 
 " Ruby
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
