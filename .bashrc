@@ -39,8 +39,18 @@ PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
 shopt -s checkwinsize
 
 # Colors and color ls
-export CLICOLOR="true"
-export LSCOLORS="exfxcxdxbxegedabagacad"
+ls_colors=
+case $( uname -s ) in
+    Linux )
+        eval `dircolors -b` # sets and exports LS_COLORS for bash terminals
+        alias ls='ls --color=always'
+        ;;
+    Darwin )
+        export LSCOLORS="exfxcxdxbxegedabagacad"
+        alias ls='ls -G'
+        ;;
+esac
+
 
 # Global or semi-global exports 
 export TERM="xterm-color"
