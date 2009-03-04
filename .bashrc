@@ -56,6 +56,7 @@ alias port="sudo port"
 alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
+alias yum='sudo yum'
 
 # MacPorts bash completion
 if [ -f /opt/local/etc/bash_completion ]; then
