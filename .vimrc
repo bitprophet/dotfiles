@@ -68,6 +68,8 @@ set softtabstop=4
 set shiftwidth=4
 
 " Up/down go visually instead of by physical lines (useful for long wraps)
+" Interactive ones need to check whether we're in the autocomplete popup (which
+" breaks if we remap to gk/gj)
 map <up> gk
 inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
