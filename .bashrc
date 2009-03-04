@@ -1,13 +1,32 @@
 # Multiplatform bashrc for use on OS X and Linux (Debian or RedHat families)
 
+
+# Colorized prompt, with different username colors for different systems.
+
+# Color codes
+red='31'
+green='32'
+yellow='33'
+blue='34'
+purple='35'
+cyan='36'
+white='37'
+
+# System => color map ('UC': 'User Color', 'LC': 'Location Color')
+case $( hostname ) in
+    sunner | jeff ) UC=$yellow LC=$green ;;
+    bitprophet.org ) UC=$cyan LC=$blue ;;
+    *-production ) UC=$red LC=$blue ;;
+    * ) UC=$green LC=$blue ;;
+esac
+
+# Prompt itself
+PS1='\[\033[01;${UC}m\]\u@\h\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] '
+
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS. (from Debian)
 shopt -s checkwinsize
-
-# Green username for normal users, red for root.
-PROMPT_COLOR='32'
-if [[ `whoami` == 'root' ]]; then PROMPT_COLOR='31'; fi
-PS1='\[\033[01;${PROMPT_COLOR}m\]\u@\H\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
 
 # Colors and color ls
 export CLICOLOR="true"
