@@ -26,7 +26,7 @@ LC=$blue
 HD=$full
 case $( hostname -s ) in
     sunner | jeff ) UC=$yellow LC=$green ;;
-    bitprophet.org ) UC=$cyan ;;
+    bitprophet ) UC=$cyan ;;
     *-production ) UC=$red HD=$short ;;
 esac
 
