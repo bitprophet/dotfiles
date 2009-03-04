@@ -1,0 +1,26 @@
+# Could just force-add these files and leave just the first 2 lines here,
+# but this way I have a nice explicit list for documentation's sake.
+
+# Ignore everything by default.
+*
+
+# Bash (sometimes have to symlink e.g. .profile to it so it fires on
+# any sort of login)
+!.bashrc
+
+# Git aliases, identification info
+!.gitconfig
+# The gitignore of this repository itself (!)
+!.gitignore
+
+# IPython config (need directory here so gitignore works correctly.
+# This won't actually pull in the other contetns of the dir, though.
+# Which is good as all I care about is the...
+!.ipython/
+# ipythonrc file!
+!.ipython/ipythonrc
+
+# Vim plugins, ftplugins, syntax etc etc
+!.vim/
+# Vim settings
+!.vimrc
