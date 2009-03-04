@@ -31,7 +31,7 @@ case $( hostname ) in
 esac
 
 # Prompt itself
-PS1='\[\033[01;${UC}m\]\u@\h\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] '
+PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
 
 
 # check the window size after each command and, if necessary,
