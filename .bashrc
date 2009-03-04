@@ -24,7 +24,7 @@ short='\h'
 UC=$green
 LC=$blue
 HD=$full
-case $( hostname ) in
+case $( hostname -s ) in
     sunner | jeff ) UC=$yellow LC=$green ;;
     bitprophet.org ) UC=$cyan ;;
     *-production ) UC=$red HD=$short ;;
