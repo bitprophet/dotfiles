@@ -78,7 +78,8 @@ case $( uname -s ) in
         ;;
     # But Ubuntu ssh-keychain doesn't seem to.
     Linux )
-        if [ -x `which keychain` ]; then
+        keychain=`which keychain`
+        if [ -n "$keychain" ] && [ -x $keychain ]; then
             eval `keychain -q --eval id_rsa`
         fi
         ;;
