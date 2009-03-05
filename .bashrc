@@ -80,7 +80,7 @@ case $( uname -s ) in
     Linux )
         keychain=`which keychain`
         if [ -n "$keychain" ] && [ -x $keychain ]; then
-            eval `keychain -q --eval id_rsa`
+            eval `keychain --nogui -q --eval id_rsa`
         fi
         ;;
 esac
