@@ -38,8 +38,10 @@ PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
 # update the values of LINES and COLUMNS. (from Debian)
 shopt -s checkwinsize
 
+# Expand aliases; needed to use below alises via Vim :sh / :!
+shopt -s expand_aliases
+
 # Colors and color ls
-ls_colors=
 case $( uname -s ) in
     Linux )
         eval `dircolors -b` # sets and exports LS_COLORS for bash terminals
@@ -51,8 +53,9 @@ case $( uname -s ) in
         ;;
 esac
 
-
+#
 # Global or semi-global exports 
+#
 export TERM="xterm-color"
 export DISPLAY=:0.0
 export EDITOR=vim
@@ -67,7 +70,23 @@ vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_sucks_path=/sbin:/usr/sbin
 export PATH=$ports_path:$vmware_path:$redhat_sucks_path:$PATH
 
+# SSH Keychain stuff
+case $( uname -s ) in
+    # OS X Keychain.app always uses the same value
+    Darwin )
+        export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
+        ;;
+    # But Ubuntu ssh-keychain doesn't seem to.
+    Linux )
+        if [ -x `which keychain` ]; then
+            eval `keychain -q --eval id_rsa`
+        fi
+        ;;
+esac
+
+#
 # Global or semi-global aliases
+#
 alias svim='sudo vim'
 alias stail="sudo tail"
 alias port="sudo port"
