@@ -99,3 +99,9 @@ if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
 
+# virtualenvwrapper
+virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+if [ -f $virtualenvwrapper  ]; then
+    export WORKON_HOME="/opt/envs"
+    source $virtualenvwrapper
+fi
