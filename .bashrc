@@ -95,6 +95,14 @@ alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias yum='sudo yum'
 
+# Apache reload alias
+if [ -f /etc/init.d/apache2 ]; then
+    apache=apache2
+elif [ -f /etc/init.d/httpd ]; then
+    apache=httpd
+fi
+alias rap="sudo /etc/init.d/$apache reload"
+
 # MacPorts bash completion
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
