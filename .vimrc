@@ -38,7 +38,8 @@ set formatoptions=c
 set lbr
 set foldmethod=indent
 set nofoldenable " Folding off by default on file open
-set shellcmdflag=-lc
+set shellcmdflag=-c
+set shell=bash\ -l
 colorscheme evening
 set modeline
 set modelines=5
