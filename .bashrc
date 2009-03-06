@@ -120,8 +120,17 @@ if [ -f ~/.bash_local ]; then
 fi
 
 # virtualenvwrapper
-virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+case $( uname -s ) in
+    Darwin )
+        virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
+        workon_home= # just use default ~/.virtualenvs
+        ;;
+    Linux )
+        virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+        workon_home=/opt/envs
+        ;;
+esac
 if [ -f $virtualenvwrapper  ]; then
-    export WORKON_HOME="/opt/envs"
+    export WORKON_HOME=$workon_home
     source $virtualenvwrapper
 fi
