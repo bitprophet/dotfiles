@@ -65,10 +65,10 @@ ports_manpath=/opt/local/share/man
 export MANPATH=$ports_manpath:$MANPATH
 
 # PATH
-ports_path=/opt/local/bin:/opt/local/sbin
+ports_sucks_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_sucks_path=/sbin:/usr/sbin
-export PATH=$ports_path:$vmware_path:$redhat_sucks_path:$PATH
+export PATH=$ports_sucks_path:$vmware_path:$redhat_sucks_path:$PATH
 
 # SSH Keychain stuff
 case $( uname -s ) in
