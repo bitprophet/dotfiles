@@ -78,8 +78,9 @@ case $( uname -s ) in
         ;;
     # But Ubuntu ssh-keychain doesn't seem to.
     Linux )
-        if [ -x `which keychain` ]; then
-            eval `keychain -q --eval id_rsa`
+        keychain=`which keychain`
+        if [ -n "$keychain" ] && [ -x $keychain ]; then
+            eval `keychain --nogui -q --eval id_rsa`
         fi
         ;;
 esac
@@ -118,3 +119,9 @@ if [ -f ~/.bash_local ]; then
     . ~/.bash_local
 fi
 
+# virtualenvwrapper
+virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+if [ -f $virtualenvwrapper  ]; then
+    export WORKON_HOME="/opt/envs"
+    source $virtualenvwrapper
+fi
