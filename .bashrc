@@ -122,7 +122,13 @@ fi
 # virtualenvwrapper
 case $( uname -s ) in
     Darwin )
-        virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
+        # Leopard
+        if [ `uname -r` == '9.6.0' ]; then
+            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
+        # Tiger
+        else
+            virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
+        fi
         workon_home= # just use default ~/.virtualenvs
         ;;
     Linux )
