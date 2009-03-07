@@ -53,6 +53,7 @@ set wildmode=list:longest
 nmap <CR> o<ESC>
 set backspace=indent,eol,start
 set tabpagemax=100
+set switchbuf=usetab
 
 " Ruby
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
