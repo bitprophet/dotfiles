@@ -20,6 +20,9 @@
 # ipythonrc file!
 !.ipython/ipythonrc
 
+# IRb config
+!.irbrc
+
 # Vim plugins, ftplugins, syntax etc etc
 !.vim/
 # Vim settings
