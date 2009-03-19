@@ -1,7 +1,12 @@
+#
 # Multiplatform bashrc for use on OS X and Linux (Debian or RedHat families)
+#
 
 
+
+#
 # Colorized prompt, with different username colors for different systems.
+#
 
 # Color codes
 red='31'
@@ -34,6 +39,11 @@ esac
 PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
 
 
+
+#
+# Miscellaneous shell builtin tweaks
+#
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS. (from Debian)
 shopt -s checkwinsize
@@ -53,9 +63,13 @@ case $( uname -s ) in
         ;;
 esac
 
+
+
 #
-# Global or semi-global exports 
+# Exports 
 #
+
+# General
 export TERM="xterm-color"
 export DISPLAY=:0.0
 export EDITOR=vim
@@ -70,7 +84,7 @@ vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_sucks_path=/sbin:/usr/sbin
 export PATH=$ports_sucks_path:$vmware_path:$redhat_sucks_path:$PATH
 
-# SSH Keychain stuff
+# SSH Keychain
 case $( uname -s ) in
     # OS X Keychain.app always uses the same value
     Darwin )
@@ -85,9 +99,12 @@ case $( uname -s ) in
         ;;
 esac
 
+
+
 #
-# Global or semi-global aliases
+# Aliases
 #
+
 alias svim='sudo vim'
 alias stail="sudo tail"
 alias port="sudo port"
@@ -104,20 +121,27 @@ elif [ -f /etc/init.d/httpd ]; then
 fi
 alias rap="sudo /etc/init.d/$apache reload"
 
-# MacPorts bash completion
+
+
+#
+# Tab completion
+#
+
+# MacPorts
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
-# Debian bash completion
+# Debian
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# Single-system specific stuff
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
-fi
+
+
+#
+# Virtualenvwrapper support
+#
 
 # virtualenvwrapper
 case $( uname -s ) in
@@ -139,4 +163,14 @@ esac
 if [ -f $virtualenvwrapper  ]; then
     export WORKON_HOME=$workon_home
     source $virtualenvwrapper
+fi
+
+
+
+#
+# System-specific local aliases and such
+#
+
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
 fi
