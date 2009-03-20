@@ -22,5 +22,11 @@
 
 # Vim plugins, ftplugins, syntax etc etc
 !.vim/
+!.vim/*
+!.vim/autoload/*
+!.vim/doc/*
+!.vim/ftplugin/*
+!.vim/plugin/*
+!.vim/syntax/*
 # Vim settings
 !.vimrc
