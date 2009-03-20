@@ -28,7 +28,7 @@ set ignorecase
 
 " Basic options
 set autoindent
-set smartindent
+set nosmartindent
 set preserveindent
 set smarttab
 set ruler
