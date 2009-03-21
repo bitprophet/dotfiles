@@ -28,8 +28,8 @@ set ignorecase
 
 " Basic options
 set autoindent
-set smartindent
 set preserveindent
+set nosmartindent " messes up e.g. Python comment lines
 set smarttab
 set ruler
 set showcmd
@@ -54,6 +54,7 @@ nmap <CR> o<ESC>
 set backspace=indent,eol,start
 set tabpagemax=100
 set switchbuf=usetab
+set textwidth=80
 
 " Ruby
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
