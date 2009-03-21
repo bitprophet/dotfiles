@@ -13,6 +13,9 @@
 # The gitignore of this repository itself (!)
 !.gitignore
 
+# Mercurial config (yup, stored in a Git repository. Take that, hg!)
+!.hgrc
+
 # IPython config (need directory here so gitignore works correctly.
 # This won't actually pull in the other contetns of the dir, though.
 # Which is good as all I care about is the...
@@ -20,7 +23,16 @@
 # ipythonrc file!
 !.ipython/ipythonrc
 
+# IRb config
+!.irbrc
+
 # Vim plugins, ftplugins, syntax etc etc
 !.vim/
+!.vim/*
+!.vim/autoload/*
+!.vim/doc/*
+!.vim/ftplugin/*
+!.vim/plugin/*
+!.vim/syntax/*
 # Vim settings
 !.vimrc
