@@ -36,3 +36,7 @@
 !.vim/syntax/*
 # Vim settings
 !.vimrc
+
+# Aptitude config
+!.aptitude/
+!.aptitude/*
