@@ -112,6 +112,7 @@ alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias yum='sudo yum'
+alias gem='sudo gem'
 
 # Apache reload alias
 if [ -f /etc/init.d/apache2 ]; then
