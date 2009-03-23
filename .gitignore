@@ -19,7 +19,7 @@
 # IPython config (need directory here so gitignore works correctly.
 # This won't actually pull in the other contetns of the dir, though.
 # Which is good as all I care about is the...
-!.ipython/
+!.ipython
 # ipythonrc file!
 !.ipython/ipythonrc
 
@@ -27,7 +27,7 @@
 !.irbrc
 
 # Vim plugins, ftplugins, syntax etc etc
-!.vim/
+!.vim
 !.vim/*
 !.vim/autoload/*
 !.vim/doc/*
@@ -38,5 +38,5 @@
 !.vimrc
 
 # Aptitude config
-!.aptitude/
+!.aptitude
 !.aptitude/*
