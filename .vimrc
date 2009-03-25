@@ -62,6 +62,9 @@ autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=s
 " Markdown
 autocmd FileType mkd setlocal ai formatoptions=tcroqn2 comments=n:>
 
+" ReST
+autocmd FileType rest setlocal ai formatoptions=tcroqn2 comments=n:> tabstop=2 softtabstop=2 shiftwidth=2
+
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
