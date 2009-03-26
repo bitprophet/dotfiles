@@ -33,6 +33,7 @@ case $( hostname -s ) in
     sunner | jeff ) UC=$yellow LC=$green ;;
     bitprophet ) UC=$cyan ;;
     *-production ) UC=$red HD=$short ;;
+    mail | code | bacula | www* | monitor | bender | xen ) UC=$red ;;
 esac
 
 # Prompt itself
