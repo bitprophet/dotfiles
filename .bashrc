@@ -158,6 +158,8 @@ case $( uname -s ) in
         ;;
     Linux )
         virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+        # Relatively arbitrarily chose /opt/envs. Could also have gone with
+        # /opt/virtualenvs perhaps.
         workon_home=/opt/envs
         ;;
 esac
