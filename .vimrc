@@ -55,6 +55,7 @@ set backspace=indent,eol,start
 set tabpagemax=100
 set switchbuf=usetab
 set textwidth=80
+set hlsearch
 
 " Ruby
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
