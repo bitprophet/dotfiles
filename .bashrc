@@ -87,22 +87,25 @@ vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_sucks_path=/sbin:/usr/sbin
 export PATH=$ports_sucks_path:$vmware_path:$redhat_sucks_path:$PATH
 
-# SSH Keychain (only if interactive!)
-if [[ $INTERACTIVE ]]; then
-    case $( uname -s ) in
-        # OS X Keychain.app always uses the same value
-        Darwin )
-            export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
-            ;;
-        # But Ubuntu ssh-keychain doesn't seem to.
-        Linux )
-            keychain=`which keychain`
-            if [ -n "$keychain" ] && [ -x $keychain ]; then
-                eval `keychain --nogui -q --eval id_rsa`
+# SSH Keychain
+case $( uname -s ) in
+    # OS X Keychain.app always uses the same value
+    Darwin )
+        export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
+        ;;
+    # But Ubuntu ssh-keychain doesn't seem to.
+    Linux )
+        keychain=`which keychain`
+        if [ -n "$keychain" ] && [ -x $keychain ]; then
+            ARGS="--nogui -q --eval id_rsa"
+            # Don't want noninteractive shells to get hung up on the prompt.
+            if [[ -z $INTERACTIVE ]]; then
+                ARGS="--noask $ARGS"
             fi
-            ;;
-    esac
-fi
+            eval `keychain $ARGS`
+        fi
+        ;;
+esac
 
 
 
