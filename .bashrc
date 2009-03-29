@@ -2,6 +2,8 @@
 # Multiplatform bashrc for use on OS X and Linux (Debian or RedHat families)
 #
 
+# Set interactive flag; occasionally useful for turning stuff off, e.g. keychain
+INTERACTIVE=`echo $- | grep i`
 
 
 #
@@ -85,20 +87,22 @@ vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_sucks_path=/sbin:/usr/sbin
 export PATH=$ports_sucks_path:$vmware_path:$redhat_sucks_path:$PATH
 
-# SSH Keychain
-case $( uname -s ) in
-    # OS X Keychain.app always uses the same value
-    Darwin )
-        export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
-        ;;
-    # But Ubuntu ssh-keychain doesn't seem to.
-    Linux )
-        keychain=`which keychain`
-        if [ -n "$keychain" ] && [ -x $keychain ]; then
-            eval `keychain --nogui -q --eval id_rsa`
-        fi
-        ;;
-esac
+# SSH Keychain (only if interactive!)
+if [[ $INTERACTIVE ]]; then
+    case $( uname -s ) in
+        # OS X Keychain.app always uses the same value
+        Darwin )
+            export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
+            ;;
+        # But Ubuntu ssh-keychain doesn't seem to.
+        Linux )
+            keychain=`which keychain`
+            if [ -n "$keychain" ] && [ -x $keychain ]; then
+                eval `keychain --nogui -q --eval id_rsa`
+            fi
+            ;;
+    esac
+fi
 
 
 

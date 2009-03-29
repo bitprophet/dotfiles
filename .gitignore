@@ -4,9 +4,10 @@
 # Ignore everything by default.
 *
 
-# Bash (sometimes have to symlink e.g. .profile to it so it fires on
-# any sort of login)
+# Bash stuff (profile just sources bashrc, since it's the only thing sourced
+# when a shell is a login shell).
 !.bashrc
+!.profile
 
 # Git aliases, identification info
 !.gitconfig
