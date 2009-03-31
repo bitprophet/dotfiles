@@ -179,6 +179,23 @@ fi
 
 
 #
+# Functions
+#
+
+function wwwify() {
+    if [[ ! -a $1 ]]
+    then
+        echo "Need a filename to operate on."
+        return 1
+    fi
+
+    sudo chown -R www-data:www-data $1
+    sudo chmod -R g+w $1
+}
+
+
+
+#
 # System-specific local aliases and such
 #
 
