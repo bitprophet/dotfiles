@@ -61,7 +61,7 @@ case $( uname -s ) in
         alias ls='ls --color=always'
         ;;
     Darwin )
-        export LSCOLORS="exfxcxdxbxegedabagacad"
+        export LSCOLORS="ExfxcxdxbxEgEdabagacad"
         alias ls='ls -G'
         ;;
 esac
