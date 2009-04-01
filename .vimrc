@@ -81,3 +81,13 @@ map <up> gk
 inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
 inoremap <down> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gj"<Enter>
+
+"
+" netrw (builtin file-browser plugin) preferences
+"
+
+" Default to tree view 
+let g:netrw_liststyle = 3
+
+" Hide common hidden files
+let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
