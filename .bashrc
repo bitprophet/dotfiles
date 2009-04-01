@@ -82,10 +82,11 @@ ports_manpath=/opt/local/share/man
 export MANPATH=$ports_manpath:$MANPATH
 
 # PATH
-ports_sucks_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
+ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
-redhat_sucks_path=/sbin:/usr/sbin
-export PATH=$ports_sucks_path:$vmware_path:$redhat_sucks_path:$PATH
+redhat_path=/sbin:/usr/sbin
+ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
+export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$PATH
 
 # SSH Keychain
 case $( uname -s ) in
@@ -121,6 +122,7 @@ alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias yum='sudo yum'
 alias gem='sudo gem'
+alias tree='tree -Ca -I .git'
 
 # Apache reload alias
 if [ -f /etc/init.d/apache2 ]; then
