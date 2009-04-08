@@ -96,7 +96,7 @@ case $( uname -s ) in
         ;;
     # But Ubuntu ssh-keychain doesn't seem to.
     Linux )
-        keychain=`which keychain`
+        keychain=`which keychain 2>/dev/null`
         if [ -n "$keychain" ] && [ -x $keychain ]; then
             ARGS="--nogui -q --eval id_rsa"
             # Don't want noninteractive shells to get hung up on the prompt.
