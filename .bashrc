@@ -31,7 +31,8 @@ short='\h'
 UC=$green
 LC=$blue
 HD=$full
-case $( hostname -s ) in
+# Manually cut hostname; hostname -s bails out on some systems.
+case $( hostname | cut -d '.' -f 1 ) in
     sunner | jeff ) UC=$yellow LC=$green ;;
     bitprophet ) UC=$cyan ;;
     *-production ) UC=$red HD=$short ;;
