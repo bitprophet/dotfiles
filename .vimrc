@@ -34,7 +34,7 @@ set smarttab
 set ruler
 set showcmd
 set expandtab
-set formatoptions=c
+set formatoptions=tcroqn2 
 set lbr
 set foldmethod=indent
 set nofoldenable " Folding off by default on file open
@@ -61,10 +61,10 @@ set hlsearch
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
 " Markdown
-autocmd FileType mkd setlocal ai formatoptions=tcroqn2 comments=n:>
+autocmd FileType mkd setlocal ai comments=n:>
 
 " ReST
-autocmd FileType rest setlocal ai formatoptions=tcroqn2 comments=n:> tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType rest setlocal ai comments=n:> tabstop=2 softtabstop=2 shiftwidth=2
 
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
