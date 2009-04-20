@@ -197,6 +197,12 @@ function wwwify() {
 }
 
 
+function pgrep() {
+    exclude="\.git|\.swp|\.coverage|\.pyc"
+    grep -lir "$1" . | egrep -v "$exclude"  | xargs grep -in --color "$1"
+}
+
+
 
 #
 # System-specific local aliases and such
