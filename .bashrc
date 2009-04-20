@@ -123,7 +123,7 @@ alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias yum='sudo yum'
 alias gem='sudo gem'
-alias tree='tree -Ca -I ".git|*.pyc"'
+alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 
 # Apache reload alias
 if [ -f /etc/init.d/apache2 ]; then
