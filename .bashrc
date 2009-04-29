@@ -199,7 +199,7 @@ function wwwify() {
 
 function pgrep() {
     exclude="\.git|\.swp|\.coverage|\.pyc"
-    grep -lir "$1" . | egrep -v "$exclude"  | xargs grep -in --color "$1"
+    egrep -lir "$1" . | egrep -v "$exclude"  | xargs egrep -in --color "$1"
 }
 
 
