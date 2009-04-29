@@ -124,6 +124,7 @@ alias aptitude='sudo aptitude'
 alias yum='sudo yum'
 alias gem='sudo gem'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
+alias screen='TERM=screen screen'
 
 # Apache reload alias
 if [ -f /etc/init.d/apache2 ]; then
