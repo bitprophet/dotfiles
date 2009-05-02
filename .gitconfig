@@ -9,3 +9,4 @@
     ci = commit -a
     st = status
     co = checkout
+    ba = branch -a
