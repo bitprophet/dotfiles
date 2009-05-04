@@ -45,3 +45,6 @@
 # Bin files (few and far between)
 !bin
 !bin/*
+
+# Screen RCfile
+!.screenrc

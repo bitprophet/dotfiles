@@ -125,6 +125,7 @@ alias aptitude='sudo aptitude'
 alias yum='sudo yum'
 alias gem='sudo gem'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
+alias screen='TERM=screen screen'
 
 # Apache reload alias
 if [ -f /etc/init.d/apache2 ]; then
@@ -200,7 +201,7 @@ function wwwify() {
 
 exclude="\.git|\.swp|\.coverage|\.pyc|_build"
 function pgrep() {
-    grep -lir "$1" . | egrep -v "$exclude"  | xargs grep -Hin --color "$1"
+    egrep -lir "$1" . | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
 }
 
 function pvim() {
