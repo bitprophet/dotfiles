@@ -87,7 +87,8 @@ ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.f
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
-export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$PATH
+local=/usr/local/bin:/usr/local/sbin
+export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$local:$PATH
 
 # SSH Keychain
 case $( uname -s ) in
@@ -197,10 +198,15 @@ function wwwify() {
 }
 
 
+exclude="\.git|\.swp|\.coverage|\.pyc|_build"
 function pgrep() {
-    exclude="\.git|\.swp|\.coverage|\.pyc"
-    grep -lir "$1" . | egrep -v "$exclude"  | xargs grep -in --color "$1"
+    grep -lir "$1" . | egrep -v "$exclude"  | xargs grep -Hin --color "$1"
 }
+
+function pvim() {
+    vim -p `grep -lir "$1" . | egrep -v "$exclude"`
+}
+    
 
 
 
