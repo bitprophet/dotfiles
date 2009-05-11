@@ -135,6 +135,13 @@ elif [ -f /etc/init.d/httpd ]; then
 fi
 alias rap="sudo /etc/init.d/$apache reload"
 
+# Platform specific 'ps' alias
+case $( uname -s) in
+    Darwin )
+        alias ps='ps -T'
+        ;;
+esac
+
 
 
 #
