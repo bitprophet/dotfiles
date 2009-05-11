@@ -54,7 +54,7 @@ nmap <CR> o<ESC>
 set backspace=indent,eol,start
 set tabpagemax=100
 set switchbuf=usetab
-set textwidth=80
+set textwidth=79
 set hlsearch
 
 " Ruby
