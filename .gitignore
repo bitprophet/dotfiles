@@ -48,3 +48,6 @@
 
 # Screen RCfile
 !.screenrc
+
+# Gem config
+!.gemrc
