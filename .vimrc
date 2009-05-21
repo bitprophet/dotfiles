@@ -50,7 +50,6 @@ set matchtime=2
 set nomore
 set wildmenu
 set wildmode=list:longest
-nmap <CR> o<ESC>
 set backspace=indent,eol,start
 set tabpagemax=100
 set switchbuf=usetab
@@ -91,3 +90,6 @@ let g:netrw_liststyle = 3
 
 " Hide common hidden files
 let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+
+" Custom mapping shortcut for :nohl
+nmap <C-N> :noh<CR>
