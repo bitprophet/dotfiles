@@ -90,27 +90,6 @@ ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
 local=/usr/local/bin:/usr/local/sbin
 export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$local:$PATH
 
-# SSH Keychain
-case $( uname -s ) in
-    # OS X Keychain.app always uses the same value
-    Darwin )
-        export SSH_AUTH_SOCK=/tmp/503/SSHKeychain.socket
-        ;;
-    # But Ubuntu ssh-keychain doesn't seem to.
-    Linux )
-        keychain=`which keychain 2>/dev/null`
-        if [ -n "$keychain" ] && [ -x $keychain ]; then
-            ARGS="--nogui -q --eval id_rsa"
-            # Don't want noninteractive shells to get hung up on the prompt.
-            if [[ -z $INTERACTIVE ]]; then
-                ARGS="--noask $ARGS"
-            fi
-            eval `keychain $ARGS`
-        fi
-        ;;
-esac
-
-
 
 #
 # Aliases
