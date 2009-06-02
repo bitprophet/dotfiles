@@ -147,7 +147,7 @@ fi
 case $( uname -s ) in
     Darwin )
         # Leopard
-        if [ `uname -r` == '9.6.0' ]; then
+        if [ `uname -r | cut -d '.' -f 1` == '9' ]; then
             virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
         # Tiger
         else
