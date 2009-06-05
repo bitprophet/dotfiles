@@ -59,7 +59,7 @@ shopt -s expand_aliases
 case $( uname -s ) in
     Linux )
         eval `dircolors -b` # sets and exports LS_COLORS for bash terminals
-        alias ls='ls --color=always'
+        alias ls='ls --color=auto'
         ;;
     Darwin )
         export LSCOLORS="ExfxcxdxbxEgEdabagacad"
