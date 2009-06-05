@@ -147,7 +147,7 @@ fi
 case $( uname -s ) in
     Darwin )
         # Leopard
-        if [ `uname -r` == '9.6.0' ]; then
+        if [ `uname -r | cut -d '.' -f 1` == '9' ]; then
             virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
         # Tiger
         else
@@ -187,7 +187,7 @@ function wwwify() {
 
 exclude="\.git|\.swp|\.coverage|\.pyc|_build"
 function pgrep() {
-    egrep -lir "$1" . | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
+    find . -maxdepth 1 -mindepth 1| egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
 }
 
 function pvim() {
