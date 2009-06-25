@@ -12,7 +12,7 @@ endif
 
 " Filetype based indent rules
 if has("autocmd")
-  filetype indent on
+  filetype indent plugin on
 endif
 
 " Some useful defaults from Debian vimrc
