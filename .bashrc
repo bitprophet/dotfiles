@@ -33,7 +33,7 @@ LC=$blue
 HD=$full
 # Manually cut hostname; hostname -s bails out on some systems.
 case $( hostname | cut -d '.' -f 1 ) in
-    sunner | jeff ) UC=$yellow LC=$green ;;
+    jeff | ytram ) UC=$yellow LC=$green ;;
     bitprophet ) UC=$cyan ;;
     *-production ) UC=$red HD=$short ;;
     mail | code | bacula | www* | monitor | bender | xen ) UC=$red ;;
