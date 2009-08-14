@@ -73,6 +73,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" Apache! no more comments in headers!
+autocmd BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
+
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
