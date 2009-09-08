@@ -1,0 +1,37 @@
+unhdr_order *
+hdr_order date
+hdr_order x-spam-relays-untrusted
+hdr_order from
+hdr_order organization organisation
+hdr_order x-eqto
+hdr_order to cc
+hdr_order subject
+hdr_order message-id
+hdr_order disposition-notification-to return-receipt-to
+hdr_order x-debian-pr-package
+hdr_order x-spam:
+hdr_order x-trained-as x-crm114-autotrain
+hdr_order user-agent x-mailer x-newsreader
+hdr_order x-justme
+hdr_order x-autoreplied
+hdr_order x-tickle x-postponed x-was-postponed
+
+ignore *
+unignore date
+#unignore x-spam-relays-untrusted
+unignore from
+#unignore organization organisation
+unignore x-eqto
+unignore to cc
+unignore subject
+unignore message-id
+unignore disposition-notification-to return-receipt-to
+unignore x-debian-pr-package
+unignore x-spam:
+#unignore x-trained-as x-crm114-autotrain
+#unignore user-agent x-mailer x-newsreader
+unignore x-justme
+unignore x-autoreplied
+unignore x-tickle x-postponed x-was-postponed
+
+# vim:ft=muttrc
