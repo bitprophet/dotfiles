@@ -166,28 +166,33 @@ case $( hostname | cut -d '.' -f 1 ) in
     mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
 esac
 
-# Insert "lol git kinda sounds like 'get'" joke here
-function _gb() {
-    ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-    echo "${ref#refs/heads/}"
-}
-
-# Virtualenv output (replaces the default)
-function _ve() {
-    ve=$(basename "$VIRTUAL_ENV") || return
-    echo "$ve"
-}
-
-# Prompt itself, as a function so I can "reset" the prompt from other
-# in-bash code, e.g. virtualenvwrapper stuff (long story.)
+# Prompt function because PROMPT_COMMAND is awesome
 function set_prompt() {
-    BASE="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
-    GIT="${NIL}[${PURPLE}\$(_gb)${NIL}]"
-    VIRTUALENV="${NIL}{${PURPLE}\$(_ve)${NIL}}"
-    END="${LC}\$${NIL} "
-    export PS1="${BASE} ${VIRTUALENV} ${GIT} ${END}"
+    # User, hostname
+    base="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
+
+    # Virtualenv
+    _venv=`basename "$VIRTUAL_ENV"`
+    venv=""
+    if [[ -n $_venv ]]; then
+        venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
+    fi
+
+    # Git branch
+    _branch=$(git symbolic-ref HEAD 2>/dev/null)
+    _branch=${_branch#refs/heads/} # apparently faster than sed
+    branch=""
+    if [[ -n $_branch ]]; then
+        branch=" ${NIL}[${PURPLE}${_branch}${NIL}]"
+    fi
+
+    # Dollar/pound sign
+    end="${LC}\$${NIL} "
+
+    # Feels kind of like cheating...but works so well!
+    export PS1="${base}${venv}${branch} ${end}"
 }
-set_prompt
+export PROMPT_COMMAND=set_prompt
 
 
 
