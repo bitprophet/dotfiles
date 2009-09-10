@@ -140,12 +140,15 @@ esac
 WTF=""
 function _gb() {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-    # goddammit why doesn't echo -e act the same as $PS1? :(
-    echo -e " [\033[01;35m${ref#refs/heads/}\033[00m]"
+    echo "${ref#refs/heads/}"
 }
 
 # Prompt itself
-PS1="${UC}\u@${HD}${NIL}:${LC}\w${NIL}\$(_gb) ${LC}\$${NIL} "
+BASE="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
+GIT="${NIL}[${BLUE}\$(_gb)${NIL}]"
+END="${LC}\$${NIL} "
+export PS1="${BASE} ${GIT} ${END}"
+
 
 
 
