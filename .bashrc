@@ -204,19 +204,26 @@ function set_prompt() {
         venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
     fi
 
-    # Git branch
+    # Git branch / dirtiness
+    # Dirtiness cribbed from:
+    # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
+    if git update-index -q --refresh; git diff-index --quiet --cached HEAD --ignore-submodules -- && git diff-files --quiet --ignore-submodules
+        then dirty=""
+    else
+        dirty="${RED}*${NIL}"
+    fi
     _branch=$(git symbolic-ref HEAD 2>/dev/null)
     _branch=${_branch#refs/heads/} # apparently faster than sed
     branch="" # need this to clear it when we leave a repo
     if [[ -n $_branch ]]; then
-        branch=" ${NIL}[${PURPLE}${_branch}${NIL}]"
+        branch=" ${NIL}[${PURPLE}${_branch}${dirty}${NIL}]"
     fi
 
     # Dollar/pound sign
     end="${LC}\$${NIL} "
 
     # Feels kind of like cheating...but works so well!
-    export PS1="${userhost}:${path}${venv}${branch} ${end}"
+    export PS1="${host}:${path}${venv}${branch} ${end}"
 }
 export PROMPT_COMMAND=set_prompt
 
