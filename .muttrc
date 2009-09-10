@@ -1,0 +1,676 @@
+# Derived from:
+# http://github.com/justinlilly/jlilly-bashy-dotfiles/blob/master/.muttrc
+
+###########
+# Setting #
+###########
+
+set imap_user = "bitprophet@gmail.com"
+
+set smtp_url = "smtp://bitprophet@smtp.gmail.com:587/"
+set from = "jeff@bitprophet.org"
+set realname = "Jeff Forcier"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+# Passwords and such
+source ~/.mutt_local
+
+
+#set mbox_type="Maildir"
+#set mbox="~/Maildir/"
+#set folder="~/Maildir/"
+#set mask="!^\\.[^.]"
+#set spoolfile="~/Maildir"
+
+set xterm_set_titles="yes"
+#set xterm_title="Mutt with %?m?%m messages&no messages?%?n? [%n NEW]?"
+set xterm_title="Mutt%?b?*? %f"
+
+set check_new="yes"
+
+
+
+set mail_check=120
+# Mutt only scanes for mail in mailboxes every mail_check seconds.
+# This can cause lag when fetching from IMAP (ie remote).
+
+#set timeout=15
+# This sets the maximum number of times mutt will check for mail in
+# my IMAP mailbox. Default is 600 (10min) which is a bit too long.
+
+#set edit_headers
+# This option allows you to edit the header of your outgoing messages
+# along with the body of your message.
+
+set editor="vim -c 'set tw=68'"
+# Thanx to Sven Guckes
+
+#set hostname=justinlilly.com
+# Specifies the hostname to use after the ``@'' in local e-mail
+# addresses. This overrides the compile time definition obtained from
+# /etc/resolv.conf.
+
+#set use_domain=yes
+# When set, Mutt will qualify all local addresses (ones without the
+# @host portion) with the value of ````$hostname''''. If unset, no
+# addresses will be qualified.
+
+set beep=no
+# When this variable is set, mutt will beep when an error occurs.
+
+set duplicate_threads=yes
+# This variable controls whether mutt, when sorting by threads, threads
+# messages with the same message-id together. If it is set, it will
+# indicate that it thinks they are duplicates of each other with an
+# equals sign in the thread diagram.
+
+# set edit_headers=yes
+# This option allows you to edit the header of your outgoing messages
+# along with the body of your message.
+
+set abort_unmodified=no
+# If set to yes, composition will automatically abort after editing the
+# message body if no changes are made to the file (this check only happens
+# after the first edit of the file). When set to no, composition will never be aborted.
+
+set abort_nosubject=ask-yes
+# If set to yes, when composing messages and no subject is given at the subject prompt,
+# composition will be aborted. If set to no, composing messages with no subject given at
+# the subject prompt will never be aborted.
+
+set attribution='On %{%a, %d %b %Y}, %n wrote:\n'
+
+set auto_tag=yes
+# When set, functions in the index menu which affect a message will be applied
+# to all tagged messages (if there are any). When unset, you must first use the
+# tag-prefix function (default: ";") to make the next function apply to all tagged messages.
+
+set collapse_unread=yes
+
+set uncollapse_jump=yes
+# When set, Mutt will jump to the next unread message, if any,
+# when the current thread is uncollapsed.
+
+set copy=yes
+# This variable controls whether or not copies of your outgoing messages will be
+# saved for later references. Also see `` $record'', `` $save_name'', `` $force_name'' and `` fcc-hook'
+
+set followup_to=yes
+# Controls whether or not the Mail-Followup-To header field is generated when sending mail.
+# When set, Mutt will generate this field when you are replying to a known mailing list,
+# specified with the ``subscribe'' or `` lists'' commands
+
+set history=30
+# This variable controls the size (in number of strings remembered) of the string history buffer.
+# The buffer is cleared each time the variable is set.
+
+set reverse_realname=yes
+#set realname="Justin Lilly"
+# This variable specifies what "real" or "personal" name should be used
+# when sending messages.
+# By default, this is the GCOS field from /etc/passwd. Note that this
+# variable will not be used when the user has set a real name in the
+# ``$from'' variable.
+
+set reverse_name=yes
+#set from=justinlilly@gmail.com
+# When set, this variable contains a default from address. It can be
+# overridden using my_hdr (including from send-hooks) and
+# ````$reverse_name''''.
+# Defaults to the EMAIL environment variable's content.
+
+
+#alternates "(jlilly@hugeinc\.com)|(justinlilly@gmail\.com)"
+
+
+set use_from=yes
+# This is the default, but could be unset by Debian's global muttrc
+
+# set envelope_from
+# When set, mutt will try to derive the message's envelope sender from
+# the "From:" header. Note that this information is passed to sendmail
+# command using the "-f" command line switch, so don't set this option
+# if you are using that switch in ``$sendmail'' yourself, or if the
+# sendmail on your machine doesn't support that command line switch.
+
+set include=ask-yes
+# Controls whether or not a copy of the message(s) you are replying to is included in your reply.
+
+set move=no
+# Controls whether you will be asked to confirm moving read messages from your spool mailbox
+# to your `` $mbox'' mailbox, or as a result of a `` mbox-hook'' command.
+
+set pager_context=4
+# This variable controls the number of lines of context that are given when displaying
+# the next or previous page in the internal pager. By default, Mutt will display the
+# line after the last one on the screen at the top of the next page (0 lines of context)
+
+set pager_index_lines=10
+# Determines the number of lines of a mini-index which is shown when in
+# the pager. The current message, unless near the top or bottom of the
+# folder, will be roughly one third of the way down this mini-index,
+# giving the reader the context of a few messages before and after the
+# message. This is useful, for example, to determine how many messages
+# remain to be read in the current thread. One of the lines is reserved
+# for the status bar from the index, so a pager_index_lines of 6 will
+# only show 5 lines of the actual index. A value of 0 results in no
+# index being shown. If the number of messages in the current folder is
+# less than pager_index_lines, then the index will only use as many
+# lines as it needs.
+
+set pager_stop=yes
+# When set, the internal-pager will not move to the next message when
+# you are at the end of a message and invoke the next-page function.
+
+set postpone=ask-yes
+# Controls whether or not messages are saved in the
+# '$postponed' mailbox when you elect not to send immediately
+
+#set postponed="+.Drafts"
+#set postponed=~/Mail/postponed
+# folder for postponed messages
+
+#set signature=~/Mail/signature
+# Specifies the filename of your signature, which is appended to all outgoing messages.
+# If the filename ends with a pipe (``|''), it is assumed that filename is a shell
+# command and input should be read from its stdout.
+
+#set record="+.Sent"
+# set record=~/Mail/mailsent
+# This specifies the file into which your outgoing messages should be appended.
+# (This is meant as the primary method for saving a copy of your messages, but
+# another way to do this is using the `` my_hdr'' command to create a Bcc: field
+# with your email address in it.)The value of $record is overridden by the
+# `` $force_name'' and `` $save_name'' variables, and the `` fcc-hook'' command.
+
+#set copy=yes
+# This variable controls whether or not copies of your outgoing messages will be saved for later references.
+# Also see `` $record'', `` $save_name'', `` $force_name'' and `` fcc-hook''.
+
+set mark_old=no
+# Controls whether or not Mutt makes the distinction between new messages and old unread messages.
+# By default, Mutt will mark new messages as old if you exit a mailbox without reading them.
+# The next time you start Mutt, the messages will show up with an "O" next to them in the index menu,
+# indicating that they are old.
+# In order to make Mutt treat all unread messages as new only, you can unset this variable.
+
+set reply_to=ask-yes
+# If set, Mutt will ask you if you want to use the address listed in the
+# Reply-To: header field when replying to a message. If you answer no,
+# it will use the address in the From: header field instead. This
+# option is useful for reading a mailing list that sets the Reply-To:
+# header field to the list address and you want to send a private
+# message to the author of a message.
+
+set send_charset=us-ascii:iso-8859-1:iso-8859-15:utf-8
+# A list of character sets for outgoing messages. Mutt will use the
+# first character set into which the text can be converted exactly. If
+# your ````$charset'''' is not iso-8859-1 and recipients may not
+# understand UTF-8, it is advisable to include in the list an
+# appropriate widely used standard character set (such as iso-8859-2,
+# koi8-r or iso-2022-jp) either instead of or after "iso-8859-1".
+
+#set sendmail="/usr/sbin/sendmail -oem -oi -f justinlilly@justinlilly.com"
+#set sendmail="/usr/sbin/sendmail -oem -oi"
+# The -t header does some stuff that allows BCC's to work.
+# http://sysmonblog.co.uk/2009/04/mutt-exim4-debian-unbuntu-and-bcc-fail-fix-included.html  
+
+
+# Specifies the program and arguments used to deliver mail sent by Mutt.
+# Mutt expects that the specified program interprets additional
+# arguments as recipient addresses.
+# The same function can be found in:
+# 6.3.43. envelope_from
+#
+# Type: boolean
+# Default: no
+#
+# When set, mutt will try to derive the message's envelope sender from
+# the "From:" header. Note that this information is passed to sendmail
+# command using the "-f" command line switch, so don't set this option
+# if you are using that switch in ``$sendmail'' yourself, or if the
+# sendmail on your machine doesn't support that command line switch.
+
+# Ignoring (weeding) unwanted message headers
+# Usage: [un]ignore pattern [ pattern ... ]
+# Messages often have many header fields added by automatic processing
+# systems, or which may not seem useful to display on the screen. This
+# command allows you to specify header fields which you don't normally
+# want to see.
+# You do not need to specify the full header field name. For example,
+# ``ignore content-'' will ignore all header fields that begin with the
+# pattern ``content-''.
+# To remove a previously added token from the list, use the ``unignore''
+# command. Note that if you do ``ignore x-'' it is not possible to
+# ``unignore x-mailer,'' for example. The ``unignore'' command does not
+# make Mutt display headers with the given pattern.
+# ``unignore *'' will remove all tokens from the ignore list.
+# From Sven's draconian header weeding
+
+ignore *
+unignore from date subject to cc
+unignore organization organisation x-mailer: x-newsreader: x-mailing-list:
+unignore posted-to:
+unignore Message-Id
+unignore Content-Type
+
+##########
+# Macros #
+##########
+
+#macro index X "| spamassassin -r" "report message to Vipul's Razor"
+#folder-hook caughtspam push 'D.\n'
+#folder-hook unsubscribe push 'D.\n'
+#folder-hook duplicates push 'D.\n'
+# If you get spammed, it is helpful to everyone else if you re-run
+# spamassassin with the "-r" option to report the message in question as
+# "verified spam". This will add it to Vipul's Razor
+# (http://razor.sourceforge.net/), a collaborative spam filtering
+# network, if you've installed the Razor modules.
+# spamassassin -r < spam-message
+# If you use mutt as your mail reader, this macro will bind the X key to
+# report a spam message.
+# macro index X "| spamassassin -r"
+# This is, of course, optional -- but you'll get lots of good-netizen
+# karma. ;)
+
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+# Helper macros to enable moving between maildir folders
+
+set ispell = /usr/lib/mutt/mailspell
+# Wrapper to call ispell on mail messages, ignoring quoted portions
+# and signatures.
+# By Brendan O'Dea , public domain.
+# Usage: set ispell = /usr/lib/mutt/mailspell
+
+# Ispell german and english dictionary
+# macro compose I 'set ispell="/usr/bin/ispell -x -d deutsch"set ispell="/usr/bin/ispell"'
+
+# Searching by Date
+# Mutt supports two types of dates, absolute and relative.
+############
+# Absolute #
+############
+# Dates must be in DD/MM/YY format (month and year are
+# optional, defaulting to the current month and year). An example of a
+# valid range of dates is: Limit to messages matching: ~d 20/1/95-31/10
+# If you omit the minimum (first) date, and just specify ``-DD/MM/YY'',
+# all messages before the given date will be selected. If you omit the
+# maximum (second) date, and specify ``DD/MM/YY-'', all messages after
+# the given date will be selected. If you specify a single date with no
+# dash (``-''), only messages sent on the given date will be selected.
+# Error Margins. You can add error margins to absolute dates. An error
+# margin is a sign (+ or -), followed by a digit, followed by one of the
+# following units:
+# y years
+# m months
+# w weeks
+# d days
+# As a special case, you can replace the sign by a ``*'' character,
+# which is equivalent to giving identical plus and minus error margins.
+# Example: To select any messages two weeks around January 15, 2001,
+# you'd use the following pattern: Limit to messages matching: ~d 15/1/2001*2w
+###########
+#Relative #
+###########
+# This type of date is relative to the current date, and may
+# be specified as:
+# >offset (messages older than offset units)
+#
+# =offset (messages exactly offset units old)
+# offset is specified as a positive number with one of the following
+# units:
+# y years
+# m months
+# w weeks
+# d days
+# Example: to select messages less than 1 month old, you would use
+# Limit to messages matching: ~d <1m
+#macro index q " ~d>100d"
+#folder-hook mailsent 'macro index q " ~d>10d"'
+#folder-hook vim 'macro index q " ~d>20d"'
+#folder-hook mutt 'macro index q " ~d>300d"'
+#folder-hook debian 'macro index q " ~d>300d"'
+#folder-hook donnerwetter 'macro index q " ~d>3d"'
+#folder-hook tagesschau 'macro index q " ~d>5d"'
+
+##############################################
+# How to enable a macro for a special folder #
+##############################################
+#folder-hook tin 'macro index q " ~d>1d"'
+
+##########################################
+# Start a WWW Browser on URLs (EXTERNAL) #
+##########################################
+# If a message contains URLs (unified ressource locator = address in the
+# WWW space like http://www.mutt.org/), it is efficient to get a menu
+# with all the URLs and start a WWW browser on one of them. This
+# functionality is provided by the external urlview program which can be
+# retrieved at ftp://ftp.guug.de/pub/mutt/contrib/ and the configuration
+# commands:
+#macro index \cb |urlview\n
+#macro pager \cb |urlview\n
+
+#########################################
+# Saving attachments to folder download #
+#########################################
+
+# macro attach s /home/mutt/download/
+# macro attach s /mnt/vfat/john/muttattachments/
+
+
+##############
+# Send Hooks #
+##############
+#send-hook      .                              'set realname="Justin Lilly"'
+#send-hook      "~f ^jlilly@justinlilly\\.com$"    'set realname="Justin Lilly"'
+
+###########
+# Binding #
+###########
+
+#bind pager previous-page
+bind pager - previous-line
+bind pager \eOm previous-line
+bind pager + next-line
+bind pager \eOk next-line
+bind pager \eOM next-line
+bind pager \e[1~ top
+bind pager \e[4~ bottom
+
+#bind index previous-entry
+bind index - previous-entry
+bind index \eOm previous-entry
+bind index + next-entry
+bind index \eOk next-entry
+bind index \eOM display-message
+bind index \e[H first-entry
+bind index \e[F last-entry
+bind index \e[1~ first-entry
+bind index \e[4~ last-entry
+#bind alias select-entry
+bind alias x exit
+bind attach x exit
+bind browser x exit
+
+#########
+# Color #
+#########
+
+color status brightwhite blue
+mono message bold
+color message white red
+color error brightyellow red
+color indicator white red
+color tree brightmagenta default
+color signature red default
+color attachment brightyellow red
+color search brightyellow red
+color tilde brightmagenta default
+color markers brightmagenta default
+color quoted white default
+color quoted1 magenta default
+color quoted2 red default
+color quoted3 green default
+color quoted4 cyan default
+color quoted5 blue default
+color quoted6 magenta default
+color quoted7 red default
+color quoted8 green default
+color quoted9 cyan default
+color hdrdefault brightred default
+color header brightyellow default "^(from):"
+color header brightblue default "^(to):"
+color header green default "^(subject):"
+color body brightcyan default \ "((ftp|http|https)://|(file|mailto|news):|www\\.)[-a-z@0-9_.:]*[a-z0-9](/[^][{} \t\n\r\"<>()]*[^][{} \t\n\r\"<>().,:])?"
+color body brightcyan default "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+color body red default "(^| )\\*[-a-z0-9äöüß*]+\\*[,.?]?[ \n]"
+
+#color underline green default
+#color header default default "[ \t]+[^:]*$"
+#color bold brightblack default
+
+# threads
+#color index brightyellow default "~h 'References: +<.+>'"
+#color index yellow default "~h 'References: +<.+> +<.+>'"
+#color index brightred default "~h 'References: +<.+> +<.+> +<.+>'"
+#color index red default "~h 'References: +<.+> +<.+> +<.+> +<.+>'"
+#color index blue default "~h 'References: +<.+> +<.+> +<.+> +<.+> +<.+>'"
+#color index green default "~h 'References: +<.+> +<.+> +<.+> +<.+> +<.+> +<.+>'"
+
+# spam
+color index magenta default "\(Resent-\)?Message-Id: <>"
+color index magenta default "\(Resent-\)?Message-Id: '<.* .*>'"
+color index magenta default "\(Resent-\)?Message-Id: localhost"
+color index magenta default "! \(Resent-\)?Message-Id: @"
+color index magenta default '~C Undisclosed.*Recipients'
+
+########################
+# Sorting of the mails #
+########################
+
+set sort=threads # sorting the mails in threads
+#set sort_aux=date # sorting the threads
+set sort_aux = 'reverse-last-date-received'
+# (date-received, date-sent, from, mailbox-order, size, subject, threads, to, score)
+# (and everything with a prefixed "reverse-")
+# (sort_aux can be prefixed with "last-" to use last element in thread instead of first one)
+
+##############################
+# Sortierung im File-Browser #
+##############################
+
+#set sort_browser=reverse-date
+# Specifies how to sort entries in the file browser. By default, the
+# entries are sorted alphabetically. Valid values:
+# alpha (alphabetically)
+# date
+# size
+# unsorted
+# You may optionally use the reverse- prefix to specify reverse sorting
+# order (example: set sort_browser=reverse-date).
+
+################
+# Index format #
+################
+
+# Type: string
+# Default: "%4C %Z %{%b %d} %-15.15L (%4l) %s"
+# This variable allows you to customize the message index display to your personal taste.
+# %a address of the author
+# %b filename of the original message folder (think mailBox)
+# %B the list to which the letter was sent, or else the folder name (%b).
+# %c number of characters (bytes) in the message
+# %C current message number
+# %d date and time of the message in the format specified by ``date_format''
+# converted to sender's time zone
+# %D date and time of the message in the format specified by ``date_format''
+# converted to the local time zone
+# %e current message number in thread
+# %E number of messages in current thread
+# %f entire From: line (address + real name)
+# %F author name, or recipient name if the message is from you
+# %i message-id of the current message
+# %l number of lines in the message
+# %L list-from function
+# %m total number of message in the mailbox
+# %M number of hidden messages if the thread is collapsed.
+# %N message score
+# %n author's real name (or address if missing)
+# %O (_O_riginal save folder) Where mutt would formerly have stashed the message:
+# list name or recipient name if no list
+# %s subject of the message
+# %S status of the message (N/D/d/!/r/*)
+# %t `to:' field (recipients)
+# %T the appropriate character from the $to_chars string
+# %u user (login) name of the author
+# %v first name of the author, or the recipient if the message is from you
+# %y `x-label:' field, if present
+# %Y `x-label' field, if present, and (1) not at part of a thread tree, (2) at the top of a thread,
+# or (3) `x-label' is different from preceding message's `x-label'.
+# %Z message status flags
+# %{fmt} the date and time of the message is converted to sender's time zone,
+# and ``fmt'' is expanded by the library function ``strftime''; a leading bang disables locales
+# %[fmt] the date and time of the message is converted to the local time zone,
+# and ``fmt'' is expanded by the library function ``strftime''; a leading bang disables locales
+#%(fmt) the local date and time when the message was received.
+# ``fmt'' is expanded by the library function ``strftime''; a leading bang disables locales
+#% the current local time. ``fmt'' is expanded by the library function ``strftime'';
+# a leading bang disables locales.
+#%>X right justify the rest of the string and pad with character "X"
+#%|X pad to the end of the line with character "X"
+
+###########
+#Examples #
+###########
+
+#set index_format="%C %Z %-15.15t %-40.40s %e %D "
+#set index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s %e %?M?(#%03M)&(%4l)? %L"
+#set index_format="%4C %Z %-21.21F (%3l) %s"
+#set index_format="%4C %Z %{%b %D} %-15.15L (%4l) %e %E %s"
+set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+set index_format="%4C %-11.11D %S %-21.21n (%3l) %s"
+
+################
+# Mailinglists #
+################
+
+# lists adds a mailing list to the list of known mailing lists.
+# subscribe adds a mailing list to the list of subscribed mailing lists
+# and to the list of known lists.
+# unlists removes a mailing list from _both_ lists.
+# unsubscribe removes a mailing list from the list of subscribed
+
+#lists suse-imap-e@suse.com suse-linux-e@suse.com mutt-announce@mutt.org
+#lists mutt-users@mutt.org mysql@lists.mysql linux-laptop@mobilix.org
+#lists wine-users@winehq.com njpunklist@yahoogroups.com nwpunk@u.washington.edu
+#lists vim-announce@vim.org vim@vim.org wm-user@windowmaker.org
+#lists comp-news@dl.ac.uk procmail@Lists procmail-users@procmail.org
+#lists debian-user@lists.debian.org debian-news@lists.debian.org debian-laptop@lists.debian.org
+#lists debian-announce@lists.debian comp.mail.sendmail@lists.cm.nu
+#lists fetchmail-friends@lists.ccil.org procmail@informatik.rwth-aachen.de
+#lists news@en.tldp.org discuss@en.tldp.org announce@linuxdoc.org
+#lists inn-workers@isc.org tin-users@tin.org taylor-uucp@gnu.ai.mit.edu
+#lists leafnode-list@wpxx02.toxi.uni-wuerzburg.de alsa-user@lists.sourceforge.net
+#lists debian-security@lists.debian.org debian-curiosa@lists.debian.org
+#lists debian-testing@lists.debian.org spamassassin-talk@lists.sourceforge.net
+#lists sed-users@yahoogroups.com
+#
+#subscribe news-announce@mutt.org mutt-users@mutt.org
+#subscribe suse-imap-e@suse.com suse-linux-e@suse.com
+#subscribe mysql@lists.mysql plasticbomb@listi.jpberlin.de
+#
+#subscribe linux-laptop@mobilix.org
+#subscribe wine-users@winehq.com wine-announce@winehq.com
+#subscribe njpunklist@yahoogroups.com
+#subscribe nwpunk@u.washington.edu plasticbomb@listi.jpberlin.de
+#
+#subscribe vim-announce@vim.org vim@vim.org wm-user@windowmaker.org wm-announce@windowmaker.org
+#subscribe comp-news@dl.ac.uk procmail@Lists procmail-users@procmail.org
+#subscribe debian-user@lists.debian.org debian-news@lists.debian.org debian-laptop@lists.debian.org
+#subscribe debian-announce@lists.debian.org comp.mail.sendmail@lists.cm.nu
+#subscribe fetchmail-friends@lists.ccil.org procmail@informatik.rwth-aachen.de
+#subscribe news@en.tldp.org discuss@en.tldp.org announce@linuxdoc.org
+#
+#subscribe inn-workers@isc.org tin-users@tin.org taylor-uucp@gnu.ai.mit.edu
+#subscribe leafnode-list@wpxx02.toxi.uni-wuerzburg.de alsa-user@lists.sourceforge.net
+#subscribe debian-security@lists.debian.org debian-curiosa@lists.debian.org
+#subscribe debian-testing@lists.debian.org spamassassin-talk@lists.sourceforge.net
+#subscribe sed-users@yahoogroups.com
+
+############
+#Mailboxes #
+############
+
+# mailboxes [!]filename [ filename
+# This command specifies folders which can receive mail and which will be checked for new messages.
+# By default, the main menu status bar displays how many of these folders have new messages.
+# When changing folders, pressing space will cycle through folders with new mail.
+# Pressing TAB in the directory browser will bring up a menu showing the files specified by
+# the mailboxes command,and indicate which contain new messages.
+# mutt-announceMutt will automatically enter this mode when invoked from the command line with the -y option.
+
+mailboxes =97bottles
+mailboxes =BookMooch
+mailboxes =Dani
+mailboxes ="Django Book"
+mailboxes =Fabdoc
+mailboxes =Fabric
+mailboxes =Family
+mailboxes =Friends
+mailboxes =[Gmail]/
+mailboxes =INBOX
+mailboxes ="Mailing Lists"
+mailboxes =Nagios
+mailboxes =NerdNYC
+mailboxes =Netflix
+mailboxes =PATHAlerts
+mailboxes =Purchases
+mailboxes =Registration
+mailboxes ="Sent Messages"
+mailboxes =Tickets
+mailboxes =Twitter
+mailboxes =Xen-Tools
+
+###########
+# Aliases #
+###########
+
+# (called in ~/.muttrc to load them only once)
+
+#set alias_file=~/Mail/aliases
+# Type: path. Default: "~/.muttrc". The default file in which to save aliases created
+# by the `` create-alias'' function.
+# Note: Mutt will not automatically source this file;
+# you must explicitly use the `` source'' command for it to be executed.
+
+#source ~/Mail/aliases
+# Usage: source filename. This command allows the inclusion of initialization commands
+# from other files. For example, I place all of my aliases in ~/.mail_aliases so that
+# I can make my ~/.muttrc readable and keep my aliases private.
+# If the filename begins with a tilde (``~''), it will be expanded to the path of your home directory.
+# If the filename ends with a vertical bar (|), then filename is considered to be an
+# executable program from which to read input (eg. source ~bin/myscript|/).
+
+set sort_alias=address
+# Type: sort order. Default: alias. Specifies how the entries in the `alias' menu are sorted.
+# The following are legal values:
+# address (sort alphabetically by email address)
+# alias (sort alphabetically by alias name)
+# unsorted (leave in order specified in .muttrc)
+
+set alias_format="%4n %2d %t %-12a %r"
+# Default: "%4n %t %-10a %r". Specifies the format of the data displayed for the `alias' menu.
+# The following printf(3)-style sequences are available:
+# %a alias name
+# %n index number
+# %r address which alias expands to
+# %t character which indicates if the alias is tagged for inclusion
+
+
+###########
+# Sidebar #
+###########
+
+
+color sidebar_new yellow default
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+
+#######
+# End #
+#######

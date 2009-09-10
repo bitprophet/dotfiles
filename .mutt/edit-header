@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# edit-header - helper script to append/replace/remove headers with mutt
+#
+# Based on an idea by David Champion <dgc at uchicago.edu>
+#
+# Copyright © 2008 martin f. krafft <madduck@madduck.net>
+# Released under the terms of the Artistic Licence 2.0
+#
+set -eu
+
+if [ ! -x "$(command -v formail)" ]; then
+  echo E: formail not installed. >&2
+  exit 1
+fi
+
+header="${1:-}"
+if [ -z "$header" ]; then
+  echo "E: no header specified" >&2
+  exit 1
+fi
+
+get_header_contents()
+{
+  local contents
+  printf "Enter ${1:-header} contents: " >/dev/tty
+  read contents </dev/tty
+  echo "$contents"
+}
+
+script="${0%/*}/${2:-}"
+if [ -f "$script" ] && [ -x "$script" ]; then
+  contents_source="$script"
+  shift
+else
+  contents_source=get_header_contents
+fi
+
+editor=
+case "$0" in
+  *append-header|*supersede-header|*replace-header)
+    contents="${2:-}"
+    [ -n "$contents" ] || contents="$(eval $contents_source $header)"
+    case "$0" in
+      *append-header) flag=-A;;
+      *supersede-header) flag=-i;;
+      *replace-header) flag=-I;;
+    esac
+    editor="${0%/*}/filter-proxy formail $flag \'$header: $contents\'"
+    ;;
+
+  *remove-header)
+    editor="${0%/*}/filter-proxy formail -I \'$header:\'"
+    ;;
+
+  *)
+    echo "E: unknown invocation: ${0##*/}" >&2
+    exit 1
+    ;;
+
+esac
+
+echo "set my_editor=\"\$editor\""
+echo "set my_filter=\"$editor\""
+echo -n "push '"
+echo -n "<enter-command>set editor=\"\$my_filter\"<enter>"
+echo -n "<edit>"
+echo -n "<enter-command>set editor=\"\$my_editor\"<enter>"
+echo -n "<enter-command>unset my_filter<enter>"
+echo -n "<enter-command>unset my_editor<enter>"
+echo "'"

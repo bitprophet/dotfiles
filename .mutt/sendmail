@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+OUTGOING=~/mail-seamus/outgoing
+exec safecat $OUTGOING/tmp $OUTGOING/cur

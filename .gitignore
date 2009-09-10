@@ -51,3 +51,8 @@
 
 # Gem config
 !.gemrc
+
+# Mutt
+!.muttrc
+!.mutt
+!.mutt/*

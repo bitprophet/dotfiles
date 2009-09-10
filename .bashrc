@@ -190,7 +190,13 @@ function wwwify() {
         return 1
     fi
 
-    sudo chown -R www-data:www-data $1
+    if [[ -f /etc/redhat-release ]]
+    then
+        ug=apache
+    else
+        ug=www-data
+    fi
+    sudo chown -R $ug:$ug $1
     sudo chmod -R g+w $1
 }
 
