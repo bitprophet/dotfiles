@@ -168,12 +168,21 @@ esac
 
 # Prompt function because PROMPT_COMMAND is awesome
 function set_prompt() {
-    # User, hostname
-    base="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
+    # User/hostname
+    userhost="${UC}\u@${HD}${NIL}"
+
+    # Special vim-tab-like shortpath
+    _pwd=`pwd -P | sed "s#$HOME#~#"`
+    if [[ $_pwd == "~" ]]; then
+        _dirname=$_pwd
+    else
+        _dirname=`dirname $_pwd | sed -E "s/\/(.)[^\/]*/\/\1/g"`
+        _dirname="$_dirname/`basename $_pwd`"
+    fi
+    path="${LC}${_dirname}${NIL}"
 
     # Virtualenv
     _venv=`basename "$VIRTUAL_ENV"`
-    venv=""
     if [[ -n $_venv ]]; then
         venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
     fi
@@ -181,7 +190,6 @@ function set_prompt() {
     # Git branch
     _branch=$(git symbolic-ref HEAD 2>/dev/null)
     _branch=${_branch#refs/heads/} # apparently faster than sed
-    branch=""
     if [[ -n $_branch ]]; then
         branch=" ${NIL}[${PURPLE}${_branch}${NIL}]"
     fi
@@ -190,7 +198,7 @@ function set_prompt() {
     end="${LC}\$${NIL} "
 
     # Feels kind of like cheating...but works so well!
-    export PS1="${base}${venv}${branch} ${end}"
+    export PS1="${userhost}:${path}${venv}${branch} ${end}"
 }
 export PROMPT_COMMAND=set_prompt
 
