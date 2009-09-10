@@ -180,10 +180,11 @@ esac
 
 # Prompt function because PROMPT_COMMAND is awesome
 function set_prompt() {
-    # User/hostname
-    userhost="${UC}\u@${HD}${NIL}"
+    # If logged in as another user, not gonna have all this firing anyway.
+    # So let's just show the host only and be done with it.
+    host="${UC}${HD}${NIL}"
 
-    # Special vim-tab-like shortpath
+    # Special vim-tab-like shortpath (~/folder/directory/foo => ~/f/d/foo)
     _pwd=`pwd | sed "s#$HOME#~#"`
     if [[ $_pwd == "~" ]]; then
         _dirname=$_pwd
