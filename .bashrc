@@ -169,23 +169,36 @@ case $( hostname | cut -d '.' -f 1 ) in
     mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
 esac
 
+# Multiplatform sed tomfoolery used below (extended regexp)
+case $(uname -s) in
+    # -E flag, and override macports sed=>gsed alias
+    Darwin ) alias esed='/usr/bin/sed -E' ;;
+    # -r flag with GNU sed on Linux
+    Linux ) alias esed='sed -r' ;;
+esac
+
+
 # Prompt function because PROMPT_COMMAND is awesome
 function set_prompt() {
     # User/hostname
     userhost="${UC}\u@${HD}${NIL}"
 
     # Special vim-tab-like shortpath
-    _pwd=`pwd -P | sed "s#$HOME#~#"`
+    _pwd=`pwd | sed "s#$HOME#~#"`
     if [[ $_pwd == "~" ]]; then
         _dirname=$_pwd
     else
-        _dirname=`dirname $_pwd | sed -E "s/\/(.)[^\/]*/\/\1/g"`
+        _dirname=`dirname $_pwd | esed "s/\/(.)[^\/]*/\/\1/g"`
+        if [[ $_dirname == "/" ]]; then
+            _dirname=""
+        fi
         _dirname="$_dirname/`basename $_pwd`"
     fi
     path="${LC}${_dirname}${NIL}"
 
     # Virtualenv
     _venv=`basename "$VIRTUAL_ENV"`
+    venv="" # need this to clear it when we leave a venv
     if [[ -n $_venv ]]; then
         venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
     fi
@@ -193,6 +206,7 @@ function set_prompt() {
     # Git branch
     _branch=$(git symbolic-ref HEAD 2>/dev/null)
     _branch=${_branch#refs/heads/} # apparently faster than sed
+    branch="" # need this to clear it when we leave a repo
     if [[ -n $_branch ]]; then
         branch=" ${NIL}[${PURPLE}${_branch}${NIL}]"
     fi
