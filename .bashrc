@@ -7,44 +7,6 @@ INTERACTIVE=`echo $- | grep i`
 
 
 #
-# Colorized prompt, with different username colors for different systems.
-#
-
-# Color codes
-red='31'
-green='32'
-yellow='33'
-blue='34'
-purple='35'
-cyan='36'
-white='37'
-
-# Hostname styles
-full='\H'
-short='\h'
-
-# System => color/hostname map:
-#   UC: username color
-#   LC: location/cwd color
-#   HD: hostname display (\h vs \H)
-# Defaults:
-UC=$green
-LC=$blue
-HD=$full
-# Manually cut hostname; hostname -s bails out on some systems.
-case $( hostname | cut -d '.' -f 1 ) in
-    jeff | ytram ) UC=$yellow LC=$green ;;
-    bitprophet ) UC=$cyan ;;
-    *-production ) UC=$red HD=$short ;;
-    mail | code | bacula | www* | monitor | bender | xen ) UC=$red ;;
-esac
-
-# Prompt itself
-PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
-
-
-
-#
 # Miscellaneous shell builtin tweaks
 #
 
@@ -170,6 +132,79 @@ fi
 
 
 #
+# Colorized prompt, with different username colors for different systems.
+#
+
+# Color codes
+RED='\[\033[01;31m\]'
+GREEN='\[\033[01;32m\]'
+YELLOW='\[\033[01;33m\]'
+BLUE='\[\033[01;34m\]'
+PURPLE='\[\033[01;35m\]'
+CYAN='\[\033[01;36m\]'
+WHITE='\[\033[01;37m\]'
+NIL="\[\033[00m\]"
+
+# Hostname styles
+FULL='\H'
+SHORT='\h'
+
+# System => color/hostname map:
+#   UC: username color
+#   LC: location/cwd color
+#   HD: hostname display (\h vs \H)
+# Defaults:
+UC=$GREEN
+LC=$BLUE
+HD=$FULL
+
+# Manually cut hostname; hostname -s bails out on some systems.
+case $( hostname | cut -d '.' -f 1 ) in
+    jeff | ytram ) UC=$YELLOW LC=$GREEN ;;
+    bitprophet ) UC=$CYAN ;;
+    *-production ) UC=$RED HD=$SHORT ;;
+    mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
+esac
+
+# Prompt function because PROMPT_COMMAND is awesome
+function set_prompt() {
+    # User/hostname
+    userhost="${UC}\u@${HD}${NIL}"
+
+    # Special vim-tab-like shortpath
+    _pwd=`pwd -P | sed "s#$HOME#~#"`
+    if [[ $_pwd == "~" ]]; then
+        _dirname=$_pwd
+    else
+        _dirname=`dirname $_pwd | sed -E "s/\/(.)[^\/]*/\/\1/g"`
+        _dirname="$_dirname/`basename $_pwd`"
+    fi
+    path="${LC}${_dirname}${NIL}"
+
+    # Virtualenv
+    _venv=`basename "$VIRTUAL_ENV"`
+    if [[ -n $_venv ]]; then
+        venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
+    fi
+
+    # Git branch
+    _branch=$(git symbolic-ref HEAD 2>/dev/null)
+    _branch=${_branch#refs/heads/} # apparently faster than sed
+    if [[ -n $_branch ]]; then
+        branch=" ${NIL}[${PURPLE}${_branch}${NIL}]"
+    fi
+
+    # Dollar/pound sign
+    end="${LC}\$${NIL} "
+
+    # Feels kind of like cheating...but works so well!
+    export PS1="${userhost}:${path}${venv}${branch} ${end}"
+}
+export PROMPT_COMMAND=set_prompt
+
+
+
+#
 # Functions
 #
 
@@ -180,7 +215,13 @@ function wwwify() {
         return 1
     fi
 
-    sudo chown -R www-data:www-data $1
+    if [[ -f /etc/redhat-release ]]
+    then
+        ug=apache
+    else
+        ug=www-data
+    fi
+    sudo chown -R $ug:$ug $1
     sudo chmod -R g+w $1
 }
 

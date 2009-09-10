@@ -1,0 +1,42 @@
+save-hook . =store
+
+send-hook . 'set record==store'
+send-hook '~f phd(\\+.+)?@martin-krafft\\.net' 'set record==phd'
+
+#send-hook '~C @bugs\.debian\.org' 'my_hdr X-Debbugs-No-Ack: please spare me'
+send-hook '~C @packages\.qa\.debian\.org' 'my_hdr X-PTS-Approved: please'
+#send-hook '~C -request@' 'my_hdr X-Record: discard'
+
+send-hook '~C @staffmail\.ul\.ie' 'unset crypt_autosign'
+send-hook '~L @sudetia\.de' 'unset crypt_autosign'
+
+fcc-hook -request@ '=discard'
+send-hook '~s "Re: confirm" ~t -request@' 'unset crypt_autosign'
+
+# do not set M-F-T on mails to the git mailing list
+send-hook . 'set followup_to'
+send-hook '~C git@vger\.kernel\.org' 'unset followup_to'
+
+# do a <group-reply> for L when sending to the git mailing list
+# http://marc.info/?l=mutt-users&m=118734866910357&w=2
+#message-hook . 'bind pager L list-reply'
+#message-hook '~C git@vger\.kernel\.org' 'bind pager L group-reply'
+#macro index L '<enter>L'
+# NOTE: using M-F-T from procmail for now
+
+folder-hook spam push '<tag-pattern>~O<enter><tag-prefix><set-flag>n<tag-prefix><clear-flag>*<limit>~N<enter><sort-mailbox>p<first-entry>'
+
+#folder-hook . 'set pager_index_lines=5'
+#folder-hook feeds|mass 'set pager_index_lines=10'
+
+folder-hook store push '<tag-pattern>~O|~N<enter><tag-prefix><clear-flag>n<tag-prefix><clear-flag>*<last-entry>'
+
+# since I have delete=yes, messages marked for trashing on mailbox entry must
+# be due to IMAP clients or the like not purging them. I found that some
+# clients automatically trash read mail from the INBOX, for *whatever* reason.
+# I have not found the authors of those clients yet. In the mean time, since
+# messages are not expected to be marked for deletion on mailbox entry, the
+# following ensures that I lose no more mail.
+folder-hook . push '<undelete-pattern>~D<enter>'
+
+# vim:ft=muttrc
