@@ -7,44 +7,6 @@ INTERACTIVE=`echo $- | grep i`
 
 
 #
-# Colorized prompt, with different username colors for different systems.
-#
-
-# Color codes
-red='31'
-green='32'
-yellow='33'
-blue='34'
-purple='35'
-cyan='36'
-white='37'
-
-# Hostname styles
-full='\H'
-short='\h'
-
-# System => color/hostname map:
-#   UC: username color
-#   LC: location/cwd color
-#   HD: hostname display (\h vs \H)
-# Defaults:
-UC=$green
-LC=$blue
-HD=$full
-# Manually cut hostname; hostname -s bails out on some systems.
-case $( hostname | cut -d '.' -f 1 ) in
-    jeff | ytram ) UC=$yellow LC=$green ;;
-    bitprophet ) UC=$cyan ;;
-    *-production ) UC=$red HD=$short ;;
-    mail | code | bacula | www* | monitor | bender | xen ) UC=$red ;;
-esac
-
-# Prompt itself
-PS1="\[\033[01;${UC}m\]\u@$HD\[\033[00m\]:\[\033[01;${LC}m\]\w \$\[\033[00m\] "
-
-
-
-#
 # Miscellaneous shell builtin tweaks
 #
 
@@ -136,6 +98,54 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+
+
+#
+# Colorized prompt, with different username colors for different systems.
+#
+
+# Color codes
+RED='\[\033[01;31m\]'
+GREEN='\[\033[01;32m\]'
+YELLOW='\[\033[01;33m\]'
+BLUE='\[\033[01;34m\]'
+PURPLE='\[\033[01;35m\]'
+CYAN='\[\033[01;36m\]'
+WHITE='\[\033[01;37m\]'
+NIL="\[\033[00m\]"
+
+# Hostname styles
+FULL='\H'
+SHORT='\h'
+
+# System => color/hostname map:
+#   UC: username color
+#   LC: location/cwd color
+#   HD: hostname display (\h vs \H)
+# Defaults:
+UC=$GREEN
+LC=$BLUE
+HD=$FULL
+
+# Manually cut hostname; hostname -s bails out on some systems.
+case $( hostname | cut -d '.' -f 1 ) in
+    jeff | ytram ) UC=$YELLOW LC=$GREEN ;;
+    bitprophet ) UC=$CYAN ;;
+    *-production ) UC=$RED HD=$SHORT ;;
+    mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
+esac
+
+# Insert "lol git kinda sounds like 'get'" joke here
+WTF=""
+function _gb() {
+    ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+    # goddammit why doesn't echo -e act the same as $PS1? :(
+    echo -e " [\033[01;35m${ref#refs/heads/}\033[00m]"
+}
+
+# Prompt itself
+PS1="${UC}\u@${HD}${NIL}:${LC}\w${NIL}\$(_gb) ${LC}\$${NIL} "
 
 
 
