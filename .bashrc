@@ -2,8 +2,10 @@
 # Multiplatform bashrc for use on OS X and Linux (Debian or RedHat families)
 #
 
+
 # Set interactive flag; occasionally useful for turning stuff off, e.g. keychain
 INTERACTIVE=`echo $- | grep i`
+
 
 
 #
@@ -49,8 +51,8 @@ ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.f
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
-local=/usr/local/bin:/usr/local/sbin
-export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$local:$PATH
+local_path=/usr/local/bin:/usr/local/sbin
+export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$PATH
 
 
 #
@@ -98,6 +100,7 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
 
 
 
@@ -235,7 +238,6 @@ function pvim() {
     vim -p `grep -lir "$1" . | egrep -v "$exclude"`
 }
     
-
 
 
 #
