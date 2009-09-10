@@ -102,6 +102,36 @@ fi
 
 
 #
+# Virtualenvwrapper support
+#
+
+# virtualenvwrapper
+case $( uname -s ) in
+    Darwin )
+        # Leopard
+        if [ `uname -r | cut -d '.' -f 1` == '9' ]; then
+            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
+        # Tiger
+        else
+            virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
+        fi
+        workon_home= # just use default ~/.virtualenvs
+        ;;
+    Linux )
+        virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+        # Relatively arbitrarily chose /opt/envs. Could also have gone with
+        # /opt/virtualenvs perhaps.
+        workon_home=/opt/envs
+        ;;
+esac
+if [ -f $virtualenvwrapper  ]; then
+    export WORKON_HOME=$workon_home
+    source $virtualenvwrapper
+fi
+
+
+
+#
 # Colorized prompt, with different username colors for different systems.
 #
 
@@ -137,48 +167,27 @@ case $( hostname | cut -d '.' -f 1 ) in
 esac
 
 # Insert "lol git kinda sounds like 'get'" joke here
-WTF=""
 function _gb() {
     ref=$(git symbolic-ref HEAD 2>/dev/null) || return
     echo "${ref#refs/heads/}"
 }
 
-# Prompt itself
-BASE="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
-GIT="${NIL}[${BLUE}\$(_gb)${NIL}]"
-END="${LC}\$${NIL} "
-export PS1="${BASE} ${GIT} ${END}"
+# Virtualenv output (replaces the default)
+function _ve() {
+    ve=$(basename "$VIRTUAL_ENV") || return
+    echo "$ve"
+}
 
-
-
-
-#
-# Virtualenvwrapper support
-#
-
-# virtualenvwrapper
-case $( uname -s ) in
-    Darwin )
-        # Leopard
-        if [ `uname -r | cut -d '.' -f 1` == '9' ]; then
-            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
-        # Tiger
-        else
-            virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
-        fi
-        workon_home= # just use default ~/.virtualenvs
-        ;;
-    Linux )
-        virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
-        # Relatively arbitrarily chose /opt/envs. Could also have gone with
-        # /opt/virtualenvs perhaps.
-        workon_home=/opt/envs
-        ;;
-esac
-if [ -f $virtualenvwrapper  ]; then
-    export WORKON_HOME=$workon_home
-    source $virtualenvwrapper
-fi
+# Prompt itself, as a function so I can "reset" the prompt from other
+# in-bash code, e.g. virtualenvwrapper stuff (long story.)
+function set_prompt() {
+    BASE="${UC}\u@${HD}${NIL}:${LC}\w${NIL}"
+    GIT="${NIL}[${PURPLE}\$(_gb)${NIL}]"
+    VIRTUALENV="${NIL}{${PURPLE}\$(_ve)${NIL}}"
+    END="${LC}\$${NIL} "
+    export PS1="${BASE} ${VIRTUALENV} ${GIT} ${END}"
+}
+set_prompt
 
 
 
