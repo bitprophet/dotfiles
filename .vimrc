@@ -93,3 +93,6 @@ let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
 
 " Custom mapping shortcut for :nohl
 nmap <C-N> :noh<CR>
+
+" Map normal mode Enter to add a new line
+nmap <Enter> o<Esc>
