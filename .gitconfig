@@ -10,3 +10,5 @@
     st = status
     co = checkout
     ba = branch -a
+[push]
+    default = matching
