@@ -163,7 +163,7 @@ HD=$FULL
 
 # Manually cut hostname; hostname -s bails out on some systems.
 case $( hostname | cut -d '.' -f 1 ) in
-    jeff | ytram ) UC=$YELLOW LC=$GREEN ;;
+    jeff | ytram ) UC=$YELLOW LC=$GREEN HD=$SHORT ;;
     bitprophet ) UC=$CYAN ;;
     *-production ) UC=$RED HD=$SHORT ;;
     mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
