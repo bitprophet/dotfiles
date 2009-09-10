@@ -207,7 +207,7 @@ function set_prompt() {
     # Git branch / dirtiness
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
-    if git update-index -q --refresh; git diff-index --quiet --cached HEAD --ignore-submodules -- && git diff-files --quiet --ignore-submodules
+    if git update-index -q --refresh 2>/dev/null; git diff-index --quiet --cached HEAD --ignore-submodules -- 2>/dev/null && git diff-files --quiet --ignore-submodules 2>/dev/null
         then dirty=""
     else
         dirty="${RED}*${NIL}"
