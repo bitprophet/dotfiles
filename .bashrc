@@ -189,11 +189,11 @@ function set_prompt() {
     if [[ $_pwd == "~" ]]; then
         _dirname=$_pwd
     else
-        _dirname=`dirname $_pwd | esed "s/\/(.)[^\/]*/\/\1/g"`
+        _dirname=`dirname "$_pwd" | esed "s/\/(.)[^\/]*/\/\1/g"`
         if [[ $_dirname == "/" ]]; then
             _dirname=""
         fi
-        _dirname="$_dirname/`basename $_pwd`"
+        _dirname="$_dirname/`basename "$_pwd"`"
     fi
     path="${LC}${_dirname}${NIL}"
 
