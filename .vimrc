@@ -135,15 +135,14 @@ function! H1()
     endif
 endf
 
-function! H2()
-    let char = "="
-    if NextLineIsOnly(char)
-        return ReplaceNextLineWith(char)
+function! H(char)
+    if NextLineIsOnly(a:char)
+        return ReplaceNextLineWith(a:char)
     else
-        return AppendLineOf(char)
+        return AppendLineOf(a:char)
     endif
 endf
 
-
 nnoremap <expr> <F1> H1()
-nnoremap <expr> <F2> H2()
+nnoremap <expr> <F2> H("=")
+nnoremap <expr> <F3> H("-")
