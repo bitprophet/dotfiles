@@ -100,3 +100,23 @@ let g:netrw_liststyle = 3
 
 " Hide common hidden files
 let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+
+
+"
+" Snippets
+"
+
+function! H1()
+    " If the following line already consists of nothing but = signs...
+    if getline(line(".")+1) =~ "^=\\+$"
+        " overwrite the lines on either side
+        return "VykVpVr=yyjjVp"
+    " Otherwise...
+    else
+        " Insert =-lines above and below.
+        return "yyPVr=yyjp"
+    endif
+    return ''
+endfunction
+
+nnoremap <expr> <F1> H1()
