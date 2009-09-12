@@ -106,17 +106,44 @@ let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
 " Snippets
 "
 
+function! NextLineIsOnly(char)
+    return getline(line(".")+1) =~ "^" . a:char . "\\+$"
+endf
+
+function! ReplaceNextLineWith(char)
+    return "yyjVpVr" . a:char
+endf
+
+function! ReplaceSurroundingsWith(char)
+    return ReplaceNextLineWith(a:char) . "yykkVp"
+endf
+
+function! AppendLineOf(char)
+    return "yypVr" . a:char
+endf
+
+function! SurroundWith(char)
+    return AppendLineOf(a:char) . "yykP"
+endf
+
 function! H1()
-    " If the following line already consists of nothing but = signs...
-    if getline(line(".")+1) =~ "^=\\+$"
-        " overwrite the lines on either side
-        return "VykVpVr=yyjjVp"
-    " Otherwise...
+    let char = "="
+    if NextLineIsOnly(char)
+        return ReplaceSurroundingsWith(char)
     else
-        " Insert =-lines above and below.
-        return "yyPVr=yyjp"
+        return SurroundWith(char)
     endif
-    return ''
-endfunction
+endf
+
+function! H2()
+    let char = "="
+    if NextLineIsOnly(char)
+        return ReplaceNextLineWith(char)
+    else
+        return AppendLineOf(char)
+    endif
+endf
+
 
 nnoremap <expr> <F1> H1()
+nnoremap <expr> <F2> H2()
