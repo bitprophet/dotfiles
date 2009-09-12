@@ -84,6 +84,13 @@ inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
 inoremap <down> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gj"<Enter>
 
+" Custom mapping shortcut for :nohl
+nmap <C-N> :noh<CR>
+
+" Map normal mode Enter to add a new line
+nmap <Enter> o<Esc>
+
+
 "
 " netrw (builtin file-browser plugin) preferences
 "
@@ -93,9 +100,3 @@ let g:netrw_liststyle = 3
 
 " Hide common hidden files
 let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
-
-" Custom mapping shortcut for :nohl
-nmap <C-N> :noh<CR>
-
-" Map normal mode Enter to add a new line
-nmap <Enter> o<Esc>
