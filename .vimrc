@@ -63,7 +63,8 @@ autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=s
 autocmd FileType mkd setlocal ai comments=n:>
 
 " ReST
-autocmd FileType rest setlocal ai comments=n:> tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufRead *.rst setlocal filetype=rest
+autocmd FileType rest setlocal ai comments=n:>
 
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
