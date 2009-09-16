@@ -56,6 +56,15 @@ set switchbuf=usetab
 set textwidth=79
 set hlsearch
 
+" MacVim
+if has("gui_macvim")
+    set transparency=15
+    set guifont=Inconsolata-dz:h12
+    set lines=60
+    set formatoptions-=t
+    set formatoptions-=c
+endif
+
 " Ruby
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
