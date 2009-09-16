@@ -47,12 +47,13 @@ ports_manpath=/opt/local/share/man
 export MANPATH=$ports_manpath:$MANPATH
 
 # PATH
+my_path=$HOME/bin
 ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
 local_path=/usr/local/bin:/usr/local/sbin
-export PATH=$ports_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$PATH
+export PATH=$my_path:$ports_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$PATH
 
 
 #
