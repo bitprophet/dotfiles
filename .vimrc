@@ -92,7 +92,7 @@ autocmd BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 map <up> gk
 inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
-inoremap <down> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gj"<Enter>
+inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 
 " Custom mapping shortcut for :nohl
 nmap <C-N> :noh<CR>
