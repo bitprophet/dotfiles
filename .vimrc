@@ -54,7 +54,6 @@ set backspace=indent,eol,start
 set tabpagemax=100
 set switchbuf=usetab
 set textwidth=79
-set hlsearch
 
 " MacVim
 if has("gui_macvim")
