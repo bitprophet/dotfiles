@@ -252,7 +252,7 @@ function wwwify() {
 }
 
 
-exclude="\.git|\.swp|\.coverage|\.pyc|_build"
+exclude="\.git|\.svn|\.swp|\.coverage|\.pyc|_build"
 function pgrep() {
     find . -maxdepth 1 -mindepth 1| egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
 }
