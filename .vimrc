@@ -9,13 +9,20 @@ runtime! debian.vim
 " Basic/common settings
 "
 
-" Colorization
+" Colorization/display
 
 " Syntax highlighting!
 syntax on
 colorscheme evening
 " Colorize for a dark background
 set background=dark
+" Show ruler line at bottom of each buffer
+set ruler
+" Show additional info in the command line (very last line on screen) where
+" appropriate.
+set showcmd
+" Always display status lines/rulers
+set laststatus=2
 
 " Navigation/search
 
@@ -63,16 +70,6 @@ set formatoptions=tcroqn2
 " might otherwise fit. Don't remember exactly why this is here but I'm happy
 " with how things wrap now...
 set lbr
-
-" Display
-
-" Show ruler line at bottom of each buffer
-set ruler
-" Show additional info in the command line (very last line on screen) where
-" appropriate.
-set showcmd
-" Always display status lines/rulers
-set laststatus=2
 
 " Behavior
 
