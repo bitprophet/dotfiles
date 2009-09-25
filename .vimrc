@@ -9,17 +9,27 @@ runtime! debian.vim
 " Basic/common settings
 "
 
+" Colorization
+
 " Syntax highlighting!
 syntax on
 colorscheme evening
 " Colorize for a dark background
 set background=dark
+
+" Navigation/search
+
 " Show matching brackets/parentheses when navigating around
 set showmatch
+" Show matching parens in 2/10 of a second. No idea why I wanted this.
+set matchtime=2
 " Search incrementally instead of waiting for me to hit Enter
 set incsearch
 " Search case-insensitively
 set ignorecase
+
+" Formatting
+
 " Automatically indent based on current filetype
 set autoindent
 " Don't unindent when I press Enter on an indented line
@@ -28,30 +38,44 @@ set preserveindent
 set nosmartindent
 " Make tabbing/deleting honor 'shiftwidth' as well as 'softtab' and 'tabstop'
 set smarttab
-" Show ruler line at bottom of each buffer
-set ruler
-" Show additional info in the command line (very last line on screen) where
-" appropriate.
-set showcmd
 " Use spaces for tabs
 set expandtab
-" Default formatting options:
-" * automatically hard-wrap based on textwidth
-" * do the same for comments, but autoinsert comment character too
-" * also autoinsert comment character when making new lines after existing
-"   comment lines
-" * ditto but for o/O in normal mode
-" * Allow 'gq' to autowrap/autoformat comments as well as normal text
-" * Recognize numbered lists when autoformatting (don't explicitly need this,
-"   was probably in a default setup somewhere.)
-" * Use 2nd line of a paragraph for the overall indentation level when
-"   autoformatting. Good for e.g. bulleted lists or other formats where first
-"   line in a paragraph may have a different indent than the rest.
+" When wrapping/formatting, break at 79 characters. 
+set textwidth=79
+" By default, all indent/tab stuff is 4 spaces, as God intended.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+" Default autoformatting options:
+" t: automatically hard-wrap based on textwidth
+" c: do the same for comments, but autoinsert comment character too
+" r: also autoinsert comment character when making new lines after existing
+"    comment lines
+" o: ditto but for o/O in normal mode
+" q: Allow 'gq' to autowrap/autoformat comments as well as normal text
+" n: Recognize numbered lists when autoformatting (don't explicitly need this,
+"    was probably in a default setup somewhere.)
+" 2: Use 2nd line of a paragraph for the overall indentation level when
+"    autoformatting. Good for e.g. bulleted lists or other formats where first
+"    line in a paragraph may have a different indent than the rest.
 set formatoptions=tcroqn2 
 " Try to break on specific characters instead of the very last character that
 " might otherwise fit. Don't remember exactly why this is here but I'm happy
 " with how things wrap now...
 set lbr
+
+" Display
+
+" Show ruler line at bottom of each buffer
+set ruler
+" Show additional info in the command line (very last line on screen) where
+" appropriate.
+set showcmd
+" Always display status lines/rulers
+set laststatus=2
+
+" Behavior
+
 " Allow folding to play nice with Python and other well-indented code
 set foldmethod=indent
 " Don't close all folds by default when file opens
@@ -65,14 +89,10 @@ set modeline
 " Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
 " be enough for some files)
 set modelines=5
-" Always display status lines/rulers
-set laststatus=2
 " When splitting, put new window on the right hand side
 set splitright
 " Start scrolling up/down when cursor gets to 3 lines away from window edge
 set scrolloff=3
-" Show matching parens in 2/10 of a second. No idea why I wanted this.
-set matchtime=2
 " Don't use 'more' for shell output automatically.
 set nomore
 " Use bash-like tab completion in Vim command line
@@ -84,12 +104,6 @@ set backspace=indent,eol,start
 set tabpagemax=100
 " Make :sb let me navigate between all windows and tabs
 set switchbuf=usetab
-" When wrapping/formatting, break at 79 characters. 
-set textwidth=79
-" By default, all indent/tab stuff is 4 spaces, as God intended.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 
 " Jump to last known location in file
 if has("autocmd")
