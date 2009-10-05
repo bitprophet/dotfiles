@@ -71,13 +71,14 @@ alias gem='sudo gem'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
 
-# Apache reload alias
+# Apache aliases
 if [ -f /etc/init.d/apache2 ]; then
     apache=apache2
 elif [ -f /etc/init.d/httpd ]; then
     apache=httpd
 fi
 alias rap="sudo /etc/init.d/$apache reload"
+alias rsap="sudo /etc/init.d/$apache restart"
 
 # Platform specific 'ps' alias
 case $( uname -s) in
