@@ -34,6 +34,8 @@ set matchtime=2
 set incsearch
 " Search case-insensitively
 set ignorecase
+" But be smart about it -- if I have any caps in my term, be case-sensitive.
+set smartcase
 " Don't highlight search terms by default.
 set nohls
 
