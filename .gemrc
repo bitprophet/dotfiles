@@ -2,8 +2,9 @@
 :verbose: true
 :update_sources: true
 :sources:
-- http://gems.rubyforge.org/
+- http://gemcutter.org
 - http://gems.github.com
+- http://gems.rubyforge.org/
 gem: --no-rdoc --no-ri
 :bulk_threshold: 1000
 :backtrace: false
