@@ -1356,11 +1356,8 @@ fun! s:NetrwGetFile(readcmd, tfile, method)
    " rename buffer back to remote filename
 "   call Decho("exe silent! keepalt file ".escape(rfile,' '))
    exe "silent! keepalt file ".escape(rfile,' ')
-   if a:method == 5
-    set ft=html
-   else
-    filetype detect
-   endif
+   filetype detect
+
 "   call Dredir("renamed buffer back to remote filename<".rfile."> : expand(%)<".expand("%").">","ls!")
    let line1 = 1
    let line2 = line("$")
