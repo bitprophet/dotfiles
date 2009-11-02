@@ -187,7 +187,11 @@ let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
 "
 
 function! NextLineIsOnly(char)
-    return getline(line(".")+1) =~ "^" . a:char . "\\+$"
+    let check_char = a:char
+    if check_char == '~'
+        let check_char = '\~'
+    endif
+    return getline(line(".")+1) =~ "^" . check_char . "\\+$"
 endf
 
 function! ReplaceNextLineWith(char)
@@ -226,3 +230,4 @@ endf
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
+nnoremap <expr> <F4> H("~")
