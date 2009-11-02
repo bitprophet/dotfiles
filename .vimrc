@@ -180,6 +180,8 @@ nmap <Enter> o<Esc>
 let g:netrw_liststyle = 3
 " Hide common hidden files
 let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+" Don't use frickin elinks, wtf
+let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 
 
 "
