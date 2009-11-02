@@ -40,4 +40,6 @@ if rails_env = ENV['RAILS_ENV']
   #  ActiveRecord::Base.logger = Logger.new(STDOUT)
   #  ActiveRecord::Base.instance_eval { alias :[] :find }
   #end
+  require 'logger'
+  Object.const_set(:RAILS_DEFAULT_LOGGER, Logger.new(STDOUT))
 end
