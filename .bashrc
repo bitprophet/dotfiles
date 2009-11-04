@@ -7,6 +7,14 @@
 INTERACTIVE=`echo $- | grep i`
 
 
+#
+# MacPorts...or Homebrew? (Or both?)
+#
+
+HOMEBREW=`[[ -x /usr/local/bin/brew ]]`
+MACPORTS=`[[ -x /opt/local/bin/port ]]`
+
+
 
 #
 # Miscellaneous shell builtin tweaks
@@ -42,18 +50,22 @@ export TERM="xterm-color"
 export DISPLAY=:0.0
 export EDITOR=vim
 
-# MANPATH
-ports_manpath=/opt/local/share/man
+# MANPATH (add macports manpages only if it's the only game in town)
+if $MACPORTS && ! $HOMEBREW; then
+    ports_manpath=/opt/local/share/man
+fi
 export MANPATH=$ports_manpath:$MANPATH
 
 # PATH
 my_path=$HOME/bin
-ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
+if $MACPORTS && ! $HOMEBREW; then
+    ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
+fi
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
 local_path=/usr/local/bin:/usr/local/sbin
-export PATH=$my_path:$ports_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$PATH
+export PATH=$my_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$ports_path:$PATH
 
 
 #
@@ -93,8 +105,11 @@ esac
 # Tab completion
 #
 
-# MacPorts
-if [ -f /opt/local/etc/bash_completion ]; then
+# Homebrew
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+# MacPorts (only test if not homebrew)
+elif [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
