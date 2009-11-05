@@ -8,15 +8,6 @@ INTERACTIVE=`echo $- | grep i`
 
 
 #
-# MacPorts...or Homebrew? (Or both?)
-#
-
-HOMEBREW=`[[ -x /usr/local/bin/brew ]]`
-MACPORTS=`[[ -x /opt/local/bin/port ]]`
-
-
-
-#
 # Miscellaneous shell builtin tweaks
 #
 
@@ -50,17 +41,13 @@ export TERM="xterm-color"
 export DISPLAY=:0.0
 export EDITOR=vim
 
-# MANPATH (add macports manpages only if it's the only game in town)
-if $MACPORTS && ! $HOMEBREW; then
-    ports_manpath=/opt/local/share/man
-fi
+# MANPATH
+ports_manpath=/opt/local/share/man
 export MANPATH=$ports_manpath:$MANPATH
 
 # PATH
 my_path=$HOME/bin
-if $MACPORTS && ! $HOMEBREW; then
-    ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
-fi
+ports_path=/opt/local/bin:/opt/local/sbin:/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/
 vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
