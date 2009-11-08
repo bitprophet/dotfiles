@@ -90,8 +90,8 @@ set modeline
 " Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
 " be enough for some files)
 set modelines=5
-" When splitting, put new window on the right hand side
-set splitright
+" When splitting, put new windows to the right (vertical) or below (horizontal)
+set splitright splitbelow
 " Start scrolling up/down when cursor gets to 3 lines away from window edge
 set scrolloff=3
 " Don't use 'more' for shell output automatically.
