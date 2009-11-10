@@ -190,6 +190,9 @@ let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 " Custom "snippets"/shortcuts
 "
 
+" ReST header shortcuts: create or resize header formatting under/around
+" current line.
+
 function! NextLineIsOnly(char)
     let check_char = a:char
     if check_char == '~'
@@ -235,3 +238,18 @@ nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
 nnoremap <expr> <F4> H("~")
+
+
+" Git helper: take up to full length SHA1 under cursor and truncate to 7
+" characters; plus a Redmine specific version to tack on "commit:"
+
+function! TruncateToSevenChars()
+    " Use viwo instead of b so it works even when cursor is on 1st char of word
+    return "viwo7ld"
+endf
+
+function! FormatShaForCommit()
+    return TruncateToSevenChars() . "bicommit:\<Esc>w"
+endf
+
+nnoremap <expr> <F7> FormatShaForCommit()
