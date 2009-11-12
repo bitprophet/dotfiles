@@ -11,6 +11,9 @@ runtime! debian.vim
 
 " Colorization/display
 
+" ugh, bold looks awful in iTerm now, wtf
+set t_Co=8 t_md=
+
 " Syntax highlighting!
 syntax on
 colorscheme evening
