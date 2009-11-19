@@ -11,6 +11,9 @@ runtime! debian.vim
 
 " Colorization/display
 
+" ugh, bold looks awful in iTerm now, wtf
+set t_Co=8 t_md=
+
 " Syntax highlighting!
 syntax on
 colorscheme evening
@@ -90,8 +93,8 @@ set modeline
 " Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
 " be enough for some files)
 set modelines=5
-" When splitting, put new window on the right hand side
-set splitright
+" When splitting, put new windows to the right (vertical) or below (horizontal)
+set splitright splitbelow
 " Start scrolling up/down when cursor gets to 3 lines away from window edge
 set scrolloff=3
 " Don't use 'more' for shell output automatically.
@@ -124,8 +127,8 @@ endif
 
 " MacVim
 if has("gui_macvim")
-    set transparency=15
-    set guifont=Inconsolata-dz:h12
+    set transparency=5
+    set guifont=Inconsolata:h14
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
@@ -182,14 +185,23 @@ nmap <Enter> o<Esc>
 let g:netrw_liststyle = 3
 " Hide common hidden files
 let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+" Don't use frickin elinks, wtf
+let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 
 
 "
 " Custom "snippets"/shortcuts
 "
 
+" ReST header shortcuts: create or resize header formatting under/around
+" current line.
+
 function! NextLineIsOnly(char)
-    return getline(line(".")+1) =~ "^" . a:char . "\\+$"
+    let check_char = a:char
+    if check_char == '~'
+        let check_char = '\~'
+    endif
+    return getline(line(".")+1) =~ "^" . check_char . "\\+$"
 endf
 
 function! ReplaceNextLineWith(char)
@@ -228,3 +240,19 @@ endf
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
+nnoremap <expr> <F4> H("~")
+
+
+" Git helper: take up to full length SHA1 under cursor and truncate to 7
+" characters; plus a Redmine specific version to tack on "commit:"
+
+function! TruncateToSevenChars()
+    " Use viwo instead of b so it works even when cursor is on 1st char of word
+    return "viwo7ld"
+endf
+
+function! FormatShaForCommit()
+    return TruncateToSevenChars() . "bicommit:\<Esc>w"
+endf
+
+nnoremap <expr> <F7> FormatShaForCommit()

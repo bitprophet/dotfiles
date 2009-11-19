@@ -7,7 +7,6 @@
 INTERACTIVE=`echo $- | grep i`
 
 
-
 #
 # Miscellaneous shell builtin tweaks
 #
@@ -53,7 +52,7 @@ vmware_path=/Library/Application\ Support/VMWare\ Fusion
 redhat_path=/sbin:/usr/sbin
 ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
 local_path=/usr/local/bin:/usr/local/sbin
-export PATH=$my_path:$ports_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$PATH
+export PATH=$my_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$ports_path:$PATH
 
 
 #
@@ -93,8 +92,11 @@ esac
 # Tab completion
 #
 
-# MacPorts
-if [ -f /opt/local/etc/bash_completion ]; then
+# Homebrew
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+# MacPorts (only test if not homebrew)
+elif [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
 
@@ -149,13 +151,13 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 #
 
 # Color codes
-RED='\[\033[01;31m\]'
-GREEN='\[\033[01;32m\]'
-YELLOW='\[\033[01;33m\]'
-BLUE='\[\033[01;34m\]'
-PURPLE='\[\033[01;35m\]'
-CYAN='\[\033[01;36m\]'
-WHITE='\[\033[01;37m\]'
+RED='\[\033[31m\]'
+GREEN='\[\033[32m\]'
+YELLOW='\[\033[33m\]'
+BLUE='\[\033[34m\]'
+PURPLE='\[\033[35m\]'
+CYAN='\[\033[36m\]'
+WHITE='\[\033[37m\]'
 NIL='\[\033[00m\]'
 
 # Hostname styles
@@ -261,7 +263,7 @@ function wwwify() {
 }
 
 
-exclude="\.git|\.svn|\.swp|\.coverage|\.pyc|_build"
+exclude="\.git|\.svn|\.swp|\.coverage|\.pyc|_build|log/"
 function pgrep() {
     find . -maxdepth 1 -mindepth 1| egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
 }
