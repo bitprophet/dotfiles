@@ -105,7 +105,6 @@ fi
 
 
 
-
 #
 # Virtualenvwrapper support
 #
@@ -133,6 +132,15 @@ if [ -f $virtualenvwrapper  ]; then
     export WORKON_HOME=$workon_home
     source $virtualenvwrapper
 fi
+
+
+#
+# Pip env vars
+#
+
+export PIP_RESPECT_VIRTUALENV=true
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+
 
 
 
