@@ -85,10 +85,15 @@ case $(uname -s) in
         ;;
 esac
 
-# Platform specific sudo-ing of gem (needed on Linux servers, but not desirable
-# on OS X desktops)
+# Platform specific RubyGems stuff:
+# * servers get sudo'd gem
+# * workstations get Homebrew gem path stuff
 if [[ $(uname -s) != 'Darwin' ]]; then
     alias gem='sudo gem'
+else
+    BREW_PREFIX=$(brew --prefix)
+    export GEM_HOME="$BREW_PREFIX/Cellar/Gems/1.8"
+    export GEM_PATH="$BREW_PREFIX/Cellar/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/lib/ruby/gems/1.8/gems"
 fi
 
 
@@ -108,7 +113,6 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
-
 
 
 #
