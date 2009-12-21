@@ -66,7 +66,6 @@ alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias yum='sudo yum'
-alias gem='sudo gem'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
 
@@ -80,12 +79,17 @@ alias rap="sudo /etc/init.d/$apache reload"
 alias rsap="sudo /etc/init.d/$apache restart"
 
 # Platform specific 'ps' alias
-case $( uname -s) in
+case $(uname -s) in
     Darwin )
         alias ps='ps -T'
         ;;
 esac
 
+# Platform specific sudo-ing of gem (needed on Linux servers, but not desirable
+# on OS X desktops)
+if [[ $(uname -s) != 'Darwin' ]]; then
+    alias gem='sudo gem'
+fi
 
 
 #
