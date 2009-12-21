@@ -148,10 +148,11 @@ fi
 # Pip env vars
 #
 
+# Respect my virtualenvs, please
 export PIP_RESPECT_VIRTUALENV=true
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
-
-
+# Don't litter pip_log.txt files in cwd!
+export PIP_LOG_FILE='/tmp/pip-log.txt'
 
 
 #
