@@ -156,6 +156,34 @@ export PIP_LOG_FILE='/tmp/pip-log.txt'
 
 
 #
+# Rip stuff
+#
+
+RIPDIR=~/.rip
+RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
+PATH="$PATH:$RIPDIR/active/bin"
+export RIPDIR RUBYLIB PATH
+
+SHOW_RIP_ENV=0
+export SHOW_RIP_ENV
+
+function re() {
+    if [[ $SHOW_RIP_ENV == 0 ]]; then
+        SHOW_RIP_ENV=1
+    else
+        SHOW_RIP_ENV=0
+    fi
+    export SHOW_RIP_ENV
+}
+
+function get_rip_env() {
+    RIP_ENV=`rip env | grep "current ripenv"`
+    RIP_ENV=${RIP_ENV#current ripenv: }
+    export RIP_ENV
+}
+
+
+#
 # Colorized prompt, with different username colors for different systems.
 #
 
@@ -225,6 +253,17 @@ function set_prompt() {
         venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
     fi
 
+    # Rip env (sadly not as nice as virtualenv)
+    # If showing, don't show virtualenv.
+    # Display as red so it's more obvious whether it's Ruby ripenv or Python
+    # virtualenv name.
+    ripenv=""
+    if [[ $SHOW_RIP_ENV == 1 ]]; then
+        get_rip_env
+        ripenv=" ${NIL}{${RED}${RIP_ENV}${NIL}}"
+        venv=""
+    fi
+
     # Git branch / dirtiness
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
@@ -244,7 +283,7 @@ function set_prompt() {
     end="${LC}\$${NIL} "
 
     # Feels kind of like cheating...but works so well!
-    export PS1="${host}:${path}${venv}${branch} ${end}"
+    export PS1="${host}:${path}${venv}${ripenv}${branch} ${end}"
 }
 export PROMPT_COMMAND=set_prompt
 
