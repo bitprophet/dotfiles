@@ -96,6 +96,11 @@ else
     export GEM_PATH="$BREW_PREFIX/Cellar/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/lib/ruby/gems/1.8/gems"
 fi
 
+# More gem aliases. sigh.
+alias gems='gem search -b'
+alias geml='gem list -l'
+alias gemi='gem install -b'
+
 
 #
 # Tab completion
