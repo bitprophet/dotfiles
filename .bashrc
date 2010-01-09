@@ -156,6 +156,30 @@ export PIP_LOG_FILE='/tmp/pip-log.txt'
 
 
 #
+# Try to make up for Ruby's lack of easy setup.py develop sorta thing.
+#
+
+if [[ `env | grep GEM_HOME` ]]; then
+    projects=~/Documents/Code
+    for project in `ls -1 $projects`; do
+        # if project seems to be ruby and doesn't exist as an installed gem
+        HAS_RUBY=`find $projects/$project -name "*.rb"`
+        HAS_GEM=`find $GEM_HOME/gems -maxdepth 1 -mindepth 1 -name "$project*"`
+        if [[ $HAS_RUBY ]] && [[ ! $HAS_GEM ]]; then
+            # add project/bin to PATH and project/lib to RUBYLIB
+            export PATH=$PATH:$projects/$project/bin
+            lib=$projects/$project/lib
+            if [[ `env | grep RUBYLIB` ]]; then
+                export RUBYLIB=$RUBYLIB:$lib
+            else
+                export RUBYLIB=$lib
+            fi
+        fi
+    done
+fi
+
+
+#
 # Colorized prompt, with different username colors for different systems.
 #
 
