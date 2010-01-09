@@ -185,6 +185,32 @@ fi
 
 
 #
+# Generic "move me to my project dir" function/alias.
+# Tries to "workon" a Python virtualenv, and if that fails, assumes it's a Ruby
+# or other project in my local projects dir, and moves me there.
+#
+
+PROJECTS=~/Documents/Code
+
+function wk() {
+    if ! workon $1 2>/dev/null; then
+        cd $PROJECTS/$1
+    fi
+}
+
+function _wk() {
+    local curw
+    COMPREPLY=()
+    curw=${COMP_WORDS[COMP_CWORD]}
+    projects=`ls -1 $PROJECTS`
+    COMPREPLY=($(compgen -W '$projects' -- $curw))
+    return 0
+}
+
+complete -F _wk wk
+
+
+#
 # Colorized prompt, with different username colors for different systems.
 #
 
