@@ -164,24 +164,35 @@ export PIP_LOG_FILE='/tmp/pip-log.txt'
 # Try to make up for Ruby's lack of easy setup.py develop sorta thing.
 #
 
-if [[ `env | grep GEM_HOME` ]]; then
-    projects=~/Documents/Code
-    for project in `ls -1 $projects`; do
-        # if project seems to be ruby and doesn't exist as an installed gem
-        HAS_RUBY=`find $projects/$project -name "*.rb"`
-        HAS_GEM=`find $GEM_HOME/gems -maxdepth 1 -mindepth 1 -name "$project*"`
-        if [[ $HAS_RUBY ]] && [[ ! $HAS_GEM ]]; then
-            # add project/bin to PATH and project/lib to RUBYLIB
-            export PATH=$PATH:$projects/$project/bin
+function fakegem() {
+    if [[ `env | grep GEM_HOME` ]]; then
+        projects=~/Documents/Code
+        for project in `ls -1 $projects`; do
+            bin=$projects/$project/bin
             lib=$projects/$project/lib
-            if [[ `env | grep RUBYLIB` ]]; then
-                export RUBYLIB=$RUBYLIB:$lib
-            else
-                export RUBYLIB=$lib
+            # if project seems to be ruby and doesn't exist as an installed gem
+            has_ruby=`find $projects/$project -name "*.rb"`
+            has_gem=`find $GEM_HOME/gems -maxdepth 1 -mindepth 1 -name "$project*"`
+            # and if it's not already in our bin/lib paths
+            in_path=`echo $PATH | grep $bin`
+            in_lib=`echo $RUBYLIB | grep $lib`
+            if ( \
+                [[ $has_ruby ]] \
+                && [[ ! $has_gem ]] \
+                && [[ ! ($in_path || $in_lib) ]] \
+            ); then
+                # add project/bin to PATH and project/lib to RUBYLIB
+                export PATH=$PATH:$bin
+                if [[ `env | grep RUBYLIB` ]]; then
+                    export RUBYLIB=$RUBYLIB:$lib
+                else
+                    export RUBYLIB=$lib
+                fi
             fi
-        fi
-    done
-fi
+        done
+    fi
+}
+fakegem
 
 
 #
