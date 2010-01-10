@@ -186,16 +186,23 @@ fi
 
 #
 # Generic "move me to my project dir" function/alias.
-# Tries to "workon" a Python virtualenv, and if that fails, assumes it's a Ruby
-# or other project in my local projects dir, and moves me there.
+#
+# Tries to "workon" a Python virtualenv, then (either way) switches to the
+# directory in question.
+#
+# This means that we can A) use this for non-Python projects, and B) avoid
+# having to add the 'cd' call to every. single. virtualenv's postactivate
+# script.
+#
+# Also deactivates any currently active virtualenv, just for neatness' sake.
 #
 
 PROJECTS=~/Documents/Code
 
 function wk() {
-    if ! workon $1 2>/dev/null; then
-        cd $PROJECTS/$1
-    fi
+    deactivate 2>/dev/null
+    workon $1 2>/dev/null
+    cd $PROJECTS/$1
 }
 
 function _wk() {
