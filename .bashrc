@@ -237,7 +237,7 @@ function _wk() {
     local curw
     COMPREPLY=()
     curw=${COMP_WORDS[COMP_CWORD]}
-    projects=`find $FOLDERS -mindepth 1 -maxdepth 1 -type d -printf "%f\n" 2>/dev/null`
+    projects=`find $FOLDERS -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null`
     COMPREPLY=($(compgen -W '$projects' -- $curw))
     return 0
 }
