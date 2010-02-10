@@ -138,8 +138,13 @@ case $( uname -s ) in
         ;;
     Linux )
         virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
+        # Handle from-source Python installs
+        if [[ ! -f $virtualenvwrapper ]]; then
+            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
+        fi
         # Relatively arbitrarily chose /opt/envs. Could also have gone with
-        # /opt/virtualenvs perhaps.
+        # /opt/virtualenvs perhaps. Don't want to use ~/.virtualenv because
+        # Linux typically implies a (shared) server environment.
         workon_home=/opt/envs
         ;;
 esac
