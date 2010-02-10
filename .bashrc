@@ -213,19 +213,31 @@ fakegem
 # Also deactivates any currently active virtualenv, just for neatness' sake.
 #
 
-PROJECTS=~/Documents/Code
+PERSONAL=~/Documents/Code
+DJANGO=/srv/django
+RAILS=/srv/rails
+FOLDERS="$PERSONAL $DJANGO $RAILS"
 
 function wk() {
+    # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
-    cd $PROJECTS/$1
+    # Try to find the given folder and cd to it.
+    for folder in $FOLDERS; do
+        target=$folder/$1
+        if [[ -d $target ]]; then
+            cd $target
+            return 0
+        fi
+    done
+    return 1
 }
 
 function _wk() {
     local curw
     COMPREPLY=()
     curw=${COMP_WORDS[COMP_CWORD]}
-    projects=`ls -1 $PROJECTS`
+    projects=`find $FOLDERS -mindepth 1 -maxdepth 1 -type d -printf "%f\n" 2>/dev/null`
     COMPREPLY=($(compgen -W '$projects' -- $curw))
     return 0
 }
