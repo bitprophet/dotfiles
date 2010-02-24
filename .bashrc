@@ -272,13 +272,21 @@ UC=$GREEN
 LC=$BLUE
 HD=$FULL
 
+HOST=`hostname | cut -d '.' -f 1`
+DOMAIN=`hostname | cut -d '.' -f 2-`
+
 # Manually cut hostname; hostname -s bails out on some systems.
-case $( hostname | cut -d '.' -f 1 ) in
+case $HOST in
     jeff | ytram ) UC=$YELLOW LC=$GREEN HD=$SHORT ;;
     bitprophet ) UC=$CYAN ;;
     *-production ) UC=$RED HD=$SHORT ;;
     mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
 esac
+
+# Some special cases to the above
+if [[ ($HOST == "monitor") && ($DOMAIN == "bitprophet.org") ]]; then
+    UC=$CYAN HD=$SHORT
+fi
 
 # Multiplatform sed tomfoolery used below (extended regexp)
 case $(uname -s) in
