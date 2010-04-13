@@ -13,6 +13,8 @@
 !.gitconfig
 # The gitignore of this repository itself (!)
 !.gitignore
+# My global Git excludes file (acts as a global .gitignore)
+!.gitexcludes
 
 # Mercurial config (yup, stored in a Git repository. Take that, hg!)
 !.hgrc
