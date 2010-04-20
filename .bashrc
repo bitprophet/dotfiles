@@ -100,6 +100,7 @@ fi
 alias gems='gem search -b'
 alias geml='gem list -l'
 alias gemi='gem install -b'
+alias gemu='gem uninstall'
 
 
 #
