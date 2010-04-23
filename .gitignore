@@ -43,10 +43,6 @@
 # Vim settings
 !.vimrc
 
-# Aptitude config
-!.aptitude
-!.aptitude/*
-
 # Bin files (few and far between)
 !bin
 !bin/*
