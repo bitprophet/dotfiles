@@ -138,11 +138,16 @@ case $( uname -s ) in
         workon_home= # just use default ~/.virtualenvs
         ;;
     Linux )
-        virtualenvwrapper=/usr/bin/virtualenvwrapper_bashrc
-        # Handle from-source Python installs
-        if [[ ! -f $virtualenvwrapper ]]; then
-            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
-        fi
+        ROOTS="/usr/bin /usr/local/bin"
+        SUFFIXES="_bashrc .sh"
+        for root in $ROOTS; do
+            for suffix in $SUFFIXES; do
+                path=$root/virtualenvwrapper$suffix
+                if [[ -f $path ]]; then
+                    virtualenvwrapper=$path
+                fi
+            done
+        done
         # Relatively arbitrarily chose /opt/envs. Could also have gone with
         # /opt/virtualenvs perhaps. Don't want to use ~/.virtualenv because
         # Linux typically implies a (shared) server environment.
