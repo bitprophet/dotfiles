@@ -386,6 +386,15 @@ function pvim() {
 }
     
 
+#
+# RVM
+#
+
+_rvm=~/.rvm/scripts/rvm
+if [[ -s $_rvm ]] ; then
+    source $_rvm
+fi
+
 
 #
 # System-specific local aliases and such
