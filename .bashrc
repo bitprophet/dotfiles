@@ -205,6 +205,16 @@ function fakegem() {
 }
 fakegem
 
+#
+# RVM (may eventually replace the above, probably overwrites it anyway)
+#
+
+_rvm=~/.rvm/scripts/rvm
+if [[ -s $_rvm ]] ; then
+    source $_rvm
+    source ~/.rvm/scripts/completion
+fi
+
 
 #
 # Generic "move me to my project dir" function/alias.
@@ -329,6 +339,18 @@ function set_prompt() {
         venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
     fi
 
+    # RVM (steals the venv slot if there's no venv)
+    if [[ -s $_rvm && -z $_venv ]]; then
+        # Just show Ruby version and gemset.
+        # I don't use different interpreter lines, nor do I care about
+        # patchlevel.
+        # Also, don't show if I'm using the system/default Ruby.
+        _venv=`~/.rvm/bin/rvm-prompt v g`
+        if [[ "$_venv" != "system" ]]; then
+            venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
+        fi
+    fi
+
     # Git branch / dirtiness
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
@@ -347,7 +369,7 @@ function set_prompt() {
     # Dollar/pound sign
     end="${LC}\$${NIL} "
 
-    # Feels kind of like cheating...but works so well!
+    # Put it all together
     export PS1="${host}:${path}${venv}${branch} ${end}"
 }
 export PROMPT_COMMAND=set_prompt
@@ -386,14 +408,6 @@ function pvim() {
 }
     
 
-#
-# RVM
-#
-
-_rvm=~/.rvm/scripts/rvm
-if [[ -s $_rvm ]] ; then
-    source $_rvm
-fi
 
 
 #
