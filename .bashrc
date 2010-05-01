@@ -209,11 +209,23 @@ fakegem
 # RVM (may eventually replace the above, probably overwrites it anyway)
 #
 
-_rvm=~/.rvm/scripts/rvm
+_rvm_home=~/.rvm
+_rvm=$_rvm_home/scripts/rvm
 if [[ -s $_rvm ]] ; then
     source $_rvm
-    source ~/.rvm/scripts/completion
+    source $_rvm_home/scripts/completion
 fi
+
+function activate_gemset() {
+    gemset=$1
+    matches=`find $_rvm_home/gems -type d -mindepth 1 -maxdepth 1 -name "*@$gemset"`
+    if [[ -n $matches ]]; then
+        num_matches=`echo "$matches" | wc -l`
+        if [[ $num_matches -eq 1 ]]; then
+            rvm `basename $matches`
+        fi
+    fi
+}
 
 
 #
@@ -238,6 +250,8 @@ function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
+    # Ditto for my custom "workon" for RVM
+    activate_gemset $1
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
@@ -345,7 +359,7 @@ function set_prompt() {
         # I don't use different interpreter lines, nor do I care about
         # patchlevel.
         # Also, don't show if I'm using the system/default Ruby.
-        _venv=`~/.rvm/bin/rvm-prompt v g`
+        _venv=`$_rvm_home/bin/rvm-prompt v g`
         if [[ "$_venv" != "system" ]]; then
             venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
         fi
