@@ -359,7 +359,7 @@ function set_prompt() {
         # I don't use different interpreter lines, nor do I care about
         # patchlevel.
         # Also, don't show if I'm using the system/default Ruby.
-        _venv=`$_rvm_home/bin/rvm-prompt v g`
+        _venv=`$_rvm_home/bin/rvm-prompt g`
         if [[ "$_venv" != "system" ]]; then
             venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
         fi
