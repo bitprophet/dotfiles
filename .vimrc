@@ -253,3 +253,28 @@ function! FormatShaForCommit()
 endf
 
 nnoremap <expr> <F7> FormatShaForCommit()
+
+
+" Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
+" creation of nonexistent directories.
+augroup AutoMkdir
+    autocmd!
+    autocmd BufNewFile * :call EnsureDirExists()
+augroup END
+function! EnsureDirExists ()
+    let required_dir = expand("%:h")
+    if !isdirectory(required_dir)
+        call AskQuit("Directory '" . required_dir . "' doesn't exist.", "&Create it?")
+        try
+            call mkdir( required_dir, 'p' )
+        catch
+            call AskQuit("Can't create '" . required_dir . "'", "&Continue anyway?")
+        endtry
+    endif
+endfunction
+
+function! AskQuit (msg, proposed_action)
+    if confirm(a:msg, a:proposed_action . "\n&Quit?") == 2
+        exit
+    endif
+endfunction
