@@ -140,11 +140,12 @@ endif
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
 " Markdown
-autocmd FileType mkd setlocal ai comments=n:>
+autocmd BufRead *.txt setlocal filetype=mkd
+autocmd FileType mkd setlocal ai comments=n:> spell
 
 " ReST
 autocmd BufRead *.rst setlocal filetype=rest
-autocmd FileType rest setlocal ai comments=n:>
+autocmd FileType rest setlocal ai comments=n:> spell
 
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2

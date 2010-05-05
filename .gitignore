@@ -40,6 +40,7 @@
 !.vim/indent/*
 !.vim/plugin/*
 !.vim/syntax/*
+!.vim/spell/*
 # Vim settings
 !.vimrc
 
