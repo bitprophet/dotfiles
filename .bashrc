@@ -154,7 +154,7 @@ case $( uname -s ) in
         workon_home=/opt/envs
         ;;
 esac
-if [ -f $virtualenvwrapper  ]; then
+if [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]]; then
     export WORKON_HOME=$workon_home
     source $virtualenvwrapper
 fi
