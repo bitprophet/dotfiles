@@ -394,24 +394,6 @@ export PROMPT_COMMAND=set_prompt
 # Functions
 #
 
-function wwwify() {
-    if [[ ! -a $1 ]]
-    then
-        echo "Need a filename to operate on."
-        return 1
-    fi
-
-    if [[ -f /etc/redhat-release ]]
-    then
-        ug=apache
-    else
-        ug=www-data
-    fi
-    sudo chown -R $ug:$ug $1
-    sudo chmod -R g+w $1
-}
-
-
 exclude="\.git|\.svn|\.swp|\.coverage|\.pyc|_build|log/"
 function pgrep() {
     find . -maxdepth 1 -mindepth 1| egrep -v "$exclude" | xargs egrep -lir "$1" | egrep -v "$exclude"  | xargs egrep -Hin --color "$1"
