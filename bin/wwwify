@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+
+"""
+Updates a directory tree or trees to be owned by an Apache friendly user/group.
+
+Defaults to a "deploy" user and the platform-specific Apache group, which may
+be overridden with the -u and -g flags respectively.
+
+Defaults to targeting the current working directory; otherwise all arguments
+will be treated as a directory list.
+"""
+
+from os.path import exists
+from optparse import OptionParser
+from subprocess import call as subprocess_call
+
+def call(*args, **kwargs):
+    if 'shell' not in kwargs:
+        kwargs['shell'] = True
+    return subprocess_call(*args, **kwargs)
+
+# Platform detection
+default_group = exists('/etc/redhat-release') and 'apache' or 'www-data'
+
+parser = OptionParser(usage="wwwify [-u <user>] [-g <group>] [<target dir>, ...]")
+parser.add_option('-u', '--user', metavar='USER', default='deploy')
+parser.add_option('-g', '--group', metavar='GROUP', default=default_group)
+
+opts, args = parser.parse_args()
+
+targets = " ".join(args) or '.'
+
+call("sudo chown -R %s:%s %s" % (opts.user, opts.group, targets))
+call("sudo chmod -R g+rw %s" % targets)
+call("find %s -type d -exec sudo chmod g+x '{}' \\;" % targets)
