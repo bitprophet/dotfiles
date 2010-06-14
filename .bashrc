@@ -125,34 +125,25 @@ fi
 # Virtualenvwrapper support
 #
 
-# virtualenvwrapper
-case $( uname -s ) in
-    Darwin )
-        # Leopard
-        if [ `uname -r | cut -d '.' -f 1` == '9' ]; then
-            virtualenvwrapper=/usr/local/bin/virtualenvwrapper_bashrc
-        # Tiger
-        else
-            virtualenvwrapper=/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin/virtualenvwrapper_bashrc
+# Shell hooks; look in all possible locations and for both old and new versions
+# of the script, just in case I find myself on an older system.
+ROOTS="/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin /usr/bin /usr/local/bin"
+SUFFIXES="_bashrc .sh"
+for root in $ROOTS; do
+    for suffix in $SUFFIXES; do
+        path=$root/virtualenvwrapper$suffix
+        if [[ -f $path ]]; then
+            virtualenvwrapper=$path
         fi
-        workon_home= # just use default ~/.virtualenvs
-        ;;
+    done
+done
+# System-specific $WORKON_HOME: servers get system location, workstations get
+# homedir location.
+case $( uname -s ) in
+    Darwin ) 
+        workon_home=~/.virtualenvs ;;
     Linux )
-        ROOTS="/usr/bin /usr/local/bin"
-        SUFFIXES="_bashrc .sh"
-        for root in $ROOTS; do
-            for suffix in $SUFFIXES; do
-                path=$root/virtualenvwrapper$suffix
-                if [[ -f $path ]]; then
-                    virtualenvwrapper=$path
-                fi
-            done
-        done
-        # Relatively arbitrarily chose /opt/envs. Could also have gone with
-        # /opt/virtualenvs perhaps. Don't want to use ~/.virtualenv because
-        # Linux typically implies a (shared) server environment.
-        workon_home=/opt/envs
-        ;;
+        workon_home=/opt/envs ;;
 esac
 if [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]]; then
     export WORKON_HOME=$workon_home
