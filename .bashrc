@@ -38,6 +38,9 @@ esac
 
 # General
 export TERM="xterm-color"
+if [[ `uname -s` == *CYGWIN* ]]; then
+    export TERM="cygwin"
+fi
 export DISPLAY=:0.0
 export EDITOR=vim
 
