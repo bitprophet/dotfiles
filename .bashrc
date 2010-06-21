@@ -38,6 +38,9 @@ esac
 
 # General
 export TERM="xterm-color"
+if [[ `uname -s` == *CYGWIN* ]]; then
+    export TERM="cygwin"
+fi
 export DISPLAY=:0.0
 export EDITOR=vim
 
@@ -316,8 +319,8 @@ fi
 case $(uname -s) in
     # -E flag, and override macports sed=>gsed alias
     Darwin ) alias esed='/usr/bin/sed -E' ;;
-    # -r flag with GNU sed on Linux
-    Linux ) alias esed='sed -r' ;;
+    # -r flag with GNU sed on Linux/Cygwin/etc
+    * ) alias esed='sed -r' ;;
 esac
 
 
