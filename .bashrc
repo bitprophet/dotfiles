@@ -352,12 +352,10 @@ function set_prompt() {
 
     # RVM (steals the venv slot if there's no venv)
     if [[ -s $_rvm && -z $_venv ]]; then
-        # Just show Ruby version and gemset.
-        # I don't use different interpreter lines, nor do I care about
-        # patchlevel.
-        # Also, don't show if I'm using the system/default Ruby.
+        # Just show Ruby gemset.  I don't use different interpreter lines, nor
+        # do I care about patchlevel.
         _venv=`$_rvm_home/bin/rvm-prompt g`
-        if [[ "$_venv" != "system" ]]; then
+        if [[ "$_venv" != "system" && -n $_venv ]]; then
             venv=" ${NIL}{${PURPLE}${_venv}${NIL}}"
         fi
     fi
