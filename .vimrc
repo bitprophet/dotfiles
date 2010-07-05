@@ -136,16 +136,17 @@ endif
 " Settings for specific filetypes
 "
 
-" Ruby
-autocmd BufRead Gemfile setlocal filetype=ruby
+" Ruby and related
+autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
+autocmd BufNewFile,BufRead *.tt setlocal filetype=treetop
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
 " Markdown
-autocmd BufRead *.txt setlocal filetype=mkd
+autocmd BufNewFile,BufRead *.txt setlocal filetype=mkd
 autocmd FileType mkd setlocal ai comments=n:> spell
 
 " ReST
-autocmd BufRead *.rst setlocal filetype=rest
+autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
 autocmd FileType rest setlocal ai comments=n:> spell
 
 " YAML
@@ -153,7 +154,7 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " No more need to drop modelines into common Apache files
 " (both Debian and RedHat style Apache conf dirs)
-autocmd BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
+autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 
 
 "
