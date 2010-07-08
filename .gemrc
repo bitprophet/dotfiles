@@ -1,9 +1,6 @@
 ---
 :verbose: true
 :update_sources: true
-:sources:
-- http://gemcutter.org
-- http://gems.rubyforge.org/
 :bulk_threshold: 1000
 :backtrace: false
 :benchmark: false
