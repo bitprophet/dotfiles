@@ -138,7 +138,7 @@ endif
 
 " Ruby and related
 autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
-autocmd BufNewFile,BufRead *.tt setlocal filetype=treetop
+autocmd BufNewFile,BufRead *.tt,*.citrus setlocal filetype=treetop
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
 " Markdown
