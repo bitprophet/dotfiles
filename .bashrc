@@ -166,6 +166,8 @@ export PIP_RESPECT_VIRTUALENV=true
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # Don't litter pip_log.txt files in cwd!
 export PIP_LOG_FILE='/tmp/pip-log.txt'
+# Use a cache
+export PIP_DOWNLOAD_CACHE='/tmp/pip_cache'
 
 
 #
