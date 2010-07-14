@@ -57,6 +57,11 @@ ruby_path=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
 local_path=/usr/local/bin:/usr/local/sbin
 export PATH=$my_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$ports_path:$PATH
 
+# History stuff
+shopt -s histappend
+shopt -s histverify
+export HISTSIZE=
+export HISTFILESIZE=
 
 #
 # Aliases
