@@ -74,6 +74,7 @@ alias screen='TERM=screen screen'
 if [[ -e `which hub 2>/dev/null` ]]; then
     alias git=hub
 fi
+alias ai='aptitude install'
 
 # Apache aliases
 if [ -f /etc/init.d/apache2 ]; then
