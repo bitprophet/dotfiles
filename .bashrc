@@ -219,6 +219,8 @@ _rvm=$_rvm_home/scripts/rvm
 if [[ -s $_rvm ]] ; then
     source $_rvm
     source $_rvm_home/scripts/completion
+    # Undo earlier sudo gem alias, even if we're on a server
+    unalias gem
 fi
 
 function activate_gemset() {
