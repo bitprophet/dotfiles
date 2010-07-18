@@ -80,6 +80,11 @@ if [[ -e `which hub 2>/dev/null` ]]; then
     alias git=hub
 fi
 alias ai='aptitude install'
+alias gd='git diff'
+alias gb='git branch -a'
+alias gs='git status'
+alias gps='git push'
+alias gpl='git pull'
 
 # Apache aliases
 if [ -f /etc/init.d/apache2 ]; then
