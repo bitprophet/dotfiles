@@ -58,3 +58,7 @@
 !.muttrc
 !.mutt
 !.mutt/*
+
+
+# RTorrent
+!.rtorrent.rc
