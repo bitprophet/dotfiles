@@ -1,0 +1,3 @@
+schedule = ratio,60,60,"stop_on_ratio=100"
+schedule = wtf,60,60,"close_low_diskspace=50M"
+upload_rate = 200
