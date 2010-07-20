@@ -85,6 +85,7 @@ alias gb='git branch -a'
 alias gs='git status'
 alias gps='git push'
 alias gpl='git pull'
+alias gc='git ci -m'
 
 # Apache aliases
 if [ -f /etc/init.d/apache2 ]; then
