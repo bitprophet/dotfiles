@@ -87,6 +87,7 @@ alias gps='git push'
 alias gpl='git pull'
 alias gc='git ci -m'
 alias gsd='git svn dcommit'
+alias gsr='git svn rebase'
 
 # Apache aliases
 if [ -f /etc/init.d/apache2 ]; then
