@@ -232,6 +232,7 @@ if [[ -s $_rvm ]] ; then
 fi
 
 function activate_gemset() {
+    [ ! -e $_rvm_home ] && return
     gemset=$1
     matches=`find $_rvm_home/gems -type d -mindepth 1 -maxdepth 1 -name "*@$gemset"`
     if [[ -n $matches ]]; then
