@@ -50,8 +50,9 @@
 !bin
 !bin/*
 
-# Screen RCfile
+# Screen, tmux
 !.screenrc
+!.tmux.conf
 
 # Gem config
 !.gemrc
