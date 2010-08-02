@@ -36,7 +36,8 @@ if [[ -e `which hub 2>/dev/null` ]]; then
     alias git=hub
 fi
 alias gd='git diff'
-alias gb='git branch -a'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gs='git status'
 alias gps='git push'
 alias gpl='git pull'
