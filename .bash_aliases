@@ -35,13 +35,14 @@ alias yum='sudo yum'
 if [[ -e `which hub 2>/dev/null` ]]; then
     alias git=hub
 fi
-alias gd='git diff'
 alias gb='git branch'
 alias gba='git branch -a'
-alias gs='git status'
-alias gps='git push'
-alias gpl='git pull'
 alias gc='git ci -m'
+alias gd='git diff'
+alias gl='git log'
+alias gpl='git pull'
+alias gps='git push'
+alias gs='git status'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 
