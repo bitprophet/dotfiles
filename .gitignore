@@ -41,8 +41,8 @@
 !.vim/ftplugin/*
 !.vim/indent/*
 !.vim/plugin/*
-!.vim/syntax/*
 !.vim/spell/*
+!.vim/syntax/*
 # Vim settings
 !.vimrc
 
