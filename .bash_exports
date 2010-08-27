@@ -23,7 +23,7 @@ export PATH=$my_path:$vmware_path:$redhat_path:$ruby_path:$local_path:$ports_pat
 
 # History stuff
 shopt -s histappend
-shopt -s histverify
+#shopt -s histverify
 export HISTSIZE=
 export HISTFILESIZE=
 
