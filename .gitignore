@@ -9,6 +9,7 @@
 !.bash*
 .bash_history
 .bash_local
+.bash_logout
 !.profile
 
 # Git aliases, identification info

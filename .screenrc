@@ -1,3 +1,0 @@
-startup_message off
-# Blue bg, white fg; screen number, hardstatus, window name, clock
-caption always "%{= bb}%{+b w}Screen: %n | %h %=%t %c"
