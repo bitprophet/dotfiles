@@ -56,7 +56,7 @@ alias gemu='gem uninstall'
 # Misc
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
-alias ai='aptitude install'
+alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
 
 
 #
