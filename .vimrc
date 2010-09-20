@@ -129,6 +129,7 @@ if has("gui_macvim")
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
+    set paste
 endif
 
 
