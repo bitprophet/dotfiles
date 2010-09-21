@@ -36,6 +36,15 @@
 !.vim
 !.vim/*
 !.vim/autoload/*
+# Pathogen bundle stuff (WTB recursive gitignore excludes...)
+# e.g. .vim/bundle/<plugin>/syntax/special_syntax.vim
+# (Added a few more asterisks just to cover any deeper setups. Sigh.)
+!.vim/bundle
+!.vim/bundle/*
+!.vim/bundle/*/*
+!.vim/bundle/*/*/*
+!.vim/bundle/*/*/*/*
+!.vim/bundle/*/*/*/*/*
 !.vim/doc/*
 !.vim/ftdetect/*
 !.vim/ftplugin/*
