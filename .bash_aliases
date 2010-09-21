@@ -46,6 +46,7 @@ alias gps='git push'
 alias gs='git status'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
+alias gsf='git svn fetch'
 
 # RubyGems
 alias gems='gem search -b'
