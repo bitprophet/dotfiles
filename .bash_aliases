@@ -48,6 +48,11 @@ alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 alias gsf='git svn fetch'
 
+# Make Git autocomplete work with some of the above
+complete -o default -o nospace -F _git_log gl
+complete -o default -o nospace -F _git_diff gd
+
+
 # RubyGems
 alias gems='gem search -b'
 alias geml='gem list -l'

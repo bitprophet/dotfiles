@@ -20,13 +20,6 @@ shopt -s checkwinsize
 
 
 #
-# Aliases
-#
-
-. ~/.bash_aliases
-
-
-#
 # Tab completion
 #
 
@@ -42,6 +35,13 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+
+#
+# Aliases
+#
+
+. ~/.bash_aliases
 
 
 #
