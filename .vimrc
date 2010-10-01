@@ -185,10 +185,6 @@ inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 " Custom mapping shortcut for :nohl
 nmap <C-N> :noh<CR>
 
-" Map normal mode Enter to add a new line.
-" Useful for adding spacing to a file while navigating.
-nmap <Enter> o<Esc>
-
 " Map gQ to gqap; gQ normally enters Ex mode, which I don't want to use
 " anyways. And typing 'gqap' over and over gets quite old.
 nmap gQ gqap
