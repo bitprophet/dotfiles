@@ -123,6 +123,12 @@ if has("autocmd")
   filetype indent plugin on
 endif
 
+" Automatically update local cwd for file in current buffer
+if exists('+autochdir')
+  set autochdir
+else
+  autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
 
 "
 " Settings for specific versions of Vim
