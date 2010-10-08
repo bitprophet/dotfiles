@@ -180,6 +180,10 @@ let mapleader=" "
 " Insert blank lines w/o leaving normal mode
 nmap <Leader><CR> o<Esc>
 
+" Tab nav
+nmap <Leader><Left> :tabp<CR>
+nmap <Leader><Right> :tabn<CR>
+
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
