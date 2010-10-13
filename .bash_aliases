@@ -41,6 +41,7 @@ alias gc='git commit -m'
 alias gca='git ci -m'
 alias gd='git diff'
 alias gl='git log'
+alias glg="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gpl='git pull'
 alias gps='git push'
 alias gs='git status'
