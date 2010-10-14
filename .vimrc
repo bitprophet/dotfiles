@@ -184,6 +184,9 @@ nmap <Leader><CR> o<Esc>
 nmap <Leader><Left> :tabp<CR>
 nmap <Leader><Right> :tabn<CR>
 
+" Paragraph formatting
+nmap <Leader>f gqap
+
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
@@ -194,10 +197,6 @@ inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 
 " Custom mapping shortcut for :nohl
 nmap <C-N> :noh<CR>
-
-" Map gQ to gqap; gQ normally enters Ex mode, which I don't want to use
-" anyways. And typing 'gqap' over and over gets quite old.
-nmap gQ gqap
 
 "
 " netrw (builtin file-browser plugin) preferences
