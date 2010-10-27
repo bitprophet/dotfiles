@@ -48,10 +48,12 @@ alias gs='git status'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 alias gsf='git svn fetch'
+alias gt='git tag'
 
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
 complete -o default -o nospace -F _git_diff gd
+complete -o default -o nospace -F _git_tag gt
 
 
 # RubyGems
