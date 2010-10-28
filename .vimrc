@@ -169,6 +169,9 @@ autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " (both Debian and RedHat style Apache conf dirs)
 autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 
+" Drupal
+autocmd BufNewFile,BufRead *.module setlocal ft=php
+
 
 "
 " Key mappings
