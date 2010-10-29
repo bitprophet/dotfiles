@@ -71,6 +71,8 @@
 !.mutt
 !.mutt/*
 
-
 # RTorrent
 !.rtorrent.rc
+
+# Ack
+!.ackrc
