@@ -186,9 +186,14 @@ let mapleader=" "
 " Insert blank lines w/o leaving normal mode
 nmap <Leader><CR> o<Esc>
 
-" Tab nav
-nmap <Leader><Left> :tabp<CR>
-nmap <Leader><Right> :tabn<CR>
+" Tab/split nav
+nmap <Leader>[ :tabp<CR>
+nmap <Leader>] :tabn<CR>
+nmap <Leader><Left> <C-w><Left>
+nmap <Leader><Right> <C-w><Right>
+nmap <Leader><Up> <C-w><Up>
+nmap <Leader><Down> <C-w><Down>
+
 
 " Paragraph formatting
 nmap <Leader>f gqap
