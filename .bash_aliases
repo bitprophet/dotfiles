@@ -54,6 +54,7 @@ alias gt='git tag'
 complete -o default -o nospace -F _git_log gl
 complete -o default -o nospace -F _git_diff gd
 complete -o default -o nospace -F _git_tag gt
+complete -o default -o nospace -F _git_branch gb
 
 
 # RubyGems
