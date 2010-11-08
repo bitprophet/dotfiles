@@ -197,6 +197,7 @@ nmap <Leader><Down> <C-w><Down>
 
 " Paragraph formatting
 nmap <Leader>f gqap
+vmap <Leader>f gq
 
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
