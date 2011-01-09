@@ -5,6 +5,7 @@
     diff = auto
     status = auto
     branch = auto
+    ui = auto
 [alias]
     ci = commit -a
     st = status
