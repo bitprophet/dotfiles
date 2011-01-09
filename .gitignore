@@ -35,6 +35,8 @@
 # Vim plugins, ftplugins, syntax etc etc
 !.vim
 !.vim/*
+# But do ignore netrw history
+.vim/.netrwhist
 !.vim/autoload/*
 # Pathogen bundle stuff (WTB recursive gitignore excludes...)
 # e.g. .vim/bundle/<plugin>/syntax/special_syntax.vim
