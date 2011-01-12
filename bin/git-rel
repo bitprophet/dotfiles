@@ -1,0 +1,7 @@
+#!/bin/bash
+# vim:set ft=sh
+
+git fetch
+git branch -v \
+| gsed -r -e "s/(behind [0-9]+)/[33m\1[0m/" \
+| gsed -r -e "s/(ahead [0-9]+)/[36m\1[0m/"
