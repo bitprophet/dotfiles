@@ -2,6 +2,10 @@
 # vim:set ft=sh
 
 git fetch
-git branch -v \
+
+if [[ -z $(git branch -v \
+| grep -r "(ahead|behind) [0-9]+" - \
 | gsed -r -e "s/(behind [0-9]+)/[33m\1[0m/" \
-| gsed -r -e "s/(ahead [0-9]+)/[36m\1[0m/"
+| gsed -r -e "s/(ahead [0-9]+)/[36m\1[0m/") ]]; then
+    echo "Fully synced!"
+fi
