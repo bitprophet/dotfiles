@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# vim:set ft=ruby
 
 def yellow s; "\033[33m#{s}\033[0m" end
 def cyan s; "\033[36m#{s}\033[0m" end
