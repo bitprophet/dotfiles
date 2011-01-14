@@ -3,7 +3,7 @@
 def yellow s; "\033[33m#{s}\033[0m" end
 def cyan s; "\033[36m#{s}\033[0m" end
 
-`git fetch`
+`git fetch -q`
 
 highlighted = 0
 `git branch -v`.split("\n").each do |line|
