@@ -49,6 +49,7 @@ alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 alias gsf='git svn fetch'
 alias gt='git tag'
+alias gr='git rel'
 
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
