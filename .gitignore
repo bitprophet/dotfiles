@@ -47,6 +47,7 @@
 !.vim/bundle/*/*/*
 !.vim/bundle/*/*/*/*
 !.vim/bundle/*/*/*/*/*
+!.vim/colors/*
 !.vim/doc/*
 !.vim/ftdetect/*
 !.vim/ftplugin/*
