@@ -29,6 +29,7 @@ alias stail="sudo tail"
 alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
+alias apt-file='sudo apt-file'
 
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
