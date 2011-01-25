@@ -30,6 +30,10 @@ alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias apt-file='sudo apt-file'
+alias as='aptitude show'
+alias ai='aptitude install'
+alias asr='aptitude search'
+alias au='aptitude update'
 
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
