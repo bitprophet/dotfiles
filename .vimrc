@@ -114,6 +114,8 @@ set backspace=indent,eol,start
 set tabpagemax=100
 " Make :sb let me navigate between all windows and tabs
 set switchbuf=usetab
+" Mouse works in iterm2 (never did try it with terminal.app...)
+set mouse=a
 
 " Jump to last known location in file
 if has("autocmd")
