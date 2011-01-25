@@ -27,13 +27,6 @@ shopt -s histappend
 export HISTSIZE=
 export HISTFILESIZE=
 
-# Homebrew RubyGems
-if [[ $(uname -s) == 'Darwin' ]]; then
-    BREW_PREFIX=$(brew --prefix)
-    export GEM_HOME="$BREW_PREFIX/Cellar/Gems/1.8"
-    export GEM_PATH="$BREW_PREFIX/Cellar/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/lib/ruby/gems/1.8/gems"
-fi
-
 # Homebrew temp folder
 export HOMEBREW_TEMP=/usr/local/tmp
 
