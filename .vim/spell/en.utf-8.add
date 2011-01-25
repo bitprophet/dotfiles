@@ -142,3 +142,8 @@ PPA
 repo
 WAL
 autostarted
+postgresql
+postgres
+libpq5
+Psycopg2
+cmd
