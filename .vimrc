@@ -22,7 +22,7 @@ syntax on
 " 256 colors!
 set t_Co=256
 " Gary Bernhardt's slightly modified ir_black
-colorscheme grb4
+colorscheme desert256
 " Colorize for a dark background
 set background=dark
 " Show ruler line at bottom of each buffer
