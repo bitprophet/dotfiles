@@ -19,12 +19,11 @@ runtime! debian.vim
 
 " Syntax highlighting!
 syntax on
-" 256 colors!
-set t_Co=256
-" Gary Bernhardt's slightly modified ir_black
-colorscheme desert256
 " Colorize for a dark background
 set background=dark
+" 256 colors!
+set t_Co=256
+colorscheme desert256
 " Show ruler line at bottom of each buffer
 set ruler
 " Show additional info in the command line (very last line on screen) where
