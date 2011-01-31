@@ -6,7 +6,7 @@
 
 # Shell hooks; look in all possible locations and for both old and new versions
 # of the script, just in case I find myself on an older system.
-ROOTS="/opt/local/Library/Frameworks/Python.framework/Versions/2.5/bin /usr/bin /usr/local/bin"
+ROOTS="/usr/bin /usr/local/bin"
 SUFFIXES="_bashrc .sh"
 for root in $ROOTS; do
     for suffix in $SUFFIXES; do

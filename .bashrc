@@ -26,9 +26,6 @@ shopt -s checkwinsize
 # Homebrew
 if [ -f /usr/local/etc/bash_completion ]; then
     . /usr/local/etc/bash_completion
-# MacPorts (only test if not homebrew)
-elif [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
 fi
 
 # Debian

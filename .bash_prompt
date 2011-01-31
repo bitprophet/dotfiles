@@ -34,8 +34,7 @@ DOMAIN=`hostname | cut -d '.' -f 2-`
 case $HOST in
     ytram | atrus ) UC=$YELLOW LC=$GREEN HD=$SHORT ;;
     bitprophet ) UC=$CYAN ;;
-    *-production ) UC=$RED HD=$SHORT ;;
-    mail | code | bacula | www* | monitor | bender | xen ) UC=$RED ;;
+    www* | db* | web* | lb* ) UC=$RED ;;
 esac
 
 # Some special cases to the above

@@ -46,4 +46,3 @@ function _wk() {
 }
 
 complete -F _wk wk
-
