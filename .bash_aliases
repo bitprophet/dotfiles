@@ -62,7 +62,6 @@ complete -o default -o nospace -F _git_diff gd
 complete -o default -o nospace -F _git_tag gt
 complete -o default -o nospace -F _git_branch gb
 
-
 # RubyGems
 alias gems='gem search -b'
 alias geml='gem list -l'
@@ -74,6 +73,7 @@ alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
 alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
 alias rap="sudo /etc/init.d/apache2 reload"
+alias ports="sudo lsof -i -P -sTCP:LISTEN"
 
 
 #
