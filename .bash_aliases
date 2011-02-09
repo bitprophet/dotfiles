@@ -29,7 +29,12 @@ alias stail="sudo tail"
 alias apt-get='sudo apt-get'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
-alias yum='sudo yum'
+alias apt-file='sudo apt-file'
+alias ash='aptitude show'
+alias ai='aptitude install'
+alias as='aptitude search'
+alias au='aptitude update'
+alias dl='dpkg --list'
 
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
@@ -57,7 +62,6 @@ complete -o default -o nospace -F _git_diff gd
 complete -o default -o nospace -F _git_tag gt
 complete -o default -o nospace -F _git_branch gb
 
-
 # RubyGems
 alias gems='gem search -b'
 alias geml='gem list -l'
@@ -68,20 +72,13 @@ alias gemu='gem uninstall'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
 alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
+alias rap="sudo /etc/init.d/apache2 reload"
+alias ports="sudo lsof -i -P -sTCP:LISTEN"
 
 
 #
 # More complicated stuff
 #
-
-# Apache
-if [ -f /etc/init.d/apache2 ]; then
-    apache=apache2
-elif [ -f /etc/init.d/httpd ]; then
-    apache=httpd
-fi
-alias rap="sudo /etc/init.d/$apache reload"
-alias rsap="sudo /etc/init.d/$apache restart"
 
 # Platform specific 'ps' alias
 case $(uname -s) in

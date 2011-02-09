@@ -19,12 +19,11 @@ runtime! debian.vim
 
 " Syntax highlighting!
 syntax on
-" 256 colors!
-set t_Co=256
-" Gary Bernhardt's slightly modified ir_black
-colorscheme grb4
 " Colorize for a dark background
 set background=dark
+" 256 colors!
+set t_Co=256
+colorscheme desert256
 " Show ruler line at bottom of each buffer
 set ruler
 " Show additional info in the command line (very last line on screen) where
@@ -153,7 +152,7 @@ endif
 "
 
 " Ruby and related
-autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
+autocmd BufNewFile,BufRead Gemfile,Vagrantfile setlocal filetype=ruby
 autocmd BufNewFile,BufRead *.tt,*.citrus setlocal filetype=treetop
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
