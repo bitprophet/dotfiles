@@ -172,3 +172,8 @@ realtime
 db
 PG9
 Postgres9
+crontab
+Boto
+boto
+s3put
+StringIO
