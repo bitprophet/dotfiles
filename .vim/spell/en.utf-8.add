@@ -177,3 +177,8 @@ Boto
 boto
 s3put
 StringIO
+Passphraseless
+keypair
+IIRC
+AWS
+passphraseless
