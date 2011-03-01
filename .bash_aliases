@@ -42,9 +42,12 @@ if [[ -e `which hub 2>/dev/null` ]]; then
 fi
 alias gb='git branch'
 alias gba='git branch -a'
-alias gc='git commit -m'
-alias gca='git ci -m'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit -a'
+alias gcam='git commit -a -m'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gl='git log'
 alias glg="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gpl='git pull'
@@ -55,12 +58,14 @@ alias gsr='git svn rebase'
 alias gsf='git svn fetch'
 alias gt='git tag'
 alias gr='git rel'
+alias ga='git add'
 
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
 complete -o default -o nospace -F _git_diff gd
 complete -o default -o nospace -F _git_tag gt
 complete -o default -o nospace -F _git_branch gb
+complete -o default -o nospace -F _git_add ga
 
 # RubyGems
 alias gems='gem search -b'
