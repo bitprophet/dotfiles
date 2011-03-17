@@ -59,6 +59,7 @@ alias gsf='git svn fetch'
 alias gt='git tag'
 alias gr='git rel'
 alias ga='git add'
+alias gco='git checkout'
 
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
@@ -66,6 +67,7 @@ complete -o default -o nospace -F _git_diff gd
 complete -o default -o nospace -F _git_tag gt
 complete -o default -o nospace -F _git_branch gb
 complete -o default -o nospace -F _git_add ga
+complete -o default -o nospace -F _git_checkout gco
 
 # RubyGems
 alias gems='gem search -b'
