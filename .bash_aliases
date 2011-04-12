@@ -61,6 +61,10 @@ alias gr='git rel'
 alias ga='git add'
 alias gco='git checkout'
 
+function gcamp() {
+    gcam "$1" && gps
+}
+
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
 complete -o default -o nospace -F _git_diff gd
