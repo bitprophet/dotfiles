@@ -72,6 +72,7 @@ complete -o default -o nospace -F _git_tag gt
 complete -o default -o nospace -F _git_branch gb
 complete -o default -o nospace -F _git_add ga
 complete -o default -o nospace -F _git_checkout gco
+complete -o default -o nospace -F _git_commit gc
 
 # RubyGems
 alias gems='gem search -b'
