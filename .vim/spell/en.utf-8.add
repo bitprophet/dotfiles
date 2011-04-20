@@ -222,3 +222,5 @@ hostnames
 KeyErrors
 passwordless
 basename
+MongoDB
+Redis
