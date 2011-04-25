@@ -16,3 +16,5 @@
     default = matching
 [core]
     excludesfile = "~/.gitexcludes"
+[rerere]
+    enabled = true
