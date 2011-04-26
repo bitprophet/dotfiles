@@ -319,3 +319,7 @@ function! AskQuit (msg, proposed_action)
         exit
     endif
 endfunction
+
+
+" NERDTree
+nmap <silent> <c-n> :NERDTreeToggle<CR>
