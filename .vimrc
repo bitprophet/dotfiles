@@ -61,6 +61,9 @@ set smarttab
 set expandtab
 " When wrapping/formatting, break at 79 characters. 
 set textwidth=79
+" Also make it visually obvious where that line is.
+highlight OverLength ctermbg=88 ctermfg=white
+match OverLength /\%81v.\+/
 " By default, all indent/tab stuff is 4 spaces, as God intended.
 set tabstop=4
 set softtabstop=4
