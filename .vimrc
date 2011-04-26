@@ -69,7 +69,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 " Default autoformatting options:
-" t: automatically hard-wrap based on textwidth
+" t: automatically hard-wrap based on textwidth (NO LONGER USED)
 " c: do the same for comments, but autoinsert comment character too
 " r: also autoinsert comment character when making new lines after existing
 "    comment lines
@@ -80,7 +80,7 @@ set shiftwidth=4
 " 2: Use 2nd line of a paragraph for the overall indentation level when
 "    autoformatting. Good for e.g. bulleted lists or other formats where first
 "    line in a paragraph may have a different indent than the rest.
-set formatoptions=tcroqn2 
+set formatoptions=croqn2
 " Try to break on specific characters instead of the very last character that
 " might otherwise fit. Don't remember exactly why this is here but I'm happy
 " with how things wrap now...
