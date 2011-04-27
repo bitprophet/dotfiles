@@ -164,7 +164,7 @@ autocmd BufNewFile,BufRead *.txt,*.mdwn,*.mkd,*.md setlocal filetype=mkd
 autocmd FileType mkd setlocal ai comments=n:> spell
 
 " ReST
-autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
+autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rest
 autocmd FileType rest setlocal ai comments=n:> spell
 
 " YAML
