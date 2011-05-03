@@ -326,4 +326,4 @@ endfunction
 
 " NERDTree
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.egg$']
