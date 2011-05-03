@@ -50,4 +50,4 @@ export PIP_DOWNLOAD_CACHE='/tmp/pip_cache'
 #
 
 # Only affects 2.6 but should be harmless in 2.5
-PYTHONDONTWRITEBYTECODE=1
+export PYTHONDONTWRITEBYTECODE=1
