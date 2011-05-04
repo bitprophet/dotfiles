@@ -65,6 +65,20 @@ function gcamp() {
     gcam "$1" && gps
 }
 
+function mg() {
+    find . \
+        -mindepth 1 -maxdepth 2 \
+        -type d -name .git \
+    | while read git_dir; do
+        dir=`dirname $git_dir`
+        echo $dir:
+        cd $dir
+        git $*
+        cd - >/dev/null
+        echo ""
+    done
+}
+
 # Make Git autocomplete work with some of the above
 complete -o default -o nospace -F _git_log gl
 complete -o default -o nospace -F _git_diff gd
