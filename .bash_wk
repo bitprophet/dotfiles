@@ -14,10 +14,10 @@
 #
 
 PERSONAL=~/Documents/Code
-SKUNKWORKS=~/Documents/Code/skunkworks
+WHISKEY=~/Documents/Code/whiskey
 DJANGO=/srv/django
 RAILS=/srv/rails
-FOLDERS="$PERSONAL $DJANGO $RAILS $SKUNKWORKS"
+FOLDERS="$PERSONAL $DJANGO $RAILS $WHISKEY"
 
 function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
