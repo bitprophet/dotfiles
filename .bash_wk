@@ -18,6 +18,7 @@ WHISKEY=~/Documents/Code/whiskey
 DJANGO=/srv/django
 RAILS=/srv/rails
 FOLDERS="$PERSONAL $DJANGO $RAILS $WHISKEY"
+RCFILE=".wkrc"
 
 function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
@@ -30,6 +31,10 @@ function wk() {
         target=$folder/$1
         if [[ -d $target ]]; then
             cd $target
+            # Also execute any project init file
+            if [[ -f $RCFILE ]]; then
+                . $RCFILE
+            fi
             return 0
         fi
     done
