@@ -202,7 +202,6 @@ nmap <Leader><Right> <C-w><Right>
 nmap <Leader><Up> <C-w><Up>
 nmap <Leader><Down> <C-w><Down>
 
-
 " Paragraph formatting
 nmap <Leader>f gqap
 vmap <Leader>f gq
@@ -215,8 +214,6 @@ inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
 inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 
-" Custom mapping shortcut for :nohl
-nmap <C-N> :noh<CR>
 
 "
 " netrw (builtin file-browser plugin) preferences
