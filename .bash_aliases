@@ -60,6 +60,7 @@ alias gt='git tag'
 alias gr='git rel'
 alias ga='git add'
 alias gco='git checkout'
+alias gsa='git stash apply'
 
 function gcamp() {
     gcam "$1" && gps
