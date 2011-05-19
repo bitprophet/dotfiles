@@ -102,6 +102,7 @@ alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
 alias rap="sudo /etc/init.d/apache2 reload"
 alias ports="sudo lsof -i -P -sTCP:LISTEN"
 alias v=vagrant
+alias be='bundle exec'
 
 
 #
