@@ -11,8 +11,9 @@ case $( uname -s ) in
         alias ls='ls --color=auto'
         ;;
     Darwin )
-        export LSCOLORS="ExfxcxdxbxEgEdabagacad"
-        alias ls='ls -G'
+        #export LSCOLORS="ExfxcxdxbxEgEdabagacad"
+        # gls requires brew's coreutils (GNU ls, etc)
+        alias ls='gls --color=auto'
         ;;
 esac
 
