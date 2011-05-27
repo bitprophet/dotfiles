@@ -97,7 +97,10 @@ function set_prompt() {
     # Dollar/pound sign
     end="${LC}\$${NIL} "
 
+    # Time (useful when catting logs)
+    time="[${GREEN}$(date +"%R")${NIL}]"
+
     # Put it all together
-    export PS1="${host}:${path}${venv}${branch} ${end}"
+    export PS1="${time} ${host}:${path}${venv}${branch} ${end}"
 }
 export PROMPT_COMMAND=set_prompt
