@@ -19,6 +19,8 @@ runtime! debian.vim
 
 " Syntax highlighting!
 syntax on
+" Slower but better syncing -- hopefully no more dumb broken syntax
+syntax sync fromstart
 " Colorize for a dark background
 set background=dark
 " 256 colors!
