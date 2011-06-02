@@ -104,6 +104,7 @@ alias rap="sudo /etc/init.d/apache2 reload"
 alias ports="sudo lsof -i -P -sTCP:LISTEN"
 alias v=vagrant
 alias be='bundle exec'
+alias ack='ack -a'
 
 
 #
