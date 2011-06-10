@@ -25,6 +25,7 @@ esac
 # Sudo
 alias svim='sudo vim'
 alias stail="sudo tail"
+alias svs="sudo supervisorctl"
 
 # Package managers
 alias apt-get='sudo apt-get'
