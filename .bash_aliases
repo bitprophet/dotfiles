@@ -106,6 +106,9 @@ alias ports="sudo lsof -i -P -sTCP:LISTEN"
 alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
+if [[ $(uname -s) == "Darwin" ]]; then
+    alias rm='grm'
+fi
 
 
 #
