@@ -3,20 +3,13 @@
 # Expand aliases; needed to use below alises via Vim :sh / :!
 shopt -s expand_aliases
 
-
-# Colors and color ls
+# Platform-specific things
 case $( uname -s ) in
-    Linux )
-        eval `dircolors -b` # sets and exports LS_COLORS for bash terminals
-        alias ls='ls --color=auto'
-        ;;
     Darwin )
-        #export LSCOLORS="ExfxcxdxbxEgEdabagacad"
-        # gls requires brew's coreutils (GNU ls, etc)
-        alias ls='gls --color=auto'
-        ;;
+        . .bash_mac ;;
+    Linux )
+        . .bash_linux ;;
 esac
-
 
 #
 # Basic, always-on aliases
@@ -106,26 +99,4 @@ alias ports="sudo lsof -i -P -sTCP:LISTEN"
 alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
-if [[ $(uname -s) == "Darwin" ]]; then
-    alias rm='grm'
-fi
 
-
-#
-# More complicated stuff
-#
-
-# Platform specific 'ps' alias
-case $(uname -s) in
-    Darwin )
-        alias ps='ps -T'
-        ;;
-esac
-
-# Multiplatform sed tomfoolery
-case $(uname -s) in
-    # -E flag, and override macports sed=>gsed alias
-    Darwin ) alias esed='/usr/bin/sed -E' ;;
-    # -r flag with GNU sed on Linux/Cygwin/etc
-    * ) alias esed='sed -r' ;;
-esac
