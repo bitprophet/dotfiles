@@ -7,6 +7,7 @@
 # Bash stuff (profile just sources bashrc, since it's the only thing sourced
 # when a shell is a login shell).
 !.bash*
+.bash*.swp
 .bash_history
 .bash_local
 .bash_logout
