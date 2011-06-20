@@ -6,8 +6,7 @@
 
 # GNU utils
 alias ls='gls --color=auto'
-alias sed='gsed -r'
-alias esed=sed
+alias esed='gsed -r'
 alias rm=grm
 
 # Flags to make things behave more like the GNU versions (i.e. where an actual

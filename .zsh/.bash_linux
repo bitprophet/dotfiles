@@ -4,3 +4,4 @@
 
 # LS colors
 alias ls='ls --color=auto'
+alias esed='sed -r'
