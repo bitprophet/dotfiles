@@ -1,0 +1,14 @@
+ls
+Library
+ls
+cd Logs/CrashReporter/MobileDevice/myPad
+cd
+Library/Application\ Support/Front\ Row
+man zshall
+env
+echo $ZSH
+man zsh
+man zshbuiltins
+man zshoptions
+man zshbuiltins
+man zshcompsys

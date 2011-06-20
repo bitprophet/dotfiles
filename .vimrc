@@ -185,6 +185,9 @@ autocmd BufNewFile,BufRead *.module setlocal ft=php
 " JSON
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 
+" Zsh
+autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
+
 
 "
 " Key mappings

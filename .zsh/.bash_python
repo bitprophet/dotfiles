@@ -1,0 +1,53 @@
+# vim: set ft=sh :
+
+#
+# Virtualenvwrapper
+#
+
+# Shell hooks; look in all possible locations and for both old and new versions
+# of the script, just in case I find myself on an older system.
+ROOTS="/usr/bin /usr/local/bin"
+SUFFIXES="_bashrc .sh"
+for root in $ROOTS; do
+    for suffix in $SUFFIXES; do
+        path=$root/virtualenvwrapper$suffix
+        if [[ -f $path ]]; then
+            virtualenvwrapper=$path
+        fi
+    done
+done
+
+# System-specific $WORKON_HOME: servers get system location, workstations get
+# homedir location.
+case $( uname -s ) in
+    Darwin ) 
+        workon_home=~/.virtualenvs ;;
+    Linux )
+        workon_home=/opt/envs ;;
+esac
+
+if [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]]; then
+    export WORKON_HOME=$workon_home
+    source $virtualenvwrapper
+fi
+
+
+#
+# Pip env vars
+#
+
+# Respect my virtualenvs, please
+export PIP_RESPECT_VIRTUALENV=true
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+# Don't litter pip_log.txt files in cwd!
+export PIP_LOG_FILE='/tmp/pip-log.txt'
+# Use a cache
+export PIP_DOWNLOAD_CACHE='/tmp/pip_cache'
+
+
+#
+# Python env vars
+#
+
+# Only affects 2.6 but should be harmless in 2.5
+export PYTHONDONTWRITEBYTECODE=1

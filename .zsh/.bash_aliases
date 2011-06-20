@@ -1,0 +1,102 @@
+# vim: set filetype=sh :
+
+# Expand aliases; needed to use below alises via Vim :sh / :!
+shopt -s expand_aliases
+
+# Platform-specific things
+case $( uname -s ) in
+    Darwin )
+        . .bash_mac ;;
+    Linux )
+        . .bash_linux ;;
+esac
+
+#
+# Basic, always-on aliases
+#
+
+# Sudo
+alias svim='sudo vim'
+alias stail="sudo tail"
+alias svs="sudo supervisorctl"
+
+# Package managers
+alias apt-get='sudo apt-get'
+alias apt-cache='sudo apt-cache'
+alias aptitude='sudo aptitude'
+alias apt-file='sudo apt-file'
+alias ash='aptitude show'
+alias ai='aptitude install'
+alias as='aptitude search'
+alias au='aptitude update'
+alias dl='dpkg --list'
+
+# Git
+if [[ -e `which hub 2>/dev/null` ]]; then
+    alias git=hub
+fi
+alias gb='git branch'
+alias gba='git branch -a'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit -a'
+alias gcam='git commit -a -m'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gl='git log'
+alias glg="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gpl='git pull'
+alias gps='git push'
+alias gs='git status'
+alias gsd='git svn dcommit'
+alias gsr='git svn rebase'
+alias gsf='git svn fetch'
+alias gt='git tag'
+alias gr='git rel'
+alias ga='git add'
+alias gco='git checkout'
+alias gsa='git stash apply'
+
+function gcamp() {
+    gcam "$1" && gps
+}
+
+function mg() {
+    find . \
+        -mindepth 1 -maxdepth 2 \
+        -type d -name .git \
+    | while read git_dir; do
+        dir=`dirname $git_dir`
+        echo $dir:
+        cd $dir
+        git $*
+        cd - >/dev/null
+        echo ""
+    done
+}
+
+# Make Git autocomplete work with some of the above
+complete -o default -o nospace -F _git_log gl
+complete -o default -o nospace -F _git_diff gd
+complete -o default -o nospace -F _git_tag gt
+complete -o default -o nospace -F _git_branch gb
+complete -o default -o nospace -F _git_add ga
+complete -o default -o nospace -F _git_checkout gco
+complete -o default -o nospace -F _git_commit gc
+
+# RubyGems
+alias gems='gem search -b'
+alias geml='gem list -l'
+alias gemi='gem install -b'
+alias gemu='gem uninstall'
+
+# Misc
+alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
+alias screen='TERM=screen screen'
+alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
+alias rap="sudo /etc/init.d/apache2 reload"
+alias ports="sudo lsof -i -P -sTCP:LISTEN"
+alias v=vagrant
+alias be='bundle exec'
+alias ack='ack -a'
+

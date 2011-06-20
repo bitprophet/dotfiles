@@ -13,6 +13,15 @@
 .bash_logout
 !.profile
 
+# Zsh
+!.zshrc
+!.zsh
+!.zsh/*
+# Do ignore the data directory (my construct, it's where completion cache,
+# history etc live)
+.zsh/data
+.zsh/data/*
+
 # Git aliases, identification info
 !.gitconfig
 # The gitignore of this repository itself (!)
