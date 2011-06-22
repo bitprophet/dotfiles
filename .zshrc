@@ -6,11 +6,12 @@
 # before anything else.
 #
 
+# Abstract out where the zsh specific files live
 export ZSH=~/.zsh
 
-# General settings
+# General zsh settings
 
-# Platform-specific settings
+# Platform-specific aliases/exports
 source $ZSH/platform
 
 # Environment variables
@@ -22,7 +23,8 @@ source $ZSH/aliases
 # Tab completion
 source $ZSH/completion
 
-# History
+# History settings
+source $ZSH/history
 
 # Prompt
 
