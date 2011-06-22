@@ -1,0 +1,15 @@
+# General
+export TERM="xterm-color"
+if [[ `uname -s` == *CYGWIN* ]]; then
+    export TERM="cygwin"
+fi
+export DISPLAY=:0.0
+export EDITOR=vim
+
+# PATH
+my_path=$HOME/bin
+local_path=/usr/local/bin:/usr/local/sbin
+export PATH=$my_path:$local_path:$PATH
+
+# Homebrew temp folder
+export HOMEBREW_TEMP=/usr/local/tmp

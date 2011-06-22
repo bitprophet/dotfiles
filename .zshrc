@@ -8,9 +8,10 @@
 
 export ZSH=~/.zsh
 
-# Shell settings
+# General settings
 
 # Environment variables
+source $ZSH/exports
 
 # Aliases
 
@@ -20,3 +21,11 @@ source $ZSH/completion
 # History
 
 # Prompt
+
+# Python
+
+# Ruby
+
+# Wk
+
+# Local
