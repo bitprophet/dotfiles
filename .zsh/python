@@ -1,18 +1,16 @@
-# vim: set ft=sh :
-
 #
 # Virtualenvwrapper
 #
 
 # Shell hooks; look in all possible locations and for both old and new versions
 # of the script, just in case I find myself on an older system.
-ROOTS="/usr/bin /usr/local/bin"
-SUFFIXES="_bashrc .sh"
+ROOTS=(/usr/bin /usr/local/bin)
+SUFFIXES=(_bashrc .sh)
 for root in $ROOTS; do
     for suffix in $SUFFIXES; do
-        path=$root/virtualenvwrapper$suffix
-        if [[ -f $path ]]; then
-            virtualenvwrapper=$path
+        p=$root/virtualenvwrapper$suffix
+        if [[ -f $p ]]; then
+            virtualenvwrapper=$p
         fi
     done
 done
@@ -21,15 +19,12 @@ done
 # homedir location.
 case $( uname -s ) in
     Darwin ) 
-        workon_home=~/.virtualenvs ;;
+        export WORKON_HOME=~/.virtualenvs ;;
     Linux )
-        workon_home=/opt/envs ;;
+        export WORKON_HOME=/opt/envs ;;
 esac
 
-if [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]]; then
-    export WORKON_HOME=$workon_home
-    source $virtualenvwrapper
-fi
+[[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]] && source $virtualenvwrapper
 
 
 #
