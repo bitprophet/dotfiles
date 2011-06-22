@@ -27,6 +27,7 @@ source $ZSH/completion
 source $ZSH/history
 
 # Prompt
+source $ZSH/prompt
 
 # Python
 
