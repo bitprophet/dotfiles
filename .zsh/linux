@@ -1,5 +1,3 @@
-# vim: set ft=sh :
-
 # Linux-specific tweaks (to be used in place of .bash_mac for Darwin stuff)
 
 # LS colors

@@ -1,16 +1,3 @@
-# vim: set filetype=sh :
-
-# Expand aliases; needed to use below alises via Vim :sh / :!
-shopt -s expand_aliases
-
-# Platform-specific things
-case $( uname -s ) in
-    Darwin )
-        . .bash_mac ;;
-    Linux )
-        . .bash_linux ;;
-esac
-
 #
 # Basic, always-on aliases
 #
@@ -76,13 +63,13 @@ function mg() {
 }
 
 # Make Git autocomplete work with some of the above
-complete -o default -o nospace -F _git_log gl
-complete -o default -o nospace -F _git_diff gd
-complete -o default -o nospace -F _git_tag gt
-complete -o default -o nospace -F _git_branch gb
-complete -o default -o nospace -F _git_add ga
-complete -o default -o nospace -F _git_checkout gco
-complete -o default -o nospace -F _git_commit gc
+#complete -o default -o nospace -F _git_log gl
+#complete -o default -o nospace -F _git_diff gd
+#complete -o default -o nospace -F _git_tag gt
+#complete -o default -o nospace -F _git_branch gb
+#complete -o default -o nospace -F _git_add ga
+#complete -o default -o nospace -F _git_checkout gco
+#complete -o default -o nospace -F _git_commit gc
 
 # RubyGems
 alias gems='gem search -b'
@@ -93,10 +80,9 @@ alias gemu='gem uninstall'
 # Misc
 alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
-alias rmpyc='find . -type f -name "*.pyc" -print0 | xargs -0 rm'
+alias rmpyc='rm **/*.pyc'
 alias rap="sudo /etc/init.d/apache2 reload"
 alias ports="sudo lsof -i -P -sTCP:LISTEN"
 alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
-

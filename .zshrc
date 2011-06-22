@@ -10,10 +10,14 @@ export ZSH=~/.zsh
 
 # General settings
 
+# Platform-specific settings
+source $ZSH/platform
+
 # Environment variables
 source $ZSH/exports
 
 # Aliases
+source $ZSH/aliases
 
 # Tab completion
 source $ZSH/completion

@@ -1,5 +1,3 @@
-# vim:set ft=sh :
-
 # Mac OS X / Darwin specific tweaks.
 # Many of these are really BSD specific tweaks, but OS X is the only BSD
 # userland I tend to run into.
