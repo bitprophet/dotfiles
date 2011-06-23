@@ -17,6 +17,8 @@
 !.zshrc
 !.zsh
 !.zsh/*
+!.zsh/contrib
+!.zsh/contrib/*
 # Do ignore the data directory (my construct, it's where completion cache,
 # history etc live)
 .zsh/data
