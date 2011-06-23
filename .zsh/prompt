@@ -85,7 +85,16 @@ function virtualenv_() {
     fi
 }
 
+function git_status() {
+    _branch=$(git symbolic-ref HEAD 2>/dev/null)
+    current_git_branch=${_branch#refs/heads/}
+}
+
 function dirty() {
+    git_status
+    # Print nothing if not in a git repo
+    [[ -z $current_git_branch ]] && return
+
     # Git branch / dirtiness
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
@@ -97,11 +106,9 @@ function dirty() {
 }
 
 function branch() {
-    _branch=$(git symbolic-ref HEAD 2>/dev/null)
-    local result
-    result=${_branch#refs/heads/} # apparently faster than sed
-    if [[ -n "$result" ]]; then
-        echo "$result"
+    git_status
+    if [[ -n "$current_git_branch" ]]; then
+        echo "$current_git_branch"
     else
         echo - -
     fi
