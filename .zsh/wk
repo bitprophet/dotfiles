@@ -1,5 +1,3 @@
-# vim:set ft=sh :
-
 #
 # Generic "move me to my project dir" function/alias.
 #
@@ -13,11 +11,12 @@
 # Also deactivates any currently active virtualenv, just for neatness' sake.
 #
 
-PERSONAL=~/Documents/Code
-WHISKEY=~/Documents/Code/whiskey
-DJANGO=/srv/django
-RAILS=/srv/rails
-FOLDERS="$PERSONAL $DJANGO $RAILS $WHISKEY"
+FOLDERS=(
+    ~/Documents/Code
+    ~/Documents/Code/whiskey
+    /srv/django
+    /srv/rails
+)
 RCFILE=".wkrc"
 
 function wk() {
@@ -41,13 +40,13 @@ function wk() {
     return 1
 }
 
-function _wk() {
-    local curw
-    COMPREPLY=()
-    curw=${COMP_WORDS[COMP_CWORD]}
-    projects=`find $FOLDERS -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null`
-    COMPREPLY=($(compgen -W '$projects' -- $curw))
-    return 0
-}
-
-complete -F _wk wk
+#function _wk() {
+#    local curw
+#    COMPREPLY=()
+#    curw=${COMP_WORDS[COMP_CWORD]}
+#    projects=$(find $FOLDERS -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null)
+#    COMPREPLY=($(compgen -W '$projects' -- $curw))
+#    return 0
+#}
+#
+#complete -F _wk wk
