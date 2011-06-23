@@ -25,6 +25,8 @@
 .zsh/data/*
 # Do ignore local/sensitive settings
 .zsh/local
+# Swapfiles (sigh)
+.zsh/*.swp
 
 # Git aliases, identification info
 !.gitconfig
