@@ -1,29 +1,27 @@
-# vim: set ft=sh :
-
 #
 # Try to make up for Ruby's lack of easy setup.py develop sorta thing.
 #
 
 function fakegem() {
-    if [[ `env | grep GEM_HOME` ]]; then
+    if [[ $(env | grep GEM_HOME) != "" ]]; then
         projects=~/Documents/Code
         for project in `ls -1 $projects`; do
             bin=$projects/$project/bin
             lib=$projects/$project/lib
             # if project seems to be ruby and doesn't exist as an installed gem
-            has_ruby=`find $projects/$project -name "*.rb"`
-            has_gem=`find $GEM_HOME/gems -maxdepth 1 -mindepth 1 -name "$project*"`
+            has_ruby=$(find $projects/$project -name "*.rb")
+            has_gem=$(find $GEM_HOME/gems -maxdepth 1 -mindepth 1 -name "$project*")
             # and if it's not already in our bin/lib paths
-            in_path=`echo $PATH | grep $bin`
-            in_lib=`echo $RUBYLIB | grep $lib`
+            in_path=$(echo $PATH | grep $bin)
+            in_lib=$(echo $RUBYLIB | grep $lib)
             if ( \
-                [[ $has_ruby ]] \
-                && [[ ! $has_gem ]] \
-                && [[ ! ($in_path || $in_lib) ]] \
+                [[ $has_ruby != "" ]] \
+                && [[ $has_gem == "" ]] \
+                && [[ ! ($in_path != "" || $in_lib != "") ]] \
             ); then
                 # add project/bin to PATH and project/lib to RUBYLIB
                 export PATH=$PATH:$bin
-                if [[ `env | grep RUBYLIB` ]]; then
+                if [[ $(env | grep RUBYLIB) != "" ]]; then
                     export RUBYLIB=$RUBYLIB:$lib
                 else
                     export RUBYLIB=$lib
@@ -42,7 +40,6 @@ _rvm_home=~/.rvm
 _rvm=$_rvm_home/scripts/rvm
 if [[ -s $_rvm ]] ; then
     source $_rvm
-    source $_rvm_home/scripts/completion
 fi
 
 function activate_gemset() {
