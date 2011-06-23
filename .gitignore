@@ -23,6 +23,8 @@
 # history etc live)
 .zsh/data
 .zsh/data/*
+# Do ignore local/sensitive settings
+.zsh/local
 
 # Git aliases, identification info
 !.gitconfig
