@@ -2,49 +2,50 @@
 # Colorized prompt, with different username colors for different systems.
 #
 
-# Color codes
-autoload -U colors && colors
-# 256 color help
-source $ZSH/contrib/spectrum.zsh
-
-# I hate typing
-nil=$reset_color
-
-# Hostname styles
-FULL='%M'
-SHORT='%m'
+# My specific palette, using zsh's builtin color expansions
+typeset -A PALETTE C # Force zsh to treat as an array
+PALETTE=(
+    blue    33
+    cyan    51
+    green   40
+    purple  93
+    red     88
+    yellow  226
+)
+# Wrap in %F{} and use short array name
+for key in ${(k)PALETTE}; do
+    C[$key]="%F{$PALETTE[$key]}"
+done
 
 # System => color/hostname map:
-#   UC: username color
-#   LC: location/cwd color
-#   HD: hostname display
+#   USER: username color
+#   CWD: location/cwd color
+#   HOST: hostname display
 # Defaults:
-UC=$fg_bold[green]
-LC=$fg_bold[blue]
-HD=$FULL
+USER=$C[green]
+CWD=$C[blue]
 
+# Manually cut hostname; hostname -s bails out on some systems.
 HOST=`hostname | cut -d '.' -f 1`
 DOMAIN=`hostname | cut -d '.' -f 2-`
 
-# Manually cut hostname; hostname -s bails out on some systems.
-case $HOST in
-    ytram | atrus ) UC=$fg_bold[yellow] LC=$fg_bold[green] HD=$SHORT ;;
-    bitprophet ) UC=$fg_bold[cyan] ;;
-    www* | db* | web* | lb* ) UC=$fg_bold[red] ;;
+# Themed by domain name
+case $DOMAIN in
+    # Personal production
+    bitprophet.org | fabfile.org ) USER=$C[cyan] ;;
+    # Work production
+    whiskeymedia.com | giantbomb.com | comicvine.com \
+    | tested.com | screened.com | animevice.com) USER=$C[red] ;;
 esac
 
-# Some special cases to the above
-if [[ ($HOST == "monitor") && ($DOMAIN == "bitprophet.org") ]]; then
-    UC=$fg_bold[cyan] HD=$SHORT
-fi
+# Themed by host/node name (takes precedence over domain)
+case $HOST in
+    # Workstations
+    ytram | atrus ) USER=$C[yellow] CWD=$C[green] ;;
+esac
 
 
-# Prompt function because PROMPT_COMMAND is awesome
-function precmd() {
-    # If logged in as another user, not gonna have all this firing anyway.
-    # So let's just show the host only and be done with it.
-    host="${UC}${HD}$nil"
-
+function shortpath() {
     # Special vim-tab-like shortpath (~/folder/directory/foo => ~/f/d/foo)
     _pwd=`pwd | sed "s#$HOME#~#"`
     if [[ $_pwd == "~" ]]; then
@@ -56,13 +57,15 @@ function precmd() {
         fi
         _dirname="$_dirname/`basename "$_pwd"`"
     fi
-    pwd="${LC}${_dirname}$nil"
+    echo "${_dirname}"
+}
 
-    # Virtualenv
+function virtualenv_() {
+    # Python virtualenv
     _venv=`basename "$VIRTUAL_ENV"`
     venv="" # need this to clear it when we leave a venv
     if [[ -n $_venv ]]; then
-        venv=" $nil{$fg_bold[magenta]${_venv}$nil}"
+        venv=$_venv
     fi
 
     # RVM (steals the venv slot if there's no venv)
@@ -71,31 +74,54 @@ function precmd() {
         # do I care about patchlevel.
         _venv=`$_rvm_home/bin/rvm-prompt g`
         if [[ "$_venv" != "system" && -n $_venv ]]; then
-            venv=" $nil{$fg_bold[magenta]${_venv}$nil}"
+            venv=$_venv
         fi
     fi
 
+    if [[ -n "$venv" ]]; then
+        echo "$venv"
+    else
+        echo - -
+    fi
+}
+
+function dirty() {
     # Git branch / dirtiness
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
+    dirty = "*"
     if git update-index -q --refresh 2>/dev/null; git diff-index --quiet --cached HEAD --ignore-submodules -- 2>/dev/null && git diff-files --quiet --ignore-submodules 2>/dev/null
         then dirty=""
-    else
-        dirty="$fg_bold[red]*$nil"
     fi
+    echo $dirty
+}
+
+function branch() {
     _branch=$(git symbolic-ref HEAD 2>/dev/null)
-    _branch=${_branch#refs/heads/} # apparently faster than sed
-    branch="" # need this to clear it when we leave a repo
-    if [[ -n $_branch ]]; then
-        branch=" ${nil}[$fg_bold[magenta]${_branch}${dirty}${nil}]"
+    local result
+    result=${_branch#refs/heads/} # apparently faster than sed
+    if [[ -n "$result" ]]; then
+        echo "$result"
+    else
+        echo - -
     fi
+}
 
-    # Dollar/pound sign
-    end="${LC}\$$nil "
+function displayhost() {
+    # %m/%M seem broken for me? :(
+    echo "$(hostname)"
+}
 
-    # Time (useful when catting logs)
-    time="[$fg_bold[green]$(date +"%R")$nil]"
+#
+# Prompt itself
+#
 
-    # Put it all together
-    export PS1="${time} ${host}:${pwd}${venv}${branch} ${end}"
+function precmd() {
+    # [<green>time</green>] <USER>HOST</USER>:<CWD>pwd</CWD>
+    #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
+    time="[$C[green]%T%f]"
+    hostname="${USER}$(displayhost)%f"
+    _path="${CWD}$(shortpath)%f"
+    end="${CWD}»%f"
+    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f] ${end} "
 }
