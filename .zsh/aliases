@@ -35,6 +35,7 @@ alias glg="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset
 alias gpl='git pull'
 alias gps='git push'
 alias gs='git status'
+alias gsh='git show'
 alias gsd='git svn dcommit'
 alias gsr='git svn rebase'
 alias gsf='git svn fetch'
