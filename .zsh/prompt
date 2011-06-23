@@ -7,10 +7,10 @@ typeset -A PALETTE C # Force zsh to treat as an array
 PALETTE=(
     blue    33
     cyan    51
-    green   40
-    purple  93
-    red     88
-    yellow  226
+    green   82
+    purple  171
+    red     160
+    yellow  227
 )
 # Wrap in %F{} and use short array name
 for key in ${(k)PALETTE}; do
