@@ -4,7 +4,21 @@ export ZSH=~/.zsh
 # Source some third party stuff
 fpath=($ZSH/contrib $fpath)
 
-# Source my dotfiles
-for file in $ZSH/*; do
+# Source my dotfiles (in explicit order)
+typeset -a DOTFILES
+DOTFILES=(
+    exports
+    platform
+    aliases
+    completion
+    history
+    python
+    ruby
+    wk
+    prompt
+    local
+)
+for file in $DOTFILES; do
+    file=$ZSH/$file
     [[ -f $file ]] && source $file
 done
