@@ -7,9 +7,9 @@ fpath=($ZSH/contrib $fpath)
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
+    aliases
     exports
     platform
-    aliases
     completion
     history
     python
