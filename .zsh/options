@@ -1,3 +1,15 @@
+#
+# Boolean options
+#
+
 for option (
     autocd
 ) setopt $option
+
+
+#
+# Other options
+#
+
+# Use Emacs style line editing for now.
+bindkey -e
