@@ -1,7 +1,3 @@
-#
-# Basic, always-on aliases
-#
-
 # Sudo
 alias svim='sudo vim'
 alias stail="sudo tail"
@@ -21,6 +17,7 @@ alias dl='dpkg --list'
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
     alias git=hub
+    compdef hub=git
 fi
 alias gb='git branch'
 alias gba='git branch -a'
