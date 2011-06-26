@@ -63,15 +63,6 @@ function mg() {
     done
 }
 
-# Make Git autocomplete work with some of the above
-#complete -o default -o nospace -F _git_log gl
-#complete -o default -o nospace -F _git_diff gd
-#complete -o default -o nospace -F _git_tag gt
-#complete -o default -o nospace -F _git_branch gb
-#complete -o default -o nospace -F _git_add ga
-#complete -o default -o nospace -F _git_checkout gco
-#complete -o default -o nospace -F _git_commit gc
-
 # RubyGems
 alias gems='gem search -b'
 alias geml='gem list -l'
