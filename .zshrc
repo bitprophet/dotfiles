@@ -7,6 +7,7 @@ fpath=($ZSH/contrib $fpath)
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
+    options
     exports
     completion
     aliases
