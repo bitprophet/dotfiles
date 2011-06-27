@@ -94,10 +94,10 @@ set lbr
 set foldmethod=indent
 " Don't close all folds by default when file opens
 set nofoldenable
-" "/bin/bash -l -c <command>" for :sh and :!
-" (so it sources my .bashrc and so forth)
+" "zsh -l -c <command>" for :sh and :!
+" (so it sources my .zshrc and so forth)
 set shellcmdflag=-c
-set shell=bash\ -l
+set shell=/usr/local/bin/zsh\ -l
 " Honor Vim modelines at top/bottom of files
 set modeline
 " Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
