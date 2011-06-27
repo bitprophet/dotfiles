@@ -140,5 +140,6 @@ function precmd() {
     hostname="${USER}$(displayhost)%f"
     _path="${CWD}$(shortpath)%f"
     end="${CWD}»%f"
-    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] ${end} "
+    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+${end} "
 }
