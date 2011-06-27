@@ -3,7 +3,8 @@
 #
 
 for option (
-    autocd
+    autocd # Less typing is better typing
+    no_automenu # Don't cycle thru options on subsequent Tabs
 ) setopt $option
 
 
