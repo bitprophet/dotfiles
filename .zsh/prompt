@@ -91,7 +91,6 @@ function git_status() {
 }
 
 function dirty() {
-    git_status
     # Print nothing if not in a git repo
     [[ -z $current_git_branch ]] && return
 
@@ -105,8 +104,17 @@ function dirty() {
     echo $_dirty
 }
 
+function untracked() {
+    [[ -z $current_git_branch ]] && return
+    _untracked=""
+    # Taken from oh-my-zsh/lib/git.zsh
+    if git status --porcelain 2>/dev/null | grep '^??' &>/dev/null
+        then _untracked="*"
+    fi
+    echo $_untracked
+}
+
 function branch() {
-    git_status
     if [[ -n "$current_git_branch" ]]; then
         echo "$current_git_branch"
     else
@@ -124,11 +132,14 @@ function displayhost() {
 #
 
 function precmd() {
+    # Set git vars
+    git_status
     # [<green>time</green>] <USER>HOST</USER>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
     time="[$C[green]%T%f]"
     hostname="${USER}$(displayhost)%f"
     _path="${CWD}$(shortpath)%f"
     end="${CWD}»%f"
-    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f] ${end} "
+    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+${end} "
 }
