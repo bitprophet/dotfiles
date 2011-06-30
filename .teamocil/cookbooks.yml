@@ -6,5 +6,4 @@ windows:
         width: 50
       - cmd:
         - wk whiskey-cookbooks; clear
-        - gr
         width: 50
