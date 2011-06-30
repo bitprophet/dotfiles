@@ -96,3 +96,7 @@
 # Ack
 !.ackrc
 bin/backup
+
+# Teamocil
+!.teamocil
+!.teamocil/*

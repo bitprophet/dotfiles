@@ -1,0 +1,8 @@
+windows:
+  - name: diplo
+    splits:
+      - cmd:
+        - wk diplomatico
+        - vim diplomatico
+      - cmd: wk diplomatico
+        width: 40
