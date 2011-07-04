@@ -1,0 +1,9 @@
+windows:
+  - name: cookbooks
+    splits:
+      - cmd:
+        - wk whiskey-cookbooks; clear
+        width: 50
+      - cmd:
+        - wk whiskey-cookbooks; clear
+        width: 50

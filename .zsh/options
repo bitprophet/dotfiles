@@ -5,6 +5,7 @@
 for option (
     autocd # Less typing is better typing
     no_automenu # Don't cycle thru options on subsequent Tabs
+    extended_history # Store timestamps, elapsed time for commands
 ) setopt $option
 
 

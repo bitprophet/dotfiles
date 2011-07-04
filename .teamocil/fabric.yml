@@ -1,0 +1,10 @@
+windows:
+  - name: fabric
+    splits:
+      - cmd:
+        - wk fabric; clear
+        width: 50
+      - cmd:
+        - wk fabric; clear
+        - gr
+        width: 50
