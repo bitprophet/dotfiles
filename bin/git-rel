@@ -7,7 +7,7 @@ def cyan s; "\033[36m#{s}\033[0m" end
 
 highlighted = 0
 `git branch -v`.each do |line|
-  match = /(.*)(behind|ahead) ([0-9])+(.*)/.match(line)
+  match = /(.*)(behind|ahead) ([0-9]+)(.*)/.match(line)
   next unless match
   highlighted += 1
   color = (match[2] == "behind") ? :yellow : :cyan
