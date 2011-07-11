@@ -21,15 +21,7 @@ remote_branches = `git ls-remote -h origin`.map do |line|
 end.flatten
 local_branches = `git branch`.split.reject {|x| x == "*"}
 
-remote_only = remote_branches - local_branches
 local_only = local_branches - remote_branches
-
-unless remote_only.empty?
-  puts "These branches at origin have no local trackers:"
-  puts remote_only.map {|x| "\t" + x}.join("\n")
-else
-  puts "All origin branches have local trackers."
-end
 
 unless local_only.empty?
   puts "These local branches are not mirrored at origin:"
