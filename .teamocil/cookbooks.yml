@@ -7,3 +7,6 @@ windows:
       - cmd:
         - wk whiskey-cookbooks; clear
         width: 50
+      - cmd:
+        - wk whiskey-cookbooks; clear
+        height: 50
