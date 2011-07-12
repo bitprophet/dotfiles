@@ -142,4 +142,5 @@ function precmd() {
     end="${CWD}»%f"
     export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
+    export RPS1="%(?..$C[red]%?%f)"
 }
