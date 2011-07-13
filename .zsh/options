@@ -6,6 +6,8 @@ for option (
     autocd # Less typing is better typing
     no_automenu # Don't cycle thru options on subsequent Tabs
     extended_history # Store timestamps, elapsed time for commands
+    append_history # Keep history from all shells, not just the last one to exit
+    share_history # Interleave history between shells
 ) setopt $option
 
 
