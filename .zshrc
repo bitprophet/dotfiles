@@ -1,6 +1,9 @@
 # Zsh dotdir folder (not actually setting ZDOTDIR tho, no point?)
 export ZSH=~/.zsh
 
+# Data directory
+[[ -d $ZSH/data ]] || mkdir $ZSH/data
+
 # Source some third party stuff
 fpath=($ZSH/contrib $fpath)
 
