@@ -21,7 +21,11 @@ case $( uname -s ) in
     Darwin ) 
         export WORKON_HOME=~/.virtualenvs ;;
     Linux )
-        export WORKON_HOME=/opt/envs ;;
+        if [[ -d /opt/envs ]]; then
+            export WORKON_HOME=/opt/envs
+        else
+            export WORKON_HOME=~/.virtualenvs
+        fi ;;
 esac
 
 [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]] && source $virtualenvwrapper
