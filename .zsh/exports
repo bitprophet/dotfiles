@@ -13,3 +13,6 @@ export PATH=$my_path:$local_path:$PATH
 
 # Homebrew temp folder
 export HOMEBREW_TEMP=/usr/local/tmp
+
+# Github user (used for 'hub'/git alias)
+export GITHUB_USER=bitprophet
