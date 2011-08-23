@@ -75,3 +75,7 @@ alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
 alias osc='openstack-compute'
+
+function cd() {
+    echo "Don't use cd!"
+}
