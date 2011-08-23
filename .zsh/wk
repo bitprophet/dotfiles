@@ -29,7 +29,7 @@ function wk() {
     for folder in $FOLDERS; do
         target=$folder/$1
         if [[ -d $target ]]; then
-            cd $target
+            $target
             # Also execute any project init file
             if [[ -f $RCFILE ]]; then
                 . $RCFILE
