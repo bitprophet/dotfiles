@@ -15,6 +15,9 @@ for root in $ROOTS; do
     done
 done
 
+# Don't blow up when PYTHONDONTWRITEBYTECODE is set
+export VIRTUALENV_USE_DISTRIBUTE=1
+
 # System-specific $WORKON_HOME: servers get system location, workstations get
 # homedir location.
 case $( uname -s ) in
