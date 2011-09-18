@@ -18,3 +18,6 @@ for option (
 
 # Use Emacs style line editing for now.
 bindkey -e
+# Don't trush hash cache when tab completing commands (otherwise new installs
+# won't show up until a new shell loads or 'rehash' is run)
+zstyle ":completion:*:commands" rehash 1
