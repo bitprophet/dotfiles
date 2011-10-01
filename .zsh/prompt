@@ -20,7 +20,6 @@ done
 # System => color/hostname map:
 #   USER: username color
 #   CWD: location/cwd color
-#   HOST: hostname display
 # Defaults:
 USER=$C[green]
 CWD=$C[blue]
@@ -28,6 +27,7 @@ CWD=$C[blue]
 # Manually cut hostname; hostname -s bails out on some systems.
 HOST=`hostname | cut -d '.' -f 1`
 DOMAIN=`hostname | cut -d '.' -f 2-`
+HOSTNAME=$HOST.$DOMAIN
 
 # Themed by domain name
 case $DOMAIN in
@@ -41,7 +41,7 @@ esac
 # Themed by host/node name (takes precedence over domain)
 case $HOST in
     # Workstations
-    ytram | atrus ) USER=$C[yellow] CWD=$C[green] ;;
+    ytram | atrus | scarab ) USER=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
 
 
@@ -124,7 +124,7 @@ function branch() {
 
 function displayhost() {
     # %m/%M seem broken for me? :(
-    echo "$(hostname)"
+    echo "$HOSTNAME"
 }
 
 #
