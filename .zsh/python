@@ -18,6 +18,9 @@ done
 # Don't blow up when PYTHONDONTWRITEBYTECODE is set
 export VIRTUALENV_USE_DISTRIBUTE=1
 
+# Always prefer no-site-packages
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+
 # System-specific $WORKON_HOME: servers get system location, workstations get
 # homedir location.
 case $( uname -s ) in
