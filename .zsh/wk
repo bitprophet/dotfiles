@@ -32,7 +32,7 @@ function wk() {
             $target
             # Also execute any project init file
             if [[ -f $RCFILE ]]; then
-                . $RCFILE
+                source $RCFILE
             fi
             return 0
         fi
