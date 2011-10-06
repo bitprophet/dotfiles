@@ -97,7 +97,7 @@ set nofoldenable
 " "zsh -l -c <command>" for :sh and :!
 " (so it sources my .zshrc and so forth)
 set shellcmdflag=-c
-set shell=/usr/local/bin/zsh\ -l
+set shell=/bin/zsh\ -l
 " Honor Vim modelines at top/bottom of files
 set modeline
 " Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
