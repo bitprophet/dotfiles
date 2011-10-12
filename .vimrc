@@ -162,8 +162,8 @@ autocmd BufNewFile,BufRead *.tt,*.citrus setlocal filetype=treetop
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
 
 " Markdown
-autocmd BufNewFile,BufRead *.txt,*.mdwn,*.mkd,*.md setlocal filetype=mkd
-autocmd FileType mkd setlocal ai comments=n:> spell
+autocmd BufNewFile,BufRead *.txt setlocal filetype=markdown
+autocmd FileType markdown setlocal ai comments=n:> spell
 
 " ReST
 autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rest
