@@ -80,7 +80,7 @@ hi def link markdownH6                    htmlH6
 hi def link markdownHeadingRule           markdownRule
 hi def link markdownHeadingDelimiter      Delimiter
 hi def link markdownOrderedListMarker     markdownListMarker
-hi def link markdownListMarker            htmlTagName
+hi def link markdownListMarker            Identifier
 hi def link markdownBlockquote            Comment
 hi def link markdownRule                  PreProc
 
