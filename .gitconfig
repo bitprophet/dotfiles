@@ -2,9 +2,6 @@
     name = Jeff Forcier
     email = jeff@bitprophet.org
 [color]
-    diff = auto
-    status = auto
-    branch = auto
     ui = auto
 [alias]
     ci = commit -a
