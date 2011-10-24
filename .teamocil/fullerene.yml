@@ -1,0 +1,18 @@
+windows:
+  - name: fullerene
+    splits:
+      - cmd:
+        - wk fullerene; clear
+        width: 50
+      - cmd:
+        - wk fullerene; clear
+        width: 50
+  - name: background
+    splits:
+      - cmd:
+        - wk fullerene; clear
+        - python runner.py
+        width: 50
+      - cmd:
+        - "ssh monitor2.whiskeymedia.com -NL 0.0.0.0:8081:localhost:80"
+        width: 50
