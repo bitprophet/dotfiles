@@ -5,3 +5,4 @@
 .vagrant
 .wkrc
 *.egg-info
+dist/
