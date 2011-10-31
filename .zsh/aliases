@@ -13,6 +13,9 @@ alias ai='aptitude install'
 alias as='aptitude search'
 alias au='aptitude update'
 alias dl='dpkg --list'
+alias pi='pip install'
+alias pie='pip install -e'
+alias pu='pip uninstall'
 
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
