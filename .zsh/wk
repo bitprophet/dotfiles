@@ -34,6 +34,8 @@ function wk() {
             if [[ -f $RCFILE ]]; then
                 source $RCFILE
             fi
+            # And set tmux window
+            which tmux >/dev/null && tmux rename-window $1
             return 0
         fi
     done
