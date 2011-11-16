@@ -306,3 +306,4 @@ Autodiscovery
 configs
 dmesg
 syslog
+params
