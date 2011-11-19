@@ -79,3 +79,4 @@ alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
 alias osc='openstack-compute'
+alias history='fc -l 1' # Force display of entire zsh history
