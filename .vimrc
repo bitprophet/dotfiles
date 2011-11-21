@@ -179,9 +179,6 @@ autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 " Same for nginx
 autocmd BufNewFile,BufRead */etc/nginx/* setlocal ft=nginx
 
-" Drupal
-autocmd BufNewFile,BufRead *.module setlocal ft=php
-
 " JSON
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 
