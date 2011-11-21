@@ -185,6 +185,9 @@ autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 " Zsh
 autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
 
+" Io
+autocmd BufNewFile,BufRead *.io setlocal ft=io
+
 
 "
 " Key mappings
