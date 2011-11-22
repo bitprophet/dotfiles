@@ -74,7 +74,6 @@ alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
 alias screen='TERM=screen screen'
 alias rmpyc='rm **/*.pyc'
 alias rap="sudo /etc/init.d/apache2 reload"
-alias ports='sudo lsof -i -P -sTCP:LISTEN | tr -s " " "\t" | cut -f 1,5,8- | tail -n +2 | sort | uniq'
 alias v=vagrant
 alias be='bundle exec'
 alias ack='ack -a'
@@ -83,4 +82,14 @@ alias history='fc -l 1' # Force display of entire zsh history
 
 function cycle() {
     v destroy $1 && v up $1
+}
+
+function ports() {
+    FAMILY=TCP
+    STATE="-sTCP:LISTEN"
+    if [[ -n $1 ]]; then
+        FAMILY=$1
+        STATE=
+    fi
+    sudo lsof -i${FAMILY} -P $STATE | tr -s " " "\t" | cut -f 1,5,8- | tail -n +2 | sort | uniq
 }
