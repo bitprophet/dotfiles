@@ -22,11 +22,12 @@ export VIRTUALENV_USE_DISTRIBUTE=1
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 
 export WORKON_HOME=~/.virtualenvs
+test -d $WORKON_HOME || mkdir $WORKON_HOME
 [[ -n "$virtualenvwrapper" && -f $virtualenvwrapper ]] && source $virtualenvwrapper
 
 # mkvirtualenv_help is irritating re: tab completion, and unnecessary, as
 # mkvirtualenv --help still works fine.
-unfunction mkvirtualenv_help
+which mkvirtualenv_help 2>&1 >/dev/null && unfunction mkvirtualenv_help
 
 
 #
