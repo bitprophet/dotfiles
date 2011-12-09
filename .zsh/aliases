@@ -94,3 +94,5 @@ function ports() {
     fi
     sudo lsof -i${FAMILY} -P $STATE | tr -s " " "\t" | cut -f 1,5,8- | tail -n +2 | sort | uniq
 }
+
+alias proxy='squid -f ~/etc/squid.conf && echo "Squid started."'
