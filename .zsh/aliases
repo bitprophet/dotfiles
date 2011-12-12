@@ -100,7 +100,7 @@ alias proxy='squid -f ~/etc/squid.conf && echo "Squid started."'
 function json() {
     CMD="curl -s \"$1\" | python -m json.tool"
     if which pygmentize > /dev/null; then
-         eval "$CMD | pygmentize -l javascript"
+        eval "$CMD | pygmentize -l javascript"
     else
         eval $CMD
         echo "You didn't have pygmentize installed, so no colors for you!"
