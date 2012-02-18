@@ -166,8 +166,8 @@ autocmd BufNewFile,BufRead *.txt setlocal filetype=markdown
 autocmd FileType markdown setlocal ai comments=n:> spell
 
 " ReST
-autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rest
-autocmd FileType rest setlocal ai comments=n:> spell
+autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rst
+autocmd FileType rst setlocal ai comments=n:> spell
 
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
