@@ -1,10 +1,10 @@
 windows:
   - name: fabric
+    filters:
+      before:
+        - wk fabric
     splits:
-      - cmd:
-        - wk fabric; clear
-        width: 50
-      - cmd:
-        - wk fabric; clear
-        - gr
-        width: 50
+      - width: 50
+        cmd: vim .
+      - width: 50
+        cmd: gr
