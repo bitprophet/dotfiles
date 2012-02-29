@@ -1,12 +1,10 @@
 windows:
   - name: cookbooks
+    filters:
+      before:
+        - wk cookbooks
     splits:
-      - cmd:
-        - wk whiskey-cookbooks; clear
-        width: 50
-      - cmd:
-        - wk whiskey-cookbooks; clear
-        width: 50
-      - cmd:
-        - wk whiskey-cookbooks; clear
-        height: 50
+      - width: 69
+        cmd: vim .
+      - width: 31
+        cmd: gr
