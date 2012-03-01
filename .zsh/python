@@ -17,6 +17,9 @@ done
 
 # Don't blow up when PYTHONDONTWRITEBYTECODE is set
 export VIRTUALENV_USE_DISTRIBUTE=1
+# Not sure why the hell the docs say one thing and the code another.
+# Set both so it always works.
+export VIRTUALENV_DISTRIBUTE=1
 
 # Always prefer no-site-packages
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
