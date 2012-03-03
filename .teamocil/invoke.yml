@@ -1,0 +1,10 @@
+windows:
+  - name: invoke
+    filters:
+      before:
+        - wk invoke
+    splits:
+      - width: 69
+        cmd: vim .
+      - width: 31
+        cmd: gr
