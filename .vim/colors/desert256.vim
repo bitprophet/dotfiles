@@ -262,8 +262,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Question", "00ff7f", "", "")
     call <SID>X("Search", "f5deb3", "cd853f", "")
     call <SID>X("SpecialKey", "9acd32", "", "")
-    call <SID>X("StatusLine", "c2bfa5", "000000", "reverse")
-    call <SID>X("StatusLineNC", "c2bfa5", "7f7f7f", "reverse")
+    " Used to be c2bfa5 for the fg, not 6caaff
+    call <SID>X("StatusLine", "6caaff", "000000", "reverse")
+    " Used to be 7f7f7f for the bg, not 000000; fg used to be c2bfa5
+    call <SID>X("StatusLineNC", "aaaaaa", "000000", "reverse")
     call <SID>X("Title", "cd5c5c", "", "")
     call <SID>X("Visual", "6b8e23", "f0e68c", "reverse")
     "VisualNOS
