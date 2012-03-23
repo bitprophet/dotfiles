@@ -104,3 +104,6 @@ bin/backup
 # Teamocil
 !.teamocil
 !.teamocil/*
+
+# Synergy
+!.synergy.conf
