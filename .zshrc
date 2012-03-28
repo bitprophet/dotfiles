@@ -20,6 +20,7 @@ DOTFILES=(
     ruby
     wk
     prompt
+    zmv
     local
 )
 for file in $DOTFILES; do
