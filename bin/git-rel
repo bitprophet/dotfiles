@@ -6,7 +6,7 @@ def cyan s; "\033[36m#{s}\033[0m" end
 `git fetch -q`
 
 highlighted = 0
-`git branch -v`.each do |line|
+`git branch -v`.each_line do |line|
   match = /(.*)(behind|ahead) ([0-9]+)(.*)/.match(line)
   next unless match
   highlighted += 1
@@ -16,7 +16,7 @@ end
 puts "All mirrored branches are in sync." if highlighted.zero?
 
 # Assumes we only care about an "origin" remote
-remote_branches = `git ls-remote -h origin`.map do |line|
+remote_branches = `git ls-remote -h origin`.lines.map do |line|
   line.split[1].scan(%r[refs/heads/(.*)])
 end.flatten
 local_branches = `git branch`.split.reject {|x| x == "*"}
