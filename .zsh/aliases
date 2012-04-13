@@ -86,7 +86,7 @@ alias l=ls
 # Functions
 
 function cycle() {
-    v destroy $1 && v up $1
+    v destroy -f $1 && v up $1
 }
 
 function ports() {
