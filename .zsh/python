@@ -30,7 +30,9 @@ test -d $WORKON_HOME || mkdir $WORKON_HOME
 
 # mkvirtualenv_help is irritating re: tab completion, and unnecessary, as
 # mkvirtualenv --help still works fine.
-which mkvirtualenv_help 2>&1 >/dev/null && unfunction mkvirtualenv_help
+# I have no idea why 2>&1 >/dev/null isn't working here =/
+which mkvirtualenv_help 2>/dev/null >/dev/null \
+    && unfunction mkvirtualenv_help
 
 
 #
