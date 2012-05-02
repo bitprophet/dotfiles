@@ -51,6 +51,11 @@ if [[ $(type -w workon) != "workon: function" ]]; then
 
     # Chain-load the appropriate function
     "$@"
+
+    # Fuck mkvirtualenv_help, it is uncomfortable to this habitual
+    # tab-completer who expects "mkv<Tab>" to give him "mkvirtualenv " and not
+    # "mkvirtualenv".
+    unfunction mkvirtualenv_help
   }
 
   for v in "${virtualenv_funcs[@]}"; do
@@ -60,13 +65,6 @@ fi
 #
 # End of cribbed code
 #
-
-
-# mkvirtualenv_help is irritating re: tab completion, and unnecessary, as
-# mkvirtualenv --help still works fine.
-# I have no idea why 2>&1 >/dev/null isn't working here =/
-which mkvirtualenv_help 2>/dev/null >/dev/null \
-    && unfunction mkvirtualenv_help
 
 
 #
