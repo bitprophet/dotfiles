@@ -17,6 +17,10 @@ alias dl='dpkg --list'
 alias pi='pip install'
 alias pie='pip install -e'
 alias pu='pip uninstall'
+alias b='brew'
+alias bi='brew install'
+alias bs='brew search'
+alias bin='brew info'
 
 # Git
 if [[ -e `which hub 2>/dev/null` ]]; then
