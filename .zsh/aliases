@@ -76,7 +76,7 @@ alias gemi='gem install -b'
 alias gemu='gem uninstall'
 
 # Misc
-alias tree='tree -Ca -I ".git|*.pyc|*.swp"'
+alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
 alias screen='TERM=screen screen'
 alias rmpyc='rm **/*.pyc'
 alias rap="sudo /etc/init.d/apache2 reload"
