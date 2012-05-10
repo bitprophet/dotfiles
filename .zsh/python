@@ -51,11 +51,6 @@ if [[ $(type -w workon) != "workon: function" ]]; then
 
     # Chain-load the appropriate function
     "$@"
-
-    # Fuck mkvirtualenv_help, it is uncomfortable to this habitual
-    # tab-completer who expects "mkv<Tab>" to give him "mkvirtualenv " and not
-    # "mkvirtualenv".
-    unfunction mkvirtualenv_help
   }
 
   for v in "${virtualenv_funcs[@]}"; do
@@ -66,6 +61,9 @@ fi
 # End of cribbed code
 #
 
+# Fuck mkvirtualenv_help, it is uncomfortable to this habitual tab-completer
+# who expects "mkv<Tab>" to give him "mkvirtualenv " and not "mkvirtualenv".
+unfunction mkvirtualenv_help 2>/dev/null
 
 #
 # Pip env vars
