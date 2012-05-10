@@ -188,6 +188,9 @@ autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
 " Io
 autocmd BufNewFile,BufRead *.io setlocal ft=io
 
+" Racket/Scheme
+autocmd BufNewFile,BufRead *.rkt setlocal tabstop=2 softtabstop=2 shiftwidth=2 ft=scheme
+
 
 "
 " Key mappings
