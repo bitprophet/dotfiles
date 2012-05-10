@@ -214,6 +214,9 @@ vmap <Leader>f gq
 " :w shortcut
 nmap <Leader>s :w<CR>
 
+" hidden files toggle
+nmap <Leader>h :set list!<CR>
+
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
