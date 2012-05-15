@@ -148,7 +148,6 @@ if has("gui_macvim")
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
-    set paste
 endif
 
 
@@ -219,6 +218,9 @@ nmap <Leader>s :w<CR>
 
 " hidden files toggle
 nmap <Leader>h :set list!<CR>
+
+" paste/nopaste toggle
+nmap <Leader>p :set paste!<CR>
 
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
