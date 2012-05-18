@@ -90,6 +90,7 @@ end
 $long = ARGV.delete("--long") || ARGV.delete("-l")
 $short = ARGV.delete("--short") || ARGV.delete("-s")
 $all = ARGV.delete("--all") || ARGV.delete("-a")
+$local_only = ARGV.delete("--local") || ARGV.delete("-L")
 $all_commits = ARGV.delete("--all-commits") || ARGV.delete("-A")
 $dump_config = ARGV.delete("--dump-config")
 $key = ARGV.delete("--key") || ARGV.delete("-k")
@@ -312,7 +313,7 @@ remote_branches = {}
     remote, name = $1, $2
     remote_branches["#{remote}/#{name}"] = true
     next if name == "HEAD"
-    ignore = !($all || remote == "origin")
+    ignore = $local_only || !($all || remote == "origin")
 
     branch = name
     if branches[name] && branches[name][:remote] == remote
