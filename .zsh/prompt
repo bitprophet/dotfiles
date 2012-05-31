@@ -138,7 +138,7 @@ function precmd() {
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
     time="[$C[green]%T%f]"
     hostname="${USER}$(displayhost)%f"
-    _path="${CWD}$(shortpath)%f"
+    _path="${CWD}%~%f"
     end="${CWD}»%f"
     export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
