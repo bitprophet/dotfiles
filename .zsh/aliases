@@ -75,6 +75,9 @@ alias geml='gem list -l'
 alias gemi='gem install -b'
 alias gemu='gem uninstall'
 
+# Python
+alias rmv='deactivate; rmvirtualenv'
+
 # Misc
 alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
 alias screen='TERM=screen screen'
