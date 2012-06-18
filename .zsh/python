@@ -8,9 +8,6 @@ export VIRTUALENV_USE_DISTRIBUTE=1
 # Set both so it always works.
 export VIRTUALENV_DISTRIBUTE=1
 
-# Always prefer no-site-packages
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-
 export WORKON_HOME=~/.virtualenvs
 test -d $WORKON_HOME || mkdir $WORKON_HOME
 
