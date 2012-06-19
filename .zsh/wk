@@ -11,10 +11,8 @@
 # Also deactivates any currently active virtualenv, just for neatness' sake.
 #
 
-FOLDERS=(
-    ~/Documents/Code
-    ~/Documents/Code/ua
-)
+ROOT=~/Code
+FOLDERS=($ROOT/. $ROOT/ua)
 RCFILE=".wkrc"
 
 function wk() {
