@@ -13,10 +13,7 @@
 
 FOLDERS=(
     ~/Documents/Code
-    ~/Documents/Code/whiskey
-    ~/Documents/Code/cbsi
-    /srv/django
-    /srv/rails
+    ~/Documents/Code/ua
 )
 RCFILE=".wkrc"
 
