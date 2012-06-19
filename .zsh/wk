@@ -13,12 +13,16 @@
 
 ROOT=~/Code
 FOLDERS=($ROOT/. $ROOT/ua)
+ALT_VENV_ROOT=~/Code/ua/env
 RCFILE=".wkrc"
 
 function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
+    # Non-global venvs
+    alt=$ALT_VENV_ROOT/$1/bin/activate
+    [[ -f $alt ]] && source $alt
     # Ditto for my custom "workon" for RVM
     activate_gemset $1
     # Try to find the given folder and cd to it.
@@ -40,6 +44,6 @@ function wk() {
 
 # Completion
 function _wk() {
-    compadd $(find $FOLDERS -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null)
+    compadd $(find -L $FOLDERS -mindepth 1 -maxdepth 1 -type d -not -name ".*" -exec basename {} \; 2>/dev/null)
 }
 compdef _wk wk
