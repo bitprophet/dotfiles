@@ -41,7 +41,7 @@ esac
 # Themed by host/node name (takes precedence over domain)
 case $HOST in
     # Workstations
-    ytram | atrus | scarab ) USER=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
+    scarab | voltaic ) USER=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
 
 
