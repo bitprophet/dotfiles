@@ -341,5 +341,6 @@ endfunction
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.egg$']
 
+" VimClojure
 let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
