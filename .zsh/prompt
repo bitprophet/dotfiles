@@ -18,10 +18,10 @@ for key in ${(k)PALETTE}; do
 done
 
 # System => color/hostname map:
-#   USER: username color
+#   NAME: username color
 #   CWD: location/cwd color
 # Defaults:
-USER=$C[green]
+NAME=$C[green]
 CWD=$C[blue]
 
 # Manually cut hostname; hostname -s bails out on some systems.
@@ -32,16 +32,16 @@ HOSTNAME=$HOST.$DOMAIN
 # Themed by domain name
 case $DOMAIN in
     # Personal production
-    bitprophet.org | fabfile.org ) USER=$C[cyan] ;;
+    bitprophet.org | fabfile.org ) NAME=$C[cyan] ;;
     # Work production
     whiskeymedia.com | giantbomb.com | comicvine.com \
-    | tested.com | screened.com | animevice.com) USER=$C[red] ;;
+    | tested.com | screened.com | animevice.com) NAME=$C[red] ;;
 esac
 
 # Themed by host/node name (takes precedence over domain)
 case $HOST in
     # Workstations
-    scarab | voltaic ) USER=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
+    scarab | voltaic ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
 
 
@@ -134,10 +134,10 @@ function displayhost() {
 function precmd() {
     # Set git vars
     git_status
-    # [<green>time</green>] <USER>HOST</USER>:<CWD>pwd</CWD>
+    # [<green>time</green>] <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
     time="[$C[green]%T%f]"
-    hostname="${USER}$(displayhost)%f"
+    hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
     export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
