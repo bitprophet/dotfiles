@@ -89,6 +89,7 @@ alias ack='ack -a'
 alias osc='openstack-compute'
 alias history='fc -l 1' # Force display of entire zsh history
 alias l=ls
+alias sshuttle='(which tmux >/dev/null && tmux rename-window sshuttle); sshuttle -v -r git.bitprophet.org 0/0'
 
 # Functions
 
