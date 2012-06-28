@@ -2,6 +2,10 @@
 " Language:     Clojure
 " Maintainer:   Meikel Brandmeyer <mb@kotka.de>
 
+if version < 730
+    finish
+endif
+
 let s:save_cpo = &cpo
 set cpo&vim
 

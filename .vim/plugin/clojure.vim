@@ -3,7 +3,7 @@
 " Maintainer:   Meikel Brandmeyer <mb@kotka.de>
 
 " Only do this when not done yet for this buffer
-if exists("clojure_loaded")
+if exists("clojure_loaded") || version < 730
 	finish
 endif
 
