@@ -9,7 +9,8 @@ export EDITOR=vim
 # PATH
 my_path=$HOME/bin
 local_path=/usr/local/bin:/usr/local/sbin
-export PATH=$local_path:$PATH:$my_path
+super_path=/sbin:/usr/sbin
+export PATH=$local_path:$PATH:$super_path:$my_path
 
 # Homebrew temp folder
 export HOMEBREW_TEMP=/usr/local/tmp
