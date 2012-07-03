@@ -1,0 +1,8 @@
+windows:
+  - name: gear
+    filters:
+      before:
+        - ssh admin-3.prod
+    splits:
+      - width: 50
+      - width: 50
