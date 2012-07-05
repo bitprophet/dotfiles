@@ -48,9 +48,6 @@ if [[ $(type -w workon) != "workon: function" ]]; then
 
     # Chain-load the appropriate function
     "$@"
-
-    # Nuke mkvirtualenv_help
-    unfunction mkvirtualenv_help 2>/dev/null
   }
 
   for v in "${virtualenv_funcs[@]}"; do
