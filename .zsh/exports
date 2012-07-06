@@ -18,3 +18,6 @@ export HOMEBREW_TEMP=/usr/local/tmp
 # For some reason, some systems (eg UA CentOS) give me a blank LS_COLORS, which
 # is worse than no LS_COLORS as it kills eg tree's colorization.
 unset LS_COLORS
+
+# Git crap
+export GIT_MERGE_AUTOEDIT=no
