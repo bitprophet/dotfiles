@@ -36,8 +36,6 @@ function wk() {
             fi
             # And set tmux window
             which tmux >/dev/null && tmux rename-window $1
-            # And run git rel if appropriate
-            [[ -d .git ]] && gr
             return 0
         fi
     done
