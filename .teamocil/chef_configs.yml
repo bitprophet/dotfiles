@@ -1,10 +1,8 @@
 windows:
-  - name: invoke
+  - name: chef_configs
     filters:
       before:
-        - wk invoke
+        - wk chef_configs
     splits:
       - width: 50
-        cmd: vim .
       - width: 50
-        cmd: gr
