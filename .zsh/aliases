@@ -2,6 +2,7 @@
 alias svim='sudo vim'
 alias stail="sudo tail"
 alias svs="sudo supervisorctl"
+alias ss='sudo -u'
 
 # Package managers
 alias apt-get='sudo apt-get'
