@@ -1,8 +1,8 @@
 windows:
-  - name: chef_configs
+  - name: uaext
     filters:
       before:
-        - wk chef_configs
+        - wk clusto-uaext
     splits:
       - width: 50
       - width: 50
