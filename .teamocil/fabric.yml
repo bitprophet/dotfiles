@@ -4,7 +4,6 @@ windows:
       before:
         - wk fabric
     splits:
-      - width: 69
-        cmd: vim .
-      - width: 31
+      - width: 50
+      - width: 50
         cmd: gr
