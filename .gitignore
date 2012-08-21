@@ -83,6 +83,7 @@
 # Config for local daemons (e.g. squid)
 !etc
 !etc/*
+etc/clusto.conf
 
 # Screen, tmux
 !.screenrc
