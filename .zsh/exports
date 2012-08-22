@@ -21,3 +21,6 @@ unset LS_COLORS
 
 # Git crap
 export GIT_MERGE_AUTOEDIT=no
+
+# In case I have to deal with Node crap
+export NODE_PATH=/usr/local/lib/node_modules
