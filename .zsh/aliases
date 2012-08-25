@@ -57,6 +57,12 @@ function gcamp() {
     gcam "$1" && gps
 }
 
+function gu() {
+    CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+    TARGET=${1:-master}
+    gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git merge "$TARGET"
+}
+
 function mg() {
     find . \
         -mindepth 1 -maxdepth 2 \
