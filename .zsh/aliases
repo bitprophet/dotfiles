@@ -52,6 +52,7 @@ alias gst='git stash'
 alias gsa='git stash apply'
 alias gm='git merge'
 alias gf='git fetch'
+alias grs='git reset HEAD .'
 
 function gcamp() {
     gcam "$1" && gps
