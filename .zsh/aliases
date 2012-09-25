@@ -53,6 +53,8 @@ alias gsa='git stash apply'
 alias gm='git merge'
 alias gf='git fetch'
 alias grs='git reset HEAD .'
+alias gch='git cherry-pick'
+alias gcx='git cherry-pick -enx'
 
 function gcamp() {
     gcam "$1" && gps
