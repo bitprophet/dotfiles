@@ -5,6 +5,5 @@ windows:
         - wk invoke
     splits:
       - width: 50
-        cmd: vim .
       - width: 50
         cmd: gr
