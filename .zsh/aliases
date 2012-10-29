@@ -101,24 +101,14 @@ alias history='fc -l 1' # Force display of entire zsh history
 alias l=ls
 alias sshuttle='(which tmux >/dev/null && tmux rename-window sshuttle); sshuttle -v -r git.bitprophet.org 0/0'
 alias lc='librarian-chef'
+alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut -d " " -f 1,3,9 | sort -u | column -t'
+alias proxy='squid -f ~/etc/squid.conf && echo "Squid started."'
 
 # Functions
 
 function cycle() {
     v destroy -f $1 && v up $1
 }
-
-function ports() {
-    FAMILY=TCP
-    STATE="-sTCP:LISTEN"
-    if [[ -n $1 ]]; then
-        FAMILY=$1
-        STATE=
-    fi
-    sudo lsof -i${FAMILY} -P $STATE | tr -s " " "\t" | cut -f 1,5,8- | tail -n +2 | sort | uniq
-}
-
-alias proxy='squid -f ~/etc/squid.conf && echo "Squid started."'
 
 function json() {
     CMD="curl -s \"$1\" | python -m json.tool"
