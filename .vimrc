@@ -118,6 +118,11 @@ set backspace=indent,eol,start
 set tabpagemax=100
 " Make :sb let me navigate between all windows and tabs
 set switchbuf=usetab
+" Don't write out backups normally
+set nobackup
+" Don't do the "write a backup, then cp it to the real filename" trick either.
+" This prevents some file watchdog programs from noticing file updates.
+set nowritebackup
 
 " Jump to last known location in file
 if has("autocmd")
