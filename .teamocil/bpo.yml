@@ -1,0 +1,11 @@
+windows:
+  - name: bpo
+    filters:
+      before:
+        - wk bpo
+    splits:
+      - width: 50
+      - width: 50
+        cmd: gr
+      - height: 50
+        cmd: rake preview

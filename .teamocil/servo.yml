@@ -1,0 +1,9 @@
+windows:
+  - name: servo
+    filters:
+      before:
+        - wk servo
+    splits:
+      - width: 50
+      - width: 50
+        cmd: gr
