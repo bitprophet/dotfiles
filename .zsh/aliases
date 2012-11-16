@@ -62,8 +62,9 @@ function gcamp() {
 
 function gu() {
     CURRENT_BRANCH=`git symbolic-ref --short HEAD`
-    TARGET=${1:-master}
-    gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git merge "$TARGET"
+    TARGET=master
+    METHOD=${1:-merge}
+    gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git $METHOD "$TARGET"
 }
 
 function mg() {
