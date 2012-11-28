@@ -120,3 +120,13 @@ function json() {
         echo "You didn't have pygmentize installed, so no colors for you!"
     fi
 }
+
+# File pull request via 'hub', automatically inserting current HEAD as the
+# source and the 'origin' remote account name as the source account.
+# Useful for company-owned repos where hub's default assumptions don't work.
+function pull() { # 'pr' already exists :(
+    HEAD=`git symbolic-ref HEAD`
+    # Probably a better way to do this. /lazy
+    ACCOUNT=`git remote show -n origin | grep "Fetch URL" | cut -d ':' -f 3 | cut -d '/' -f 1`
+    git pull-request -b master -h $ACCOUNT:${HEAD#refs/heads/}
+}
