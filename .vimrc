@@ -342,7 +342,7 @@ function! AskQuit (msg, proposed_action)
 endfunction
 
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
-" Python <2.6 json module adds, sigh)
+" Python <2.7 json module adds, sigh)
 nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 
 " NERDTree
