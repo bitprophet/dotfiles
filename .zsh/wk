@@ -12,7 +12,7 @@
 #
 
 ROOT=~/Code
-FOLDERS=($ROOT/. $ROOT/ua)
+FOLDERS=($ROOT/. $ROOT/ua $ROOT/upstream)
 ALT_VENV_ROOT=~/Code/ua/env
 RCFILE=".wkrc"
 
