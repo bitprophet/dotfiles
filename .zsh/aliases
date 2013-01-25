@@ -130,3 +130,9 @@ function pull() { # 'pr' already exists :(
     ACCOUNT=`git remote show -n origin | grep "Fetch URL" | cut -d ':' -f 3 | cut -d '/' -f 1`
     git pull-request -b master -h $ACCOUNT:${HEAD#refs/heads/}
 }
+
+# Create new local branch based off pull request X.
+function pr-branch() {
+    git fetch origin pull/$1/head:$1-int
+    gco $1-int
+}
