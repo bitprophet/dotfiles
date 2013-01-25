@@ -344,6 +344,8 @@ endfunction
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
 " Python <2.7 json module adds, sigh)
 nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
+" Speaking of nuking trailing whitespace, that's generally useful...
+nmap <Leader>w :%s/\s\+$//g<CR>
 
 " NERDTree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
