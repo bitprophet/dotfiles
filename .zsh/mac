@@ -15,3 +15,6 @@ have gxargs && alias xargs=gxargs
 # Flags to make things behave more like the GNU versions (i.e. where an actual
 # GNU version is not easily installable)
 alias ps='ps -T'
+
+# Brew python3 binaries
+export PATH=$PATH:/usr/local/share/python3
