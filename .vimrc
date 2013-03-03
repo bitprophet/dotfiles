@@ -32,7 +32,14 @@ set showcmd
 " Always display status lines/rulers
 set laststatus=2
 " Custom statusline showing paste mode, etc
-set statusline=%<%f\ %#ErrorMsg#%{&paste?'[PASTING]':''}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
+function! PasteAwareStatusline()
+    let default = "%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P"
+    if &paste
+        return "%#ErrorMsg#" . default . "%*"
+    endif
+    return default
+endfunction
+set statusline=%!PasteAwareStatusline()
 
 " Navigation/search
 
