@@ -31,6 +31,8 @@ colorscheme desert256
 set showcmd
 " Always display status lines/rulers
 set laststatus=2
+" Custom statusline showing paste mode, etc
+set statusline=%<%f\ %#ErrorMsg#%{&paste?'[PASTING]':''}%*%h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Navigation/search
 
