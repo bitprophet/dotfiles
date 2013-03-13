@@ -112,7 +112,7 @@ function cycle() {
 }
 
 function json() {
-    CMD="curl -s \"$1\" | python -m json.tool"
+    CMD="curl -ks $2 \"$1\" | python -m json.tool"
     if which pygmentize > /dev/null; then
         eval "$CMD | pygmentize -l javascript"
     else
