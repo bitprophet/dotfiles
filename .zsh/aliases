@@ -104,6 +104,7 @@ alias sshuttle='(which tmux >/dev/null && tmux rename-window sshuttle); sshuttle
 alias lc='librarian-chef'
 alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut -d " " -f 1,3,9 | sort -u | column -t'
 alias proxy='squid -f ~/etc/squid.conf && echo "Squid started."'
+alias th='teamocil --here'
 
 # Functions
 
