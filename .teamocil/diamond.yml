@@ -1,0 +1,8 @@
+windows:
+  - name: diamond
+    filters:
+      before:
+        - wk diamond
+    splits:
+      - width: 50
+      - width: 50

@@ -1,0 +1,11 @@
+windows:
+  - name: alfred
+    filters:
+      before:
+        - wk alfred
+    splits:
+      - width: 50
+      - width: 50
+      - height: 50
+        target: bottom-right
+        cmd: inv serve
