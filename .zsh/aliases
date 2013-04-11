@@ -138,3 +138,9 @@ function pr-branch() {
     git fetch origin pull/$1/head:$1-int
     gco $1-int
 }
+
+# Stupid newline delimited => comma delimited bit (happens to ensure no
+# trailing comma which is nice)
+function nl2comma() {
+    python -c "import sys; print ','.join(sys.stdin.read().splitlines())"
+}
