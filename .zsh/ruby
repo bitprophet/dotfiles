@@ -54,3 +54,6 @@ function activate_gemset() {
         fi
     fi
 }
+
+
+# vim:set ft=sh
