@@ -84,7 +84,7 @@ function mg() {
 # RubyGems
 alias gems='gem search -b'
 alias geml='gem list -l'
-alias gemi='gem install -b'
+alias gemi='gem install -b --no-rdoc --no-ri'
 alias gemu='gem uninstall'
 
 # Python
