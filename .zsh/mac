@@ -8,7 +8,7 @@ function have() {
 
 # GNU utils
 have gls && alias ls='gls --color=auto'
-have sed && alias esed='gsed -r'
+have gsed && alias sed=gsed && alias esed='gsed -r'
 have grm && alias rm=grm
 have gxargs && alias xargs=gxargs
 
