@@ -26,8 +26,8 @@ NAME=$C[green]
 CWD=$C[blue]
 
 # Manually cut hostname; hostname -s bails out on some systems.
-HOST=`hostname | cut -d '.' -f 1`
-DOMAIN=`hostname | cut -d '.' -f 2-`
+HOST=`hostname -f | cut -d '.' -f 1`
+DOMAIN=`hostname -f | cut -d '.' -f 2-`
 HOSTNAME=$HOST.$DOMAIN
 
 # Themed by domain name
@@ -35,7 +35,7 @@ case $DOMAIN in
     # Personal production
     bitprophet.org | fabfile.org ) NAME=$C[cyan] ;;
     # Work production
-    urbanairship.com ) NAME=$C[red] ;;
+    *urbanairship.com ) NAME=$C[red] ;;
 esac
 
 # Themed by host/node name (takes precedence over domain)
