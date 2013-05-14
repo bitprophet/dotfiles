@@ -53,7 +53,7 @@ set incsearch
 set ignorecase
 " But be smart about it -- if I have any caps in my term, be case-sensitive.
 set smartcase
-" Don't highlight search terms by default.
+" Highlight search terms by default.
 set hls
 
 " Formatting
@@ -233,6 +233,9 @@ nmap <Leader>h :set list!<CR>
 
 " paste/nopaste toggle
 nmap <Leader>p :set paste!<CR>
+
+" highlight search toggle
+nmap <Leader>l :set hls!<CR>
 
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
