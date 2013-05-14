@@ -9,6 +9,7 @@ for option (
     append_history # Keep history from all shells, not just the last one to exit
     share_history # Interleave history between shells
     hist_ignore_dups # Don't add contiguous duplicates to history
+    correct # Spelling correction suggestions
 ) setopt $option
 
 
