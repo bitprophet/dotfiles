@@ -6,6 +6,11 @@ windows:
     splits:
       - width: 50
       - width: 50
+      - height: 66
+        target: bottom-right
+        cmd:
+          - cd /usr/local/Cellar/inspircd/2.0.11
+          - inspircd --nofork --debug --config conf/inspircd.conf
       - height: 50
         target: bottom-right
         cmd: inv serve
