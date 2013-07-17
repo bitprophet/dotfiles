@@ -42,7 +42,7 @@ esac
 case $HOST in
     # Workstations
     scarab | voltaic | bahro ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
-    vm ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
+    vm* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
 
 
