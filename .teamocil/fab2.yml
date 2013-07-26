@@ -1,0 +1,9 @@
+windows:
+  - name: fab2
+    filters:
+      before:
+        - wk fab2
+    splits:
+      - width: 50
+      - width: 50
+        cmd: gr
