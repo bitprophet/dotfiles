@@ -149,3 +149,9 @@ function nl2comma() {
 function asciigraph() {
     gnuplot -e "set term dumb; plot '-' with lines"
 }
+
+# Heh.
+function :wq() {
+    _msg="THIS AIN'T VIM, BUDDY"
+    cowsay $_msg 2>/dev/null || echo $_msg
+}
