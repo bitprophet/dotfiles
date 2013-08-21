@@ -67,6 +67,11 @@ function gu() {
     gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git $METHOD "$TARGET"
 }
 
+function nuke() {
+    CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+    gco master && gpl && gb -d $CURRENT_BRANCH
+}
+
 function mg() {
     find . \
         -mindepth 1 -maxdepth 2 \
