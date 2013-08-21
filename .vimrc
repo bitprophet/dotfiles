@@ -170,7 +170,8 @@ endif
 " Ruby and related
 autocmd BufNewFile,BufRead Gemfile,Vagrantfile setlocal filetype=ruby
 autocmd BufNewFile,BufRead *.tt,*.citrus setlocal filetype=treetop
-autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=syntax
+" Don't use foldmethod=syntax as it is DOG SLOW on nontrivial files :(
+autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=indent
 
 " Markdown
 autocmd BufNewFile,BufRead *.txt setlocal filetype=markdown
