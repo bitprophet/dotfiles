@@ -156,7 +156,9 @@ function asciigraph() {
 }
 
 # Heh.
-function :wq() {
+function _lolvim() {
     _msg="THIS AIN'T VIM, BUDDY"
     cowsay $_msg 2>/dev/null || echo $_msg
 }
+function :wq() { _lolvim }
+function :qa() { _lolvim }
