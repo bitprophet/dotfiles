@@ -6,7 +6,7 @@ windows:
     splits:
       - width: 50
       - width: 50
-      - height: 66
+      - height: 30
         target: bottom-right
         cmd: inv serve
       - height: 50
