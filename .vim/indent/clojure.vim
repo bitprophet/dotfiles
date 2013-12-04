@@ -26,9 +26,16 @@ if exists("*searchpairpos")
 function! s:MatchPairs(open, close, stopat)
 	" Stop only on vector and map [ resp. {. Ignore the ones in strings and
 	" comments.
-	return searchpairpos(a:open, '', a:close, 'bWn',
+	if a:stopat == 0
+		let stopat = max([line(".") - g:vimclojure#SearchThreshold, 0])
+	else
+		let stopat = a:stopat
+	endif
+
+	let pos = searchpairpos(a:open, '', a:close, 'bWn',
 				\ 'vimclojure#util#SynIdName() !~ "clojureParen\\d"',
-				\ a:stopat)
+				\ stopat)
+	return [ pos[0], virtcol(pos) ]
 endfunction
 
 function! ClojureCheckForStringWorker() dict
@@ -97,7 +104,7 @@ function! ClojureIsMethodSpecialCaseWorker() dict
 	call vimclojure#util#MoveForward()
 	let keyword = vimclojure#util#Yank('l', 'normal! "lye')
 	if index([ 'deftype', 'defrecord', 'reify', 'proxy',
-				\ 'extend', 'extend-type', 'extend-protocol',
+				\ 'extend-type', 'extend-protocol',
 				\ 'letfn' ], keyword) >= 0
 		return 1
 	endif
@@ -208,10 +215,13 @@ function! GetClojureIndent()
 	if g:vimclojure#FuzzyIndent
 				\ && w != 'with-meta'
 				\ && w != 'clojure.core/with-meta'
-				\ && w =~ '\(^\|/\)\(def\|with\)'
-				\ && w !~ '\(^\|/\)\(def\|with\).*\*$'
-				\ && w !~ '\(^\|/\)\(def\|with\).*-fn$'
-		return paren[1] + &shiftwidth - 1
+		for pat in split(g:vimclojure#FuzzyIndentPatterns, ",")
+			if w =~ '\(^\|/\)' . pat . '$'
+						\ && w !~ '\(^\|/\)' . pat . '\*$'
+						\ && w !~ '\(^\|/\)' . pat . '-fn$'
+				return paren[1] + &shiftwidth - 1
+			endif
+		endfor
 	endif
 
 	normal! w
@@ -220,7 +230,7 @@ function! GetClojureIndent()
 	endif
 
 	normal! ge
-	return col(".") + 1
+	return virtcol(".") + 1
 endfunction
 
 setlocal indentexpr=GetClojureIndent()

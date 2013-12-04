@@ -120,12 +120,36 @@ to the 'lispwords' option. The names of these forms often follow a
 pattern like "defsomething" or "with-something".
 
 By setting the fuzzy indent option, you can tell VimClojure, that you
-want names beginning in "def" or "with" to be indented as if they
+want names matching a fuzzy indent pattern to be indented as if they
 were included in the 'lispwords' option.
 >
         let vimclojure#FuzzyIndent = 1
 <
 This option is disabled by default.
+
+Custom fuzzy indent patterns may be specified as normal regular expressions
+in the corresponding option. The patterns are matched against the leading
+symbol of the form in a way to ignore namespace aliases. The default
+patterns are “def.*”, “with.*” and “let.*”.
+
+For example, consider working a lot with core.logic. Then you may specify
+eg. “fresh” in .vim/after/ftplugin/clojure.vim.
+>
+        let vimclojure#FuzzyIndentPatterns .= ",fresh"
+<
+Note: this is a normal variable. So you have to use “.=” rather than
+“+=” and the comma separator has to be given explicitly.
+
+To be able to properly indent a given line there is some searching
+necessary to determine the surroundings of the cursor. In big files
+this my result in a slow down when entering a new line. So there is
+an option to basically limit the horizon which is searched for the
+indentation to synchronise. By default this is 100 lines backwards in
+the file. However you may specify whatever value works best for you.
+Higher values mean more searching.
+>
+        let vimclojure#SearchThreshold = 100
+<
 
 Preview Window
 --------------
@@ -146,11 +170,26 @@ Note: <LocalLeader> is a Vim feature. More information can be found
 under the |maplocalleader| help topic.
 
 You can redefine any key mapping using some autocommand in your .vimrc file.
-All mappings use so-called Plugs. Simply prepend <Plug>Clojure to the given
-Plug name and your setting will override the default mapping.
+All mappings use so-called Plugs. Simply prepend "<Plug>Clojure" to the given
+Plug name, append a "." and your setting will override the default mapping.
 >
-        aucmd BufRead,BufNewFile *.clj nmap xyz <Plug>ClojureEvalToplevel
+        aucmd BufRead,BufNewFile *.clj nmap xyz <Plug>ClojureEvalToplevel.
 <
+To inhibit all mappings set the global flag to zero:
+>
+        let vimclojure#SetupKeyMap = 0
+<
+To inhibit only single mappings append the plug name:
+>
+        let vimclojure#SetupKeyMapEvalToplevel = 0
+<
+To enable only single mappings first turn off all flags, and then
+whitelist the ones you want to be enabled:
+>
+        let vimclojure#SetupKeyMap = 0
+        let vimclojure#SetupKeyMapEvalToplevel = 1
+<
+Whatever setting: it will still honor any key mapping made by yourself.
 
 <LocalLeader>et                                 *et* *EvalToplevel*
                         Send off the toplevel sexpression currently
@@ -177,14 +216,14 @@ Plug name and your setting will override the default mapping.
                         Require the namespace of the current file with
                         the :reload flag. Note: For this to work with
                         a remote Clojure server, the files have to put in
-                        place before issueing the command, eg. via scp
+                        place before issuing the command, eg. via scp
                         or NFS.
 
 <LocalLeader>rF                                 *rF* *RequireFileAll*
                         Require the namespace of the current file with
                         the :reload-all flag. Note: For this to work with
                         a remote Clojure server, the files have to put in
-                        place before issueing the command, eg. via scp
+                        place before issuing the command, eg. via scp
                         or NFS.
 
 <LocalLeader>rt                                 *rt* *RunTests*
@@ -193,7 +232,7 @@ Plug name and your setting will override the default mapping.
                         to run the tests of the namespace via run-tests.
                         Note: For this to work with a remote Clojure
                         server, the files have to put in place before
-                        issueing the command, eg. via scp or NFS.
+                        issuing the command, eg. via scp or NFS.
 
 <LocalLeader>me                                 *me* *MacroExpand*
                         Expand the innermost sexpression currently
@@ -301,11 +340,11 @@ If the current line starts with a repl prompt, the *^* command moves to
 the end of the prompt and to the beginning of the line.
 
 The Plugs are:
- - <Plug>ClojureReplEnterHook for the enter key
- - <Plug>ClojureReplEvaluate for immediate evaluation (<C-CR>)
- - <Plug>ClojureReplHatHook for ^ navigation
- - <Plug>ClojureReplUpHistory for going backwards in history (<C-Up>)
- - <Plug>ClojureReplDownHistory for going forwards in history (<C-Down>)
+ - <Plug>ClojureReplEnterHook. for the enter key
+ - <Plug>ClojureReplEvaluate. for immediate evaluation (<C-CR>)
+ - <Plug>ClojureReplHatHook. for ^ navigation
+ - <Plug>ClojureReplUpHistory. for going backwards in history (<C-Up>)
+ - <Plug>ClojureReplDownHistory. for going forwards in history (<C-Down>)
 
 The following convenience commands are provided:
 
