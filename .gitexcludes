@@ -6,3 +6,4 @@
 .wkrc
 *.egg-info
 dist/
+.*.swo
