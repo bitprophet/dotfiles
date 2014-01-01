@@ -5,7 +5,7 @@
 function fakegem() {
     HAVE_RUBYLIB=$(env | grep RUBYLIB)
     if [[ $(env | grep GEM_HOME) != "" ]]; then
-        projects=~/Code
+        projects=~/Code/*
         for project in `ls -1 $projects`; do
             bin=$projects/$project/bin
             lib=$projects/$project/lib

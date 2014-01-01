@@ -12,8 +12,8 @@
 #
 
 ROOT=~/Code
-FOLDERS=($ROOT/. $ROOT/ua $ROOT/upstream)
 ALT_VENV_ROOT=~/Code/ua/env
+FOLDERS=($ROOT/oss $ROOT/ua $ROOT/personal $ROOT/others)
 RCFILE=".wkrc"
 
 function wk() {
