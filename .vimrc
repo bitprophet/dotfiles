@@ -94,6 +94,8 @@ set formatoptions=croqn2
 " might otherwise fit. Don't remember exactly why this is here but I'm happy
 " with how things wrap now...
 set lbr
+" Don't put 2 spaces after periods when autoformatting
+set nojoinspaces
 
 " Behavior
 
