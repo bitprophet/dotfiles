@@ -1,0 +1,9 @@
+windows:
+  - name: releases
+    filters:
+      before:
+        - wk releases
+    splits:
+      - width: 50
+      - width: 50
+        cmd: gr
