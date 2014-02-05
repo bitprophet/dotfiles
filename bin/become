@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sudo su - $@
+sudo -iu $1
