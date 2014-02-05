@@ -3,6 +3,9 @@ alias svim='sudo vim'
 alias stail="sudo tail"
 alias svs="sudo supervisorctl"
 alias become="sudo su -"
+# Compdef the sudo, not the become, don't wanna enable complete_aliases (or I
+# have to run around and add completion for almost everything else)
+compdef _users sudo
 
 # Package managers
 alias apt-get='sudo apt-get'
