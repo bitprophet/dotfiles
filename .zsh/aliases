@@ -2,10 +2,9 @@
 alias svim='sudo vim'
 alias stail="sudo tail"
 alias svs="sudo supervisorctl"
-alias become="sudo su -"
-# Compdef the sudo, not the become, don't wanna enable complete_aliases (or I
-# have to run around and add completion for almost everything else)
-compdef _users sudo
+# Used to have alias become="sudo su -" but that is hard to complete.
+# so now it's in ~/bin/. Hrrgh. The below sets up completion for it.
+compdef _users become
 
 # Package managers
 alias apt-get='sudo apt-get'
