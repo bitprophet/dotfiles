@@ -11,9 +11,12 @@ end
 
 LINE = /^(\d+)\.(\d+)/
 
-# Obtain start point
+# Obtain start point (defaulting to HEAD)
 start = $*[0]
-abort("Please give me your starting branch!") if start.nil?
+if start.nil?
+  start = `git symbolic-ref HEAD 2>/dev/null`
+  start = start.sub('refs/heads/', '')
+end
 abort("I don't make any sense with non-numeric branch names!") unless start =~ LINE
 major, minor = [$1, $2].map &:to_i
 
