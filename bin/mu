@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+# I hate my life
+def run(cmd)
+  puts "\033[1;37m#{cmd}\033[0m"
+  result = `#{cmd}`
+  abort unless $?.success?
+  puts result unless result.empty?
+  result
+end
+
+LINE = /^(\d+)\.(\d+)/
+
+# Obtain start point
+start = $*[0]
+abort("Please give me your starting branch!") if start.nil?
+abort("I don't make any sense with non-numeric branch names!") unless start =~ LINE
+major, minor = [$1, $2].map &:to_i
+
+# Obtain interesting branches
+branches = `git branch`.split(/\n/).map {|x| x.strip.sub('* ', '')}
+master = branches.delete('master')
+# Filter down to just branches newer than start point
+branches = branches.select do |x|
+  x =~ LINE && $1.to_i == major && $2.to_i > minor
+end.sort_by {|x| LINE.match(x)[2]}
+# Loop until merged up through master
+previous = start
+(branches << master).each do |branch|
+  run "git checkout #{branch}"
+  run "git merge #{previous}"
+  previous = branch
+end
