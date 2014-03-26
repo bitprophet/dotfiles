@@ -369,5 +369,5 @@ let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
 
 " Ctrl-P
-let g:ctrlp_custom_ignore = '\.jar$|\.git$|/bin/.*|files/default/.*/lib$|\.gz$'
+let g:ctrlp_custom_ignore = '\.jar$\|\.git$\|/bin/.*\|files/default/.*/lib$\|\.gz$'
 let g:ctrlp_clear_cache_on_exit = 0
