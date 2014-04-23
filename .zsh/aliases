@@ -57,6 +57,7 @@ alias gf='git fetch'
 alias grs='git reset HEAD .'
 alias gch='git cherry-pick'
 alias gcx='git cherry-pick -enx'
+alias amend='git commit --amend'
 
 function gcamp() {
     gcam "$1" && gps
