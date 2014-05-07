@@ -63,16 +63,25 @@ function gcamp() {
     gcam "$1" && gps
 }
 
+function get_branch() {
+    export CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+}
+
 function gu() {
-    CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+    get_branch
     TARGET=master
     METHOD=${1:-merge}
     gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git $METHOD "$TARGET"
 }
 
 function nuke() {
-    CURRENT_BRANCH=`git symbolic-ref --short HEAD`
+    get_branch
     gco master && gpl && gb -d $CURRENT_BRANCH
+}
+
+function marge() {
+    get_branch
+    gco master && gm $CURRENT_BRANCH && gb -d $CURRENT_BRANCH
 }
 
 function mg() {
