@@ -47,6 +47,8 @@
 
 # IRb config
 !.irbrc
+# RVM config
+!.rvmrc
 
 # Vim plugins, ftplugins, syntax etc etc
 !.vim
