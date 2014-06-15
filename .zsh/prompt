@@ -79,6 +79,16 @@ function virtualenv_() {
         fi
     fi
 
+    # Clojure (only if neither of the others)
+    # Do dumb shit to avoid JVM hit :(
+    # TODO: seek towards FS root in case in a subdir (not too common)
+    if [[ -f project.clj && -z $_venv ]]; then
+        _venv=`egrep -o "\(defproject ([^ ]+)" project.clj | sed -e "s/^(defproject //"`
+        if [[ -n $_venv ]]; then
+            venv=$_venv
+        fi
+    fi
+
     if [[ -n "$venv" ]]; then
         echo "$venv"
     else
