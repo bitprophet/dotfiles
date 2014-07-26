@@ -4,7 +4,7 @@
 [color]
     ui = auto
 [push]
-    default = upstream
+    default = tracking
 [core]
     excludesfile = "~/.gitexcludes"
 [rerere]
