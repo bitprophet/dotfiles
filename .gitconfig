@@ -4,7 +4,7 @@
 [color]
     ui = auto
 [push]
-    default = tracking
+    default = matching
 [core]
     excludesfile = "~/.gitexcludes"
 [rerere]
