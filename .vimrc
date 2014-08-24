@@ -243,6 +243,9 @@ nmap <Leader>l :set hls!<CR>
 " insert ipdb, heh
 nmap <Leader>i oimport ipdb; ipdb.set_trace()<C-C>
 
+" Easy but on-demand (not automatic) save-and-build-docs
+nmap <Leader>b :w<CR>:!inv docs<CR>
+
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
