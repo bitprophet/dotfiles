@@ -231,7 +231,7 @@ vmap <Leader>f gq
 " :w shortcut
 nmap <Leader>s :w<CR>
 
-" hidden files toggle
+" hidden/nonprinting characters toggle
 nmap <Leader>h :set list!<CR>
 
 " paste/nopaste toggle
