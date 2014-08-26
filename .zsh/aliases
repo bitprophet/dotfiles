@@ -81,7 +81,7 @@ function nuke() {
 
 function marge() {
     get_branch
-    gco master && gm $CURRENT_BRANCH && gb -d $CURRENT_BRANCH
+    gco ${1:-master} && gm $CURRENT_BRANCH && gb -d $CURRENT_BRANCH
 }
 
 function mg() {
