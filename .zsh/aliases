@@ -155,6 +155,7 @@ function pull() { # 'pr' already exists :(
 function pr-branch() {
     git fetch origin pull/$1/head:$1-int
     gco $1-int
+    [[ $2 == "nomerge" ]] || git merge master
 }
 
 # Stupid newline delimited => comma delimited bit (happens to ensure no
