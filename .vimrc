@@ -40,6 +40,8 @@ function! PasteAwareStatusline()
     return default
 endfunction
 set statusline=%!PasteAwareStatusline()
+" Show current line for visibility
+set cursorline
 
 " Navigation/search
 
