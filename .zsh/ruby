@@ -35,7 +35,10 @@ function fakegem() {
         done
     fi
 }
-fakegem
+# NOTE: This is super slow (lots of subshells & finds which scales poorly with
+# lots of source projects existing) and doesn't seem necessary for the few
+# rubby things I still do. Leaving it around in case I need it later.
+#fakegem
 
 #
 # RVM (may eventually replace the above, probably overwrites it anyway)
