@@ -112,7 +112,7 @@ alias rmv='deactivate; rmvirtualenv'
 alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
 alias screen='TERM=screen-256color screen'
 alias rmpyc='rm **/*.pyc'
-alias v=vagrant
+alias v=vim
 alias be='bundle exec'
 alias ack='ack -a'
 alias osc='openstack-compute'
