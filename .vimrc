@@ -225,6 +225,9 @@ nmap <Leader><Left> <C-w><Left>
 nmap <Leader><Right> <C-w><Right>
 nmap <Leader><Up> <C-w><Up>
 nmap <Leader><Down> <C-w><Down>
+" Move all windows in current tab-pane to be horizontally split.
+" Good for moving to a smaller/narrower display from a larger one.
+nmap <Leader>k :windo wincmd K<CR>
 
 " Paragraph formatting
 nmap <Leader>f gqap
