@@ -1,0 +1,4 @@
+#!/bin/zsh
+# This hook is run after a new virtualenv is activated.
+pip install "Jinja2<2.7"
+pip install "bpython<0.11"
