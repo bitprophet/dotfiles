@@ -68,10 +68,6 @@ export PIP_RESPECT_VIRTUALENV=true
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # Don't litter pip_log.txt files in cwd!
 export PIP_LOG_FILE='/tmp/pip-log.txt'
-# Use a cache (NOTE: don't override if set earlier - e.g. ~/.zsh/mac)
-if [[ -z "$PIP_DOWNLOAD_CACHE" ]]; then
-    export PIP_DOWNLOAD_CACHE='/tmp/pip_cache'
-fi
 # N.B. the 'mac' file also sets up use of devpi as a caching server, via
 # PIP_INDEX_URL.
 
