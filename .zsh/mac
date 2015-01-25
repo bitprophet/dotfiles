@@ -21,3 +21,6 @@ export PIP_DOWNLOAD_CACHE='~/Library/Caches/pip'
 # Also use devpi (probably obviates above; meh. 2x caching!)
 alias devpi-ctl='/Users/jforcier/Library/Caches/devpi/bin/devpi-ctl'
 export PIP_INDEX_URL='http://localhost:3141/root/pypi/+simple/'
+
+# Postgres.app binaries because eh, why nt
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
