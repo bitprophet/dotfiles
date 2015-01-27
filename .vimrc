@@ -207,6 +207,9 @@ autocmd BufNewFile,BufRead *.io setlocal ft=io
 " Racket/Scheme
 autocmd BufNewFile,BufRead *.rkt setlocal tabstop=2 softtabstop=2 shiftwidth=2 ft=scheme
 
+" Sphinx theme CSS templates
+autocmd BufNewFile,BufRead *.css_t setlocal ft=css
+
 
 "
 " Key mappings
