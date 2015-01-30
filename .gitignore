@@ -94,6 +94,8 @@ etc/clusto*.conf
 # Screen, tmux
 !.screenrc
 !.tmux.conf
+!.tmux
+!.tmux/*.yml
 
 # Gem config
 !.gemrc
