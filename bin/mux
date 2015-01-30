@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+import os
+import sys
+
+from invoke import run
+import yaml
+
+
+# mux <layout name> [<parameters> ...]
+try:
+    layout = sys.argv[1]
+except IndexError:
+    sys.exit("Please provide at least a layout name argument!")
+params = sys.argv[2:]
+
+# Layouts live in ~/.tmux
+filename = "{0}.yaml".format(layout)
+path = os.path.expanduser(os.path.join('~', '.tmux', filename))
+with open(path) as fd:
+    layout = yaml.safe_load(fd)
+
+# Helpers
+def cmd(command):
+    try:
+        interpolated = command.format(*params)
+    except IndexError:
+        sys.exit("Your layout contains command {0!r} but you didn't provide enough params for that!".format(command))
+    print interpolated
+    run("tmux send-keys \"{0}\" Enter".format(interpolated))
+
+def cmd_all(layout):
+    if 'cmd_all' in layout:
+        cmd(layout['cmd_all'])
+
+# Obtain window name - explicit -> 1st param -> nothing/default-tmux-val
+name = layout.get('name', params[0] if params else None)
+name_arg = "-n {0}".format(name) if name else ""
+# Create new named window & obtain size
+ret = run(
+    "tmux new-window {0} -P -F \"#{{pane_width}}\"".format(name_arg),
+    hide='stdout'
+)
+width = int(ret.stdout)
+# Send default command to this first pane
+cmd_all(layout)
+
+# Split down middle for two vertically oriented panes
+# Size left pane depending on total window size (161 or 80). Rather, size the
+# new (right) pane based on whatever's left over, which is easier.
+if width >= (161 + 1 + 80):
+    right_width = width - 162
+else:
+    right_width = width - 81
+run("tmux split-window -h -l {0}".format(right_width))
+# Send default command to this next pane (which is selected by default)
+cmd_all(layout)
+# Send non-default command, if any
+first = layout['right_panes'].pop(0)
+cmd(first)
+
+# Split horizontally on right-hand pane if desired
+for pane_cmd in layout['right_panes']:
+    run("tmux split-window -v")
+    if pane_cmd:
+        cmd(pane_cmd)
