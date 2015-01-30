@@ -21,8 +21,6 @@ function wk() {
     workon $1 2>/dev/null
     # Ditto for my custom "workon" for RVM
     activate_gemset $1
-    # Set tmux window if it looks defaultish
-    which tmux >/dev/null && test $(tmux display-message -p "#W") = zsh && tmux rename-window $1
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
