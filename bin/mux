@@ -33,7 +33,6 @@ def cmd(command):
         interpolated = command.format(*params)
     except IndexError:
         sys.exit("Your layout contains command {0!r} but you didn't provide enough params for that!".format(command))
-    print interpolated
     run("tmux send-keys \"{0}\" Enter".format(interpolated))
 
 def cmd_all(layout):
