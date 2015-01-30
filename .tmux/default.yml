@@ -1,0 +1,3 @@
+cmd_all: "wk {0}"
+right_panes:
+  - gr

@@ -12,6 +12,7 @@ import yaml
 context = ParserContext(args=(
     Argument(
         names=('layout', 'l'),
+        default='default',
         help="Layout to use (~/.tmux/<layout>.yaml)",
     ),
 ))
