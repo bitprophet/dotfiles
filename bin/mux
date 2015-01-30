@@ -4,18 +4,24 @@ import os
 import sys
 
 from invoke import run
+from invoke.parser import Parser, ParserContext, Argument
 import yaml
 
 
-# mux <layout name> [<parameters> ...]
-try:
-    layout = sys.argv[1]
-except IndexError:
-    sys.exit("Please provide at least a layout name argument!")
-params = sys.argv[2:]
+# mux [-l <layout name>] [<parameters> ...]
+context = ParserContext(args=(
+    Argument(
+        names=('layout', 'l'),
+        help="Layout to use (~/.tmux/<layout>.yaml)",
+    ),
+))
+parser = Parser(initial=context, ignore_unknown=True)
+result = parser.parse_argv(sys.argv[1:])
+layout = result[0].args.layout.value
+params = result.unparsed
 
 # Layouts live in ~/.tmux
-filename = "{0}.yaml".format(layout)
+filename = "{0}.yml".format(layout)
 path = os.path.expanduser(os.path.join('~', '.tmux', filename))
 with open(path) as fd:
     layout = yaml.safe_load(fd)
