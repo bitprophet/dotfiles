@@ -84,6 +84,7 @@
 # Local copies of tools/scripts
 !bin
 !bin/*
+bin/.*.swp
 
 # Config for local daemons (e.g. squid)
 !etc
