@@ -4,43 +4,42 @@ import os
 import sys
 
 from invoke import run
-from invoke.parser import Parser, ParserContext, Argument
 import yaml
 
 
-# mux [-l <layout name>] [<parameters> ...]
-context = ParserContext(args=(
-    Argument(
-        names=('layout', 'l'),
-        default='default',
-        help="Layout to use (~/.tmux/<layout>.yaml)",
-    ),
-))
-parser = Parser(initial=context, ignore_unknown=True)
-result = parser.parse_argv(sys.argv[1:])
-layout = result[0].args.layout.value
-params = result.unparsed
-
-# Layouts live in ~/.tmux
-filename = "{0}.yml".format(layout)
-path = os.path.expanduser(os.path.join('~', '.tmux', filename))
-with open(path) as fd:
-    layout = yaml.safe_load(fd)
-
 # Helpers
 def cmd(command):
-    try:
-        interpolated = command.format(*params)
-    except IndexError:
-        sys.exit("Your layout contains command {0!r} but you didn't provide enough params for that!".format(command))
-    run("tmux send-keys \"{0}\" Enter".format(interpolated))
+    run("tmux send-keys \"{0}\" Enter".format(command))
 
 def cmd_all(layout):
     if 'cmd_all' in layout:
         cmd(layout['cmd_all'])
 
+def layout_path(name):
+    filename = "{0}.yml".format(name)
+    return os.path.expanduser(os.path.join('~', '.tmux', filename))
+
+
+# Usage: mux <layout-name-or-default-layout-parameter>
+try:
+    arg = sys.argv[1]
+except IndexError:
+    sys.exit("Need to give a layout name / parameter!")
+# If name given matches a layout, use it.
+# Otherwise select default layout and parameterize it instead
+path = layout_path(arg)
+if os.path.exists(path):
+    arg = None
+else:
+    path = layout_path('default')
+# Load YAML config & interpolate w/ param given
+with open(path) as fd:
+    data = fd.read()
+    interpolated = data.format(arg) if arg is not None else data
+    layout = yaml.safe_load(interpolated)
+
 # Obtain window name - explicit -> 1st param -> nothing/default-tmux-val
-name = layout.get('name', params[0] if params else None)
+name = layout.get('name', arg)
 name_arg = "-n {0}".format(name) if name else ""
 # Create new named window & obtain size
 ret = run(
