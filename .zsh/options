@@ -10,6 +10,7 @@ for option (
     share_history # Interleave history between shells
     hist_ignore_dups # Don't add contiguous duplicates to history
     correct # Spelling correction suggestions
+    extended_glob # More options when globbing, like ^blah to exclude
 ) setopt $option
 
 
