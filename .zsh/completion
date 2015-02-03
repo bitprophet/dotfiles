@@ -5,8 +5,8 @@ autoload -U compinit && compinit
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH/data/completion.cache
 
-# Teamocil completion hooks
-compctl -g '~/.teamocil/*(:t:r)' teamocil
+# mux completion hooks - specific layouts & virtualenvs too
+compctl -g '~/.tmux/*(:t:r)' -g '~/.virtualenvs/*(:t)' mux
 
 # Skip some common files I don't care about basically ever
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*.egg-info)"
