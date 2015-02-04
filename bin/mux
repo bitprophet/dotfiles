@@ -21,8 +21,9 @@ def layout_path(name):
 
 
 # Usage: mux <layout-name-or-default-layout-parameter>
+name = None
 try:
-    arg = sys.argv[1]
+    arg = name = sys.argv[1]
 except IndexError:
     sys.exit("Need to give a layout name / parameter!")
 # If name given matches a layout, use it.
@@ -39,7 +40,7 @@ with open(path) as fd:
     layout = yaml.safe_load(interpolated)
 
 # Obtain window name - explicit -> 1st param -> nothing/default-tmux-val
-name = layout.get('name', arg)
+name = layout.get('name', name)
 name_arg = "-n {0}".format(name) if name else ""
 # Create new named window & obtain size
 ret = run(
