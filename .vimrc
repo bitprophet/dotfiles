@@ -160,7 +160,7 @@ endif
 " MacVim
 if has("gui_macvim")
     set transparency=5
-    set guifont=Consolas:h14
+    set guifont=Menlo:h14
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
