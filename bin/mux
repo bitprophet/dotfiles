@@ -4,7 +4,7 @@ import os
 import sys
 
 from invoke import run
-import yaml
+from invoke.vendor import yaml2 as yaml
 
 
 # Helpers
