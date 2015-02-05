@@ -68,5 +68,6 @@ cmd(first)
 # Split horizontally on right-hand pane if desired
 for pane_cmd in layout['right_panes']:
     run("tmux split-window -v")
+    cmd_all(layout)
     if pane_cmd:
         cmd(pane_cmd)
