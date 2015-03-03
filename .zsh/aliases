@@ -58,6 +58,7 @@ alias grs='git reset HEAD .'
 alias gch='git cherry-pick'
 alias gcx='git cherry-pick -enx'
 alias amend='git commit --amend --no-edit'
+alias amende='git commit --amend'
 alias graf='git remote add -f'
 
 function gcamp() {
