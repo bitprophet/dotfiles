@@ -17,7 +17,6 @@ have gxargs && alias xargs=gxargs
 alias ps='ps -T'
 
 # Also use devpi (probably obviates above; meh. 2x caching!)
-alias devpi-ctl='/Users/jforcier/Library/Caches/devpi/bin/devpi-ctl'
 export PIP_INDEX_URL='http://localhost:3141/root/pypi/+simple/'
 
 # Postgres.app binaries because eh, why nt
