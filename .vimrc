@@ -134,6 +134,9 @@ set nobackup
 " Don't do the "write a backup, then cp it to the real filename" trick either.
 " This prevents some file watchdog programs from noticing file updates.
 set nowritebackup
+" Persistent (across edits/sessions) undo history \o/
+set undodir=~/.vim/undo
+set undofile
 
 " Jump to last known location in file
 if has("autocmd")
