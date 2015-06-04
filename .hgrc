@@ -1,2 +1,6 @@
 [ui]
 username = Jeff Forcier <jeff@bitprophet.org>
+
+[extensions]
+hgext.bookmarks =
+hggit = 
