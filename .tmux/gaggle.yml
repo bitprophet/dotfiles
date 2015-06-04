@@ -1,0 +1,4 @@
+cmd_all: "wk gaggle"
+right_panes:
+  - gpl
+  - inv serve
