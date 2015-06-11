@@ -123,6 +123,8 @@ set nomore
 " Use bash-like tab completion in Vim command line
 set wildmenu
 set wildmode=list:longest
+"set wildignore+=*.swp,*.egg-info*,htmlcov*,
+set wildignore+=*.egg-info/,htmlcov/
 " Allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
 " Let me open a shitton of tabs at once if I really want.
@@ -380,14 +382,10 @@ nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
 
-" NERDTree
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '\.egg$']
-
 " VimClojure
 let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
 
 " Ctrl-P
-let g:ctrlp_custom_ignore = '\.jar$\|\.git$\|/bin/.*\|files/default/.*/lib$\|\.gz$'
+let g:ctrlp_custom_ignore = '\.jar$\|\.git$\|/bin/.*\|files/default/.*/lib$\|\.gz$\|\.egg-info\|htmlcov\|.swp$'
 let g:ctrlp_clear_cache_on_exit = 0
