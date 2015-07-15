@@ -3,3 +3,4 @@ right_panes:
   - gpl
   - inv serve
   - "cd /usr/local/Cellar/inspircd/* && inspircd --nofork --debug --config conf/inspircd.conf"
+  - "rm dump.rdb; redis-server"
