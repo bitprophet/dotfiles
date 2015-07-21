@@ -112,7 +112,6 @@ etc/clusto*.conf
 
 # Ack
 !.ackrc
-bin/backup
 
 # Teamocil
 !.teamocil
@@ -120,3 +119,7 @@ bin/backup
 
 # Synergy
 !.synergy.conf
+
+# Leiningen (Clojure)
+!.lein
+!.lein/profiles.clj
