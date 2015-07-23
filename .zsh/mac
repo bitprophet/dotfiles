@@ -21,3 +21,13 @@ export PIP_INDEX_URL='http://localhost:3141/root/pypi/+simple/'
 
 # Postgres.app binaries because eh, why nt
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
+# lunchy launchctl completion for zsh
+_complete_lunchy() {
+    if [[ $words =~ "^lunchy [^ ]*$" ]]; then
+        reply=( ls list start stop restart status install uninstall show edit )
+    else
+        reply=( $(lunchy list) )
+    fi
+}
+compctl -K _complete_lunchy lunchy
