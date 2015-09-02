@@ -8,3 +8,5 @@
 dist/
 .*.swo
 build/
+.gear
+*.spec
