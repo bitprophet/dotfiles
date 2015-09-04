@@ -26,9 +26,16 @@ NAME=$C[green]
 CWD=$C[blue]
 
 # Manually cut hostname; hostname -s bails out on some systems.
-HOST=`hostname -f | cut -d '.' -f 1`
-DOMAIN=`hostname -f | cut -d '.' -f 2-`
-HOSTNAME=$HOST.$DOMAIN
+# Make sure to ignore domain if none appears present in full hostname.
+if [[ `hostname -f` != *.* ]]; then
+    HOST=`hostname -f`
+    DOMAIN=
+    HOSTNAME=$HOST
+else
+    HOST=`hostname -f | cut -d '.' -f 1`
+    DOMAIN=`hostname -f | cut -d '.' -f 2-`
+    HOSTNAME=$HOST.$DOMAIN
+fi
 
 # Themed by domain name
 case $DOMAIN in
