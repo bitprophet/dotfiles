@@ -86,9 +86,9 @@
 !bin/*
 bin/.*.swp
 # This is an actual binary that comes from a third party app
-bin/asciinema
+!bin/asciinema
 # Same
-bin/rack
+!bin/rack
 
 # Config for local daemons (e.g. squid)
 !etc
