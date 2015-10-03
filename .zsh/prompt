@@ -76,16 +76,6 @@ function virtualenv_() {
         venv=$_venv
     fi
 
-    # RVM (steals the venv slot if there's no venv)
-    if [[ -s $_rvm && -z $_venv ]]; then
-        # Just show Ruby gemset.  I don't use different interpreter lines, nor
-        # do I care about patchlevel.
-        _venv=`$_rvm_home/bin/rvm-prompt g`
-        if [[ "$_venv" != "system" && -n $_venv ]]; then
-            venv=$_venv
-        fi
-    fi
-
     # Clojure (only if neither of the others)
     # Do dumb shit to avoid JVM hit :(
     # TODO: seek towards FS root in case in a subdir (not too common)
