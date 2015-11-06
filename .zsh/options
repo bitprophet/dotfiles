@@ -10,6 +10,7 @@ for option (
     extended_history # Store timestamps, elapsed time for commands
     hist_ignore_dups # Don't add contiguous duplicates to history
     no_automenu # Don't cycle thru options on subsequent Tabs
+    no_rm_star_silent # Don't bug me if I do 'rm blah/*'
     share_history # Interleave history between shells
 ) setopt $option
 
