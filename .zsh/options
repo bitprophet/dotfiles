@@ -3,14 +3,14 @@
 #
 
 for option (
-    autocd # Less typing is better typing
-    no_automenu # Don't cycle thru options on subsequent Tabs
-    extended_history # Store timestamps, elapsed time for commands
     append_history # Keep history from all shells, not just the last one to exit
-    share_history # Interleave history between shells
-    hist_ignore_dups # Don't add contiguous duplicates to history
+    autocd # Less typing is better typing
     correct # Spelling correction suggestions
     extended_glob # More options when globbing, like ^blah to exclude
+    extended_history # Store timestamps, elapsed time for commands
+    hist_ignore_dups # Don't add contiguous duplicates to history
+    no_automenu # Don't cycle thru options on subsequent Tabs
+    share_history # Interleave history between shells
 ) setopt $option
 
 
