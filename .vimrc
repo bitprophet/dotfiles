@@ -284,6 +284,19 @@ let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 
 
 "
+" Other plugin preferences
+"
+
+" VimClojure
+let g:vimclojure#ParenRainbow=1
+let g:vimclojure#DynamicHighlighting=1
+
+" Ctrl-P
+let g:ctrlp_custom_ignore = '\.jar$\|\.git$\|/bin/.*\|files/default/.*/lib$\|\.gz$\|\.egg-info\|htmlcov\|.swp$'
+let g:ctrlp_clear_cache_on_exit = 0
+
+
+"
 " Custom "snippets"/shortcuts
 "
 
@@ -361,16 +374,10 @@ function! AskQuit (msg, proposed_action)
     endif
 endfunction
 
+
 " Pretty-print JSON files with Python (& remove the trailing whitespace that
 " Python <2.7 json module adds, sigh)
 nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
 
-" VimClojure
-let g:vimclojure#ParenRainbow=1
-let g:vimclojure#DynamicHighlighting=1
-
-" Ctrl-P
-let g:ctrlp_custom_ignore = '\.jar$\|\.git$\|/bin/.*\|files/default/.*/lib$\|\.gz$\|\.egg-info\|htmlcov\|.swp$'
-let g:ctrlp_clear_cache_on_exit = 0
