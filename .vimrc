@@ -337,21 +337,6 @@ nnoremap <expr> <F3> H("-")
 nnoremap <expr> <F4> H("~")
 
 
-" Git helper: take up to full length SHA1 under cursor and truncate to 7
-" characters; plus a Redmine specific version to tack on "commit:"
-
-function! TruncateToSevenChars()
-    " Use viwo instead of b so it works even when cursor is on 1st char of word
-    return "viwo7ld"
-endf
-
-function! FormatShaForCommit()
-    return TruncateToSevenChars() . "bicommit:\<Esc>w"
-endf
-
-nnoremap <expr> <F7> FormatShaForCommit()
-
-
 " Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
 " creation of nonexistent directories.
 augroup AutoMkdir
