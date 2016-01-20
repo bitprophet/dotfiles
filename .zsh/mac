@@ -31,3 +31,7 @@ _complete_lunchy() {
     fi
 }
 compctl -K _complete_lunchy lunchy
+
+# Golang from homebrew
+export GOPATH=~/.go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
