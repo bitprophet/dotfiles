@@ -125,3 +125,7 @@ etc/clusto*.conf
 # Leiningen (Clojure)
 !.lein
 !.lein/profiles.clj
+
+# Hammerspoon (Lua-based OS X automation tool)
+!.hammerspoon
+!.hammerspoon/*
