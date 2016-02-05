@@ -128,4 +128,4 @@ etc/clusto*.conf
 
 # Hammerspoon (Lua-based OS X automation tool)
 !.hammerspoon
-!.hammerspoon/*
+!.hammerspoon/init.lua
