@@ -12,9 +12,8 @@ end):start()
 
 -- Set unnatural scrolling for VerticalMouse, natural for trackpad
 -- TODO: how to determine trackpad, besides VerticalMouse disappearing? (Which
--- can sometimes just mean KVM) Could use keyboard instead as it seems to not
--- disappear w/ KVM for some reason? Is there another "plugged into
--- Thunderbolt" trigger?
+-- can sometimes just mean KVM) Is there another "plugged into Thunderbolt"
+-- trigger?
 
 
 -- Easy config reloading, how meta! Taken directly from HS's tutorial.
