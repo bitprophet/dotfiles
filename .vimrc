@@ -216,7 +216,7 @@ autocmd BufNewFile,BufRead *.rkt setlocal tabstop=2 softtabstop=2 shiftwidth=2 f
 autocmd BufNewFile,BufRead *.css_t setlocal ft=css
 
 " Go, cuz scurred of using the entire huge set of stuff that is vim-go
-autocmd BufNewFile,BufRead *.go setlocal ft=go
+autocmd BufNewFile,BufRead *.go setlocal ft=go noexpandtab
 
 
 "
