@@ -46,6 +46,7 @@
 !.ipython/ipythonrc
 
 # Virtualenvwrapper hooks
+!.virtualenvs
 !.virtualenvs/postmkvirtualenv
 
 # IRb config
