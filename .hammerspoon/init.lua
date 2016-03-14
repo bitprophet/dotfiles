@@ -28,12 +28,12 @@ end
 -- all the time, probably.
 -- TODO: check for the KVM switch (USB hub) too, maybe
 hs.usb.watcher.new(function(data)
-    print("USB event detected: " .. hs.inspect(data))
     mouse = "Evoluent VerticalMouse 4"
     if data['eventType'] == "added" and data['productName'] == mouse then
         print("Totally just got a new mouse")
         -- Tickle mouse acceleration up, then down
         tickleMouseAccel()
+        print("Successfully executed tickleMouseAccel()")
     end
 end):start()
 
