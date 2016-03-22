@@ -3,13 +3,17 @@
 import os
 import sys
 
-from invoke import run
+from invoke import Context, Config
 from invoke.vendor import yaml2 as yaml
+
+
+# 'Local' invoke context/config
+ctx = Context(config=Config(overrides={'run': {'env': {'IN_MUX': '1'}}}))
 
 
 # Helpers
 def cmd(command):
-    run("tmux send-keys \"{0}\" Enter".format(command))
+    ctx.run("tmux send-keys \"{0}\" Enter".format(command))
 
 def cmd_all(layout):
     if 'cmd_all' in layout:
@@ -26,6 +30,8 @@ try:
     arg = name = sys.argv[1]
 except IndexError:
     sys.exit("Need to give a layout name / parameter!")
+# Set env var so ~/.zsh/wk knows not to auto-wk
+os.environ['IN_MUX'] = '1'
 # If name given matches a layout, use it.
 # Otherwise select default layout and parameterize it instead
 path = layout_path(arg)
@@ -43,7 +49,7 @@ with open(path) as fd:
 name = layout.get('name', name)
 name_arg = "-n {0}".format(name) if name else ""
 # Create new named window & obtain size
-ret = run(
+ret = ctx.run(
     "tmux new-window {0} -P -F \"#{{pane_width}}\"".format(name_arg),
     hide='stdout'
 )
@@ -58,7 +64,7 @@ if width >= (161 + 1 + 80):
     right_width = width - 162
 else:
     right_width = width - 81
-run("tmux split-window -h -l {0}".format(right_width))
+ctx.run("tmux split-window -h -l {0}".format(right_width))
 # Send default command to this next pane (which is selected by default)
 cmd_all(layout)
 # Send non-default command, if any
@@ -67,7 +73,7 @@ cmd(first)
 
 # Split horizontally on right-hand pane if desired
 for pane_cmd in layout['right_panes']:
-    run("tmux split-window -v")
+    ctx.run("tmux split-window -v")
     cmd_all(layout)
     if pane_cmd:
         cmd(pane_cmd)

@@ -10,6 +10,9 @@
 #
 # Also deactivates any currently active virtualenv, just for neatness' sake.
 #
+# Finally, when this is sourced - i.e. when a new shell opens - an attempt is
+# made to see if we're a new pane in an existing titled window, and 'wk
+# <that window name>' is called if it matches a wk session name.
 
 ROOT=~/Code
 FOLDERS=($ROOT/oss $ROOT/ua $ROOT/personal $ROOT/others)
@@ -25,7 +28,7 @@ function wk() {
     for folder in $FOLDERS; do
         target=$folder/$1
         if [[ -d $target ]]; then
-            $target
+            cd $target
             # Also execute any project init file
             if [[ -f $RCFILE ]]; then
                 source $RCFILE
@@ -41,3 +44,8 @@ function _wk() {
     compadd $(find -L $FOLDERS -mindepth 1 -maxdepth 1 -type d -not -name ".*" -exec basename {} \; 2>/dev/null)
 }
 compdef _wk wk
+
+# Auto-wk if not running inside mux
+if [[ $TMUX_PANE != "" && $IN_MUX != "1" ]]; then
+    wk $(tmux display-message -p "#W")
+fi
