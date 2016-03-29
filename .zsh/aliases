@@ -125,7 +125,12 @@ alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut 
 # Functions
 
 function json() {
-    CMD="curl -ks $2 \"$1\" | python -m json.tool"
+    _pretty="python -m json.tool"
+    if [[ -z $1 ]]; then
+        CMD=${_pretty}
+    else
+        CMD="curl -ks $2 \"$1\" | ${_pretty}"
+    fi
     if which pygmentize > /dev/null; then
         eval "$CMD | pygmentize -l javascript"
     else
