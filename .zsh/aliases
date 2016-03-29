@@ -124,18 +124,29 @@ alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut 
 
 # Functions
 
+# Prettyprint some JSON text with a few back-ends, w/ optional CURL:
+# - 'json a-url-here' to curl-and-prettify
+# - '<command emitting JSON> | json' to just-prettify
 function json() {
-    _pretty="python -m json.tool"
-    if [[ -z $1 ]]; then
-        CMD=${_pretty}
+    # Obtain prettyprinter command string
+    if which jq > /dev/null; then
+        # Default to using jq as prettyprinter, it's quite nice for that alone
+        _pretty="jq"
     else
-        CMD="curl -ks $2 \"$1\" | ${_pretty}"
+        # Otherwise, fallback to Python's json module; Python is errywhere.
+        _pretty="python -m json.tool"
+        # Add pygmentize if it exists. (So, our absolute worst case is
+        # pretty-printed, but not colorized. Still useful.)
+        if which pygmentize > /dev/null; then
+            _pretty="${_pretty} | pygmentize -l javascript"
+        fi
     fi
-    if which pygmentize > /dev/null; then
-        eval "$CMD | pygmentize -l javascript"
+    
+    # Insert a curl if args were given; otherwise assume stdin is being used.
+    if [[ -z $1 ]]; then
+        eval ${_pretty}
     else
-        eval $CMD
-        echo "You didn't have pygmentize installed, so no colors for you!"
+        eval "curl -ks $2 \"$1\" | ${_pretty}"
     fi
 }
 
