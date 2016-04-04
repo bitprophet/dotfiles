@@ -69,11 +69,26 @@ function shortpath() {
 }
 
 function virtualenv_() {
+    # Make sure it's cleaned out if we exit a virtualenv/project and don't
+    # enter another one right away
+    venv=""
+
     # Python virtualenv
     _venv=`basename "$VIRTUAL_ENV"`
-    venv="" # need this to clear it when we leave a venv
     if [[ -n $_venv ]]; then
         venv=$_venv
+    fi
+
+    # Bundler bundle (Ruby)
+    # This will 'overwrite' a virtualenv-driven $_venv if both exist, which
+    # isn't often, lately
+    # TODO: seek towards FS root in case in a subdir (not too common)
+    _conf=".bundle/config"
+    if [[ -f ${_conf} ]]; then
+        # TODO: sincerely doubt anything portable & fast has YAML built in, but
+        # maybe actually parse it sometime if I care hard enough
+        _bundle_path="BUNDLE_PATH: /Users/jforcier/.bundles/"
+        venv=`egrep "${_bundle_path}" ${_conf} | sed -e "s#${_bundle_path}##"`
     fi
 
     # Clojure (only if neither of the others)
