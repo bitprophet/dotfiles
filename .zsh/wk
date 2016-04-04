@@ -22,8 +22,6 @@ function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
-    # Ditto for my custom "workon" for RVM
-    activate_gemset $1
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
