@@ -5,8 +5,11 @@ autoload -U compinit && compinit
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH/data/completion.cache
 
-# mux completion hooks - specific layouts & virtualenvs too
-compctl -g '~/.tmux/*(:t:r)' -g '~/.virtualenvs/*(:t)' mux
+# mux completion hooks - specific layouts & virtualenvs too.
+# NOTE: (:t) in a globexpr means 'basename'.
+# NOTE: (:r) in a globexpr means 'trim extension'.
+# NOTE: see 'Modifiers' under 'History Expansion' in zshall for deets
+compctl -g '~/.tmux/*(:t:r)' -g '~/.virtualenvs/*(:t)' -g '~/Code/*/*(:t)' mux
 
 # Skip some common files I don't care about basically ever
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*.egg-info)"
