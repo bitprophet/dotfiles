@@ -80,8 +80,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 " Default autoformatting options:
-" t: automatically hard-wrap based on textwidth (NO LONGER USED)
-" c: do the same for comments, but autoinsert comment character too
+" c: hard-wrap at textwidth for comments, but autoinsert comment character too
 " r: also autoinsert comment character when making new lines after existing
 "    comment lines
 " o: ditto but for o/O in normal mode
