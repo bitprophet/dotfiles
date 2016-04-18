@@ -380,3 +380,10 @@ nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
 
+
+" Configuration for vim-pencil
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd,md  call pencil#init()
+  autocmd FileType text             call pencil#init()
+augroup END
