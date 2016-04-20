@@ -1,10 +1,4 @@
 "
-" Load Pathogen for easy bundling of plugins
-"
-call pathogen#runtime_append_all_bundles()
-
-
-"
 " Load Debian paths/etc when applicable
 "
 
