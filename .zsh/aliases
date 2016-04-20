@@ -138,7 +138,7 @@ function json() {
         # Add pygmentize if it exists. (So, our absolute worst case is
         # pretty-printed, but not colorized. Still useful.)
         if which pygmentize > /dev/null; then
-            _pretty="${_pretty} | pygmentize -l javascript"
+            _pretty="${_pretty} | pygmentize -l json"
         fi
     fi
     
