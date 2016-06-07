@@ -35,3 +35,15 @@ compctl -K _complete_lunchy lunchy
 # Golang from homebrew
 export GOPATH=~/.go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+# When using pyenv to install non-Apple-shipped Pythons, put the resulting
+# trees in Homebrew's directories, not ~/.pyenv.
+export PYENV_ROOT=/usr/local/var/pyenv
+# Even more importantly, build them with UCS2 support (pyenv defaults to UCS4)
+# because that's what the system Python was built with and anytime things cross
+# over, shit gets bad ('unknown symbol' errors installing cffi, etc)
+export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs2"
+# And ensure pyenv's shims directory (containing its selected 'global' python,
+# plus its versions of python2.x/3.x) beats out system-installed Pythons, so my
+# Homebrew-derived ecosystem w/ its newer OpenSSL takes precedence.
+export PATH=/usr/local/var/pyenv/shims:$PATH
