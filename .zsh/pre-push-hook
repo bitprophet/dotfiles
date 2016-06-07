@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+#
+# Parameterizable script for use as .git/hooks/pre-push
+#
+# Required env vars:
+# * $VIRTUALENV - name of ~/.virtualenvs/ folder
+#
+# Optional env vars:
+# * $PY3_VIRTUALENV - name of Python 3 virtualenv, if there is one. Triggers
+#   another run of the test suite after activation.
+# * $SKIP_LINT - if set to any non empty value, skips the flake8 step
+# * $SKIP_TEST - if set, skips the test step
+# * $SKIP_DOCS - if set, skips the docs-building step
+
+# Any nonzero exits imply failure, exit immediately.
+set -e
+
+# Force use of a pty so this environment matches that of manual test/etc
+# invocation, travis-ci, etc. Without it some pty-related tests are super
+# fucky.
+exec < /dev/tty
+# Load our venv
+source ~/.virtualenvs/${VIRTUALENV}/bin/activate
+# Lint
+if [[ -z $SKIP_LINT ]]; then
+    flake8
+fi
+# Test
+if [[ -z $SKIP_TEST ]]; then
+    inv test
+fi
+# Docs
+if [[ -z $SKIP_DOCS ]]; then
+    inv sites
+fi
+# Optionally test under Python 3
+if [[ -n $PY3_VIRTUALENV ]]; then 
+    source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
+    inv test
+fi
