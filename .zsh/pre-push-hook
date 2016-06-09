@@ -36,6 +36,9 @@ if [[ -z $SKIP_DOCS ]]; then
 fi
 # Optionally test under Python 3
 if [[ -n $PY3_VIRTUALENV ]]; then 
+    # Need to undo 'set -e' because some things in this activate script may
+    # non-fatally exit nonzero (like various 'unset' calls). Grump.
+    set +e
     source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
     inv test
 fi
