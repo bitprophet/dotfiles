@@ -18,15 +18,31 @@ if start.nil?
   start = start.sub('refs/heads/', '')
 end
 abort("I don't make any sense with non-numeric branch names!") unless start =~ LINE
-major, minor = [$1, $2].map &:to_i
+start_major, start_minor = [$1, $2].map &:to_i
 
 # Obtain interesting branches
 branches = `git branch`.split(/\n/).map {|x| x.strip.sub('* ', '')}
 master = branches.delete('master')
 # Filter down to just branches newer than start point
-branches = branches.select do |x|
-  x =~ LINE && $1.to_i == major && $2.to_i > minor
-end.sort_by {|x| LINE.match(x)[2]}
+branches = branches.map do |x|
+  if x =~ LINE
+    [$1.to_i, $2.to_i]
+  else
+    nil
+  end
+end.compact.sort.select do |major, minor|
+  if major >= start_major
+    if major == start_major
+      minor > start_minor
+    else
+      true
+    end
+  else
+    false
+  end
+end.map do |major, minor|
+  "#{major}.#{minor}"
+end
 # Loop until merged up through master
 previous = start
 (branches << master).each do |branch|
