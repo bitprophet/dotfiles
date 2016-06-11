@@ -13,9 +13,6 @@
 # * $SKIP_TEST - if set, skips the test step
 # * $SKIP_DOCS - if set, skips the docs-building step
 
-# Any nonzero exits imply failure, exit immediately.
-set -e
-
 # Force use of a pty so this environment matches that of manual test/etc
 # invocation, travis-ci, etc. Without it some pty-related tests are super
 # fucky.
@@ -24,21 +21,18 @@ exec < /dev/tty
 source ~/.virtualenvs/${VIRTUALENV}/bin/activate
 # Lint
 if [[ -z $SKIP_LINT ]]; then
-    flake8
+    flake8 || exit 1
 fi
 # Test
 if [[ -z $SKIP_TEST ]]; then
-    inv test
+    inv test || exit 1
 fi
 # Docs
 if [[ -z $SKIP_DOCS ]]; then
-    inv sites
+    inv sites || exit 1
 fi
 # Optionally test under Python 3
 if [[ -n $PY3_VIRTUALENV ]]; then 
-    # Need to undo 'set -e' because some things in this activate script may
-    # non-fatally exit nonzero (like various 'unset' calls). Grump.
-    set +e
     source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
-    inv test
+    inv test || exit 1
 fi
