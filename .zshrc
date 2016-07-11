@@ -27,3 +27,7 @@ for file in $DOTFILES; do
     file=$ZSH/$file
     [[ -f $file ]] && source $file
 done
+
+# Sanity cleanup of PATH, which otherwise can grow duplicate entries (making
+# troubleshooting harder than it needs to be)
+typeset -U PATH
