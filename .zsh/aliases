@@ -120,6 +120,11 @@ alias gemu='gem uninstall'
 # Python
 alias rmv='deactivate; rmvirtualenv'
 
+function mkv() {
+    virtualenv $1
+    source $1/bin/activate
+}
+
 # Misc
 alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
 alias rmpyc='rm **/*.pyc'
