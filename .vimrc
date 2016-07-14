@@ -1,11 +1,4 @@
 "
-" Load Debian paths/etc when applicable
-"
-
-runtime! debian.vim
-
-
-"
 " Basic/common settings
 "
 
