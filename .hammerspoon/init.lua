@@ -7,6 +7,9 @@
 -- can sometimes just mean KVM) Is there another "plugged into Thunderbolt"
 -- trigger?
 
+-- Swap window layouts depending on laptop-vs-monitor
+require('windowLayouts')
+
 
 -- Easy config reloading, how meta! Taken directly from HS's tutorial.
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", function(files)
