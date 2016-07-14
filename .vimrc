@@ -188,8 +188,8 @@ autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 autocmd BufNewFile,BufRead */etc/nginx/* setlocal ft=nginx
 
 " JSON
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
-autocmd BufNewFile,BufRead ~/.mongoctl/*.config setlocal ft=javascript
+autocmd BufNewFile,BufRead *.json setlocal ft=json
+autocmd BufNewFile,BufRead ~/.mongoctl/*.config setlocal ft=json
 
 " Zsh
 autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
