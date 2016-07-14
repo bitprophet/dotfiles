@@ -195,6 +195,7 @@ autocmd BufNewFile,BufRead */etc/nginx/* setlocal ft=nginx
 
 " JSON
 autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd BufNewFile,BufRead ~/.mongoctl/*.config setlocal ft=javascript
 
 " Zsh
 autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
