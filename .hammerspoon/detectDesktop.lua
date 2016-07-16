@@ -1,8 +1,8 @@
 function callWhenMouseConnected(callback)
     hs.usb.watcher.new(function(data)
         mouse = "Evoluent VerticalMouse 4"
-        -- Need to scan prod/vendor IDs too now, getting 2x connect events for some
-        -- bizarro reason :(
+        -- Need to scan prod/vendor IDs too now, getting 2x connect events for
+        -- some bizarro reason :(
         prodID = 401
         vendorID = 6780
         if data['eventType'] == "added" and data['productName'] == mouse
