@@ -5,7 +5,8 @@
 -- Set unnatural scrolling for VerticalMouse, natural for trackpad
 -- TODO: how to determine trackpad, besides VerticalMouse disappearing? (Which
 -- can sometimes just mean KVM) Is there another "plugged into Thunderbolt"
--- trigger?
+-- trigger? (EDIT: probably just use "thunderbolt display exists"...)
+require('naturalScrolling')
 
 -- Swap window layouts depending on laptop-vs-monitor
 require('windowLayouts')

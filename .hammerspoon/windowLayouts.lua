@@ -1,3 +1,10 @@
+-- TODO: will these not fire for apps that happened to be hidden
+-- pre-transition?
+-- TODO: what exact event needs to fire? ideally don't want it constantly
+-- checking monitor states (tho I guess it could use a var for state so it just
+-- goes "has the monitor situation changed? no? ok skip"). Really, wants to be
+-- identical to what the trackpad stuff does.
+
 local tbDisplay = "Thunderbolt Display"
 local windowLayout = {
     -- HipChat lower left
