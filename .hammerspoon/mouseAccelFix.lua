@@ -22,24 +22,3 @@ function tickleMouseAccel()
         tell application "System Preferences" to quit
     ]])
 end
-
--- Run mouse accel fix when VerticalMouse is plugged in.
--- Bug is usually only triggered via KVM switch but no real harm in doing it
--- all the time, probably.
--- TODO: check for the KVM switch (USB hub) too, maybe
-hs.usb.watcher.new(function(data)
-    mouse = "Evoluent VerticalMouse 4"
-    -- Need to scan prod/vendor IDs too now, getting 2x connect events for some
-    -- bizarro reason :(
-    prodID = 401
-    vendorID = 6780
-    if data['eventType'] == "added" and data['productName'] == mouse
-    and data['productID'] == prodID and data['vendorID'] == vendorID
-    then
-        print("Received new EVM4 event: ")
-        print(hs.inspect(data))
-        print("")
-        -- Tickle mouse acceleration up, then down
-        tickleMouseAccel()
-    end
-end):start()

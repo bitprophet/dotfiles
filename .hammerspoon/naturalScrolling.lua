@@ -5,6 +5,7 @@ function useNaturalScrolling(be_natural)
     else
         click_when = "true"
     end
+    -- TODO: refactor outer shell and use both here and in mouseAccelFix?
     -- Have to use AppleScript for actual window UI manipulation, HS can only
     -- do window movement/resizing/etc.
     -- (Could use hs.application to launch/focus/quit, but what's the point
@@ -27,6 +28,6 @@ function useNaturalScrolling(be_natural)
 		        end tell
 	        end tell
         end tell
+        tell application "System Preferences" to quit
     ]])
 end
--- tell application "System Preferences" to quit
