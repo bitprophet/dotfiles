@@ -31,9 +31,16 @@ if [[ $(type -w workon) != "workon: function" ]]; then
 
     # Attempt to load virtualenvwrapper from its many possible sources...
     _try_source() { [[ -f $1 ]] || return; source "$1"; return 0; }
+    # TODO: these are all old and can probs be nuked
     _try_source /usr/local/bin/virtualenvwrapper.sh || \
     _try_source /etc/bash_completion.d/virtualenvwrapper || \
     _try_source /usr/bin/virtualenvwrapper.sh
+    # This is a tad meh but pyenv 'hides' the real .sh behind a dispatcher in
+    # its shims/ folder; sourcing that simply won't work. Doing this here is
+    # better than hardcoding the real specific Python version path.
+    if [[ -z $VIRTUALENVWRAPPER_SCRIPT && -x `which pyenv` ]]; then
+        _try_source `pyenv which virtualenv`wrapper.sh
+    fi
     return_status=$?
     unset -f _try_source
 

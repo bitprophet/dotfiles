@@ -1,3 +1,6 @@
 #!/bin/zsh
 # This hook is run after a new virtualenv is activated.
-pip install "bpython==0.15"
+# TODO: figure out if we can get a vendored bpython, or if bpython can be
+# installed in the global env and still work w/ virtualenvs (unlikely)
+# TODO: otherwise bpython now has far too many deps that clash with ours
+#pip install "bpython==0.15"

@@ -1,54 +1,24 @@
--- Tickle mouse acceleration to 'fix' bizarro bug where attaching a USB mouse
--- resets it (but which doesn't reset the slider).
-function tickleMouseAccel()
-    -- Have to use AppleScript for actual window UI manipulation, HS can only
-    -- do window movement/resizing/etc.
-    -- (Could use hs.application to launch/focus/quit, but what's the point
-    -- really?)
-    hs.applescript([[
-        tell application "System Preferences"
-            activate
-            set current pane to pane "com.apple.preference.mouse"
-        end tell
-        tell application "System Events"
-            tell application process "System Preferences"
-                tell window "Mouse"
-                    set s to slider "Tracking speed"
-                    increment s
-                    decrement s
-                end tell
-            end tell
-        end tell
-        tell application "System Preferences" to quit
-    ]])
-end
-
--- Run mouse accel fix when VerticalMouse is plugged in.
--- Bug is usually only triggered via KVM switch but no real harm in doing it
--- all the time, probably.
--- TODO: check for the KVM switch (USB hub) too, maybe
-hs.usb.watcher.new(function(data)
-    mouse = "Evoluent VerticalMouse 4"
-    -- Need to scan prod/vendor IDs too now, getting 2x connect events for some
-    -- bizarro reason :(
-    prodID = 401
-    vendorID = 6780
-    if data['eventType'] == "added" and data['productName'] == mouse
-    and data['productID'] == prodID and data['vendorID'] == vendorID
-    then
-        print("Received new EVM4 event: ")
-        print(hs.inspect(data))
-        print("")
-        -- Tickle mouse acceleration up, then down
-        tickleMouseAccel()
-    end
-end):start()
+require('detectDesktop')
+require('mouseAccelFix')
+require('naturalScrolling')
+require('windowLayouts')
 
 
--- Set unnatural scrolling for VerticalMouse, natural for trackpad
+-- Mouse acceleration reset bug fix.
+-- NOTE: Currently disabled as El Cap seems to have fixed it?
+-- callWhenMouseConnected(tickleMouseAccel)
+
+
+-- Set unnatural scrolling for VerticalMouse
+-- Also tweak window layouts on same event
+-- TODO: means updating callWhenMouseConnected to take >1 callback
+callWhenMouseConnected(function() useNaturalScrolling(false) end)
+
+
 -- TODO: how to determine trackpad, besides VerticalMouse disappearing? (Which
 -- can sometimes just mean KVM) Is there another "plugged into Thunderbolt"
--- trigger?
+-- trigger? (EDIT: probably just use "thunderbolt display exists"...duh)
+-- TODO: anyway, mirror above re: tweaking scroll type & window movement
 
 
 -- Easy config reloading, how meta! Taken directly from HS's tutorial.

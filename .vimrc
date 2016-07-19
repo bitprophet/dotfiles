@@ -1,11 +1,4 @@
 "
-" Load Debian paths/etc when applicable
-"
-
-runtime! debian.vim
-
-
-"
 " Basic/common settings
 "
 
@@ -162,6 +155,7 @@ if has("gui_macvim")
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
+    set visualbell
 endif
 
 
@@ -194,7 +188,8 @@ autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
 autocmd BufNewFile,BufRead */etc/nginx/* setlocal ft=nginx
 
 " JSON
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+autocmd BufNewFile,BufRead *.json setlocal ft=json
+autocmd BufNewFile,BufRead ~/.mongoctl/*.config setlocal ft=json
 
 " Zsh
 autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
@@ -381,3 +376,9 @@ nmap <Leader>w :%s/\s\+$//g<CR>
 "  autocmd FileType markdown,mkd,md  call pencil#init()
 "  autocmd FileType text             call pencil#init()
 "augroup END
+
+" Pull in (semi-)sensitive / info-exposing vimrc commands. Not
+" version-controlled.
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
