@@ -11,7 +11,7 @@ function callWhenMouseConnected(callback)
             print("Received new EVM4 event: ")
             print(hs.inspect(data))
             print("")
-            print("Invoking " .. callback)
+            print("Invoking " .. hs.inspect(callback))
             callback()
         end
     end):start()
