@@ -16,3 +16,13 @@ function callWhenMouseConnected(callback)
         end
     end):start()
 end
+
+function callWhenScreenChanges()
+    hs.screen.watcher.new(function()
+        print("Received new screen-change event!")
+        print("Printing current list o screens:")
+        print(hs.inspect(hs.screen.allScreens()))
+        -- Above seems to be a dict/array as expected, when on TB it is just TB
+        -- display, when on internal it is "Color LCD". Whee
+    end):start()
+end

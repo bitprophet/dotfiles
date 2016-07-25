@@ -16,9 +16,12 @@ callWhenMouseConnected(function() useNaturalScrolling(false) end)
 
 
 -- TODO: how to determine trackpad, besides VerticalMouse disappearing? (Which
--- can sometimes just mean KVM) Is there another "plugged into Thunderbolt"
--- trigger? (EDIT: probably just use "thunderbolt display exists"...duh)
+-- can sometimes just mean KVM...)
+-- TODO: check out hs.screen.watcher, see how it behaves in "just opened laptop
+-- after post-unplug-from-desktop sleep" situation as that is the key here.
 -- TODO: anyway, mirror above re: tweaking scroll type & window movement
+
+callWhenScreenChanges()
 
 
 -- Easy config reloading, how meta! Taken directly from HS's tutorial.
