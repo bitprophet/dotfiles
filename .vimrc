@@ -258,6 +258,9 @@ inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
 map <down> gj
 inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 
+" Really only ever use ZZ to "exit entire session" so let's rebind it to :qa
+:map ZZ :wqa<CR>
+
 
 "
 " netrw (builtin file-browser plugin) preferences
