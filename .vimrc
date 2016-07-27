@@ -1,3 +1,12 @@
+" vim-plug!
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+
+call plug#end()
+
+
 "
 " Basic/common settings
 "
