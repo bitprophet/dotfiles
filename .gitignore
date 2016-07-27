@@ -57,17 +57,11 @@
 # Vim plugins, ftplugins, syntax etc etc
 !.vim
 !.vim/*
-!.vim/autoload/*
-!.vim/autoload/*/*
-!.vim/colors/*
-!.vim/doc/*
-!.vim/ftdetect/*
-!.vim/ftplugin/*
-!.vim/ftplugin/*/*
-!.vim/indent/*
-!.vim/plugin/*
-!.vim/spell/*
-!.vim/syntax/*
+!.vim/*/*
+!.vim/*/*/*
+!.vim/*/*/*/*
+!.vim/*/*/*/*/*
+!.vim/*/*/*/*/*/*
 # Do ignore netrw history
 .vim/.netrwhist
 # Vim settings
