@@ -215,6 +215,9 @@ autocmd BufNewFile,BufRead *.css_t setlocal ft=css
 " Go, cuz scurred of using the entire huge set of stuff that is vim-go
 autocmd BufNewFile,BufRead *.go setlocal ft=go noexpandtab
 
+" Things using INI/ConfigParser style ugliness
+autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
+
 
 "
 " Key mappings
