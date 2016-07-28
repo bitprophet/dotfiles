@@ -64,6 +64,8 @@
 !.vim/*/*/*/*/*/*
 # Do ignore netrw history
 .vim/.netrwhist
+# Do ignore vim-plug stuff, sigh
+.vim/plugged
 # Vim settings
 !.vimrc
 
