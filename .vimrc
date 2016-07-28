@@ -2,7 +2,10 @@
 
 call plug#begin('~/.vim/plugged')
 
+" Improved JSON syntax formatting, display, etc
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+" Personal information manager
+Plug 'vimwiki/vimwiki', {'tag': 'v2.3'}
 
 call plug#end()
 
@@ -391,6 +394,24 @@ nmap <Leader>w :%s/\s\+$//g<CR>
 "  autocmd FileType markdown,mkd,md  call pencil#init()
 "  autocmd FileType text             call pencil#init()
 "augroup END
+
+
+"
+" Configuration for / override maps of, vimwiki
+"
+
+" Allow "normal" editor style tab/shift-tab indent/dedent.
+let g:vimwiki_table_mappings = 0
+imap <Tab> <Plug>VimwikiIncreaseLvlSingleItem
+imap <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
+vmap <Tab> <Plug>VimwikiIncreaseLvlSingleItem
+vmap <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
+" Use Markdown plz
+let g:vimwiki_list = [{ 'path': '~/markwiki', 'syntax': 'markdown', 'ext': '.md' }, {'path': '~/vimwiki'}]
+" Allow 'gx' to open URLs (this technically works anywhere, not just in
+" vimwiki) that include question marks, hashes etc. Note: cWORD not cword.
+let g:netrw_gx = "<cWORD>"
+
 
 " Pull in (semi-)sensitive / info-exposing vimrc commands. Not
 " version-controlled.
