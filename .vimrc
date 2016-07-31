@@ -169,11 +169,13 @@ endif
 
 " MacVim
 if has("gui_macvim")
-    set transparency=5
-    set guifont=Menlo:h14
-    set lines=60
-    set formatoptions-=t
-    set formatoptions-=c
+    " Be slightly transparent, but not distractingly so.
+    set transparency=10
+    " Same font size as I was using in Evernote
+    set guifont=Menlo:h15
+    " Full screen height at above font on a Thunderbolt Display.
+    set lines=77
+    " Disable audible bell (tho...it doesn't seem to flash like terminal vim.)
     set visualbell
 endif
 
