@@ -4,9 +4,8 @@ require('naturalScrolling')
 require('windowLayouts')
 
 
--- Mouse acceleration reset bug fix.
--- NOTE: Currently disabled as El Cap seems to have fixed it?
--- callWhenMouseConnected(tickleMouseAccel)
+-- Mouse acceleration reset bug fix. Wasn't fixed in El Cap :(
+callWhenMouseConnected(tickleMouseAccel)
 
 
 -- Set unnatural scrolling for VerticalMouse
