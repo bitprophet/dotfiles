@@ -412,10 +412,10 @@ nmap <Leader>w :%s/\s\+$//g<CR>
 " Allow "normal" editor style tab/shift-tab indent/dedent. (Only in vimwiki
 " buffers!)
 let g:vimwiki_table_mappings = 0
+autocmd FileType vimwiki map <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
+autocmd FileType vimwiki map <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
-autocmd FileType vimwiki vmap <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
-autocmd FileType vimwiki vmap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 " Use Markdown plz
 let g:vimwiki_list = [{ 'path': '~/markwiki', 'syntax': 'markdown', 'ext': '.md' }, {'path': '~/vimwiki'}]
 " Allow 'gx' to open URLs (this technically works anywhere, not just in
