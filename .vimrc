@@ -417,7 +417,7 @@ autocmd FileType vimwiki map <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 " Use Markdown plz
-let g:vimwiki_list = [{ 'path': '~/markwiki', 'syntax': 'markdown', 'ext': '.md' }, {'path': '~/vimwiki'}]
+let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 " Allow 'gx' to open URLs (this technically works anywhere, not just in
 " vimwiki) that include question marks, hashes etc. Note: cWORD not cword.
 let g:netrw_gx = "<cWORD>"
