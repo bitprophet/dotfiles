@@ -429,6 +429,14 @@ let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 " Allow 'gx' to open URLs (this technically works anywhere, not just in
 " vimwiki) that include question marks, hashes etc. Note: cWORD not cword.
 let g:netrw_gx = "<cWORD>"
+" Override behavior of (not actual mapping for) hitting Return in list items.
+" Specifically, change the 1st number from 1 to 3: Return always inserts a new
+" line item. 2nd number (set to 5) stays same: Enter on empty list item deletes
+" the list item.
+" TODO: except...this is firing even when not in a list item (i.e. it makes new
+" indented list items when mashing enter on an already blank line)! Clearly the
+" default isn't doing that; figure out how.
+"autocmd FileType vimwiki inoremap <buffer> <CR> <Esc>:VimwikiReturn 3 5<CR>
 
 
 " Pull in (semi-)sensitive / info-exposing vimrc commands. Not
