@@ -283,7 +283,15 @@ map <down> gj
 inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
 
 " Really only ever use ZZ to "exit entire session" so let's rebind it to :qa
-:map ZZ :wqa<CR>
+map ZZ :wqa<CR>
+
+" Want Home/End to work like in regular ass text editing apps ¯\_(ツ)_/¯
+" (Strangely, on my 97-key keyboards, Home/End are "keypad" Home/End, despite
+" PageUp/Down showing up as regular <PageUp>/etc.)
+map <kHome> gg
+imap <kHome> gg
+map <kEnd> G
+imap <kEnd> G
 
 
 "
