@@ -18,6 +18,7 @@ DOTFILES=(
     history
     python
     ruby
+    perl
     wk
     prompt
     zmv
