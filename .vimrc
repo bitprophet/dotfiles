@@ -12,6 +12,8 @@ Plug 'ctrlpvim/ctrlp.vim', {'commit': '36f34cd'}
 Plug 'guns/vim-clojure-static', {'commit': 'bc1bebf'}
 " TOML
 Plug 'cespare/vim-toml', {'commit': 'f6f79f3'}
+" Git integration (blame, diff formatting, etc)
+Plug 'tpope/vim-fugitive', {'commit': '0095769'}
 
 call plug#end()
 
