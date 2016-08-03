@@ -14,6 +14,7 @@ function useNaturalScrolling(be_natural)
         tell application "System Preferences"
 	        activate
 	        set current pane to pane "com.apple.preference.trackpad"
+            delay 0.3
         end tell
         tell application "System Events"
 	        tell application process "System Preferences"
