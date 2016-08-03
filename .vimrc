@@ -8,8 +8,10 @@ Plug 'elzr/vim-json', {'commit': 'f5e3181'}
 Plug 'vimwiki/vimwiki', {'tag': 'v2.3'}
 " Fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim', {'commit': '36f34cd'}
-" Clojure support
+" Clojure
 Plug 'guns/vim-clojure-static', {'commit': 'bc1bebf'}
+" TOML
+Plug 'cespare/vim-toml', {'commit': 'f6f79f3'}
 
 call plug#end()
 
