@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
 " Personal information manager
 Plug 'vimwiki/vimwiki', {'tag': 'v2.3'}
+" Fuzzy file finder
+Plug 'ctrlpvim/ctrlp.vim', {'commit': '36f34cd'}
 
 call plug#end()
 
