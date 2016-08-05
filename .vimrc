@@ -73,13 +73,15 @@ set autoindent
 set preserveindent
 " 'smartindent', however, screws up Python -- so turn it off
 set nosmartindent
-" As of vim 7.4.338-354, this new setting is AWESOME and preserves indent on
-" soft wrap!
-set breakindent
-" This tweaks its behavior. For now, assume most wrapping is in bullet list
-" items, and set to 2 spaces. TODO: figure out how to ONLY make it set when in
-" a list-item.
-set breakindentopt=shift:2
+if exists('+breakindent')
+    " As of vim 7.4.338-354, this new setting is AWESOME and preserves indent on
+    " soft wrap!
+    set breakindent
+    " This tweaks its behavior. For now, assume most wrapping is in bullet list
+    " items, and set to 2 spaces. TODO: figure out how to ONLY make it set when in
+    " a list-item.
+    set breakindentopt=shift:2
+endif
 " Make tabbing/deleting honor 'shiftwidth' as well as 'softtab' and 'tabstop'
 set smarttab
 " Use spaces for tabs
