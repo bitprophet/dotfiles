@@ -380,6 +380,9 @@ nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
 nnoremap <expr> <F4> H("~")
 
+" Make a WORD monospaced
+:no <leader>m gEwi`<esc>Ea`<esc>
+:vn <leader>m o<esc>i`<esc>Ea`<esc>
 
 " Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
 " creation of nonexistent directories.
