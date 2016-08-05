@@ -25,9 +25,15 @@ done
 NAME=$C[green]
 CWD=$C[blue]
 
+# If we seem to be on a DNS-name-less EC2 instance, use its instance ID
+_id_file=/var/lib/cloud/data/instance-id
+if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
+    HOST=`cat $_id_file`
+    DOMAIN=
+    HOSTNAME=$HOST
 # Manually cut hostname; hostname -s bails out on some systems.
 # Make sure to ignore domain if none appears present in full hostname.
-if [[ `hostname -f` != *.* ]]; then
+elif [[ `hostname -f` != *.* ]]; then
     HOST=`hostname -f`
     DOMAIN=
     HOSTNAME=$HOST
