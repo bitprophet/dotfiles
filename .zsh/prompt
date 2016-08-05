@@ -42,7 +42,7 @@ case $DOMAIN in
     # Personal production
     bitprophet.org | fabfile.org ) NAME=$C[cyan] ;;
     # Work production
-    *urbanairship.com ) NAME=$C[red] ;;
+    *mongolab.com | *mlab.com ) NAME=$C[red] ;;
 esac
 
 # Themed by host/node name (takes precedence over domain)
