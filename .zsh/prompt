@@ -31,16 +31,12 @@ if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
     HOST=`cat $_id_file`
     DOMAIN=
     HOSTNAME=$HOST
-# Manually cut hostname; hostname -s bails out on some systems.
-# Make sure to ignore domain if none appears present in full hostname.
-elif [[ `hostname -f` != *.* ]]; then
-    HOST=`hostname -f`
-    DOMAIN=
-    HOSTNAME=$HOST
+# These days, most systems have a working `hostname` that returns at least one
+# dotted part (e.g. hedron.local, whatever.mongolab.com). No need for -f or -s.
 else
-    HOST=`hostname -f | cut -d '.' -f 1`
-    DOMAIN=`hostname -f | cut -d '.' -f 2-`
-    HOSTNAME=$HOST.$DOMAIN
+    HOST=`hostname | cut -d '.' -f 1`
+    DOMAIN=`hostname | cut -d '.' -f 2-`
+    HOSTNAME=`hostname`
 fi
 
 # Themed by domain name
@@ -52,10 +48,12 @@ case $DOMAIN in
 esac
 
 # Themed by host/node name (takes precedence over domain)
+# TODO: just look at .local once VMs all have that set
 case $HOST in
     # Workstations
     hedron | bahro ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
-    vm* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
+    # VMs
+    vm* | debian* | ubuntu* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
 
 
