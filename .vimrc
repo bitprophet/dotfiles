@@ -298,10 +298,15 @@ map ZZ :wqa<CR>
 " Want Home/End to work like in regular ass text editing apps ¯\_(ツ)_/¯
 " (Strangely, on my 97-key keyboards, Home/End are "keypad" Home/End, despite
 " PageUp/Down showing up as regular <PageUp>/etc.)
+" EDIT: except...when they aren't...?! JFC computers.
 map <kHome> gg
 imap <kHome> gg
 map <kEnd> G
 imap <kEnd> G
+map <Home> gg
+imap <Home> gg
+map <End> G
+imap <End> G
 
 
 "
