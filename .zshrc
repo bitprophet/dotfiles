@@ -10,6 +10,7 @@ fpath=($ZSH/contrib $fpath)
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
+    pre-local
     options
     exports
     completion
