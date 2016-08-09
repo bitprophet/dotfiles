@@ -29,7 +29,7 @@ alias bin='brew info'
 alias yum='sudo yum'
 
 # Git
-if [[ -e `which hub 2>/dev/null` ]]; then
+if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
     alias git=hub
     compdef hub=git
 fi
