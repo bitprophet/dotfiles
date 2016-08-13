@@ -46,6 +46,7 @@ alias glg="git log --graph --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset
 alias gpl='git pull'
 alias gps='git push'
 alias gpsn='git push --no-verify'
+alias gpsh='git push origin HEAD'
 alias gs='git status'
 alias gsh='git show'
 alias gt='git tag'
