@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+
+import re
+import sys
+import time
+
+
+# Find 10-digit epoch timestamps, optionally w/ sub-second precisions
+pattern = re.compile(r'(\d{10}(\.\d+)?)')
+
+# Turn such timestamps into useful-yet-compact date representation.
+format_ = "%Y-%m-%d@%H:%M:%S"
+if len(sys.argv) == 2 and sys.argv[1] in ('-t', '--time-only'):
+    format_ = "%H:%M:%S"
+
+def timestamp_to_human(match):
+    timestamp = float(match.group(0))
+    return time.strftime(format_, time.localtime(timestamp))
+
+def convert(iterable):
+    for line in iterable:
+        yield re.sub(pattern, timestamp_to_human, line)
+
+
+if __name__ == '__main__':
+    # TODO: lazy?
+    lines = sys.stdin.readlines()
+    for line in convert(x.rstrip() for x in lines):
+        print(line)
+
+# vim: set ft=python :
