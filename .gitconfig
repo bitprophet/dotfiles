@@ -5,6 +5,7 @@
     ui = auto
 [push]
     default = matching
+    followTags = true
 [core]
     excludesfile = "~/.gitexcludes"
 [rerere]
