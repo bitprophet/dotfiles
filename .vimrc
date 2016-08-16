@@ -391,6 +391,9 @@ nnoremap <expr> <F4> H("~")
 :no <leader>m gEwi`<esc>Ea`<esc>
 :vn <leader>m o<esc>i`<esc>Ea`<esc>
 
+" Faster close-window. LEADER ALL THE THINGS
+:no <leader>z :q<CR>
+
 " Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
 " creation of nonexistent directories.
 augroup AutoMkdir
