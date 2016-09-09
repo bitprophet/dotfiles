@@ -252,8 +252,8 @@ let mapleader=" "
 nmap <Leader><CR> o<Esc>
 
 " Tab/split nav
-nmap <Leader>[ :tabp<CR>
-nmap <Leader>] :tabn<CR>
+nmap <Leader>[ @='gT'<CR>
+nmap <Leader>] @='gt'<CR>
 nmap <Leader><Left> <C-w><Left>
 nmap <Leader><Right> <C-w><Right>
 nmap <Leader><Up> <C-w><Up>
