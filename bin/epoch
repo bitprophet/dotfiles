@@ -6,7 +6,7 @@ import time
 
 
 # Find 10-digit epoch timestamps, optionally w/ sub-second precisions
-pattern = re.compile(r'[^.](\d{10,}(\.\d+)?)')
+pattern = re.compile(r'([^.]|^)(\d{10,}(\.\d+)?)')
 
 # Turn such timestamps into useful-yet-compact date representation.
 format_ = "%Y-%m-%d@%H:%M:%S"
