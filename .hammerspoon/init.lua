@@ -5,13 +5,13 @@ require('windowLayouts')
 
 
 -- Mouse acceleration reset bug fix. Wasn't fixed in El Cap :(
-callWhenMouseConnected(tickleMouseAccel)
+callWhenMouseConnected("tickle mouse accel", tickleMouseAccel)
 
 
 -- Set unnatural scrolling for VerticalMouse
 -- Also tweak window layouts on same event
 -- TODO: means updating callWhenMouseConnected to take >1 callback
-callWhenMouseConnected(function() useNaturalScrolling(false) end)
+callWhenMouseConnected("disable natural scrolling", function() useNaturalScrolling(false) end)
 
 
 -- TODO: how to determine trackpad, besides VerticalMouse disappearing? (Which
