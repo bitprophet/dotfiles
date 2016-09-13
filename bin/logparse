@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+"""
+Script to identify lapses in 'ts' elapsed-microsecond output log files.
+
+E.g. if your stdin to the script looks like:
+
+    00:00:00.116502 debug1: Enabling compatibility mode for protocol 2.0
+    00:00:00.116519 debug1: Local version string SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.7
+    00:00:00.280922 debug1: Remote protocol version 2.0, remote software version OpenSSH_5.9p1 Debian-5ubuntu1.4
+    00:00:00.280973 debug1: match: OpenSSH_5.9p1 Debian-5ubuntu1.4 pat OpenSSH_5* compat 0x0c000000
+
+It will identify and print the 2nd and 3rd lines, with '... 0.17s ...' in
+between them. And same for any other lapses greater than 0.05s or a float given
+as 1st positional argument.
+"""
+
+# TODO: flexible timestamp formats? hampered by fact that python strftime
+# doesn't actually recognize microsecond formats...maybe an argument for using
+# some other 'ts' arguments on input?
+
+
+import sys
+from datetime import timedelta as td
+
+
+tolerance = 0.05
+if len(sys.argv) > 1:
+    tolerance = float(sys.argv[1])
+
+prev_stamp = td()
+prev_line = ""
+
+for line in sys.stdin.readlines():
+    # Chop line
+    line = line.strip()
+    stamp, _, rest = line.partition(' ')
+    # Parse timestamp
+    hours, mins, secs = [float(x) for x in stamp.split(':')]
+    now = td(hours=hours, minutes=mins, seconds=secs)
+    # Get interval
+    diff = now - prev_stamp
+    # Decide whether to print
+    subseconds = diff.microseconds / 1000.0 / 1000.0
+    elapsed = diff.seconds + subseconds
+    if elapsed > tolerance:
+        print(prev_line)
+        print("  ... {0:.2f}s ...".format(elapsed))
+        print(line)
+        print("")
+        #print("s={0}, ms={1} {2}".format(diff.seconds, subseconds, rest))
+    # Iterate
+    prev_stamp = now
+    prev_line = line
