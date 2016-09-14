@@ -27,9 +27,13 @@ def delta_to_floatsec(diff):
     subseconds = diff.microseconds / 1000.0 / 1000.0
     return diff.seconds + subseconds
 
-def truncate(text, words=5):
-    return ' '.join(text.split(' ')[:words])
-
+def truncate(text, length=40):
+    words = text.split(' ')
+    joined = ""
+    for word in words:
+        if len(joined) < length:
+            joined += ' ' + word
+    return joined
 
 tolerance = 0.05
 if len(sys.argv) > 1:
