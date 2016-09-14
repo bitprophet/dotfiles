@@ -23,6 +23,11 @@ import sys
 from datetime import timedelta as td
 
 
+def delta_to_floatsec(diff):
+    subseconds = diff.microseconds / 1000.0 / 1000.0
+    return diff.seconds + subseconds
+
+
 tolerance = 0.05
 if len(sys.argv) > 1:
     tolerance = float(sys.argv[1])
@@ -40,8 +45,7 @@ for line in sys.stdin.readlines():
     # Get interval
     diff = now - prev_stamp
     # Decide whether to print
-    subseconds = diff.microseconds / 1000.0 / 1000.0
-    elapsed = diff.seconds + subseconds
+    elapsed = delta_to_floatsec(diff)
     if elapsed > tolerance:
         print(prev_line)
         print("  ... {0:.2f}s ...".format(elapsed))
