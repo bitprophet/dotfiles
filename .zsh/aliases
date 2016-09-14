@@ -205,3 +205,9 @@ function _lolvim() {
 }
 function :wq() { _lolvim }
 function :qa() { _lolvim }
+
+# Helper to go from non-timestamped log output to something bin/logparse can
+# profile. Expects stdin.
+function profile() {
+    ts -s "%H:%M:%.S" | logparse $@
+}
