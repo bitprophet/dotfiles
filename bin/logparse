@@ -36,8 +36,7 @@ if len(sys.argv) > 1:
     tolerance = float(sys.argv[1])
 
 start = prev_stamp = td()
-prev_line = ""
-prev_rest = ""
+prev_line = prev_rest = "<beginning of time>"
 
 transitions = []
 
