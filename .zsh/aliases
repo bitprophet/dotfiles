@@ -206,8 +206,9 @@ function _lolvim() {
 function :wq() { _lolvim }
 function :qa() { _lolvim }
 
-# Helper to go from non-timestamped log output to something bin/logparse can
+# Helpers to go from non-timestamped log output to something bin/logparse can
 # profile. Expects stdin.
+alias tss='ts -s "%H:%M:%.S"'
 function profile() {
-    ts -s "%H:%M:%.S" | logparse $@
+    tss | logparse $@
 }
