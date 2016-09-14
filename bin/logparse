@@ -51,7 +51,6 @@ for line in sys.stdin.readlines():
         print("  ... {0:.2f}s ...".format(elapsed))
         print(line)
         print("")
-        #print("s={0}, ms={1} {2}".format(diff.seconds, subseconds, rest))
     # Iterate
     prev_stamp = now
     prev_line = line
