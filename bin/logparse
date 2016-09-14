@@ -32,7 +32,9 @@ def truncate(text, length=40):
     joined = ""
     for word in words:
         if len(joined) < length:
-            joined += ' ' + word
+            if joined:
+                joined += ' '
+            joined += word
     return joined
 
 tolerance = 0.05
