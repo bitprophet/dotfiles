@@ -49,6 +49,8 @@ transitions = []
 for line in sys.stdin.readlines():
     # Chop line
     line = line.strip()
+    if not line:
+        continue
     stamp, _, rest = line.partition(' ')
     # Parse timestamp
     hours, mins, secs = [float(x) for x in stamp.split(':')]
