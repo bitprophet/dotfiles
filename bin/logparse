@@ -53,8 +53,15 @@ for line in sys.stdin.readlines():
         continue
     stamp, _, rest = line.partition(' ')
     # Parse timestamp
-    hours, mins, secs = [float(x) for x in stamp.split(':')]
-    now = td(hours=hours, minutes=mins, seconds=secs)
+    if ':' in stamp:
+        # 'ts -s' style
+        hours, mins, secs = [float(x) for x in stamp.split(':')]
+        now = td(hours=hours, minutes=mins, seconds=secs)
+    elif stamp.isdigit():
+        # python logging %(relativeCreated)d style
+        now = td(milliseconds=int(stamp))
+    else:
+        raise ValueError("No idea how to parse timestamp {0!r} from line {1!r}".format(stamp, line))
     # Get interval
     diff = now - prev_stamp
     # Decide whether to print
