@@ -41,12 +41,18 @@ tolerance = 0.05
 if len(sys.argv) > 1:
     tolerance = float(sys.argv[1])
 
+# 2 seconds seems like enough for most Python apps to load up; obviously this
+# presumes such apps begin logging early on and not after some slow operation.
+reasonable_startup_time = 2000
+seen_first_line = False
+
 start = prev_stamp = td()
 prev_line = prev_rest = "<beginning of time>"
 
 transitions = []
 
 for line in sys.stdin.readlines():
+    start_too_big = False
     # Chop line
     line = line.strip()
     if not line:
@@ -59,14 +65,23 @@ for line in sys.stdin.readlines():
         now = td(hours=hours, minutes=mins, seconds=secs)
     elif stamp.isdigit():
         # python logging %(relativeCreated)d style
-        now = td(milliseconds=int(stamp))
+        ms = int(stamp)
+        now = td(milliseconds=ms)
+        # Using multiprocessing in Python appears to inherit relative creation
+        # load time from the parent/main process or...something? Guard against
+        # that pattern if seen (start of time is a large number).
+        if ms > reasonable_startup_time:
+            start_too_big = True
     else:
         raise ValueError("No idea how to parse timestamp {0!r} from line {1!r}".format(stamp, line))
     # Get interval
     diff = now - prev_stamp
     # Decide whether to print
     elapsed = delta_to_floatsec(diff)
-    if elapsed > tolerance:
+    # TODO: maybe emit to stderr or something when we do this; otherwise it
+    # could mask actual 'first thing logged is slow' situations.
+    skip = (not seen_first_line) and start_too_big
+    if (elapsed > tolerance) and not skip:
         print(prev_line)
         print("  ... {0:.2f}s ...".format(elapsed))
         print(line)
@@ -76,6 +91,7 @@ for line in sys.stdin.readlines():
     prev_stamp = now
     prev_line = line
     prev_rest = rest
+    seen_first_line = True
 
 # Summarize
 total_delta = now - start
