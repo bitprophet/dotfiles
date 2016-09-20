@@ -23,31 +23,80 @@ import sys
 from datetime import timedelta as td
 
 
+def delta_to_floatsec(diff):
+    subseconds = diff.microseconds / 1000.0 / 1000.0
+    return diff.seconds + subseconds
+
+def truncate(text, length=40):
+    words = text.split(' ')
+    joined = ""
+    for word in words:
+        if len(joined) < length:
+            if joined:
+                joined += ' '
+            joined += word
+    return joined
+
 tolerance = 0.05
 if len(sys.argv) > 1:
     tolerance = float(sys.argv[1])
 
-prev_stamp = td()
-prev_line = ""
+start = prev_stamp = td()
+prev_line = prev_rest = "<beginning of time>"
+
+transitions = []
 
 for line in sys.stdin.readlines():
     # Chop line
     line = line.strip()
+    if not line:
+        continue
     stamp, _, rest = line.partition(' ')
     # Parse timestamp
-    hours, mins, secs = [float(x) for x in stamp.split(':')]
-    now = td(hours=hours, minutes=mins, seconds=secs)
+    if ':' in stamp:
+        # 'ts -s' style
+        hours, mins, secs = [float(x) for x in stamp.split(':')]
+        now = td(hours=hours, minutes=mins, seconds=secs)
+    elif stamp.isdigit():
+        # python logging %(relativeCreated)d style
+        now = td(milliseconds=int(stamp))
+    else:
+        raise ValueError("No idea how to parse timestamp {0!r} from line {1!r}".format(stamp, line))
     # Get interval
     diff = now - prev_stamp
     # Decide whether to print
-    subseconds = diff.microseconds / 1000.0 / 1000.0
-    elapsed = diff.seconds + subseconds
+    elapsed = delta_to_floatsec(diff)
     if elapsed > tolerance:
         print(prev_line)
         print("  ... {0:.2f}s ...".format(elapsed))
         print(line)
         print("")
-        #print("s={0}, ms={1} {2}".format(diff.seconds, subseconds, rest))
+        transitions.append((prev_rest, elapsed, rest))
     # Iterate
     prev_stamp = now
     prev_line = line
+    prev_rest = rest
+
+# Summarize
+total_delta = now - start
+total_elapsed = delta_to_floatsec(total_delta)
+# TODO: at what point is it worth requiring I have some humanize lib installed
+# in my global python env? sigh
+widest_prev = max(len(truncate(x)) for x, _, _ in transitions)
+widest_cur = max(len(truncate(x)) for _, _, x in transitions)
+
+print("-------\n")
+print("Total elapsed time: {0:.2f}s\n".format(total_elapsed))
+print("-------\n")
+print("Transitions sorted by length:\n")
+
+for prev_rest, elapsed, rest in sorted(transitions, key=lambda x: x[1], reverse=True):
+    prev = truncate(prev_rest)
+    cur = truncate(rest)
+    print("{0}...{1}->  {2:.2f}s  ->{3}{4}...".format(
+        prev,
+        (widest_prev - len(prev) + 2) * ' ',
+        elapsed,
+        (widest_cur - len(cur) + 2) * ' ',
+        cur,
+    ))
