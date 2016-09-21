@@ -82,10 +82,15 @@ for line in sys.stdin.readlines():
     # could mask actual 'first thing logged is slow' situations.
     skip = (not seen_first_line) and start_too_big
     if (elapsed > tolerance) and not skip:
-        print(prev_line)
+        # Don't separate adjacent transitions
+        # TODO: this could mask multiple adjacent lines; ideally we want to
+        # preserve full line so we can compare that instead, which will be
+        # fully unique thanks to timestamps.
+        if (not transitions) or transitions[-1][2] != prev_rest:
+            print("")
+            print(prev_line)
         print("  ... {0:.2f}s ...".format(elapsed))
         print(line)
-        print("")
         transitions.append((prev_rest, elapsed, rest))
     # Iterate
     prev_stamp = now
@@ -101,7 +106,7 @@ total_elapsed = delta_to_floatsec(total_delta)
 widest_prev = max(len(truncate(x)) for x, _, _ in transitions)
 widest_cur = max(len(truncate(x)) for _, _, x in transitions)
 
-print("-------\n")
+print("\n-------\n")
 print("Total elapsed time: {0:.2f}s\n".format(total_elapsed))
 print("-------\n")
 print("Transitions sorted by length:\n")
