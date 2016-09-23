@@ -8,6 +8,13 @@ import time
 # Find 10-digit epoch timestamps, optionally w/ sub-second precisions
 pattern = re.compile(r'([^.]|^)(\d{10,}(\.\d+)?)')
 
+# Make it simple to assume 1st col is timestamp and not to touch subsequent
+# columns. Helps with large unrounded floats which aren't microsecond
+# timestamps.
+repl_count = 0
+if len(sys.argv) == 2 and sys.argv[1] == '--first':
+    repl_count = 1
+
 # Turn such timestamps into useful-yet-compact date representation.
 format_ = "%Y-%m-%d@%H:%M:%S"
 if len(sys.argv) == 2 and sys.argv[1] in ('-t', '--time-only'):
@@ -27,7 +34,7 @@ def timestamp_to_human(match):
 
 def convert(iterable):
     for line in iterable:
-        yield re.sub(pattern, timestamp_to_human, line)
+        yield re.sub(pattern, timestamp_to_human, line, repl_count)
 
 
 if __name__ == '__main__':
