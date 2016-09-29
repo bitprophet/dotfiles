@@ -242,6 +242,9 @@ autocmd BufNewFile,BufRead *.go setlocal ft=go noexpandtab
 " Things using INI/ConfigParser style ugliness
 autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
 
+" SSH configs with various pre/suffixes
+autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
+
 
 "
 " Key mappings

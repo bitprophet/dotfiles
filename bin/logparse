@@ -41,12 +41,18 @@ tolerance = 0.05
 if len(sys.argv) > 1:
     tolerance = float(sys.argv[1])
 
+# 2 seconds seems like enough for most Python apps to load up; obviously this
+# presumes such apps begin logging early on and not after some slow operation.
+reasonable_startup_time = 2000
+seen_first_line = False
+
 start = prev_stamp = td()
 prev_line = prev_rest = "<beginning of time>"
 
 transitions = []
 
 for line in sys.stdin.readlines():
+    start_too_big = False
     # Chop line
     line = line.strip()
     if not line:
@@ -59,23 +65,38 @@ for line in sys.stdin.readlines():
         now = td(hours=hours, minutes=mins, seconds=secs)
     elif stamp.isdigit():
         # python logging %(relativeCreated)d style
-        now = td(milliseconds=int(stamp))
+        ms = int(stamp)
+        now = td(milliseconds=ms)
+        # Using multiprocessing in Python appears to inherit relative creation
+        # load time from the parent/main process or...something? Guard against
+        # that pattern if seen (start of time is a large number).
+        if ms > reasonable_startup_time:
+            start_too_big = True
     else:
         raise ValueError("No idea how to parse timestamp {0!r} from line {1!r}".format(stamp, line))
     # Get interval
     diff = now - prev_stamp
     # Decide whether to print
     elapsed = delta_to_floatsec(diff)
-    if elapsed > tolerance:
-        print(prev_line)
+    # TODO: maybe emit to stderr or something when we do this; otherwise it
+    # could mask actual 'first thing logged is slow' situations.
+    skip = (not seen_first_line) and start_too_big
+    if (elapsed > tolerance) and not skip:
+        # Don't separate adjacent transitions
+        # TODO: this could mask multiple adjacent lines; ideally we want to
+        # preserve full line so we can compare that instead, which will be
+        # fully unique thanks to timestamps.
+        if (not transitions) or transitions[-1][2] != prev_rest:
+            print("")
+            print(prev_line)
         print("  ... {0:.2f}s ...".format(elapsed))
         print(line)
-        print("")
         transitions.append((prev_rest, elapsed, rest))
     # Iterate
     prev_stamp = now
     prev_line = line
     prev_rest = rest
+    seen_first_line = True
 
 # Summarize
 total_delta = now - start
@@ -85,7 +106,7 @@ total_elapsed = delta_to_floatsec(total_delta)
 widest_prev = max(len(truncate(x)) for x, _, _ in transitions)
 widest_cur = max(len(truncate(x)) for _, _, x in transitions)
 
-print("-------\n")
+print("\n-------\n")
 print("Total elapsed time: {0:.2f}s\n".format(total_elapsed))
 print("-------\n")
 print("Transitions sorted by length:\n")
