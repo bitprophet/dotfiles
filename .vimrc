@@ -460,6 +460,17 @@ let g:netrw_gx = "<cWORD>"
 " indented list items when mashing enter on an already blank line)! Clearly the
 " default isn't doing that; figure out how.
 "autocmd FileType vimwiki inoremap <buffer> <CR> <Esc>:VimwikiReturn 3 5<CR>
+" Always 'cd' to vimwiki directory when opening vimwiki pages. This means git,
+" search, etc should always 'just work'.
+" TODO: if I start using subdirs, see whether this goes to wiki root or not...
+let g:vimwiki_auto_chdir = 1
+" Auto git commit/push on save for vimwiki files. Pauper's Evernote sync.
+" TODO: this may or may not work w/ subdirs, forget exactly how pattern works
+autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! git add * && git commit -am "Checkpoint"'
+" Explicit (save-and-)sync mapping, basically 'save harder'.
+" NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
+" instantly. Probably a good thing.
+autocmd FileType vimwiki map <buffer> <Leader>ss <Leader>s<Bar>:!git push<CR>
 
 
 " Pull in (semi-)sensitive / info-exposing vimrc commands. Not
