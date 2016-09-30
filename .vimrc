@@ -468,9 +468,10 @@ let g:netrw_gx = "<cWORD>"
 " search, etc should always 'just work'.
 " TODO: if I start using subdirs, see whether this goes to wiki root or not...
 let g:vimwiki_auto_chdir = 1
-" Auto git commit/push on save for vimwiki files. Pauper's Evernote sync.
+" Auto git commit/push on save for vimwiki files, every >=5min. Pauper's
+" Evernote sync.
 " TODO: this may or may not work w/ subdirs, forget exactly how pattern works
-autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! git add * && git commit -am "Checkpoint"'
+autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute '! ~/bin/checkpoint'
 " Explicit (save-and-)sync mapping, basically 'save harder'.
 " NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
 " instantly. Probably a good thing.
