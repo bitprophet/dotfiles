@@ -90,9 +90,6 @@ set smarttab
 set expandtab
 " When wrapping/formatting, break at 79 characters. 
 set textwidth=79
-" Also make it visually obvious where that line is.
-"highlight OverLength ctermbg=88 ctermfg=white
-"match OverLength /\%80v.\+/
 " By default, all indent/tab stuff is 4 spaces, as God intended.
 set tabstop=4
 set softtabstop=4
@@ -140,7 +137,6 @@ set nomore
 " Use bash-like tab completion in Vim command line
 set wildmenu
 set wildmode=list:longest
-"set wildignore+=*.swp,*.egg-info*,htmlcov*,
 set wildignore+=*.egg-info/,htmlcov/
 " Allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
@@ -167,13 +163,6 @@ endif
 if has("autocmd")
   filetype indent plugin on
 endif
-
-" Automatically update local cwd for file in current buffer
-" if exists('+autochdir')
-"   set autochdir
-" else
-"   autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-" endif
 
 "
 " Settings for specific versions of Vim
