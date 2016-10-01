@@ -1,0 +1,50 @@
+"
+" Plugin loading & settings
+"
+
+
+" vim-plug!
+
+call plug#begin('~/.vim/plugged')
+
+" Improved JSON syntax formatting, display, etc
+Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+" Personal information manager
+Plug 'vimwiki/vimwiki', {'tag': 'v2.3'}
+" Fuzzy file finder
+Plug 'ctrlpvim/ctrlp.vim', {'commit': '36f34cd'}
+" Clojure
+Plug 'guns/vim-clojure-static', {'commit': 'bc1bebf'}
+" TOML
+Plug 'cespare/vim-toml', {'commit': 'f6f79f3'}
+" Git integration (blame, diff formatting, etc)
+Plug 'tpope/vim-fugitive', {'commit': '0095769'}
+" Weak/redundant/etc word checker
+Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
+
+call plug#end()
+
+
+" netrw
+" Default to tree view 
+let g:netrw_liststyle = 3
+" Hide common hidden files
+let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+" Don't use frickin elinks, wtf
+let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
+
+" VimClojure
+let g:vimclojure#ParenRainbow=1
+let g:vimclojure#DynamicHighlighting=1
+
+" Ctrl-P
+let g:ctrlp_custom_ignore = '\.git$\|\.gz$\|\.egg-info\|htmlcov\|.swp$'
+let g:ctrlp_clear_cache_on_exit = 0
+map <C-t> :CtrlPTag<CR>
+
+" vim-pencil
+"augroup pencil
+"  autocmd!
+"  autocmd FileType markdown,mkd,md  call pencil#init()
+"  autocmd FileType text             call pencil#init()
+"augroup END

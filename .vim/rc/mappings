@@ -1,0 +1,163 @@
+"
+" Key mappings & other shortcuts/functions
+"
+
+
+"
+" Key mappings
+"
+
+" Custom leader
+let mapleader=" "
+
+" Insert blank lines w/o leaving normal mode
+nmap <Leader><CR> o<Esc>
+
+" Tab/split nav
+nmap <Leader>[ @='gT'<CR>
+nmap <Leader>] @='gt'<CR>
+nmap <Leader><Left> <C-w><Left>
+nmap <Leader><Right> <C-w><Right>
+nmap <Leader><Up> <C-w><Up>
+nmap <Leader><Down> <C-w><Down>
+" Move all windows in current tab-pane to be horizontally split.
+" Good for moving to a smaller/narrower display from a larger one.
+nmap <Leader>k :windo wincmd K<CR>
+
+" Paragraph formatting
+nmap <Leader>f gqap
+vmap <Leader>f gq
+
+" :w shortcut
+nmap <Leader>s :w<CR>
+
+" hidden/nonprinting characters toggle
+nmap <Leader>h :set list!<CR>
+
+" paste/nopaste toggle
+nmap <Leader>p :set paste!<CR>
+
+" highlight search toggle
+nmap <Leader>l :set hls!<CR>
+
+" insert ipdb, heh
+nmap <Leader>i oimport ipdb; ipdb.set_trace()<C-C>
+
+" Easy but on-demand (not automatic) save-and-build-docs
+nmap <Leader>b :w<CR>:!inv docs<CR>
+
+" Up/down go visually instead of by physical lines (useful for long wraps)
+" Interactive ones need to check whether we're in the autocomplete popup (which
+" breaks if we remap to gk/gj)
+map <up> gk
+inoremap <up> <C-R>=pumvisible() ? "\<lt>up>" : "\<lt>C-o>gk"<Enter>
+map <down> gj
+inoremap <down> <C-R>=pumvisible() ? "\<lt>down>" : "\<lt>C-o>gj"<Enter>
+
+" Really only ever use ZZ to "exit entire session" so let's rebind it to :qa
+map ZZ :wqa<CR>
+
+" Want Home/End to work like in regular ass text editing apps ¯\_(ツ)_/¯
+" (Strangely, on my 97-key keyboards, Home/End are "keypad" Home/End, despite
+" PageUp/Down showing up as regular <PageUp>/etc.)
+" EDIT: except...when they aren't...?! JFC computers.
+map <kHome> gg
+imap <kHome> gg
+map <kEnd> G
+imap <kEnd> G
+map <Home> gg
+imap <Home> gg
+map <End> G
+imap <End> G
+
+
+"
+" Custom "snippets"/shortcuts
+"
+
+" ReST header shortcuts: create or resize header formatting under/around
+" current line.
+
+function! NextLineIsOnly(char)
+    let check_char = a:char
+    if check_char == '~'
+        let check_char = '\~'
+    endif
+    return getline(line(".")+1) =~ "^" . check_char . "\\+$"
+endf
+
+function! ReplaceNextLineWith(char)
+    return "yyjVpVr" . a:char
+endf
+
+function! ReplaceSurroundingsWith(char)
+    return ReplaceNextLineWith(a:char) . "yykkVp"
+endf
+
+function! AppendLineOf(char)
+    return "yypVr" . a:char
+endf
+
+function! SurroundWith(char)
+    return AppendLineOf(a:char) . "yykP"
+endf
+
+function! H1()
+    let char = "="
+    if NextLineIsOnly(char)
+        return ReplaceSurroundingsWith(char)
+    else
+        return SurroundWith(char)
+    endif
+endf
+
+function! H(char)
+    if NextLineIsOnly(a:char)
+        return ReplaceNextLineWith(a:char)
+    else
+        return AppendLineOf(a:char)
+    endif
+endf
+
+nnoremap <expr> <F1> H1()
+nnoremap <expr> <F2> H("=")
+nnoremap <expr> <F3> H("-")
+nnoremap <expr> <F4> H("~")
+
+" Make a WORD monospaced
+:no <leader>m gEwi`<esc>Ea`<esc>
+:vn <leader>m o<esc>i`<esc>Ea`<esc>
+
+" Faster close-window. LEADER ALL THE THINGS
+:no <leader>z :q<CR>
+
+" Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
+" creation of nonexistent directories.
+augroup AutoMkdir
+    autocmd!
+    autocmd BufNewFile * :call EnsureDirExists()
+augroup END
+function! EnsureDirExists ()
+    let required_dir = expand("%:h")
+    if !isdirectory(required_dir)
+        call AskQuit("Directory '" . required_dir . "' doesn't exist.", "&Create it?")
+        try
+            call mkdir( required_dir, 'p' )
+        catch
+            call AskQuit("Can't create '" . required_dir . "'", "&Continue anyway?")
+        endtry
+    endif
+endfunction
+
+function! AskQuit (msg, proposed_action)
+    if confirm(a:msg, a:proposed_action . "\n&Quit?") == 2
+        exit
+    endif
+endfunction
+
+
+" Pretty-print JSON files with Python (& remove the trailing whitespace that
+" Python <2.7 json module adds, sigh)
+nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
+" Speaking of nuking trailing whitespace, that's generally useful...
+nmap <Leader>w :%s/\s\+$//g<CR>

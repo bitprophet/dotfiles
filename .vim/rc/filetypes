@@ -1,0 +1,57 @@
+"
+" Settings for specific filetypes
+"
+
+" My vim 'rc' files
+autocmd BufNewFile,BufRead ~/.vim/rc/* setlocal filetype=vim
+
+" Ruby and related
+autocmd BufNewFile,BufRead Gemfile,Vagrantfile setlocal filetype=ruby
+autocmd BufNewFile,BufRead *.tt,*.citrus setlocal filetype=treetop
+" Don't use foldmethod=syntax as it is DOG SLOW on nontrivial files :(
+autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=indent
+
+" Markdown
+autocmd BufNewFile,BufRead *.txt setlocal filetype=markdown
+autocmd FileType markdown setlocal ai comments=n:> spell
+
+" ReST
+autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rst
+autocmd FileType rst setlocal ai comments=n:> spell
+
+" YAML
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" No more need to drop modelines into common Apache files
+" (both Debian and RedHat style Apache conf dirs)
+autocmd BufNewFile,BufRead /etc/apache2/*,/etc/httpd/* setlocal filetype=apache
+
+" Same for nginx
+autocmd BufNewFile,BufRead */etc/nginx/* setlocal ft=nginx
+
+" JSON
+autocmd BufNewFile,BufRead *.json setlocal ft=json
+autocmd BufNewFile,BufRead ~/.mongoctl/*.config setlocal ft=json
+
+" Zsh
+autocmd BufNewFile,BufRead ~/.zsh* setlocal filetype=zsh
+
+" Io
+autocmd BufNewFile,BufRead *.io setlocal ft=io
+
+" Racket/Scheme
+autocmd BufNewFile,BufRead *.rkt setlocal tabstop=2 softtabstop=2 shiftwidth=2 ft=scheme
+
+" Sphinx theme CSS templates
+autocmd BufNewFile,BufRead *.css_t setlocal ft=css
+
+" Go, cuz scurred of using the entire huge set of stuff that is vim-go
+autocmd BufNewFile,BufRead *.go setlocal ft=go noexpandtab
+
+" Things using INI/ConfigParser style ugliness
+autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
+
+" SSH configs with various pre/suffixes
+autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
+
+

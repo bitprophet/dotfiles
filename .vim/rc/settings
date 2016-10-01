@@ -1,0 +1,143 @@
+"
+" Basic/common settings
+"
+
+" Colorization/display
+
+" Syntax highlighting!
+syntax on
+" Slower but better syncing -- hopefully no more dumb broken syntax
+syntax sync fromstart
+" Colorize for a dark background
+set background=dark
+" 256 colors!
+set t_Co=256
+colorscheme desert256
+" Show additional info in the command line (very last line on screen) where
+" appropriate.
+set showcmd
+" Always display status lines/rulers
+set laststatus=2
+" Custom statusline showing paste mode, etc
+function! PasteAwareStatusline()
+    let default = "%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P"
+    if &paste
+        return "%#ErrorMsg#" . default . "%*"
+    endif
+    return default
+endfunction
+set statusline=%!PasteAwareStatusline()
+" Show current line for visibility
+set cursorline
+
+" Navigation/search
+
+" Show matching brackets/parentheses when navigating around
+set showmatch
+" Show matching parens in 2/10 of a second. No idea why I wanted this.
+set matchtime=2
+" Search incrementally instead of waiting for me to hit Enter
+set incsearch
+" Search case-insensitively
+set ignorecase
+" But be smart about it -- if I have any caps in my term, be case-sensitive.
+set smartcase
+" Highlight search terms by default.
+set hls
+
+" Formatting
+
+" Automatically indent based on current filetype
+set autoindent
+" Don't unindent when I press Enter on an indented line
+set preserveindent
+" 'smartindent', however, screws up Python -- so turn it off
+set nosmartindent
+if exists('+breakindent')
+    " As of vim 7.4.338-354, this new setting is AWESOME and preserves indent on
+    " soft wrap!
+    set breakindent
+    " This tweaks its behavior. For now, assume most wrapping is in bullet list
+    " items, and set to 2 spaces. TODO: figure out how to ONLY make it set when in
+    " a list-item.
+    set breakindentopt=shift:2
+endif
+" Make tabbing/deleting honor 'shiftwidth' as well as 'softtab' and 'tabstop'
+set smarttab
+" Use spaces for tabs
+set expandtab
+" When wrapping/formatting, break at 79 characters. 
+set textwidth=79
+" By default, all indent/tab stuff is 4 spaces, as God intended.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+" Default autoformatting options:
+" c: hard-wrap at textwidth for comments, but autoinsert comment character too
+" r: also autoinsert comment character when making new lines after existing
+"    comment lines
+" o: ditto but for o/O in normal mode
+" q: Allow 'gq' to autowrap/autoformat comments as well as normal text
+" n: Recognize numbered lists when autoformatting (don't explicitly need this,
+"    was probably in a default setup somewhere.)
+" 2: Use 2nd line of a paragraph for the overall indentation level when
+"    autoformatting. Good for e.g. bulleted lists or other formats where first
+"    line in a paragraph may have a different indent than the rest.
+set formatoptions=croqn2
+" Try to break on specific characters instead of the very last character that
+" might otherwise fit. Don't remember exactly why this is here but I'm happy
+" with how things wrap now...
+set lbr
+" Don't put 2 spaces after periods when autoformatting
+set nojoinspaces
+
+" Behavior
+
+" Allow folding to play nice with Python and other well-indented code
+set foldmethod=indent
+" Don't close all folds by default when file opens
+set nofoldenable
+" "zsh -l -c <command>" for :sh and :!
+" (so it sources my .zshrc and so forth)
+set shellcmdflag=-c
+set shell=/bin/zsh\ -l
+" Honor Vim modelines at top/bottom of files
+set modeline
+" Look 5 lines in for modelines (default is sometimes just 1 or 2 which may not
+" be enough for some files)
+set modelines=5
+" When splitting, put new windows to the right (vertical) or below (horizontal)
+set splitright splitbelow
+" Start scrolling up/down when cursor gets to 3 lines away from window edge
+set scrolloff=3
+" Don't use 'more' for shell output automatically.
+set nomore
+" Use bash-like tab completion in Vim command line
+set wildmenu
+set wildmode=list:longest
+set wildignore+=*.egg-info/,htmlcov/
+" Allow backspaces to eat indents, end-of-line/beginning-of-line characters
+set backspace=indent,eol,start
+" Let me open a shitton of tabs at once if I really want.
+set tabpagemax=100
+" Make :sb let me navigate between all windows and tabs
+set switchbuf=usetab
+" Don't write out backups normally
+set nobackup
+" Don't do the "write a backup, then cp it to the real filename" trick either.
+" This prevents some file watchdog programs from noticing file updates.
+set nowritebackup
+" Persistent (across edits/sessions) undo history \o/
+set undodir=~/.vim/undo
+set undofile
+
+" Jump to last known location in file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+" Filetype based indent rules
+if has("autocmd")
+  filetype indent plugin on
+endif
