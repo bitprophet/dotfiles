@@ -23,6 +23,8 @@ nmap <Leader><Down> <C-w><Down>
 " Move all windows in current tab-pane to be horizontally split.
 " Good for moving to a smaller/narrower display from a larger one.
 nmap <Leader>k :windo wincmd K<CR>
+" Switch to an open tab by name (note: tab-completes too!)
+nmap <Leader>t :tab sbuf 
 
 " Paragraph formatting
 nmap <Leader>f gqap
