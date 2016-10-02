@@ -69,6 +69,11 @@
 .vim/plugged
 # Vim settings
 !.vimrc
+# Ignore swapfiles
+.vim/.*.swp
+.vim/*/.*.swp
+.vim/*/*/.*.swp
+.vim/*/*/*/.*.swp
 
 # Local copies of tools/scripts
 !bin
