@@ -1,8 +1,8 @@
-local log = hs.logger.new('detectDesktop', 'debug')
+log = hs.logger.new('detectDesktop', 'debug')
 
 -- Takes explicit callback name/identifier because lua metaprogramming is bluh
 function callWhenMouseConnected(identifier, callback)
-    hs.usb.watcher.new(function(data)
+    return hs.usb.watcher.new(function(data)
         mouse = "Evoluent VerticalMouse 4"
         -- Need to scan prod/vendor IDs too now, getting 2x connect events for
         -- some bizarro reason :(
@@ -15,11 +15,11 @@ function callWhenMouseConnected(identifier, callback)
             log.d("Invoking callback '" .. identifier .. "'")
             callback()
         end
-    end):start()
+    end)
 end
 
 function callWhenScreenChanges()
-    hs.screen.watcher.new(function()
+    return hs.screen.watcher.new(function()
         log.d("Received new screen-change event!")
         log.d("Printing current list o screens:")
         log.d(hs.inspect(hs.screen.allScreens()))
@@ -27,5 +27,5 @@ function callWhenScreenChanges()
         -- display, when on internal it is "Color LCD". Whee
         -- TODO: useNaturalScrolling(true) when screen has changed to be just
         -- internal display
-    end):start()
+    end)
 end
