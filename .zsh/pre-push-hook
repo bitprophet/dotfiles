@@ -27,12 +27,12 @@ fi
 if [[ -z $SKIP_TEST ]]; then
     inv test || exit 1
 fi
-# Docs
-if [[ -z $SKIP_DOCS ]]; then
-    inv sites || exit 1
-fi
 # Optionally test under Python 3
 if [[ -n $PY3_VIRTUALENV ]]; then 
     source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
     inv test || exit 1
+fi
+# Docs
+if [[ -z $SKIP_DOCS ]]; then
+    inv sites || exit 1
 fi
