@@ -3,7 +3,7 @@
 # Dumb script to checkpoint a $CWD git repo if it hasn't been committed in at
 # least 5 minutes. Mostly to avoid potential issues with vim command exec.
 
-if [[ -z "$(find .git/logs -cmin -5)" ]]; then
+if [[ -z "$(find .git/logs -cmin -5)" || $1 == "--force" || $1 == "-f" ]]; then
     git add .
     git commit -am "Checkpoint"
 fi

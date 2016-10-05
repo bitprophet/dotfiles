@@ -33,4 +33,9 @@ autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkp
 " Explicit (save-and-)sync mapping, basically 'save harder'.
 " NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
 " instantly. Probably a good thing.
-autocmd FileType vimwiki map <buffer> <Leader>ss <Leader>s<Bar>:!git push<CR>
+function SaveAndPush()
+    :w
+    :!~/bin/checkpoint --force
+    :!git push
+endfunction
+autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
