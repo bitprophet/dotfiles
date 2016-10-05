@@ -145,7 +145,7 @@ function json() {
     # Obtain prettyprinter command string
     if which jq > /dev/null; then
         # Default to using jq as prettyprinter, it's quite nice for that alone
-        _pretty="jq"
+        _pretty="jq -C ."
     else
         # Otherwise, fallback to Python's json module; Python is errywhere.
         _pretty="python -m json.tool"
@@ -161,7 +161,7 @@ function json() {
         eval ${_pretty}
     else
         eval "curl -ks $2 \"$1\" | ${_pretty}"
-    fi
+    fi | less -FR
 }
 
 # File pull request via 'hub', automatically inserting current HEAD as the
