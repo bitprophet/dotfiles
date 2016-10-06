@@ -1,2 +1,2 @@
 # Always page, because saying --color | less -R by hand every time is annoying
---pager=less -FR
+--pager=less -FXR
