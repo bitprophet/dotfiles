@@ -26,6 +26,17 @@ let g:netrw_gx = "<cWORD>"
 " search, etc should always 'just work'.
 " TODO: if I start using subdirs, see whether this goes to wiki root or not...
 let g:vimwiki_auto_chdir = 1
+" Prevent saving wiki files that didn't get tags. So easy to forget!
+" TODO: would be nice to variable-ify the path/globexpr
+" if getbufline("", 1)[0] =~ ":"
+function CheckForTags()
+    try
+        if getbufline("", 1)[0] !~ ":"
+            echoerr 'Lol no'
+        endif
+    endtry
+endfunction
+autocmd BufWritePre /Users/jforcier/vimwiki/*.md call CheckForTags()
 " Auto git commit/push on save for vimwiki files, every >=5min. Pauper's
 " Evernote sync.
 " TODO: this may or may not work w/ subdirs, forget exactly how pattern works
