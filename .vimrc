@@ -1,3 +1,5 @@
+" Stuff that needs to come before plugins for w/e reason
+source ~/.vim/rc/before-plugins
 " vim-plug plugins list & plugin settings
 source ~/.vim/rc/plugins
 " Basic settings/behavior toggles/etc
