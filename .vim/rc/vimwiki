@@ -9,11 +9,14 @@ autocmd FileType vimwiki map <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
 autocmd FileType vimwiki map <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
 autocmd FileType vimwiki imap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
+
 " Use Markdown plz
 let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
+
 " Allow 'gx' to open URLs (this technically works anywhere, not just in
 " vimwiki) that include question marks, hashes etc. Note: cWORD not cword.
 let g:netrw_gx = "<cWORD>"
+
 " Override behavior of (not actual mapping for) hitting Return in list items.
 " Specifically, change the 1st number from 1 to 3: Return always inserts a new
 " line item. 2nd number (set to 5) stays same: Enter on empty list item deletes
@@ -22,10 +25,12 @@ let g:netrw_gx = "<cWORD>"
 " indented list items when mashing enter on an already blank line)! Clearly the
 " default isn't doing that; figure out how.
 "autocmd FileType vimwiki inoremap <buffer> <CR> <Esc>:VimwikiReturn 3 5<CR>
+
 " Always 'cd' to vimwiki directory when opening vimwiki pages. This means git,
 " search, etc should always 'just work'.
 " TODO: if I start using subdirs, see whether this goes to wiki root or not...
 let g:vimwiki_auto_chdir = 1
+
 " Prevent saving wiki files that didn't get tags. So easy to forget!
 function CheckForTags()
     try
@@ -36,10 +41,12 @@ function CheckForTags()
     endtry
 endfunction
 autocmd BufWritePre /Users/jforcier/vimwiki/*.md call CheckForTags()
+
 " Auto git commit/push on save for vimwiki files, every >=5min. Pauper's
 " Evernote sync.
 " TODO: this may or may not work w/ subdirs, forget exactly how pattern works
 autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkpoint'
+
 " Explicit (save-and-)sync mapping, basically 'save harder'.
 " NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
 " instantly. Probably a good thing.
