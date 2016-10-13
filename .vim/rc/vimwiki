@@ -27,12 +27,11 @@ let g:netrw_gx = "<cWORD>"
 " TODO: if I start using subdirs, see whether this goes to wiki root or not...
 let g:vimwiki_auto_chdir = 1
 " Prevent saving wiki files that didn't get tags. So easy to forget!
-" TODO: would be nice to variable-ify the path/globexpr
-" if getbufline("", 1)[0] =~ ":"
 function CheckForTags()
     try
-        if getbufline("", 1)[0] !~ ":"
-            echoerr 'Lol no'
+        " Note: regexp here MUST be single-quoted to avoid slash problems
+        if getbufline("", 1)[0] !~ ':.\+:'
+            echoerr "Don't forget tags!!"
         endif
     endtry
 endfunction
