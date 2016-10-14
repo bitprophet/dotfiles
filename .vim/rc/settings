@@ -116,6 +116,8 @@ set nomore
 set wildmenu
 set wildmode=list:longest
 set wildignore+=*.egg-info/,htmlcov/
+" And configure insert-mode omnicomplete type menus too
+set completeopt=menu,preview,longest
 " Allow backspaces to eat indents, end-of-line/beginning-of-line characters
 set backspace=indent,eol,start
 " Let me open a shitton of tabs at once if I really want.

@@ -7,7 +7,13 @@
 let g:vimwiki_table_mappings = 0
 autocmd FileType vimwiki map <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
 autocmd FileType vimwiki map <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
-autocmd FileType vimwiki imap <buffer> <Tab> <Plug>VimwikiIncreaseLvlSingleItem
+" Not only do we want regular edit-style tab, but we also want it to be useful
+" for completing the tag-based insert-completion when only one match is
+" displayed.
+" TODO: try making it useful even when >1 possible match has been narrowed down
+autocmd FileType vimwiki imap <buffer> <expr> <Tab> pumvisible()
+\    ? "\<C-N>\<C-Y>:"
+\    : "\<Plug>VimwikiIncreaseLvlSingleItem"
 autocmd FileType vimwiki imap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleItem
 
 " Use Markdown plz
