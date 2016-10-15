@@ -46,6 +46,7 @@ function CheckForTags()
         endif
     endtry
 endfunction
+" TODO: make variable out of vimwiki root? used in 3x places now
 autocmd BufWritePre /Users/jforcier/vimwiki/*.md call CheckForTags()
 
 " Auto git commit/push on save for vimwiki files, every >=5min. Pauper's
