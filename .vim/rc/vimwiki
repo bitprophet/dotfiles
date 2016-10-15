@@ -66,3 +66,9 @@ autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
 
 " Index page (holding all non-child pages) sorts contents before saving
 autocmd BufWritePre /Users/jforcier/vimwiki/index.md 2,$sort i
+
+" When hitting Enter on a tag omnicomplete menu, do what it's supposed to.
+" Not sure what is preventing it from working as documented :(
+autocmd FileType vimwiki imap <buffer> <expr> <CR> pumvisible()
+\    ? "\<C-Y>:"
+\    : "\<Esc>:VimwikiReturn 1 5<CR>"
