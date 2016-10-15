@@ -63,3 +63,6 @@ function SaveAndPush()
     :!git push
 endfunction
 autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
+
+" Index page (holding all non-child pages) sorts contents before saving
+autocmd BufWritePre /Users/jforcier/vimwiki/index.md 2,$sort i
