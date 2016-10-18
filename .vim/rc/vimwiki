@@ -60,7 +60,8 @@ autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkp
 function SaveAndPush()
     :w
     :!~/bin/checkpoint --force
-    :!git push
+    " Use fugitive's push as it's more silent...meh
+    :Gpush
 endfunction
 autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
 
