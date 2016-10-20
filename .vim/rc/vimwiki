@@ -58,9 +58,11 @@ autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkp
 " NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
 " instantly. Probably a good thing.
 function SaveAndPush()
+    " Make sure current page is written
     :w
+    " And that all files are added/committed, even if mtime<5min
     :!~/bin/checkpoint --force
-    " Use fugitive's push as it's more silent...meh
+    " Push to server. Use fugitive's push as it's more silent...meh
     :Gpush
 endfunction
 autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
