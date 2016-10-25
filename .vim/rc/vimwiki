@@ -60,7 +60,12 @@ autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkp
 function SaveAndPush()
     " Make sure current page is written
     :w
-    " And that all files are added/committed, even if mtime<5min
+    " Perform tag full-rebuild in case pages were deleted (ugh)
+    " TODO: improve vimwiki's own page-deletion so it nukes just that page's
+    " tags, and also works with markdown links heh
+    :!rm .tags
+    :VimwikiRebuildTags!
+    " Make sure all files are added/committed, even if mtime<5min
     :!~/bin/checkpoint --force
     " Push to server. Use fugitive's push as it's more silent...meh
     :Gpush
