@@ -44,12 +44,6 @@ nmap <Leader>p :set paste!<CR>
 " highlight search toggle
 nmap <Leader>l :set hls!<CR>
 
-" insert ipdb, heh
-nmap <Leader>i oimport ipdb; ipdb.set_trace()<C-C>
-
-" Easy but on-demand (not automatic) save-and-build-docs
-nmap <Leader>b :w<CR>:!inv docs<CR>
-
 " Up/down go visually instead of by physical lines (useful for long wraps)
 " Interactive ones need to check whether we're in the autocomplete popup (which
 " breaks if we remap to gk/gj)
@@ -131,6 +125,10 @@ nnoremap <expr> <F4> H("~")
 " Make a WORD monospaced
 :no <leader>m gEwi`<esc>Ea`<esc>
 :vn <leader>m o<esc>i`<esc>Ea`<esc>
+
+" Make a WORD bold
+:no <leader>b gEwi**<esc>Ea**<esc>
+:vn <leader>b o<esc>i**<esc>Ea**<esc>
 
 " Faster close-window. LEADER ALL THE THINGS
 :no <leader>z :q<CR>
