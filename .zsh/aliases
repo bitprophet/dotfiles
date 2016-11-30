@@ -177,13 +177,14 @@ function pull() { # 'pr' already exists :(
 
 # Fetch pull request X so its SHAs are available.
 function fetch-pr() {
-    git fetch origin pull/$1/head
+    git fetch origin pull/$1/head$2
 }
 
 # Create new local branch based off pull request X.
 function pr-branch() {
-    fetch-pr $1
-    gco -b $1-int pull/$1/head
+    _NEWBRANCH=$1-int
+    fetch-pr $1 :$_NEWBRANCH
+    git checkout $_NEWBRANCH
     [[ $2 == "nomerge" ]] || git merge master
 }
 
