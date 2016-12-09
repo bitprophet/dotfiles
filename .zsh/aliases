@@ -185,7 +185,8 @@ function pr-branch() {
     _NEWBRANCH=$1-int
     fetch-pr $1 :$_NEWBRANCH
     git checkout $_NEWBRANCH
-    [[ $2 == "nomerge" ]] || git merge master
+    # NOTE: $current_git_branch is usually set by .zsh/prompt
+    [[ $2 == "nomerge" ]] || git merge ${current_git_branch:-master}
 }
 
 # Stupid newline delimited => comma delimited bit (happens to ensure no
