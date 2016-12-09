@@ -124,6 +124,7 @@ alias rmv='deactivate; rmvirtualenv'
 function mkv() {
     virtualenv $1
     source $1/bin/activate
+    cd $1
 }
 
 # Misc
