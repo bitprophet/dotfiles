@@ -54,5 +54,6 @@ autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
 
 " SSH configs with various pre/suffixes
 autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
+autocmd BufNewFile,BufRead ~/Code/oss/fabric*/tests/_support/*.conf setlocal ft=sshconfig
 
 
