@@ -14,7 +14,7 @@ autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 foldmethod=i
 " Markdown
 " NOTE: there's also a line in before-plugins that sets .txt files to be
 " Markdown.
-autocmd FileType markdown setlocal ai comments=n:> spell
+autocmd FileType markdown setlocal autoindent comments=n:> spell
 
 " ReST
 autocmd BufNewFile,BufRead *.rst,*.rest setlocal filetype=rst
@@ -55,5 +55,3 @@ autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
 " SSH configs with various pre/suffixes
 autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
 autocmd BufNewFile,BufRead ~/Code/oss/fabric*/tests/_support/*.conf setlocal ft=sshconfig
-
-
