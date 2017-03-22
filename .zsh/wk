@@ -22,6 +22,10 @@ function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
+    # Try adding to $VIRTUAL_ENV with something even more useful
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        export SITEPACKAGES=$(ls -1d $VIRTUAL_ENV/lib/python*/site-packages)
+    fi
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
