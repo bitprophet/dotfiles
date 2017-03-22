@@ -8,10 +8,11 @@
 #
 # Optional env vars:
 # * $PY3_VIRTUALENV - name of Python 3 virtualenv, if there is one. Triggers
-#   another run of the test suite after activation.
+#   another run of the test suite (& doctests) after activation.
 # * $SKIP_LINT - if set to any non empty value, skips the flake8 step
 # * $SKIP_TEST - if set, skips the test step
 # * $SKIP_DOCS - if set, skips the docs-building step
+# * $SKIP_DOCTESTS - if set, skips the docs site's doctest step
 
 # Force use of a pty so this environment matches that of manual test/etc
 # invocation, travis-ci, etc. Without it some pty-related tests are super
@@ -35,4 +36,13 @@ fi
 # Docs
 if [[ -z $SKIP_DOCS ]]; then
     inv sites || exit 1
+fi
+# Doctests
+if [[ -z $SKIP_DOCTESTS ]]; then
+    inv docs.doctest || exit 1
+fi
+# Doctests (Python 3)
+if [[ -n $PY3_VIRTUALENV && -z $SKIP_DOCTESTS ]]; then
+    source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
+    inv docs.doctest || exit 1
 fi
