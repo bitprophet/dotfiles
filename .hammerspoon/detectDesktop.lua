@@ -27,5 +27,16 @@ function callWhenScreenChanges()
         -- display, when on internal it is "Color LCD". Whee
         -- TODO: useNaturalScrolling(true) when screen has changed to be just
         -- internal display
+        -- Wow, why the hell is Lua so fucking popular again? This is some dumb
+        -- bullshit.
+        current_screen = nil
+        count = 0
+        for k, v in pairs(hs.screen.allScreens()) do
+            current_screen = v
+            count = count + 1
+        end
+        if count == 1 and current_screen:name() == "Color LCD" then
+            useNaturalScrolling(true)
+        end
     end)
 end
