@@ -3,3 +3,5 @@
 # Don't look in various build dirs when ack'ing please
 --ignore-dir=htmlcov
 --ignore-dir=build
+# Ignore .coverage files
+--ignore-file=is:.coverage
