@@ -8,6 +8,7 @@ compdef _users become
 
 # Package managers
 alias apt-get='sudo apt-get'
+alias apt='sudo apt'
 alias apt-cache='sudo apt-cache'
 alias aptitude='sudo aptitude'
 alias apt-file='sudo apt-file'
