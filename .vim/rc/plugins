@@ -23,6 +23,8 @@ Plug 'tpope/vim-fugitive', {'commit': '0095769'}
 Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
+" Awesome parentheses/etc readjustment for LISPs
+Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
 
 call plug#end()
 
