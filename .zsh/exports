@@ -1,5 +1,9 @@
 # General
-export TERM="xterm-256color"
+# TERM used to be xterm-256color but in rare situations (eg weechat under tmux)
+# it really wants to be 'screen-like'. BCE is 'background color erase', a
+# faster method of 'wiping' screen cells for terms that support it. Doesn't
+# seem to cause issues on my Mac or on VMs...
+export TERM="screen-256color-bce"
 export DISPLAY=:0.0
 export EDITOR=vim
 
