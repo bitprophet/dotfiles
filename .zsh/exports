@@ -1,8 +1,5 @@
 # General
 export TERM="xterm-256color"
-if [[ `uname -s` == *CYGWIN* ]]; then
-    export TERM="cygwin"
-fi
 export DISPLAY=:0.0
 export EDITOR=vim
 
