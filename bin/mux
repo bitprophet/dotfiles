@@ -4,11 +4,11 @@ import os
 import sys
 
 from invoke import Context, Config
-from invoke.vendor import yaml2 as yaml
+from invoke.config import yaml # Easy way to grab interpreter-specific module
 
 
 # 'Local' invoke context/config
-ctx = Context(config=Config(overrides={'run': {'env': {'IN_MUX': '1'}}}))
+ctx = Context(Config({'run': {'env': {'IN_MUX': '1'}}}))
 
 
 # Helpers
