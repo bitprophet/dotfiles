@@ -117,6 +117,9 @@ function! H(char)
     endif
 endf
 
+" Inject ipdb
+nmap <Leader>i oimport ipdb; ipdb.set_trace()<C-C>
+
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
