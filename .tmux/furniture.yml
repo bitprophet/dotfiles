@@ -1,0 +1,4 @@
+cmd_all: "wk furniture"
+right_panes:
+  - gpl
+  - heroku local
