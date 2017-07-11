@@ -51,7 +51,7 @@ esac
 # TODO: just look at .local once VMs all have that set
 case $HOST in
     # Workstations
-    hedron | bahro | servitor ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
+    hedron | bahro | servitor | narsil ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
     # VMs
     vm* | debian* | ubuntu* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
