@@ -133,7 +133,7 @@ set nowritebackup
 set undodir=~/.vim/undo
 set undofile
 " Grep better
-set grepprg=ack\ --noheading\ --nocolor\ $*
+set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ $*
 set grepformat=%f:%l:m
 
 " Jump to last known location in file
