@@ -132,6 +132,9 @@ set nowritebackup
 " Persistent (across edits/sessions) undo history \o/
 set undodir=~/.vim/undo
 set undofile
+" Grep better
+set grepprg=ack\ --noheading\ --nocolor\ $*
+set grepformat=%f:%l:m
 
 " Jump to last known location in file
 if has("autocmd")

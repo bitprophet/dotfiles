@@ -174,8 +174,8 @@ nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 nmap <Leader>w :%s/\s\+$//g<CR>
 
 
-" Quickfix list & searching
-nmap <Leader>/ :grep <cword> **/*<CR>
+" Quickfix list & searching (note: I override grepprg in rc/settings)
+nmap <Leader>/ :grep <cword><CR>
 nmap <Leader>; :cl<CR>
 nmap <Leader>. :cn<CR>
 nmap <Leader>, :cp<CR>
