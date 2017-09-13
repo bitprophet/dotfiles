@@ -122,8 +122,8 @@ set completeopt=menu,preview,longest
 set backspace=indent,eol,start
 " Let me open a shitton of tabs at once if I really want.
 set tabpagemax=100
-" Make :sb let me navigate between all windows and tabs
-set switchbuf=usetab
+" Behabior of :sb, quickfix list, etc
+set switchbuf=usetab,split
 " Don't write out backups normally
 set nobackup
 " Don't do the "write a backup, then cp it to the real filename" trick either.
