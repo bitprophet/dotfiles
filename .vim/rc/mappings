@@ -172,3 +172,10 @@ endfunction
 nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
+
+
+" Quickfix list & searching
+nmap <Leader>/ :grep <cword> **/*<CR>
+nmap <Leader>; :cl<CR>
+nmap <Leader>. :cn<CR>
+nmap <Leader>, :cp<CR>
