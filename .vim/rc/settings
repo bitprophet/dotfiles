@@ -134,7 +134,7 @@ set undodir=~/.vim/undo
 set undofile
 " Grep better
 set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ $*
-set grepformat=%f:%l:m
+set grepformat=%f:%l:%m
 
 " Jump to last known location in file
 if has("autocmd")
