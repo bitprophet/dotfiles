@@ -13,6 +13,7 @@
 # * $SKIP_TEST - if set, skips the test step
 # * $SKIP_DOCS - if set, skips the docs-building step
 # * $SKIP_DOCTESTS - if set, skips the docs site's doctest step
+# * $DOC_TASK - if set, overrides doc build task from 'sites'
 
 # Force use of a pty so this environment matches that of manual test/etc
 # invocation, travis-ci, etc. Without it some pty-related tests are super
@@ -35,7 +36,7 @@ if [[ -n $PY3_VIRTUALENV ]]; then
 fi
 # Docs
 if [[ -z $SKIP_DOCS ]]; then
-    inv sites || exit 1
+    inv ${DOC_TASK-sites}|| exit 1
 fi
 # Doctests
 if [[ -z $SKIP_DOCTESTS ]]; then
