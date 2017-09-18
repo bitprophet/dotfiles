@@ -179,3 +179,9 @@ nmap <Leader>/ :grep <cword>\[^a-zA-Z0-9_\]<CR>
 nmap <Leader>; :cope<CR>
 nmap <Leader>. :cn<CR>
 nmap <Leader>, :cp<CR>
+
+
+" OS clipboard override shortcut (with mouse on, selection uses vim and not
+" terminal, thus 'regular' Cmd-C does not copy (but it also can't be used.)
+" TODO: figure out why neither <D-C> nor <M-C> seem to work correctly here?
+vmap <Leader>c "*y
