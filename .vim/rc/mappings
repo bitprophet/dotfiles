@@ -175,7 +175,7 @@ nmap <Leader>w :%s/\s\+$//g<CR>
 
 
 " Quickfix list & searching (note: I override grepprg in rc/settings)
-nmap <Leader>/ :grep <cword>\[^a-zA-Z0-9_\]<CR>
+nmap <Leader>/ :grep <cword>[^a-zA-Z0-9_]<CR>
 nmap <Leader>; :cope<CR>
 nmap <Leader>. :cn<CR>
 nmap <Leader>, :cp<CR>
