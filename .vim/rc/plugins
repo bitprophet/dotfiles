@@ -25,6 +25,8 @@ Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
 " Awesome parentheses/etc readjustment for LISPs
 Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
+" JSONnet syntax
+Plug 'google/vim-jsonnet', {'commit': '2637e27'}
 
 call plug#end()
 
