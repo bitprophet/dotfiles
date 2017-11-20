@@ -23,6 +23,7 @@ DOTFILES=(
     wk
     prompt
     zmv
+    fzf
     local
 )
 for file in $DOTFILES; do
