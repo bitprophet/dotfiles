@@ -121,6 +121,8 @@ endf
 nmap <Leader>i ofrom IPython import embed; embed()<C-C>
 " Inject python debug logs
 nmap <Leader>d oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
+" Inject traceback print
+nmap <Leader>tb oimport traceback; traceback.print_stack()<C-C>
 
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
