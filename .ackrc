@@ -5,3 +5,5 @@
 --ignore-dir=build
 # Ignore .coverage files
 --ignore-file=is:.coverage
+# Ignore pytest caches
+--ignore-dir=.cache
