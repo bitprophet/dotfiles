@@ -119,6 +119,7 @@ endf
 
 " Inject ipython embed
 nmap <Leader>i ofrom IPython import embed; embed()<C-C>
+nmap <Leader>pdb oimport ipdb; ipdb.set_trace()<C-C>
 " Inject python debug logs
 nmap <Leader>d oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
