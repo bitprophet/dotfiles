@@ -138,9 +138,11 @@ nnoremap <expr> <F4> H("~")
 :no <leader>b gEwi**<esc>Ea**<esc>
 :vn <leader>b o<esc>i**<esc>Ea**<esc>
 
-" Make a WORD doublequoted
-:no <leader>q gEwi"<esc>Ea"<esc>
-:vn <leader>q o<esc>i"<esc>Ea"<esc>
+" Make a WORD single or doublequoted
+:no <leader>' gEwi'<esc>Ea'<esc>
+:vn <leader>' o<esc>i'<esc>Ea'<esc>
+:no <leader>" gEwi"<esc>Ea"<esc>
+:vn <leader>" o<esc>i"<esc>Ea"<esc>
 
 " Faster close-window. LEADER ALL THE THINGS
 :no <leader>z :q<CR>
