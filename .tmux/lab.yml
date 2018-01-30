@@ -1,0 +1,4 @@
+cmd_all: "wk lab"
+right_panes:
+  - gr
+  - inv aws.contents
