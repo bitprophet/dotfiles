@@ -7,7 +7,7 @@
 # * $VIRTUALENV - name of ~/.virtualenvs/ folder
 #
 # Optional env vars:
-# * $PY3_VIRTUALENV - name of Python 3 virtualenv, if there is one. Triggers
+# * $ALT_VIRTUALENV - name of alternate virtualenv, if there is one. Triggers
 #   another run of the test suite (& doctests) after activation.
 # * $SKIP_LINT - if set to any non empty value, skips the flake8 step
 # * $SKIP_TEST - if set, skips the test step
@@ -30,8 +30,8 @@ if [[ -z $SKIP_TEST ]]; then
     inv test || exit 1
 fi
 # Optionally test under Python 3
-if [[ -n $PY3_VIRTUALENV ]]; then 
-    source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
+if [[ -n $ALT_VIRTUALENV ]]; then
+    source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate
     inv test || exit 1
 fi
 # Docs
@@ -43,7 +43,7 @@ if [[ -z $SKIP_DOCTESTS ]]; then
     inv docs.doctest || exit 1
 fi
 # Doctests (Python 3)
-if [[ -n $PY3_VIRTUALENV && -z $SKIP_DOCTESTS ]]; then
-    source ~/.virtualenvs/${PY3_VIRTUALENV}/bin/activate
+if [[ -n $ALT_VIRTUALENV && -z $SKIP_DOCTESTS ]]; then
+    source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate
     inv docs.doctest || exit 1
 fi
