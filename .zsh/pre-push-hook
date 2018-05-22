@@ -22,6 +22,7 @@ exec < /dev/tty
 # Load our venv
 source ~/.virtualenvs/${VIRTUALENV}/bin/activate
 # Lint
+# TODO: update all projects to use pre-commit-hook for linting/blackening
 if [[ -z $SKIP_LINT ]]; then
     flake8 || exit 1
 fi

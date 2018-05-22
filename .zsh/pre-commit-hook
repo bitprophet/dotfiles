@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+#
+# Parameterizable script for use as .git/hooks/pre-commit
+#
+# Required env vars:
+# * $VIRTUALENV - name of ~/.virtualenvs/ folder
+#
+# Optional env vars:
+# * $SKIP_LINT - if set to any non empty value, skips the flake8 step
+# * $SKIP_BLACKEN - if set to any non empty value, skips the `inv blacken` step
+
+# Load our venv
+source ~/.virtualenvs/${VIRTUALENV}/bin/activate
+# Blacken (black, but expects invoke task w/ some baked-in args)
+# This comes first because it automatically solves most flake8 issues!
+if [[ -z $SKIP_BLACKEN ]]; then
+    inv blacken || exit 1
+fi
+# Lint
+if [[ -z $SKIP_LINT ]]; then
+    flake8 || exit 1
+fi
