@@ -30,7 +30,7 @@ fi
 if [[ -z $SKIP_TEST ]]; then
     inv test || exit 1
 fi
-# Optionally test under Python 3
+# Optionally test under alt Python
 if [[ -n $ALT_VIRTUALENV ]]; then
     source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate
     inv test || exit 1
@@ -43,8 +43,7 @@ fi
 if [[ -z $SKIP_DOCTESTS ]]; then
     inv docs.doctest || exit 1
 fi
-# Doctests (Python 3)
-if [[ -n $ALT_VIRTUALENV && -z $SKIP_DOCTESTS ]]; then
-    source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate
+# Doctests
+if [[ -z $SKIP_DOCTESTS ]]; then
     inv docs.doctest || exit 1
 fi
