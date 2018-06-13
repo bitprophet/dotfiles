@@ -81,10 +81,16 @@ width = int(ret.stdout)
 # Send default command to this first pane
 cmd_all(layout)
 
-# Split down middle for two vertically oriented panes
-# Size left pane depending on total window size (161 or 80). Rather, size the
-# new (right) pane based on whatever's left over, which is easier.
-if width >= (161 + 1 + 80):
+# Split down middle for two vertically oriented panes, with the lefthand pane
+# being appropriate for 2, 3 or etc vim splits.
+# Size left pane depending on total window size. Rather, size the new (right)
+# pane based on whatever's left over, which is easier.
+# TODO: use displays() and branch on display name? More fragile but might allow
+# for more targeted behavior or less buggy math.
+# NOTE: we subtract desired width, +1 for the divider column.
+if width >= (242 + 1 + 80):
+    right_width = width - 243
+elif width >= (161 + 1 + 80):
     right_width = width - 162
 else:
     right_width = width - 81
