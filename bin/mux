@@ -3,6 +3,12 @@
 import os
 import sys
 
+# macOS only; used for displays()
+try:
+    import plistlib
+except ImportError:
+    pass
+
 from invoke import Context, Config
 from invoke.config import yaml # Easy way to grab interpreter-specific module
 
@@ -22,6 +28,24 @@ def cmd_all(layout):
 def layout_path(name):
     filename = "{0}.yml".format(name)
     return os.path.expanduser(os.path.join('~', '.tmux', filename))
+
+def displays():
+    """
+    Yields attached display information as a dict.
+    """
+    # NOTE: not currently used but no other good place to preserve this. We
+    # presently just prefer to look at the properties of the terminal instead
+    # of doing explicit 'what display are you?' checks.
+    data = ctx.run("system_profiler SPDisplaysDataType -xml", hide=True).stdout
+    plist = plistlib.loads(data.encode('utf-8'))
+    displays = {
+        x['_name']: {
+            'pixels': [int(y) for y in x['_spdisplays_pixels'].replace('x ', '').split()],
+            'resolution_string': x['_spdisplays_resolution'],
+        }
+        for x in plist[0]['_items'][0]['spdisplays_ndrvs']
+    }
+    return displays
 
 
 # Usage: mux <layout-name-or-default-layout-parameter>
