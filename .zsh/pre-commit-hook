@@ -15,7 +15,11 @@ source ~/.virtualenvs/${VIRTUALENV}/bin/activate
 # Blacken (black, but expects invoke task w/ some baked-in args)
 # This comes first because it automatically solves most flake8 issues!
 if [[ -z $SKIP_BLACKEN ]]; then
-    inv blacken || exit 1
+    if [[ $(inv --list | grep blacken) ]]; then
+        inv blacken 2>/dev/null || exit 1
+    else
+        echo "WARNING: you don't have 'inv blacken'; skipping"
+    fi
 fi
 # Lint
 if [[ -z $SKIP_LINT ]]; then
