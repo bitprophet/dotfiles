@@ -16,7 +16,14 @@ source ~/.virtualenvs/${VIRTUALENV}/bin/activate
 # This comes first because it automatically solves most flake8 issues!
 if [[ -z $SKIP_BLACKEN ]]; then
     if [[ $(inv --list | grep blacken) ]]; then
-        inv blacken 2>/dev/null || exit 1
+        # TODO: how to make this also ADD the changes to the index?
+        # TODO: like, how do other precommit things such as gofmt do this?
+        # TODO: I looked at "pre-commit" which black explicitly supports, but
+        # it kinda-sorta does the same thing - it runs black, and notices black
+        # made changes, and aborts the commit. Same result: my real changes are
+        # stashed, the blackened changes are dirty, and I must manually git-add
+        # and try committing again.
+        inv blacken --check --diff 2>/dev/null || exit 1
     else
         echo "WARNING: you don't have 'inv blacken'; skipping"
     fi
