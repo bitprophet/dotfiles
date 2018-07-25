@@ -41,9 +41,5 @@ if [[ -z $SKIP_DOCS ]]; then
 fi
 # Doctests
 if [[ -z $SKIP_DOCTESTS ]]; then
-    inv docs.doctest || exit 1
-fi
-# Doctests
-if [[ -z $SKIP_DOCTESTS ]]; then
-    inv docs.doctest || exit 1
+    inv www.doctest docs.doctest || exit 1
 fi
