@@ -43,3 +43,13 @@ export PATH="/Users/jforcier/.local/bin:$PATH"
 
 # Only affects 2.6 but should be harmless in 2.5
 export PYTHONDONTWRITEBYTECODE=1
+
+
+#
+# My own projects' tab complete support
+# (works best here; really wants pyenv, pipsi etc type path manipulation so
+# inv/fab are visible, so putting it up in the completion config is too early.
+# ugh.)
+#
+
+have inv && source <(inv --print-completion-script zsh)
