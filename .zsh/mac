@@ -2,10 +2,6 @@
 # Many of these are really BSD specific tweaks, but OS X is the only BSD
 # userland I tend to run into.
 
-function have() {
-    which $1 &>/dev/null
-}
-
 # GNU utils
 have gls && alias ls='gls --color=auto'
 have gsed && alias sed=gsed && alias esed='gsed -r'
