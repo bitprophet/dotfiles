@@ -11,60 +11,13 @@ export VIRTUALENV_DISTRIBUTE=1
 export WORKON_HOME=~/.virtualenvs
 test -d $WORKON_HOME || mkdir $WORKON_HOME
 
-
-#
-# Lazy-loading of virtualenvwrapper itself.  Copied from
-# https://gist.github.com/2483204 which is itself a tweak of
-# http://blog.arongriffis.com/post/dynamic-virtualenvwrapper
-#
-if [[ $(type -w workon) != "workon: function" ]]; then
-  virtualenv_funcs=( workon deactivate mkvirtualenv )
-
-  load_virtualenv() {
-    # If these already exist, then virtualenvwrapper won't override them.
-    unset -f "${virtualenv_funcs[@]}"
-
-    # virtualenvwrapper doesn't load if PYTHONPATH is set, because the
-    # virtualenv python doesn't have the right modules.
-    declare _pp="$PYTHONPATH"
-    unset PYTHONPATH
-
-    # Attempt to load virtualenvwrapper from its many possible sources...
-    _try_source() { [[ -f $1 ]] || return; source "$1"; return 0; }
-    # TODO: these are all old and can probs be nuked
-    _try_source /usr/local/bin/virtualenvwrapper.sh || \
-    _try_source /etc/bash_completion.d/virtualenvwrapper || \
-    _try_source /usr/bin/virtualenvwrapper.sh
-    # This is a tad meh but pyenv 'hides' the real .sh behind a dispatcher in
-    # its shims/ folder; sourcing that simply won't work. Doing this here is
-    # better than hardcoding the real specific Python version path.
-    if [[ -z $VIRTUALENVWRAPPER_SCRIPT && -x `which pyenv` ]]; then
-        _try_source `pyenv which virtualenv`wrapper.sh
-    fi
-    return_status=$?
-    unset -f _try_source
-
-    # Restore PYTHONPATH
-    [[ -n $_pp ]] && export PYTHONPATH="$_pp"
-
-    # Did loading work?
-    if [[ $return_status != 0 || $(type -w "$1") != "$1: function" ]]; then
-      echo "Error loading virtualenvwrapper, sorry" >&2
-      return $return_status
-    fi
-
-    # Chain-load the appropriate function
-    "$@"
-  }
-
-  for v in "${virtualenv_funcs[@]}"; do
-    eval "$v() { load_virtualenv $v \"\$@\"; }"
-  done
+# Assumes we've installed virtualenvwrapper to the default global pyenv python
+# This is a tad meh but pyenv 'hides' the real .sh behind a dispatcher in
+# its shims/ folder; sourcing that simply won't work. Doing this here is
+# better than hardcoding the real specific Python version path.
+if [[ -z $VIRTUALENVWRAPPER_SCRIPT && -x `which pyenv` ]]; then
+    source `pyenv which virtualenv`wrapper.sh
 fi
-#
-# End of cribbed code
-#
-
 
 #
 # Pip env vars
