@@ -15,9 +15,28 @@ test -d $WORKON_HOME || mkdir $WORKON_HOME
 # This is a tad meh but pyenv 'hides' the real .sh behind a dispatcher in
 # its shims/ folder; sourcing that simply won't work. Doing this here is
 # better than hardcoding the real specific Python version path.
-if [[ -z $VIRTUALENVWRAPPER_SCRIPT && -x `which pyenv` ]]; then
-    source `pyenv which virtualenv`wrapper.sh
+# NOTE: the outermost login shell will source this, setting
+# VIRTUALENVWRAPPER_SCRIPT; but subshells then lack the function definitions
+# (while retaining env vars, including VIRTUALENVWRAPPER_SCRIPT). I'm too lazy
+# to figure out exactly how I want this to work so for now, we just check: if
+# the env var is set, use it instead of recalculating where virtualenv lives;
+# and either way, always attempt to source the appropriate script.
+# NOTE: we also need to account for non-pyenv-bearing systems which might be
+# manually setting VIRTUALENVWRAPPER_SCRIPT or w/e (eg Linux servers).
+if [[ -z $VIRTUALENVWRAPPER_SCRIPT ]]; then
+    if have pyenv; then
+        export VIRTUALENVWRAPPER_SCRIPT=`pyenv which virtualenv`wrapper.sh
+    else
+        # TODO: can we do anything useful here? No pyenv and no manual
+        # venvwrapper. Could just set it to some fallback location(s) if
+        # detected...
+    fi
 fi
+# Here, presence of the variable implies we can successfully source its target
+if [[ -n $VIRTUALENVWRAPPER_SCRIPT ]]; then
+    source $VIRTUALENVWRAPPER_SCRIPT
+fi
+
 
 #
 # Pip env vars
