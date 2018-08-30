@@ -71,4 +71,4 @@ export PYTHONDONTWRITEBYTECODE=1
 # ugh.)
 #
 
-have inv && source <(inv --print-completion-script zsh)
+have inv && source <(inv --print-completion-script zsh 2>/dev/null)
