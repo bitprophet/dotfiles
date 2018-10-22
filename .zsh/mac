@@ -28,10 +28,6 @@ _complete_lunchy() {
 }
 compctl -K _complete_lunchy lunchy
 
-# Golang from homebrew
-export GOPATH=~/.go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
-
 # When using pyenv to install non-Apple-shipped Pythons, put the resulting
 # trees in Homebrew's directories, not ~/.pyenv.
 export PYENV_ROOT=/usr/local/var/pyenv
