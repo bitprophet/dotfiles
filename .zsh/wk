@@ -15,7 +15,7 @@
 # <that window name>' is called if it matches a wk session name.
 
 ROOT=~/Code
-FOLDERS=($ROOT/oss $ROOT/mlab $ROOT/personal $ROOT/others)
+FOLDERS=($ROOT/oss $ROOT/mlab $ROOT/10gen $ROOT/personal $ROOT/others)
 RCFILE=".wkrc"
 
 function wk() {
