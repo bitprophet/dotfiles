@@ -8,6 +8,3 @@
 dist/
 .*.swo
 build/
-.gear
-*.spec
-gcp-*.key

@@ -122,4 +122,3 @@ etc/clusto*.conf
 !.hammerspoon
 !.hammerspoon/*
 .hammerspoon/.*.swp
-.tmux/mms.yml
