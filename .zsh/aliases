@@ -134,6 +134,11 @@ function mkv() {
     cd $1
 }
 
+# For arbitrary, non-venvwrapper-managed envs
+function enter() {
+    source $1/bin/activate
+}
+
 # Misc
 alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
 alias rmpyc='rm **/*.pyc'
