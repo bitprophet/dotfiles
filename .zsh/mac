@@ -39,6 +39,3 @@ export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs2"
 # plus its versions of python2.x/3.x) beats out system-installed Pythons, so my
 # Homebrew-derived ecosystem w/ its newer OpenSSL takes precedence.
 export PATH=/usr/local/var/pyenv/shims:$PATH
-
-# Use 'thefuck' to figure out common fuckup corrections
-have fuck && eval $(thefuck --alias)
