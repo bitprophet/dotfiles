@@ -135,6 +135,8 @@ set undofile
 " Grep better
 set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ '$*'
 set grepformat=%f:%l:%m
+" When writing encrypted files, use blowfish instead of...zip?! WTF
+set cryptmethod=blowfish2
 
 " Jump to last known location in file
 if has("autocmd")
