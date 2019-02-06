@@ -8,21 +8,21 @@ function tickleMouseAccel()
     -- NOTE: as of El Cap, have to add a delay after selecting the inner pane,
     -- or - if SysPrefs is closed before script runs - the search field retains
     -- focus and nothing past 'set current pane' executes.
-    hs.applescript([[
-        tell application "System Preferences"
-            activate
-            set current pane to pane "com.apple.preference.mouse"
-            delay 0.3
-        end tell
-        tell application "System Events"
-            tell application process "System Preferences"
-                tell window "Mouse"
-                    set s to slider "Tracking speed"
-                    increment s
-                    decrement s
-                end tell
-            end tell
-        end tell
-        tell application "System Preferences" to quit
-    ]])
+--    hs.applescript([[
+--        tell application "System Preferences"
+--            activate
+--            set current pane to pane "com.apple.preference.mouse"
+--            delay 0.3
+--        end tell
+--        tell application "System Events"
+--            tell application process "System Preferences"
+--                tell window "Mouse"
+--                    set s to slider "Tracking speed"
+--                    increment s
+--                    decrement s
+--                end tell
+--            end tell
+--        end tell
+--        tell application "System Preferences" to quit
+--    ]])
 end

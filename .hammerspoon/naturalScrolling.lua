@@ -1,3 +1,5 @@
+log = hs.logger.new('naturalScrolling', 'debug')
+
 -- Set trackpad scrolling to natural or unnatural
 function useNaturalScrolling(be_natural)
     if be_natural then
@@ -10,7 +12,7 @@ function useNaturalScrolling(be_natural)
     -- do window movement/resizing/etc.
     -- (Could use hs.application to launch/focus/quit, but what's the point
     -- really?)
-    hs.applescript([[
+    result = hs.applescript([[
         tell application "System Preferences"
 	        activate
 	        set current pane to pane "com.apple.preference.trackpad"
@@ -29,6 +31,6 @@ function useNaturalScrolling(be_natural)
 		        end tell
 	        end tell
         end tell
-        tell application "System Preferences" to quit
+        -- tell application "System Preferences" to quit
     ]])
 end

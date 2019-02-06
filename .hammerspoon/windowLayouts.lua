@@ -14,7 +14,8 @@ local windowLayout = {
     -- Chrome tiled across center, vertically maxed
     -- Evernote right half
 }
-hs.layout.apply(windowLayout)
+-- TODO: uncomment below to fire
+--hs.layout.apply(windowLayout)
 
 -- probs in separate module, with intermediate or top level module doing the
 -- selection...
