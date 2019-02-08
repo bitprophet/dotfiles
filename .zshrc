@@ -18,6 +18,7 @@ DOTFILES=(
     pre-local
     options
     exports
+    mid-local
     completion
     aliases
     platform

@@ -24,8 +24,7 @@
 .zsh/data
 .zsh/data/*
 # Do ignore local/sensitive settings
-.zsh/local
-.zsh/pre-local
+.zsh/*local
 # Swapfiles (sigh)
 .zsh/*.swp
 

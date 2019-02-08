@@ -5,6 +5,30 @@ export TERM="screen-256color"
 export DISPLAY=:0.0
 export EDITOR=vim
 
+# Mostly for prompt things
+
+# Obtain hostname, domain and other hints as follows:
+# - HOST: shortname of host, used to identify it as e.g. a workstation
+# - HOSTNAME: prompt display hostname, the actual text to show in prompt;
+#   frequently just set to $HOST
+# - DOMAIN: set to domain part, used to identify production systems etc
+# - IS_WORKSTATION: determined either by manual override or $HOST
+# - IS_VM: ditto
+
+# If we seem to be on a DNS-name-less EC2 instance, use its instance ID
+_id_file=/var/lib/cloud/data/instance-id
+if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
+    HOST=`cat $_id_file`
+    DOMAIN=
+    HOSTNAME=$HOST
+# Otherwise, assume FQDN provides deets
+else
+    HOST=`hostname -f | cut -d '.' -f 1`
+    DOMAIN=`hostname -f | cut -d '.' -f 2-`
+    HOSTNAME=`hostname`
+fi
+
+
 # PATH
 super_path=/sbin:/usr/sbin
 regular_path=/bin:/usr/bin

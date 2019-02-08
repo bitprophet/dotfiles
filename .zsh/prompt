@@ -25,24 +25,8 @@ done
 NAME=$C[green]
 CWD=$C[blue]
 
-# Obtain hostname and domain parts as follows:
-# - HOST: shortname of host, used to identify it as e.g. a workstation
-# - HOSTNAME: display hostname, the actual text to show in prompt; frequently
-#   just set to $HOST
-# - DOMAIN: set to domain part, used to identify production systems etc
-
-# If we seem to be on a DNS-name-less EC2 instance, use its instance ID
-_id_file=/var/lib/cloud/data/instance-id
-if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
-    HOST=`cat $_id_file`
-    DOMAIN=
-    HOSTNAME=$HOST
-# Otherwise, assume FQDN provides deets
-else
-    HOST=`hostname -f | cut -d '.' -f 1`
-    DOMAIN=`hostname -f | cut -d '.' -f 2-`
-    HOSTNAME=`hostname`
-fi
+# NOTE: HOSTNAME, HOST, DOMAIN, IS_WORKSTATION and IS_VM all come from
+# .zsh/exports or .zsh/*local
 
 # Themed by domain name
 case $DOMAIN in
@@ -53,14 +37,39 @@ case $DOMAIN in
     *jumptrading.com ) NAME=$C[red] HOSTNAME=$HOST ;;
 esac
 
-# Themed by host/node name (takes precedence over domain)
-# TODO: just look at .local once VMs all have that set
-case $HOST in
-    # Workstations
-    callandor ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
-    # VMs
-    vm* | debian* | ubuntu* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
-esac
+# If $IS_WORKSTATION not already set, determine it from short hostname
+if [[ -z $IS_WORKSTATION ]]; then
+    # TODO: there a cleaner way to do this now that it's not a big single case
+    # statement? forget how well shells can do "if x in [listy]"...
+    case $HOST in
+        callandor ) IS_WORKSTATION=1 ;;
+    esac
+fi
+if [[ -z $IS_VM ]]; then
+    case $HOST in
+        vm* | debian* | ubuntu* ) IS_VM=1 ;;
+    esac
+fi
+
+# Here, we hopefully have the right picture about whether this is a workstation
+# or VM requiring overrides of the domain-level colorization.
+if [[ -n $IS_WORKSTATION ]]; then
+    NAME=$C[yellow]
+    CWD=$C[green]
+    HOSTNAME=$HOST
+fi
+if [[ -n $IS_VM ]]; then
+    NAME=$C[orange]
+    CWD=$C[green]
+    HOSTNAME=$HOST
+fi
+# Stupid backdoor for manually curated hostnames set earlier in the dotfiles :(
+# TODO: just clean all this up so things are more explicit re: workstation, vm,
+# server; and don't set any global defaults. That should make it easier to just
+# go "is HOSTNAME set yet? no? set it".
+if [[ -n $HOSTNAME_OVERRIDE ]]; then
+    HOSTNAME=$HOSTNAME_OVERRIDE
+fi
 
 
 function shortpath() {
