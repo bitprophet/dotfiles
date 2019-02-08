@@ -25,17 +25,22 @@ done
 NAME=$C[green]
 CWD=$C[blue]
 
+# Obtain hostname and domain parts as follows:
+# - HOST: shortname of host, used to identify it as e.g. a workstation
+# - HOSTNAME: display hostname, the actual text to show in prompt; frequently
+#   just set to $HOST
+# - DOMAIN: set to domain part, used to identify production systems etc
+
 # If we seem to be on a DNS-name-less EC2 instance, use its instance ID
 _id_file=/var/lib/cloud/data/instance-id
 if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
     HOST=`cat $_id_file`
     DOMAIN=
     HOSTNAME=$HOST
-# These days, most systems have a working `hostname` that returns at least one
-# dotted part (e.g. hedron.local, whatever.employer.com). No need for -f or -s.
+# Otherwise, assume FQDN provides deets
 else
-    HOST=`hostname | cut -d '.' -f 1`
-    DOMAIN=`hostname | cut -d '.' -f 2-`
+    HOST=`hostname -f | cut -d '.' -f 1`
+    DOMAIN=`hostname -f | cut -d '.' -f 2-`
     HOSTNAME=`hostname`
 fi
 
