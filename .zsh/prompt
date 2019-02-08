@@ -32,7 +32,7 @@ if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
     DOMAIN=
     HOSTNAME=$HOST
 # These days, most systems have a working `hostname` that returns at least one
-# dotted part (e.g. hedron.local, whatever.mongolab.com). No need for -f or -s.
+# dotted part (e.g. hedron.local, whatever.employer.com). No need for -f or -s.
 else
     HOST=`hostname | cut -d '.' -f 1`
     DOMAIN=`hostname | cut -d '.' -f 2-`
@@ -43,15 +43,16 @@ fi
 case $DOMAIN in
     # Personal production
     bitprophet.org ) NAME=$C[cyan] ;;
-    # Work production (also use short names to trim out .mongolab.com)
-    *mongolab.com | *mlab.com ) NAME=$C[red] HOSTNAME=$HOST ;;
+    # Work production (actually everything...see .zsh/local for workstation
+    # deets)
+    *jumptrading.com ) NAME=$C[red] HOSTNAME=$HOST ;;
 esac
 
 # Themed by host/node name (takes precedence over domain)
 # TODO: just look at .local once VMs all have that set
 case $HOST in
     # Workstations
-    tachi | callandor ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
+    callandor ) NAME=$C[yellow] CWD=$C[green] HOSTNAME=$HOST ;;
     # VMs
     vm* | debian* | ubuntu* ) NAME=$C[orange] CWD=$C[green] HOSTNAME=$HOST ;;
 esac
