@@ -121,3 +121,9 @@ etc/clusto*.conf
 !.hammerspoon
 !.hammerspoon/*
 .hammerspoon/.*.swp
+
+# Linux workstation stuff
+!.config
+!.config/xfce4
+!.config/xfce4/terminal
+!.config/xfce4/terminal/terminalrc
