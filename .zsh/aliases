@@ -179,6 +179,7 @@ function json() {
 # File pull request via 'hub', automatically inserting current HEAD as the
 # source and the 'origin' remote account name as the source account.
 # Useful for company-owned repos where hub's default assumptions don't work.
+# TODO: make this usable in a forked-repo context
 function pull() { # 'pr' already exists :(
     HEAD=`git symbolic-ref HEAD`
     # Probably a better way to do this. /lazy
