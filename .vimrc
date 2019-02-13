@@ -8,6 +8,8 @@ source ~/.vim/rc/plugins
 source ~/.vim/rc/settings
 " MacVim specific settings (conditionally loaded internally)
 source ~/.vim/rc/macvim
+" GVim specific settings (conditionally loaded internally)
+source ~/.vim/rc/gvim
 " Filetype-specific tweaks (and path-specific filetype-setting)
 source ~/.vim/rc/filetypes
 " Global key mappings, functions, leader shortcuts, etc

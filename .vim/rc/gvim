@@ -1,0 +1,20 @@
+if has("gui_gtk2")
+    " Same font size as I was using in Evernote
+    set guifont=Monospace\ 14
+    " Full screen height at above font on a 30" HP
+    set lines=83
+    " Various & sundry options: (default in gvim was aegimrLtT)
+    " - a: autoselect, aka allow selected text to interplay w/ clipboard
+    " - e: use GUI tabs if possible
+    " I have left out, vs the defaults (may want to reintroduce for general
+    " gvim later, if desired, in which case move the limited edition into
+    " vimwiki conf file):
+    " - g: inactive menu items are grayed out - does not mattress
+    " - i: use an icon in the menubar (does not seem to do much in GNOME 3)
+    " - m: menu bar (I have unset this to save space)
+    " - r: right hand scrollbar
+    " - L: left-hand scrollbar if window is split vertically
+    " - t: tearoff menu items (???)
+    " - T: toolbar (removed to save space)
+    set guioptions=ae
+endif
