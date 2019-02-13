@@ -32,6 +32,8 @@ alias b='brew'
 alias bi='brew install'
 alias bs='brew search'
 alias bin='brew info'
+alias yi='yum install'
+alias ys='yum search'
 
 # Git
 if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
