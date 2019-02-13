@@ -7,13 +7,14 @@ alias svs="sudo supervisorctl"
 compdef _users become
 
 # Package managers
-# Sudo-ify apt things if sourcing user is not root (which is a thing on eg
+# Sudo-ify apt/yum things if sourcing user is not root (which is a thing on eg
 # containers)
 if [[ $(whoami) != 'root' ]]; then
     alias apt-get='sudo apt-get'
     alias apt='sudo apt'
     alias apt-cache='sudo apt-cache'
     alias apt-file='sudo apt-file'
+    alias yum='sudo yum'
 fi
 alias ash='apt show'
 alias ai='apt install'
