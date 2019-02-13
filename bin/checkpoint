@@ -5,7 +5,7 @@
 
 # Ensure there IS git in cwd (eg in a newly intialized vimwiki w/o a git
 # hookup, there will not be) to avoid accidentally committing eg dotfiles repo
-test -d .git || echo "\nNo git, not checkpointing" && exit
+test -d .git || (echo "\nNo git, not checkpointing" && exit)
 
 if [[ -z "$(find .git/logs -cmin -5)" || $1 == "--force" || $1 == "-f" ]]; then
     git add .
