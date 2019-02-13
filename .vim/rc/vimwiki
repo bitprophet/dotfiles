@@ -51,12 +51,12 @@ function CheckForTags()
     endtry
 endfunction
 " TODO: make variable out of vimwiki root? used in 3x places now
-autocmd BufWritePre /Users/jforcier/vimwiki/*.md call CheckForTags()
+autocmd BufWritePre ~/vimwiki/*.md call CheckForTags()
 
 " Auto git commit/push on save for vimwiki files, every >=5min. Pauper's
 " Evernote sync.
 " TODO: this may or may not work w/ subdirs, forget exactly how pattern works
-autocmd BufWritePost /Users/jforcier/vimwiki/*.md execute 'silent ! ~/bin/checkpoint'
+autocmd BufWritePost ~/vimwiki/*.md execute 'silent ! ~/bin/checkpoint'
 
 " Explicit (save-and-)sync mapping, basically 'save harder'.
 " NOTE: the output of <Leader>s (i.e. git add+commit) seems to be hidden almost
@@ -77,7 +77,7 @@ endfunction
 autocmd FileType vimwiki map <buffer> <Leader>ss :call SaveAndPush()<CR>
 
 " Index page (holding all non-child pages) sorts contents before saving
-autocmd BufWritePre /Users/jforcier/vimwiki/index.md 2,$sort i
+autocmd BufWritePre ~/vimwiki/index.md 2,$sort i
 
 " When hitting Enter on a tag omnicomplete menu, do what it's supposed to.
 " Not sure what is preventing it from working as documented :(
