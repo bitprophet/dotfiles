@@ -33,6 +33,7 @@ alias bi='brew install'
 alias bs='brew search'
 alias bin='brew info'
 alias yi='yum install'
+alias yiss='yi -y'
 alias ys='yum search'
 
 # Git
