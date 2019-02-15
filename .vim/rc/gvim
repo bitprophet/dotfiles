@@ -1,6 +1,8 @@
 if has("gui_gtk2")
     " Same font size as I was using in Evernote
-    set guifont=Monospace\ 14
+    set guifont=Inconsolata\ Medium\ 14
+    " Tiny bit of extra line spacing (this is usually 0)
+    set linespace=1
     " Full screen height at above font on a 30" HP
     set lines=83
     " Various & sundry options: (default in gvim was aegimrLtT)
