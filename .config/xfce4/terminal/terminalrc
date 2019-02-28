@@ -15,6 +15,6 @@ MiscTabCloseButtons=TRUE
 MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
-FontName=Monospace 14
+FontName=DejaVu Sans Mono 14
 ColorForeground=#e666e666e666
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
