@@ -42,8 +42,10 @@
 # This won't actually pull in the other contetns of the dir, though.
 # Which is good as all I care about is the...
 !.ipython
-# ipythonrc file!
-!.ipython/ipythonrc
+# ...default profile's...
+!.ipython/profile_default
+# ...main config file
+!.ipython/profile_default/ipython_config.py
 
 # Virtualenvwrapper hooks
 !.virtualenvs
