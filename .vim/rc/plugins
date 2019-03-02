@@ -27,6 +27,8 @@ Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
 Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
 " JSONnet syntax
 Plug 'google/vim-jsonnet', {'commit': '2637e27'}
+" More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
+Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
 
 call plug#end()
 
@@ -55,3 +57,6 @@ map <C-t> :CtrlPTag<CR>
 "  autocmd FileType markdown,mkd,md  call pencil#init()
 "  autocmd FileType text             call pencil#init()
 "augroup END
+
+" vim-python/python-syntax
+let g:python_highlight_all = 1
