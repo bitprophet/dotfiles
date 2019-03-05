@@ -29,6 +29,8 @@ Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
 Plug 'google/vim-jsonnet', {'commit': '2637e27'}
 " More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
 Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
+" SaltStack sls files etc
+Plug 'saltstack/salt-vim', {'commit': '6ca9e35'}
 
 call plug#end()
 
