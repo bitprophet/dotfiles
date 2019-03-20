@@ -1,7 +1,7 @@
 " Things that would normally live elsewhere, but have load order issues re:
 " plugins and need to come first.
 
-" Make non-requirements txt files become Markdown.
+" Make non-requirements, non-help txt files become Markdown.
 " If this loads after the requirements.txt.vim plugin, it doesn't take effect
 " for some reason.
-autocmd BufNewFile,BufRead *\(requirements\)\@<!.txt setlocal filetype=markdown
+autocmd BufNewFile,BufRead *\(requirements\)\@<!.txt if &buftype != 'help' | setlocal filetype=markdown | endif
