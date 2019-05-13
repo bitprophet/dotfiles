@@ -1,2 +1,2 @@
-{:user {:plugins [[venantius/ultra "0.5.2"]]
+{:user {:plugins [[venantius/ultra "0.6.0"]]
         :ultra {:color-scheme :solarized_dark}}} 
