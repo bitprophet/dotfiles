@@ -1,7 +1,6 @@
 require('detectDesktop')
 require('mouseAccelFix')
 require('naturalScrolling')
-require('windowLayouts')
 
 
 -- Mouse acceleration reset bug fix. Wasn't fixed in El Cap :(
