@@ -18,40 +18,58 @@ function callWhenMouseConnected(identifier, callback)
     end)
 end
 
+-- When only one screen attached, returns its name. In any other situation,
+-- returns nil.
+function getSingularScreenName()
+    log.d("screen.allScreens():")
+    log.d(hs.inspect(hs.screen.allScreens()))
+    -- Above seems to be a dict/array as expected, when on LG it's "LG
+    -- ULTRAWIDE", when on internal it is "Color LCD". Whee.
+    -- Wow, why the hell is Lua so fucking popular again? This crappy
+    -- version of "if x in y" is some dumb bullshit.
+    current_screen = nil
+    count = 0
+    for k, v in pairs(hs.screen.allScreens()) do
+        current_screen = v
+        count = count + 1
+    end
+    screen_name = current_screen:name()
+    log.d("Screen count: " .. count .. ", first is: " .. hs.inspect(screen_name))
+    if count == 1 then
+        return screen_name
+    end
+    return nil
+end
+
+function updateNaturalScrolling()
+    name = getSingularScreenName()
+    log.d("Screen was changed to " .. hs.inspect(name))
+    if name then
+        if name == "Color LCD" then
+            log.d("Requesting natural scrolling")
+            useNaturalScrolling(true)
+        else
+            log.d("Requesting UNnatural scrolling")
+            useNaturalScrolling(false)
+        end
+    end
+end
+
+
 function callWhenScreenChanges()
+    -- These often get spawned a bunch in a row (at least 2, the 2nd after
+    -- ~4-5s; sometimes as many as 5 or more within that time!) and the early
+    -- one(s) is often 'wrong', only holding the internal LCD display name.
+    -- The later (correct) ones seem to get overwritten or are otherwise unable
+    -- to do their job correctly because of the earlier ones.
+    -- Was unable to get an atomic, race condition proof lock to work (argh) so
+    -- settling for "all events must wait long enough to be relatively sure the
+    -- state of the observed world is correct" - so that even if all, say, 5
+    -- events spawn an action, they're all trying to do the same thing, and
+    -- collisions won't matter.
     return hs.screen.watcher.new(function()
-        log.d("Received new screen-change event!")
-        log.d("Printing current list o screens:")
-        log.d(hs.inspect(hs.screen.allScreens()))
-        -- Above seems to be a dict/array as expected, when on LG it's "LG
-        -- ULTRAWIDE", when on internal it is "Color LCD". Whee.
-        -- Wow, why the hell is Lua so fucking popular again? This crappy
-        -- version of "if x in y" is some dumb bullshit.
-        current_screen = nil
-        count = 0
-        for k, v in pairs(hs.screen.allScreens()) do
-            current_screen = v
-            count = count + 1
-        end
-        if count == 1 then
-            -- TODO: new behavior due to one or more of the following factors:
-            -- - MacBook non-Pro 2018
-            -- - use of CalDigit Thunderbolt 3 dock
-            -- - LG ULTRAWIDE external display
-            -- What happens is:
-            -- - Docked, display has slept
-            -- - Wake up with keyboard/mouse
-            -- - Screen change event fires w/ Color LCD present only
-            -- - 4-5 seconds later, ANOTHER fires w/ LG present only
-            -- For now, just adapted this to say "when not color LCD, go back
-            -- to unnatural scrolling" which may result in extraneous prefpane
-            -- manipulation, but should prevent the above bug where we were
-            -- setting natural scrolling on incorrectly...
-            if current_screen:name() == "Color LCD" then
-                useNaturalScrolling(true)
-            else
-                useNaturalScrolling(false)
-            end
-        end
+        wait = 5 --
+        log.d("Waiting " .. wait .. "s to make sure we get the real screen name...")
+        hs.timer.doAfter(wait, updateNaturalScrolling)
     end)
 end
