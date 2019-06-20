@@ -59,3 +59,11 @@ autocmd BufNewFile,BufRead ~/Code/oss/fabric*/tests/_support/*.conf setlocal ft=
 " Pipfiles are just TOML, their locks just JSON
 autocmd BufNewFile,BufRead Pipfile setlocal ft=toml
 autocmd BufNewFile,BufRead Pipfile.lock setlocal ft=json
+
+
+"
+" Just kubernetes things...
+"
+
+" Don't wrap kube config as it may contain big blobs of auth key stuff
+autocmd BufNewFile,BufRead ~/.kube/config setlocal ft=yaml nowrap
