@@ -7,3 +7,4 @@
 --ignore-file=is:.coverage
 # Ignore pytest caches
 --ignore-dir=.cache
+--ignore-dir=.pytest_cache
