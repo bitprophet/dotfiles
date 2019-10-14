@@ -55,6 +55,7 @@ autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
 " SSH configs with various pre/suffixes
 autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
 autocmd BufNewFile,BufRead ~/Code/oss/fabric*/tests/_support/*.conf setlocal ft=sshconfig
+autocmd BufNewFile,BufRead ~/Code/oss/paramiko*/tests/configs/* setlocal ft=sshconfig
 
 " Pipfiles are just TOML, their locks just JSON
 autocmd BufNewFile,BufRead Pipfile setlocal ft=toml
