@@ -144,6 +144,10 @@ nnoremap <expr> <F4> H("~")
 :no <leader>b gEwi**<esc>Ea**<esc>
 :vn <leader>b o<esc>i**<esc>Ea**<esc>
 
+" Make a WORD italicized (or vimwiki bold)
+:no <leader>i gEwi*<esc>Ea*<esc>
+:vn <leader>i o<esc>i*<esc>Ea*<esc>
+
 " Make a WORD single or doublequoted
 :no <leader>' gEwi'<esc>Ea'<esc>
 :vn <leader>' o<esc>i'<esc>Ea'<esc>
