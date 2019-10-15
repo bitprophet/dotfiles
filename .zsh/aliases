@@ -144,7 +144,7 @@ function enter() {
 }
 
 # Misc
-alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info"'
+alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache"'
 alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
