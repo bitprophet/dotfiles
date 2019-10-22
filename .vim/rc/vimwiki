@@ -84,3 +84,7 @@ autocmd BufWritePre ~/vimwiki/index.md 2,$sort i
 autocmd FileType vimwiki imap <buffer> <expr> <CR> pumvisible()
 \    ? "\<C-Y>:"
 \    : "\<Esc>:VimwikiReturn 1 5<CR>"
+
+" Try vimwiki folding in a manner compatible with markdown syntax
+" (presumably does not work with lists unfortunately)
+let g:vimwiki_folding = 'expr'
