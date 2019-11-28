@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+exit
 #
 # Parameterizable script for use as .git/hooks/pre-commit
 #
