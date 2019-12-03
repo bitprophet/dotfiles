@@ -51,7 +51,7 @@ if [[ -z $SKIP_TEST ]]; then
 fi
 # Optionally test under alt Python
 if [[ -n $ALT_VIRTUALENV ]]; then
-    source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate
+    source ~/.virtualenvs/${ALT_VIRTUALENV}/bin/activate || exit 1
     inv test || exit 1
 fi
 # Docs
