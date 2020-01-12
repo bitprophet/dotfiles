@@ -86,5 +86,6 @@ autocmd FileType vimwiki imap <buffer> <expr> <CR> pumvisible()
 \    : "\<Esc>:VimwikiReturn 1 5<CR>"
 
 " Try vimwiki folding in a manner compatible with markdown syntax
-" (presumably does not work with lists unfortunately)
+" (NOTE: setting to 'list' works well enough for lists, but then does not work
+" for sections, so kinda gotta pick one or the other :()
 let g:vimwiki_folding = 'expr'
