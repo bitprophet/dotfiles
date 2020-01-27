@@ -56,7 +56,7 @@ if [[ -n $ALT_VIRTUALENV ]]; then
 fi
 # Docs
 if [[ -z $SKIP_DOCS ]]; then
-    inv ${DOC_TASK-sites}|| exit 1
+    inv ${=DOC_TASK-sites}|| exit 1
 fi
 # Doctests
 if [[ -z $SKIP_DOCTESTS ]]; then
