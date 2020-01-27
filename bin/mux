@@ -1,4 +1,4 @@
-#!/usr/local/var/pyenv/shims/python
+#!/Users/jforcier/.local/pipx/venvs/invoke/bin/python
 
 import os
 import sys
