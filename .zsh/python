@@ -23,6 +23,15 @@ test -d $WORKON_HOME || mkdir $WORKON_HOME
 # and either way, always attempt to source the appropriate script.
 # NOTE: we also need to account for non-pyenv-bearing systems which might be
 # manually setting VIRTUALENVWRAPPER_SCRIPT or w/e (eg Linux servers).
+# TODO: the above seems to be lies-ish, every new tmux window or pane seems to
+# be finding this empty right now, costing ~0.1s just for the 'pyenv which'
+# (which granted pales compared to the 0.4s for the actual sourcing, which does
+# need to happen every time)
+# TODO: let's just switch everything to poetry? LMAO - it's probably still not
+# stable enough for that?
+# TODO: Maybe try using tox as a stopgap? =/ doesn't help for real shit tho
+# TODO: just go find the latest howto for lazy-load venvwrapper? will that
+# help?
 if [[ -z $VIRTUALENVWRAPPER_SCRIPT ]]; then
     if have pyenv; then
         export VIRTUALENVWRAPPER_SCRIPT=`pyenv which virtualenv`wrapper.sh
