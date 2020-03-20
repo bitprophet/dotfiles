@@ -2,6 +2,9 @@
 " Configuration for / override maps of, vimwiki
 "
 
+" Autosave anytime there are updates to write & user is inactive
+autocmd CursorHold * update
+
 " Allow "normal" editor style tab/shift-tab indent/dedent. (Only in vimwiki
 " buffers!)
 let g:vimwiki_table_mappings = 0
