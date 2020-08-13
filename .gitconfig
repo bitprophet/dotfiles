@@ -13,3 +13,5 @@
 # Only works on Git 2.28+
 [init]
     defaultBranch = main
+[pull]
+    rebase = true
