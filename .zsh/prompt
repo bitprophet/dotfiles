@@ -128,7 +128,7 @@ function virtualenv_() {
 }
 
 function git_status() {
-    _branch=$(git symbolic-ref HEAD 2>/dev/null)
+    _branch=$(\git symbolic-ref HEAD 2>/dev/null)
     current_git_branch=${_branch#refs/heads/}
 }
 
@@ -140,7 +140,7 @@ function dirty() {
     # Dirtiness cribbed from:
     # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
     _dirty="*"
-    if git update-index -q --refresh &>/dev/null; git diff-index --quiet --cached HEAD --ignore-submodules -- 2>/dev/null && git diff-files --quiet --ignore-submodules 2>/dev/null
+    if \git update-index -q --refresh &>/dev/null; \git diff-index --quiet --cached HEAD --ignore-submodules -- 2>/dev/null && \git diff-files --quiet --ignore-submodules 2>/dev/null
         then _dirty=""
     fi
     echo $_dirty
@@ -150,7 +150,7 @@ function untracked() {
     [[ -z $current_git_branch ]] && return
     _untracked=""
     # Taken from oh-my-zsh/lib/git.zsh
-    if git status --porcelain 2>/dev/null | grep '^??' &>/dev/null
+    if \git status --porcelain 2>/dev/null | grep '^??' &>/dev/null
         then _untracked="*"
     fi
     echo $_untracked
