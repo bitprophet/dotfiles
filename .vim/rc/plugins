@@ -47,10 +47,14 @@ let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
 
+" CtrlP
 let g:ctrlp_custom_ignore = '\v\.git$|\.gz$|\.egg-info|htmlcov|\.swp|^[_.]build|\.gradle|node_modules|sites/[^/]+/_build'
 let g:ctrlp_clear_cache_on_exit = 0
 " Because certain Java project directories get into the multiple 10k's of files
 let g:ctrlp_max_files = 100000
+" Don't hide dotfiles; I want to edit eg .blah.yml files more than I want to
+" avoid matching them
+let g:ctrlp_show_hidden = 1
 map <C-t> :CtrlPTag<CR>
 
 " vim-pencil

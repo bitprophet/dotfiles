@@ -50,7 +50,7 @@ autocmd BufNewFile,BufRead *.css_t setlocal ft=css
 autocmd BufNewFile,BufRead *.go setlocal ft=go noexpandtab
 
 " Things using INI/ConfigParser style ugliness
-autocmd BufNewFile,BufRead ~/.aws/* setlocal ft=dosini
+autocmd BufNewFile,BufRead ~/.aws/*,.flake8 setlocal ft=dosini
 
 " SSH configs with various pre/suffixes
 autocmd BufNewFile,BufRead *sshd_config* setlocal ft=sshdconfig
