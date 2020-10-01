@@ -37,10 +37,16 @@ alias yiss='yi -y'
 alias ys='yum search'
 
 # Git
-if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
-    alias git=hub
-    compdef hub=git
-fi
+# TODO: identify why ruby is so slow now (after late 2020 sec update)
+# TODO: according to
+# https://github.com/github/hub/tree/1.12-stable#help-its-slow ruby should only
+# take 0.01s to startup (wat) and it definitely takes 0.4s now, System ruby; no
+# RUBYOPT; no idea. Given how infrequently I truly need hub settings, disabling
+# alias for now and using hub directly when useful.
+#if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
+#    alias git=hub
+#    compdef hub=git
+#fi
 alias gb='git branch'
 alias gba='git branch -a'
 alias gc='git commit'
