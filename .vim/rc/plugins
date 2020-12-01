@@ -24,7 +24,9 @@ Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
 " Awesome parentheses/etc readjustment for LISPs
-Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
+" EDIT: cannot tell what changed but it now incorrectly autoformats
+" project.clj files ugggh
+"Plug 'bhurlow/vim-parinfer', {'commit': '8c5269b'}
 " JSONnet syntax
 Plug 'google/vim-jsonnet', {'commit': '2637e27'}
 " More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
