@@ -1,17 +1,26 @@
 [user]
+    # Self-explanatory
     name = Jeff Forcier
     email = jeff@bitprophet.org
 [color]
+    # Colorize as much as possible by default
     ui = auto
 [core]
+    # Global excludes config. Fits better in my head than the default paths
     excludesfile = "~/.gitexcludes"
-# Only works on Git 2.28+
 [init]
+    # New repos start with main, not master. Only works on Git 2.28+
     defaultBranch = main
 [pull]
+    # Rebase by default when pull-merging
     rebase = true
 [push]
+    # Push all branches that exist on both ends, by default
     default = matching
+    # Push annotated tags too, by default, when pushing branches
+    # (tho I do not currently use annotated tags much...ugh)
     followTags = true
 [rerere]
+    # Record previously resolved conflicts, eg when rebasing.
+    # (I thought this was on by default, but no?)
     enabled = true
