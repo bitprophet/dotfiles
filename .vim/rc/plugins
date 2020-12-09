@@ -10,7 +10,7 @@ call plug#begin('~/.vim/plugged')
 " Improved JSON syntax formatting, display, etc
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
 " Personal information manager
-Plug 'vimwiki/vimwiki', {'tag': 'v2.3'}
+Plug 'vimwiki/vimwiki', {'tag': 'v2.5'}
 " Fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim', {'commit': '36f34cd'}
 " Clojure
