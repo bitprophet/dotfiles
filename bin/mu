@@ -22,7 +22,7 @@ start_major, start_minor = [$1, $2].map &:to_i
 
 # Obtain interesting branches
 branches = `git branch`.split(/\n/).map {|x| x.strip.sub('* ', '')}
-master = branches.delete('master')
+main = branches.delete('main')
 # Filter down to just branches newer than start point
 branches = branches.map do |x|
   if x =~ LINE
@@ -43,9 +43,9 @@ end.compact.sort.select do |major, minor|
 end.map do |major, minor|
   "#{major}.#{minor}"
 end
-# Loop until merged up through master
+# Loop until merged up through main
 previous = start
-(branches << master).each do |branch|
+(branches << main).each do |branch|
   run "git checkout #{branch}"
   run "git merge #{previous}"
   previous = branch

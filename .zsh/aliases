@@ -96,19 +96,19 @@ function get_branch() {
 
 function gu() {
     get_branch
-    TARGET=${2:-master}
+    TARGET=${2:-main}
     METHOD=${1:-merge}
     gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git $METHOD "$TARGET"
 }
 
 function nuke() {
     get_branch
-    gco master && gpl && gb -d $CURRENT_BRANCH
+    gco main && gpl && gb -d $CURRENT_BRANCH
 }
 
 function marge() {
     get_branch
-    gco ${1:-master} && gm $CURRENT_BRANCH && gb -d $CURRENT_BRANCH
+    gco ${1:-main} && gm $CURRENT_BRANCH && gb -d $CURRENT_BRANCH
 }
 
 function mg() {
@@ -191,7 +191,7 @@ function pull() { # 'pr' already exists :(
     # Probably a better way to do this. /lazy
     ACCOUNT=`git remote show -n origin | grep "Fetch URL" | cut -d ':' -f 3 | cut -d '/' -f 1`
     git push origin HEAD
-    git pull-request -b ${1:-master} -h $ACCOUNT:${HEAD#refs/heads/} $2
+    git pull-request -b ${1:-main} -h $ACCOUNT:${HEAD#refs/heads/} $2
 }
 
 # Fetch pull request X so its SHAs are available.
@@ -205,7 +205,7 @@ function pr-branch() {
     fetch-pr $1 :$_NEWBRANCH
     git checkout $_NEWBRANCH
     # NOTE: $current_git_branch is usually set by .zsh/prompt
-    [[ $2 == "nomerge" ]] || git merge ${current_git_branch:-master}
+    [[ $2 == "nomerge" ]] || git merge ${current_git_branch:-main}
 }
 
 # Stupid newline delimited => comma delimited bit (happens to ensure no
