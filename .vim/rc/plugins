@@ -29,6 +29,8 @@ Plug 'google/vim-jsonnet', {'commit': '2637e27'}
 Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
 " SaltStack sls files etc
 Plug 'saltstack/salt-vim', {'commit': '6ca9e35'}
+" Nix syntax
+Plug 'LnL7/vim-nix', {'commit': '7542a2b'}
 
 call plug#end()
 
