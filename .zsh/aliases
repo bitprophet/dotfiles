@@ -77,6 +77,7 @@ alias grsh='git reset HEAD~1'
 alias gch='git cherry-pick'
 alias amend='git commit --amend --no-edit'
 alias amende='git commit --amend'
+alias gri='git rebase -i main'
 
 
 function gremote() {
