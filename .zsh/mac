@@ -31,8 +31,12 @@ _complete_lunchy() {
 }
 compctl -K _complete_lunchy lunchy
 
+#
+# Pyenv concerns (TODO: move elsewhere if using Linux moar)
+#
+
 # When using pyenv to install non-Apple-shipped Pythons, put the resulting
-# trees in Homebrew's directories, not ~/.pyenv.
+# trees in Homebrew style directories, not ~/.pyenv.
 export PYENV_ROOT=/usr/local/var/pyenv
 # Even more importantly, build them with UCS2 support (pyenv defaults to UCS4)
 # because that's what the system Python was built with and anytime things cross
