@@ -36,9 +36,6 @@ my_path=$HOME/bin
 local_path=/usr/local/bin:/usr/local/sbin
 export PATH=$local_path:$regular_path:$super_path:$my_path
 
-# Homebrew temp folder
-export HOMEBREW_TEMP=/usr/local/tmp
-
 # For some reason, some systems (eg UA CentOS) give me a blank LS_COLORS, which
 # is worse than no LS_COLORS as it kills eg tree's colorization.
 unset LS_COLORS

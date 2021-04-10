@@ -18,6 +18,9 @@ export PIP_INDEX_URL='http://localhost:3141/root/pypi/+simple/'
 # Postgres.app binaries because eh, why nt
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
+# Homebrew temp folder
+export HOMEBREW_TEMP=/usr/local/tmp
+
 # lunchy launchctl completion for zsh
 _complete_lunchy() {
     if [[ $words =~ "^lunchy [^ ]*$" ]]; then
