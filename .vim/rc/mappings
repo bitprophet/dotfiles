@@ -23,6 +23,9 @@ nmap <Leader><Down> <C-w><Down>
 " Move all windows in current tab-pane to be horizontally split.
 " Good for moving to a smaller/narrower display from a larger one.
 nmap <Leader>k :windo wincmd K<CR>
+" Same but opposite direction: window now bigger, vertically split
+" (yes, different map vs wincmd, 'h' was already taken)
+nmap <Leader>j :windo wincmd H<CR>
 " Resize a window to fit its contents. I.e. for small files.
 nmap <Leader>- :exe ":resize " . (line('$') + 1)<CR>
 " Switch to an open tab by name (note: tab-completes too!)
@@ -182,10 +185,6 @@ function! AskQuit (msg, proposed_action)
 endfunction
 
 
-" Pretty-print JSON files with Python (& remove the trailing whitespace that
-" Python <2.7 json module adds, sigh)
-" Commented out for now, I hit this by mistake WAY more than I actually use it
-"nmap <Leader>j :%!python -m json.tool<CR>:%s/\s\+$//g<CR>
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
 
