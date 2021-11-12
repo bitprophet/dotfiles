@@ -1,0 +1,2 @@
+# TODO: read this out of ~/aether/invoke.yml?
+export NIX_PATH="nixpkgs=/var/pinned/nixpkgs"

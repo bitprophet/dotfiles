@@ -2,5 +2,10 @@ case $( uname -s ) in
     Darwin )
         source $ZSH/mac ;;
     Linux )
-        source $ZSH/linux ;;
+        if test -f /etc/NIXOS; then
+            source $ZSH/nixos
+        else
+            source $ZSH/linux
+        fi
+        ;;
 esac
