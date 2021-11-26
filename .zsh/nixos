@@ -1,2 +1,6 @@
 # TODO: read this out of ~/aether/invoke.yml?
 export NIX_PATH="nixpkgs=/var/pinned/nixpkgs"
+
+# Kinda-sorta 'list installed packages'
+export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
+alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | cut -d "-" -f 2- | sort'
