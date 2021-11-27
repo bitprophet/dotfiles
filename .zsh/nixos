@@ -1,6 +1,13 @@
 # TODO: read this out of ~/aether/invoke.yml?
 export NIX_PATH="nixpkgs=/nix/pkgs:nixos-config=/etc/nixos/configuration.nix"
 
+# Always want sudo and --fast with nixos-rebuild:
+# - no manually building nixpkgsUnstable, which might override my pinned ver
+# - show traces when kaboom
+# - some subset of functionality CAN run w/o sudo but having to remember which
+# is which would be a PITA so who gives a shit
+alias nixos-rebuild="sudo nixos-rebuild --fast"
+
 # Kinda-sorta 'list installed packages'
 export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
 alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | cut -d "-" -f 2- | sort'
