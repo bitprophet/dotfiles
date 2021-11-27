@@ -12,3 +12,8 @@ alias nr="nixos-rebuild"
 # Kinda-sorta 'list installed packages'
 export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
 alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | cut -d "-" -f 2- | sort'
+
+# TODO: there may be a better way to do this (eg a .py format config file
+# that does the equivalent of $(which zsh) or /usr/bin/env zsh
+# But this honestly shouldn't suck too bad in general
+export INVOKE_RUN_SHELL=$(which zsh)
