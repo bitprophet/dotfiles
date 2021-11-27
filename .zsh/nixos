@@ -1,5 +1,5 @@
 # TODO: read this out of ~/aether/invoke.yml?
-export NIX_PATH="nixpkgs=/nix/pkgs"
+export NIX_PATH="nixpkgs=/nix/pkgs:nixos-config=/etc/nixos/configuration.nix"
 
 # Kinda-sorta 'list installed packages'
 export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
