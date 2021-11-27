@@ -7,6 +7,7 @@ export NIX_PATH="nixpkgs=/nix/pkgs:nixos-config=/etc/nixos/configuration.nix"
 # - some subset of functionality CAN run w/o sudo but having to remember which
 # is which would be a PITA so who gives a shit
 alias nixos-rebuild="sudo nixos-rebuild --fast"
+alias nr="nixos-rebuild"
 
 # Kinda-sorta 'list installed packages'
 export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
