@@ -18,6 +18,11 @@ ROOT=~/Code
 FOLDERS=($ROOT/oss $ROOT/jump $ROOT/personal $ROOT/others)
 RCFILE=".wkrc"
 
+# No more virtualenvwrapper maybe I guess probably?
+function workon() {
+    source ${WORKON_HOME}/${1}/bin/activate
+}
+
 function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
