@@ -133,3 +133,6 @@ etc/clusto*.conf
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
 !.config/hexdump.format
+
+# Invoke customization (eg for nixos run.shell loc)
+!.invoke.yml

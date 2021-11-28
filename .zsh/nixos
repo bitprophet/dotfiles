@@ -15,8 +15,3 @@ alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | 
 function deps-of() {
     nix-store --query --requisites $(which $1)
 }
-
-# TODO: there may be a better way to do this (eg a .py format config file
-# that does the equivalent of $(which zsh) or /usr/bin/env zsh
-# But this honestly shouldn't suck too bad in general
-export INVOKE_RUN_SHELL=$(which zsh)
