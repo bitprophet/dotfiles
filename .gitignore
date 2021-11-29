@@ -136,3 +136,7 @@ etc/clusto*.conf
 
 # Invoke customization (eg for nixos run.shell loc)
 !.invoke.yml
+
+# GPG settings (does NOT include keychain etc!)
+!.gnupg
+!.gnupg/*.conf
