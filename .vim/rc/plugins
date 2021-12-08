@@ -23,8 +23,6 @@ Plug 'tpope/vim-fugitive', {'commit': '0095769'}
 Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
-" JSONnet syntax
-Plug 'google/vim-jsonnet', {'commit': '2637e27'}
 " More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
 Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
 " SaltStack sls files etc
