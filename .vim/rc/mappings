@@ -184,17 +184,14 @@ function! AskQuit (msg, proposed_action)
     endif
 endfunction
 
-
 " Speaking of nuking trailing whitespace, that's generally useful...
 nmap <Leader>w :%s/\s\+$//g<CR>
 
-
-" Quickfix list & searching (note: I override grepprg in rc/settings)
-nmap <Leader>/ :grep <cword>[^a-zA-Z0-9_]<CR>
+" ack.vim or quickfix related bindings
+nmap <Leader>/ :Ack<CR>
 nmap <Leader>; :cope<CR>
 nmap <Leader>. :cn<CR>
 nmap <Leader>, :cp<CR>
-
 
 " (mac)OS clipboard override shortcut (with mouse on, selection uses vim and
 " not terminal, thus 'regular' Cmd-C does not copy (but it also can't be used.)

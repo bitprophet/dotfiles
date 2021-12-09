@@ -29,6 +29,8 @@ Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
 Plug 'saltstack/salt-vim', {'commit': '6ca9e35'}
 " Nix syntax
 Plug 'LnL7/vim-nix', {'commit': '7542a2b'}
+" Ack (or w/e you want) project search
+Plug 'mileszs/ack.vim', {'commit': '36e40f9'}
 
 call plug#end()
 
@@ -57,3 +59,8 @@ map <C-t> :CtrlPTag<CR>
 
 " vim-python/python-syntax
 let g:python_highlight_all = 1
+
+" ack.vim
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+" See mappings config for leader-mappings used with ack.vim
