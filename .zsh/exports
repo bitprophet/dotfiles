@@ -56,3 +56,18 @@ export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 # No real less conf file but it honors this; I want it to basically always
 # interpret ANSI colors & such.
 export LESS="-R"
+
+# Standardize SSH auth socket location, otherwise frequent reconnections to
+# tmux means a stale auth sock. If randomizing it would otherwise have saved me
+# from some adversary I'd already be turbofucked...
+# NOTE: this differs from the similar approach taken on a SOURCE HOST (as at
+# work, with my workstation) because there, you control the agent direct; but
+# on a REMOTE HOST, this socket is set BY THE SSHD upon FORWARDING REQUESTS,
+# and that is hardcoded / is what SETS this env var on new logins.
+# So we must detect when we've become "disconnected" and twiddle a symlink!
+# (Idea courtesy of Revsys blog post)
+export MY_AUTH_SOCK=~/.ssh/auth-socket
+if [[ $SSH_AUTH_SOCK != $MY_AUTH_SOCK ]]; then
+    ln -nfs $SSH_AUTH_SOCK $MY_AUTH_SOCK
+    export SSH_AUTH_SOCK=$MY_AUTH_SOCK
+fi
