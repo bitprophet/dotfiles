@@ -10,6 +10,7 @@ test -d .git || (echo "\nNo git, not checkpointing" && exit)
 if [[ -z "$(find .git/logs -cmin -5)" || $1 == "--force" || $1 == "-f" ]]; then
     git add .
     git commit -am "Checkpoint"
+    git push
 fi
 
 # vim: set ft=zsh :
