@@ -22,6 +22,9 @@ autocmd FileType vimwiki imap <buffer> <S-Tab> <Plug>VimwikiDecreaseLvlSingleIte
 " Use Markdown plz
 let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 
+" No speling, it's distracting and who gives a fuck
+autocmd FileType vimwiki set nospell
+
 " Don't make temporary wikis out of other .md files tho...sheesh. (Among other
 " things, this trips an auto-cd behavior I don't usually want.)
 let g:vimwiki_global_ext = 0
