@@ -15,3 +15,9 @@ alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | 
 function deps-of() {
     nix-store --query --requisites $(which $1)
 }
+
+# I never remember exactly how to "just run a .nix file" (typically some form
+# of extracting a module from nixos/nixpkgs)
+function build() {
+    nix-build -v --show-trace -E "with import <nixpkgs> {}; callPackage $1 {}" $2
+}
