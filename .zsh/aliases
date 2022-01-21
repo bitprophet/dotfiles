@@ -151,8 +151,12 @@ alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache"'
 alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
+alias g=grep
 alias history='fc -l 1' # Force display of entire zsh history
+alias h=history
+alias hg='history | grep'
 alias l=ls
+alias l=ls -al
 alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut -d " " -f 1,3,9 | sort -u | column -t'
 
 # Functions
