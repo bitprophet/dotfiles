@@ -55,7 +55,6 @@ if [[ -n $IS_WORKSTATION ]]; then
 fi
 if [[ -n $IS_SERVER ]]; then
     NAME=$C[red]
-    CWD=$C[green]
     HOSTNAME=$HOST
 fi
 if [[ -n $IS_VM ]]; then
@@ -176,13 +175,12 @@ function displayhost() {
 function precmd() {
     # Set git vars
     git_status
-    # [<green>time</green>] <NAME>HOST</NAME>:<CWD>pwd</CWD>
+    # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
-    time="[$C[green]%T%f]"
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${time} ${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 
