@@ -25,24 +25,19 @@ done
 NAME=$C[green]
 CWD=$C[blue]
 
-# NOTE: HOSTNAME, HOST, DOMAIN, IS_WORKSTATION and IS_VM all come from
-# .zsh/exports or .zsh/*local
-
-# Themed by domain name
-case $DOMAIN in
-    # Personal production
-    bitprophet.org ) NAME=$C[cyan] ;;
-    # Work production (actually everything...see .zsh/local for workstation
-    # deets)
-    *jumptrading.com ) NAME=$C[red] HOSTNAME=$HOST ;;
-esac
+# NOTE: HOSTNAME, HOST, DOMAIN, IS_WORKSTATION, IS_SERVER, and IS_VM all come
+# from .zsh/exports or .zsh/*local, or are unset.
 
 # If $IS_WORKSTATION not already set, determine it from short hostname
 if [[ -z $IS_WORKSTATION ]]; then
-    # TODO: there a cleaner way to do this now that it's not a big single case
-    # statement? forget how well shells can do "if x in [listy]"...
     case $HOST in
-        callandor ) IS_WORKSTATION=1 ;;
+        basroil ) IS_WORKSTATION=1 ;;
+    esac
+fi
+# Ditto IS_SERVER, IS_VM (latter much less oft used now)
+if [[ -z $IS_SERVER ]]; then
+    case $HOST in
+        gosroth ) IS_SERVER=1 ;;
     esac
 fi
 if [[ -z $IS_VM ]]; then
@@ -55,6 +50,11 @@ fi
 # or VM requiring overrides of the domain-level colorization.
 if [[ -n $IS_WORKSTATION ]]; then
     NAME=$C[yellow]
+    CWD=$C[green]
+    HOSTNAME=$HOST
+fi
+if [[ -n $IS_SERVER ]]; then
+    NAME=$C[red]
     CWD=$C[green]
     HOSTNAME=$HOST
 fi
