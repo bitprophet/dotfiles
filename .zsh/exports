@@ -60,14 +60,27 @@ export LESS="-R"
 # Standardize SSH auth socket location, otherwise frequent reconnections to
 # tmux means a stale auth sock. If randomizing it would otherwise have saved me
 # from some adversary I'd already be turbofucked...
-# NOTE: this differs from the similar approach taken on a SOURCE HOST (as at
-# work, with my workstation) because there, you control the agent direct; but
-# on a REMOTE HOST, this socket is set BY THE SSHD upon FORWARDING REQUESTS,
-# and that is hardcoded / is what SETS this env var on new logins.
+# NOTE: this differs from the similar approach taken on a SOURCE HOST (one
+# where the originating ssh-agent is on the physical system) because there, you
+# control the agent direct; but on a REMOTE HOST, this socket is set BY THE
+# SSHD upon FORWARDING REQUESTS, and that is hardcoded / is what SETS this env
+# var on new logins.
 # So we must detect when we've become "disconnected" and twiddle a symlink!
 # (Idea courtesy of Revsys blog post)
-export MY_AUTH_SOCK=~/.ssh/auth-socket
-if [[ $SSH_AUTH_SOCK != $MY_AUTH_SOCK ]]; then
-    ln -nfs $SSH_AUTH_SOCK $MY_AUTH_SOCK
-    export SSH_AUTH_SOCK=$MY_AUTH_SOCK
-fi
+# NOTE: this still requires MAKING A NEW TMUX PANE/WINDOW to actually run the
+# below; any existing shell will have a STALE auth sock env var (even if we
+# weren't overwriting it ofc). Only new tmux subsessions will "see" the newly
+# updated global env var (which happens because 'tmux attach' updates the tmux
+# session's vars like SSH_AUTH_SOCK, DISPLAY, etc, per the update-environment
+# tmux option, a list of var names).
+# NOTE: that is the local session, NOT the 'global' environment, which will
+# still be holding the env from whenever tmux was first started up!
+# NOTE YET AGAIN: this is commented out as I've moved to just doing this in the
+# prompt (no need to make a fresh pane/window just to trigger updating the
+# below symlink). Leaving in place in case I ever go back to linux foreground
+# terminals (eg lenovo as daily driver)
+#export MY_AUTH_SOCK=~/.ssh/auth-socket
+#if [[ $SSH_AUTH_SOCK != $MY_AUTH_SOCK ]]; then
+#    ln -nfs $SSH_AUTH_SOCK $MY_AUTH_SOCK
+#    export SSH_AUTH_SOCK=$MY_AUTH_SOCK
+#fi

@@ -126,6 +126,15 @@ function virtualenv_() {
     fi
 }
 
+function ssh_auth_sock() {
+    # This ensures that every fresh prompt asks the tmux server for the current
+    # session's stored env var (which is otherwise not synchronized with
+    # pre-existing shells). Thus, all that is required on reconnecting to a
+    # tmux session from a new ssh login (which will have a distinct auth sock)
+    # is mashing enter instead of making a whole new shell somewhere.
+    export $(tmux show-environment SSH_AUTH_SOCK)
+}
+
 function git_status() {
     _branch=$(\git symbolic-ref HEAD 2>/dev/null)
     current_git_branch=${_branch#refs/heads/}
@@ -173,6 +182,8 @@ function displayhost() {
 #
 
 function precmd() {
+    # Set ssh auth sock
+    ssh_auth_sock
     # Set git vars
     git_status
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
