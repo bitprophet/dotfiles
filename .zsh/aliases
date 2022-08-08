@@ -141,7 +141,8 @@ function enter() {
 }
 
 # Misc
-alias tree='tree -Ca -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache"'
+# NOTE: --filesfirst requires tree 2.0+
+alias tree='tree --filesfirst -C -a -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache"'
 alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
