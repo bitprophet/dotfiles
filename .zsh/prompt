@@ -139,8 +139,8 @@ function ssh_auth_sock() {
 }
 
 function git_status() {
-    _branch=$(\git symbolic-ref HEAD 2>/dev/null)
-    current_git_branch=${_branch#refs/heads/}
+    # NOTE: requires git 2.22+
+    current_git_branch=$(git branch --show-current)
 }
 
 function dirty() {
