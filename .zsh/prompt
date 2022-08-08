@@ -132,7 +132,10 @@ function ssh_auth_sock() {
     # pre-existing shells). Thus, all that is required on reconnecting to a
     # tmux session from a new ssh login (which will have a distinct auth sock)
     # is mashing enter instead of making a whole new shell somewhere.
-    export $(tmux show-environment SSH_AUTH_SOCK)
+    # NOTE: only when actually in tmux ($TMUX set)! otherwise booms happen
+    if [[ -n $TMUX ]]; then
+        export $(tmux show-environment SSH_AUTH_SOCK)
+    fi
 }
 
 function git_status() {
