@@ -43,6 +43,9 @@ fi
 if [[ -z $IS_VM ]]; then
     case $HOST in
         vm* | debian* | ubuntu* ) IS_VM=1 ;;
+        # Not really but lol whatever, I don't VM much anymore and in flavor,
+        # testbed NUC is more like a VM than a prod server!
+        epiphron )  IS_VM=1 ;;
     esac
 fi
 
