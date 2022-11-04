@@ -41,6 +41,7 @@ if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
     alias git=hub
     compdef hub=git
 fi
+alias lg=lazygit
 alias gb='git branch'
 alias gba='git branch -a'
 alias gc='git commit'
