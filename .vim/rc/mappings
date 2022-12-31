@@ -41,6 +41,9 @@ nmap <Leader>s :w<CR>
 " hidden/nonprinting characters toggle
 nmap <Leader>h :set list!<CR>
 
+" line numbers toggle
+nmap <Leader>n :set number!<CR>
+
 " paste/nopaste toggle
 nmap <Leader>p :set paste!<CR>
 
