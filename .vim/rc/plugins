@@ -24,7 +24,7 @@ Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
 " More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
-Plug 'vim-python/python-syntax', {'commit': '1df5e5a'}
+Plug 'vim-python/python-syntax', {'commit': '2cc00ba'}
 " SaltStack sls files etc
 Plug 'saltstack/salt-vim', {'commit': '6ca9e35'}
 " Nix syntax
