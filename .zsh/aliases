@@ -136,6 +136,19 @@ function mkv() {
     cd $1
 }
 
+# Sphinx built dirs browsing (for headless dev w/o a 'open' binary).
+# Will try to intelligently detect if it needs to slap a 'sites' prefix on the
+# build dir path or not. Just give it 'docs' or 'www' as necessary.
+function browse() {
+    # I guarantee there is a way to do this with expansion/substitution but
+    # hard to find the right keywords to search for...
+    if [[ -d sites ]]; then sitesdir="sites/"; else sitesdir=""; fi
+    # TODO: use real dns suffix and then hostname -f might work
+    # TODO: find something that will figure out when to use the tailscale name
+    # (or just do that 100% of the time?)
+    inv $1 -c && pushd ${sitesdir}$1/_build && python -m http.server -b $(hostname).localdomain  && popd
+}
+
 # For arbitrary, non-venvwrapper-managed envs
 function enter() {
     source $1/bin/activate
