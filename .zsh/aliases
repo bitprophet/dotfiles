@@ -146,7 +146,9 @@ function browse() {
     # TODO: use real dns suffix and then hostname -f might work
     # TODO: find something that will figure out when to use the tailscale name
     # (or just do that 100% of the time?)
-    inv $1 -c && pushd ${sitesdir}$1/_build && python -m http.server -b $(hostname).localdomain  && popd
+    # NOTE: can give an explicit path as $2 if the build dir isn't in a folder
+    # named after the build task (lmao)
+    inv $1 -c && pushd ${sitesdir}${2:-$1}/_build && python -m http.server -b $(hostname).localdomain  && popd
 }
 
 # For arbitrary, non-venvwrapper-managed envs
