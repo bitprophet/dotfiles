@@ -148,7 +148,7 @@ function browse() {
     # (or just do that 100% of the time?)
     # NOTE: can give an explicit path as $2 if the build dir isn't in a folder
     # named after the build task (lmao)
-    inv $1 -c && pushd ${sitesdir}${2:-$1}/_build && python -m http.server -b $(hostname).localdomain  && popd
+    inv $1 && pushd ${sitesdir}${2:-$1}/_build && python -m http.server -b $(hostname).localdomain  && popd
 }
 
 # For arbitrary, non-venvwrapper-managed envs
