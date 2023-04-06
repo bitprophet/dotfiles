@@ -143,7 +143,7 @@ function ssh_auth_sock() {
 
 function git_status() {
     # NOTE: requires git 2.22+
-    current_git_branch=$(git branch --show-current)
+    current_git_branch=$(git branch --show-current 2>/dev/null)
 }
 
 function dirty() {
