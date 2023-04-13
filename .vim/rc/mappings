@@ -137,6 +137,9 @@ nmap <Leader>d oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
 nmap <Leader>tb oimport traceback; traceback.print_stack()<C-C>
 
+" Inject ci skip line in a git commit msg
+nmap <Leader>cs o[ci skip]<C-C>
+
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
