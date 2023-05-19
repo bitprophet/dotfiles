@@ -136,6 +136,8 @@ nmap <Leader>pdb oimport ipdb; ipdb.set_trace()<C-C>
 nmap <Leader>d oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
 nmap <Leader>tb oimport traceback; traceback.print_stack()<C-C>
+" Yum
+nmap <Leader>ic ofrom icecream import ic<C-C>
 
 " Inject ci skip line in a git commit msg
 nmap <Leader>cs o[ci skip]<C-C>
