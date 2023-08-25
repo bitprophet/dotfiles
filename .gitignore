@@ -140,3 +140,7 @@ etc/clusto*.conf
 # GPG settings (does NOT include keychain etc!)
 !.gnupg
 !.gnupg/*.conf
+
+# Rust!
+!.cargo
+!.cargo/config.toml
