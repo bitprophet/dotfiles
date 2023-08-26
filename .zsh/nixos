@@ -12,7 +12,7 @@ alias nr="nixos-rebuild"
 # Kinda-sorta 'list installed packages'
 export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
 alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | cut -d "-" -f 2- | sort'
-function deps-of() {
+function deps-of () {
     nix-store --query --requisites $(which $1)
 }
 
