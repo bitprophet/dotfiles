@@ -129,6 +129,14 @@ etc/clusto*.conf
 !.config/xfce4
 !.config/xfce4/terminal
 !.config/xfce4/terminal/terminalrc
+!.config/systemd/
+!.config/systemd/user
+!.config/systemd/user/*
+!.config/systemd/user/*/*
+# Keep ignoring this, it comes from the OS.
+.config/systemd/user/gpg-agent.service
+# And don't see swaps as usual (sigh)
+.config/systemd/user/.*.swp
 
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
