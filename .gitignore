@@ -152,3 +152,7 @@ etc/clusto*.conf
 # Rust!
 !.cargo
 !.cargo/config.toml
+
+# Lazygit
+!.config/lazygit/
+!.config/lazygit/config.yml
