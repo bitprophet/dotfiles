@@ -1,7 +1,6 @@
 gui:
   scrollHeight: 10  # default 2
   timeFormat: "2006-01-02 @ 15:04 MST"
-  showFileTree: false
   #showIcons: true  # requires nerdfonts.com font in terminal
 git:
   # Really a gui setting...renders eg :rocket:
