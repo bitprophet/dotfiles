@@ -126,6 +126,10 @@ etc/clusto*.conf
 
 # Linux workstation stuff
 !.config
+!.config/bat
+!.config/bat/*
+!.config/bat/themes
+!.config/bat/themes/*
 !.config/xfce4
 !.config/xfce4/terminal
 !.config/xfce4/terminal/terminalrc
