@@ -12,7 +12,24 @@ syntax sync fromstart
 set background=dark
 " 256 colors!
 set t_Co=256
-colorscheme desert256
+" and now, true colors!!
+" TODO: this /may/ want to be wrapped in a has() check
+set termguicolors
+
+" Colorscheme config
+" I don't actually use a transparent bg, but I prefer my actual terminal bg to
+" show through, not the 'light black' colorschemes often like. contrast plz!
+let g:kanagawa_mini = {'transparent': v:true}
+" This doesn't seem to actually do anything, sadly!
+let g:gruvbox_transparent_bg = 1
+" So this is as contrasty as it gets if using gruvbox
+let g:gruvbox_contrast_dark = "hard"
+
+" My ca 2024 'big three'.
+colorscheme kanagawa-mini
+"colorscheme gruvbox
+"colorscheme jellybeans
+
 " Show additional info in the command line (very last line on screen) where
 " appropriate.
 set showcmd

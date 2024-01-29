@@ -34,6 +34,10 @@ Plug 'mileszs/ack.vim', {'commit': '36e40f9'}
 " 2016? heh.)
 Plug 'rust-lang/rust.vim', {'commit': '889b9a7'}
 
+" Colorschemes-as-plugins
+Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
+" NOTE: jellybeans and kanagawa-mini are just-colorschemes in dotfiles
+
 call plug#end()
 
 
