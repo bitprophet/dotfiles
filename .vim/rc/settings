@@ -44,8 +44,10 @@ function! PasteAwareStatusline()
     return default
 endfunction
 set statusline=%!PasteAwareStatusline()
-" Show current line for visibility
-set cursorline
+" Show current line for visibility (EDIT: turned off for now, modern themes
+" make it a bit _too_ visible, confused easily with statuslines. modern setup
+" also seems to have a more visible block cursor, which helps offset.
+" set cursorline
 
 " Navigation/search
 
