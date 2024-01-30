@@ -151,25 +151,25 @@ nnoremap <expr> <F3> H("-")
 nnoremap <expr> <F4> H("~")
 
 " Make a WORD monospaced
-:no <leader>m gEwi`<esc>Ea`<esc>
-:vn <leader>m o<esc>i`<esc>Ea`<esc>
+map <Leader>m gEwi`<esc>Ea`<esc>
+vmap<Leader>m o<esc>i`<esc>Ea`<esc>
 
 " Make a WORD bold
-:no <leader>b gEwi**<esc>Ea**<esc>
-:vn <leader>b o<esc>i**<esc>Ea**<esc>
+map <Leader>b gEwi**<esc>Ea**<esc>
+vmap <Leader>b o<esc>i**<esc>Ea**<esc>
 
 " Make a WORD italicized (or vimwiki bold)
-:no <leader>i gEwi*<esc>Ea*<esc>
-:vn <leader>i o<esc>i*<esc>Ea*<esc>
+map <Leader>i gEwi*<esc>Ea*<esc>
+vmap <Leader>i o<esc>i*<esc>Ea*<esc>
 
 " Make a WORD single or doublequoted
-:no <leader>' gEwi'<esc>Ea'<esc>
-:vn <leader>' o<esc>i'<esc>Ea'<esc>
-:no <leader>" gEwi"<esc>Ea"<esc>
-:vn <leader>" o<esc>i"<esc>Ea"<esc>
+map <Leader>' gEwi'<esc>Ea'<esc>
+vmap <Leader>' o<esc>i'<esc>Ea'<esc>
+map <Leader>" gEwi"<esc>Ea"<esc>
+vmap <Leader>" o<esc>i"<esc>Ea"<esc>
 
-" Faster close-window. LEADER ALL THE THINGS
-:no <leader>z :q<CR>
+" Faster close-window. Leader ALL THE THINGS
+map <Leader>z :q<CR>
 
 " Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
 " creation of nonexistent directories.
