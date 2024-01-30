@@ -140,7 +140,8 @@ nmap <Leader>tb oimport traceback; traceback.print_stack()<C-C>
 nmap <Leader>ic ofrom icecream import ic<C-C>
 
 " for vim-lsp (no idea why I couldn't define this in the plugins conf file...)
-nmap <Leader>dd :LspHover<CR>
+" Mnemonic: hOver
+nmap <Leader>o :LspHover<CR>
 
 " Inject ci skip line in a git commit msg
 nmap <Leader>cs o[ci skip]<C-C>
