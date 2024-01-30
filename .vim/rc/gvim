@@ -9,8 +9,7 @@ if has("gui_gtk2")
     " - a: autoselect, aka allow selected text to interplay w/ clipboard
     " - e: use GUI tabs if possible
     " I have left out, vs the defaults (may want to reintroduce for general
-    " gvim later, if desired, in which case move the limited edition into
-    " vimwiki conf file):
+    " gvim later, if desired):
     " - g: inactive menu items are grayed out - does not mattress
     " - i: use an icon in the menubar (does not seem to do much in GNOME 3)
     " - m: menu bar (I have unset this to save space)

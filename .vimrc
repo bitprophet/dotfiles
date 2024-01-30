@@ -14,8 +14,6 @@ source ~/.vim/rc/gvim
 source ~/.vim/rc/filetypes
 " Global key mappings, functions, leader shortcuts, etc
 source ~/.vim/rc/mappings
-" vimwiki gets its own file
-source ~/.vim/rc/vimwiki
 " (semi-)sensitive / PII-exposing vimrc commands.
 " NOTE: Not version-controlled.
 if filereadable(expand("~/.vimrc.local"))

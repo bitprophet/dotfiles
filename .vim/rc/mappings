@@ -159,7 +159,7 @@ vmap<Leader>m o<esc>i`<esc>Ea`<esc>
 map <Leader>b gEwi**<esc>Ea**<esc>
 vmap <Leader>b o<esc>i**<esc>Ea**<esc>
 
-" Make a WORD italicized (or vimwiki bold)
+" Make a WORD italicized
 map <Leader>i gEwi*<esc>Ea*<esc>
 vmap <Leader>i o<esc>i*<esc>Ea*<esc>
 
