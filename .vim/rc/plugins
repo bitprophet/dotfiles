@@ -77,31 +77,33 @@ let g:ack_use_cword_for_empty_search = 1
 " Auto-format on save
 "let g:rustfmt_autosave = 1
 " Don't override my textwidth, etc settings. rude!
-let g:rust_recommended_style = 0
+"let g:rust_recommended_style = 0
 
-" vim-lsp + rust-analyzer
+" vim-lsp (+ rust-analyzer)
 " Debuggery
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
 "let g:lsp_use_native_client = 1
 "let g:lsp_show_message_log_level = 'log'
 if executable('rust-analyzer')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'env': {'RUSTFLAGS': '-D warnings'},
-        \   'allowlist': ['rust'],
-        \   'initialization_options': {
-        \       'cargo': {
-        \           'sysroot': '/nix/store/dfb6kic3xdp2467l5mjk61dfmmclx6jy-rustc-1.73.0',
-        \       },
-        \   },
-        \ })
-endif
+    au User lsp_setup call lsp#register_server({
+         \   'name': 'Rust Language Server',
+         \   'cmd': {server_info->['rust-analyzer']},
+         \   'env': {'RUSTFLAGS': '-D warnings'},
+         \   'allowlist': ['rust'],
+         \   'initialization_options': {
+         \       'cargo': {
+         \           'sysroot': trim(system('cargo -Z unstable-options rustc --print sysroot')),
+         \       },
+         \   },
+         \ })
+    " r-a/lsp version of what rust.vim's rustfmt_autosave did
+    autocmd BufWritePre *.rs LspDocumentFormatSync
 
-" Code actions don't normally seem useful? it's usually either broken or
-" pointless 'refactorings', and they are also applicable on nearly any line,
-" making it way too high noise vs signal. (this is at least in rust; see also
-" https://rust-analyzer.github.io/manual.html#assists-code-actions, many of
-" those SOUND useful but I wasn't seeing them pop up.)
-let g:lsp_document_code_action_signs_enabled = 0
+    " Code actions don't normally seem useful? it's usually either broken or
+    " pointless 'refactorings', and they are also applicable on nearly any line,
+    " making it way too high noise vs signal. (this is at least in rust; see also
+    " https://rust-analyzer.github.io/manual.html#assists-code-actions, many of
+    " those SOUND useful but I wasn't seeing them pop up.)
+    let g:lsp_document_code_action_signs_enabled = 0
+endif
