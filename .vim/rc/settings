@@ -26,9 +26,9 @@ let g:gruvbox_transparent_bg = 1
 let g:gruvbox_contrast_dark = "hard"
 
 " My ca 2024 'big three'.
-colorscheme kanagawa-mini
+"colorscheme kanagawa-mini
 "colorscheme gruvbox
-"colorscheme jellybeans
+colorscheme jellybeans
 
 " Show additional info in the command line (very last line on screen) where
 " appropriate.
