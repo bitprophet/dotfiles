@@ -1,7 +1,3 @@
-[user]
-    # Self-explanatory
-    name = Jeff Forcier
-    email = jeff@bitprophet.org
 [color]
     # Colorize as much as possible by default
     ui = auto
@@ -27,3 +23,7 @@
     # Record previously resolved conflicts, eg when rebasing.
     # (I thought this was on by default, but no?)
     enabled = true
+[user]
+    # Self-explanatory
+    name = Jeff Forcier
+    email = jeff@bitprophet.org
