@@ -1,3 +1,5 @@
+[branch]
+    sort = -committerdate
 [color]
     # Colorize as much as possible by default
     ui = auto
