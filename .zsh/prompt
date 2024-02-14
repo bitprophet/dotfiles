@@ -89,7 +89,7 @@ function shortpath() {
     echo "${_dirname}"
 }
 
-function virtualenv_() {
+function dev_env() {
     # Make sure it's cleaned out if we exit a virtualenv/project and don't
     # enter another one right away
     venv=""
@@ -120,6 +120,13 @@ function virtualenv_() {
         if [[ -n $_venv ]]; then
             venv=$_venv
         fi
+    fi
+
+    # TODO: rust
+
+    # Nix flake detection (TODO: just use direnv + flake support lol?)
+    if [[ -z $_venv && -n $name && -n $IN_NIX_SHELL ]]; then
+        venv="flake:${name}"
     fi
 
     if [[ -n "$venv" ]]; then
@@ -197,7 +204,7 @@ function precmd() {
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} {$C[purple]$(virtualenv_)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }
