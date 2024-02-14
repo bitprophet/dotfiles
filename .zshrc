@@ -21,7 +21,7 @@ DOTFILES=(
     mid-local
     completion
     aliases
-    platform
+    nixos
     history
     python
     ruby

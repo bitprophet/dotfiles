@@ -50,9 +50,6 @@ export NODE_PATH=/usr/local/lib/node_modules
 # Java! I forget why this is necessary, used to live in unversioned local file
 export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
 
-# When using ec2 CLI utils from homebrew
-export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-
 # No real less conf file but it honors this; I want it to basically always
 # interpret ANSI colors & such.
 export LESS="-R"
