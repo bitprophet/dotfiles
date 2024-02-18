@@ -72,10 +72,8 @@ let g:ack_use_cword_for_empty_search = 1
 " See mappings config for leader-mappings used with ack.vim
 
 " rust.vim
-" Auto-format on save
-"let g:rustfmt_autosave = 1
 " Don't override my textwidth, etc settings. rude!
-"let g:rust_recommended_style = 0
+let g:rust_recommended_style = 0
 
 " vim-lsp (+ rust-analyzer)
 " Debuggery
