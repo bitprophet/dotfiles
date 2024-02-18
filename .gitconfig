@@ -12,6 +12,11 @@
 [interactive]
     # Don't require mashing enter after eg 'y'/'n' prompts in eg --patch
     singleKey = true
+[merge]
+    # Smarter, newer merge conflict formatting that is laser focused while
+    # still preserving things like "both parents deleted/added some identical
+    # lines"
+    conflictStyle = zdiff3
 [pull]
     # Rebase by default when pull-merging
     rebase = true
