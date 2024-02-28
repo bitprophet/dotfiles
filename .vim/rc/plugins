@@ -98,8 +98,8 @@ if executable('rust-analyzer')
 
     " Code actions don't normally seem useful? it's usually either broken or
     " pointless 'refactorings', and they are also applicable on nearly any line,
-    " making it way too high noise vs signal. (this is at least in rust; see also
-    " https://rust-analyzer.github.io/manual.html#assists-code-actions, many of
-    " those SOUND useful but I wasn't seeing them pop up.)
+    " making it way too high noise vs signal. (this is at least in rust; see
+    " also https://rust-analyzer.github.io/manual.html#assists-code-actions,
+    " many of those SOUND useful but I wasn't seeing them pop up.)
     let g:lsp_document_code_action_signs_enabled = 0
 endif
