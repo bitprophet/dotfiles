@@ -1,9 +1,0 @@
-windows:
-  - name: paramiko
-    filters:
-      before:
-        - wk paramiko
-    splits:
-      - width: 50
-      - width: 50
-        cmd: gr

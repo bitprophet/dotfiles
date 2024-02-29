@@ -1,9 +1,0 @@
-windows:
-  - name: fabric
-    filters:
-      before:
-        - wk fabric
-    splits:
-      - width: 50
-      - width: 50
-        cmd: gr

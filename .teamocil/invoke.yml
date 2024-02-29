@@ -1,9 +1,0 @@
-windows:
-  - name: invoke
-    filters:
-      before:
-        - wk invoke
-    splits:
-      - width: 50
-      - width: 50
-        cmd: gr
