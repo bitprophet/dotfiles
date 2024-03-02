@@ -15,7 +15,7 @@
 # <that window name>' is called if it matches a wk session name.
 
 ROOT=~/Code
-FOLDERS=($ROOT/oss $ROOT/jump $ROOT/personal $ROOT/others)
+FOLDERS=($ROOT/oss $ROOT/personal $ROOT/others)
 RCFILE=".wkrc"
 
 # No more virtualenvwrapper maybe I guess probably?
