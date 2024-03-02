@@ -1,3 +1,4 @@
 #--theme="base2tone-cave.light"
 --theme="base2tone-evening.light"
 --map-syntax="flake.lock:JSON"
+--map-syntax="/etc/os-release:DotENV"
