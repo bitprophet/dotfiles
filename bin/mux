@@ -1,5 +1,5 @@
-#!/run/current-system/sw/bin/env nix-shell
-#!nix-shell -i python -p python39Packages.invoke
+#! /usr/bin/env nix-shell
+#! nix-shell -i python -p python39Packages.invoke
 
 import os
 import sys
