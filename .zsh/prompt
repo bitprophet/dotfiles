@@ -126,7 +126,9 @@ function dev_env() {
 
     # Nix flake detection (TODO: just use direnv + flake support lol?)
     if [[ -z $_venv && -n $name && -n $IN_NIX_SHELL ]]; then
-        venv="flake:${name}"
+        # As of Nix 2.13ish, devShell $name became 'name attr + "-env"',
+        # so this trims the -env back off.
+        venv="flake:${name%-env}"
     fi
 
     if [[ -n "$venv" ]]; then
