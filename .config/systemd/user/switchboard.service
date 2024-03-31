@@ -1,9 +1,0 @@
-[Unit]
-Description=Switchboard browser search backend
-Requires=network
-
-[Service]
-ExecStart=/home/jforcier/Code/personal/switchboard/result/bin/switchboard
-
-[Install]
-WantedBy=default.target
