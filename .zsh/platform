@@ -1,0 +1,26 @@
+case $(uname) in
+
+Linux)
+    # Some subset of nixos-rebuild functionality CAN run w/o sudo, but having to
+    # remember which is which would be a PITA so who gives a shit
+    alias nr="sudo nixos-rebuild"
+
+    # Kinda-sorta 'list installed packages'
+    export NIX_SYSTEM_LOCATIONS=(/run/current-system/sw /etc/static)
+    alias whats-installed='nix-store --query --requisites ${NIX_SYSTEM_LOCATIONS} | cut -d "-" -f 2- | sort'
+    function deps-of () {
+        nix-store --query --requisites $(which $1)
+    }
+
+    # I never remember exactly how to "just run a .nix file" (typically some form
+    # of extracting a module from nixos/nixpkgs)
+    function build() {
+        nix-build -v --show-trace -E "with import <nixpkgs> {}; callPackage $1 {}" $2
+    }
+    ;;
+
+Darwin)
+    export PATH=/opt/homebrew/bin:$PATH
+    ;;
+
+esac
