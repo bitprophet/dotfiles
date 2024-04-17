@@ -141,6 +141,10 @@ etc/clusto*.conf
 .config/systemd/user/gpg-agent.service
 # And don't see swaps as usual (sigh)
 .config/systemd/user/.*.swp
+# 1Password SSH stuff configurable via file, nice
+!.config/1Password
+!.config/1Password/ssh
+!.config/1Password/ssh/agent.toml
 
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
