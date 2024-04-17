@@ -36,7 +36,8 @@ Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
-" NOTE: jellybeans and kanagawa-mini are just-colorschemes in dotfiles
+" NOTE: jellybeans and kanagawa-mini are just-colorschemes in dotfiles,
+" though they may be configured down below.
 
 call plug#end()
 
@@ -105,3 +106,10 @@ if executable('rust-analyzer')
     " many of those SOUND useful but I wasn't seeing them pop up.)
     let g:lsp_document_code_action_signs_enabled = 0
 endif
+
+" Colorscheme twiddles
+" TODO: on my Ventura personal box's iTerm2 with seemingly identical settings,
+" I didn't need to do this, jellybeans' background was still pretty dark. Here,
+" it defaulted to a much lighter tone with worse contrast properties, so I am
+" overriding it.
+let g:jellybeans_overrides = {'background': {'guibg': '000000'}}
