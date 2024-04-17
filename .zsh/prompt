@@ -31,7 +31,7 @@ CWD=$C[blue]
 # If $IS_WORKSTATION not already set, determine it from short hostname
 if [[ -z $IS_WORKSTATION ]]; then
     case $HOST in
-        basroil ) IS_WORKSTATION=1 ;;
+        basroil | hecate ) IS_WORKSTATION=1 ;;
     esac
 fi
 # Ditto IS_SERVER, IS_VM (latter much less oft used now)
