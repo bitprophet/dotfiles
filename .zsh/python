@@ -24,11 +24,6 @@ export PIP_LOG_FILE='/tmp/pip-log.txt'
 # N.B. the 'mac' file also sets up use of devpi as a caching server, via
 # PIP_INDEX_URL.
 
-#
-# Pipx (standalone binaries-in-virtualenvs)
-#
-
-export PATH="/Users/jforcier/.local/bin:$PATH"
 
 #
 # Python env vars
