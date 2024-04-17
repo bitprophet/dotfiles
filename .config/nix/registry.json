@@ -1,0 +1,16 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      },
+      "to": {
+        "lastModified": 1713383241,
+        "path": "/Users/jforcier/Code/personal/aether",
+        "type": "path"
+      }
+    }
+  ],
+  "version": 2
+}

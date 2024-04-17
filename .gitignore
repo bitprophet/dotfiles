@@ -145,6 +145,9 @@ etc/clusto*.conf
 !.config/1Password
 !.config/1Password/ssh
 !.config/1Password/ssh/agent.toml
+# Nix local registry: pin 'nixpkgs' to be aether's legacyPackages output
+!.config/nix
+!.config/nix/registry.json
 
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
