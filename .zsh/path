@@ -1,0 +1,48 @@
+# All PATH twiddling in /one place/, what a concept!
+#
+# And no inheriting it from the system, either!
+#
+# Finally, it utilizes zsh's magic behavior for certain variables (see
+# "PARAMETERS USED BY THE SHELL") where we can twiddle "path" (an array) and it
+# will auto-reflect in "PATH" (colon-separated string).
+# Unlike with new variables created by hand (such as DOTFILES in .zshrc), we do
+# not need to explicitly declare that "path" is array-type.
+
+export path=(
+    # Things in my dotfiles always win, though it should be /rare/ that they
+    # will ever truly shadow anything installed 'globally'.
+    $HOME/bin
+
+    # Similar: other $HOME-based things that want to be high in the pecking
+    # order, such as .local/bin (pipx, + others), OrbStack which adds docker
+    # shims, etc.
+    $HOME/.local/bin
+    $HOME/.orbstack/bin
+
+    # Nix, both user profile (primary) and system-global (often just contains
+    # Nix itself, eg on Darwin)
+    $HOME/.nix-profile/bin
+    /nix/var/nix/profiles/default/bin
+    
+    # Homebrew comes next.
+    /opt/homebrew/bin
+
+    # Some software still puts things in /usr/local, and we'd naturally expect
+    # that to win out over the system base.
+    /usr/local/bin
+    /usr/local/sbin
+
+    # Commented out for now: some bits macOS (at least as of Sonoma) gives you,
+    # which are very non-essential, containing a headless Safari driver etc.
+    # If enabled, they'd want to be around here in the order.
+    #/System/Cryptexes/App/usr/bin
+    #/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin
+    #/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin
+    #/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+
+    # Last but not least, what the OS gives you.
+    /usr/bin
+    /usr/sbin
+    /bin
+    /sbin
+)

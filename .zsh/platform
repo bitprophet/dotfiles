@@ -20,7 +20,6 @@ Linux)
     ;;
 
 Darwin)
-    export PATH=/opt/homebrew/bin:$PATH
     ;;
 
 esac

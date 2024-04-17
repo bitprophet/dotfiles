@@ -28,14 +28,7 @@ else
     HOSTNAME=`hostname`
 fi
 
-
-# PATH
-super_path=/sbin:/usr/sbin
-regular_path=/bin:/usr/bin
-my_path=$HOME/bin
-local_path=/usr/local/bin:/usr/local/sbin
-# TODO: probably rejigger all this sometime to be nix focused??
-export PATH=$PATH:$local_path:$regular_path:$super_path:$my_path
+# NOTE: See .zsh/path for all $PATH twiddling!
 
 # For some reason, some systems (eg UA CentOS) give me a blank LS_COLORS, which
 # is worse than no LS_COLORS as it kills eg tree's colorization.
@@ -43,12 +36,6 @@ unset LS_COLORS
 
 # Git crap
 export GIT_MERGE_AUTOEDIT=no
-
-# In case I have to deal with Node crap
-export NODE_PATH=/usr/local/lib/node_modules
-
-# Java! I forget why this is necessary, used to live in unversioned local file
-export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
 
 # No real less conf file but it honors this; I want it to basically always
 # interpret ANSI colors & such.
