@@ -25,7 +25,7 @@ export PIP_LOG_FILE='/tmp/pip-log.txt'
 # PIP_INDEX_URL.
 
 #
-# Pipsi (standalone binaries-in-virtualenvs)
+# Pipx (standalone binaries-in-virtualenvs)
 #
 
 export PATH="/Users/jforcier/.local/bin:$PATH"
