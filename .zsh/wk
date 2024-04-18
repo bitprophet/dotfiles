@@ -14,8 +14,7 @@
 # made to see if we're a new pane in an existing titled window, and 'wk
 # <that window name>' is called if it matches a wk session name.
 
-ROOT=~/Code
-FOLDERS=($ROOT/oss $ROOT/personal $ROOT/others)
+FOLDERS=(~/Code/*)  # expands into an array result!
 RCFILE=".wkrc"
 
 # No more virtualenvwrapper maybe I guess probably?
