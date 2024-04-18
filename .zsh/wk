@@ -39,15 +39,15 @@ function wk() {
             if [[ -f $RCFILE ]]; then
                 source $RCFILE
             fi
-            # And source Invoke autocompletion in case it's in use in that
-            # project (be lazy and just look for a tasks tree, since otherwise
-            # the global inv might trigger this. Meh!)
-            [[ -d tasks || -f tasks.py ]] && source <(inv --print-completion-script zsh 2>/dev/null)
             # Per-project virtualenv attempt!
             # TODO: other permutations? meh
             if [[ -d .venv ]]; then
                 source .venv/bin/activate
             fi
+            # Source Invoke autocompletion in case it's in use in that project
+            # (be lazy and just look for a tasks tree, since otherwise the
+            # global inv might trigger this. Meh!)
+            [[ -d tasks || -f tasks.py ]] && source <(inv --print-completion-script zsh 2>/dev/null)
             return 0
         fi
     done
