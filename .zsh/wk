@@ -43,6 +43,11 @@ function wk() {
             # project (be lazy and just look for a tasks tree, since otherwise
             # the global inv might trigger this. Meh!)
             [[ -d tasks || -f tasks.py ]] && source <(inv --print-completion-script zsh 2>/dev/null)
+            # Per-project virtualenv attempt!
+            # TODO: other permutations? meh
+            if [[ -d .venv ]]; then
+                source .venv/bin/activate
+            fi
             return 0
         fi
     done
