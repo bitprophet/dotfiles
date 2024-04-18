@@ -99,7 +99,10 @@ function dev_env() {
     # Python virtualenv
     _venv=`basename "$VIRTUAL_ENV"`
     if [[ -n $_venv ]]; then
-        venv=$_venv
+        case $_venv in
+            venv | .venv | env | .env ) venv=`basename $(dirname "$VIRTUAL_ENV")` ;;
+            * ) venv=$_venv ;;
+        esac
     fi
 
     # Bundler bundle (Ruby)
