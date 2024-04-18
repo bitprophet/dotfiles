@@ -1,2 +1,2 @@
 run:
-  shell: /run/current-system/sw/bin/zsh
+  shell: zsh
