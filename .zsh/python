@@ -1,33 +1,7 @@
-#
-# Basics
-#
-
-# TODO: I bet this shit's not even needed anymore
-# Don't blow up when PYTHONDONTWRITEBYTECODE is set
-export VIRTUALENV_USE_DISTRIBUTE=1
-# Not sure why the hell the docs say one thing and the code another.
-# Set both so it always works.
-export VIRTUALENV_DISTRIBUTE=1
-
+# 'workon xxx' should use my global venv folder
 export WORKON_HOME=~/.virtualenvs
 test -d $WORKON_HOME || mkdir $WORKON_HOME
-
-#
-# Pip env vars
-#
-
-# Respect my virtualenvs, please
-export PIP_RESPECT_VIRTUALENV=true
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # Don't litter pip_log.txt files in cwd!
 export PIP_LOG_FILE='/tmp/pip-log.txt'
-# N.B. the 'mac' file also sets up use of devpi as a caching server, via
-# PIP_INDEX_URL.
-
-
-#
-# Python env vars
-#
-
-# Only affects 2.6 but should be harmless in 2.5
+# No .pyc's please
 export PYTHONDONTWRITEBYTECODE=1
