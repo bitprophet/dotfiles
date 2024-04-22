@@ -170,7 +170,9 @@ alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
 alias g=grep
-alias history='fc -li -50'  # Last 50 entries, with full timestamp
+# History but with ISO8601 timestamp, duration, show entire history
+# TODO: maybe I should try Atuin sometime
+alias history="fc -liD -${HISTSIZE}"
 alias h=history
 alias hg='history | grep'
 alias l=ls -al
