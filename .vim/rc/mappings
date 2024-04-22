@@ -164,10 +164,10 @@ map <Leader>i gEwi*<esc>Ea*<esc>
 vmap <Leader>i o<esc>i*<esc>Ea*<esc>
 
 " Make a WORD single or doublequoted
-map <Leader>' gEwi'<esc>Ea'<esc>
-vmap <Leader>' o<esc>i'<esc>Ea'<esc>
-map <Leader>" gEwi"<esc>Ea"<esc>
-vmap <Leader>" o<esc>i"<esc>Ea"<esc>
+map <Leader>' gEwi'<esc>ea'<esc>
+vmap <Leader>' o<esc>i'<esc>ea'<esc>
+map <Leader>" gEwi"<esc>ea"<esc>
+vmap <Leader>" o<esc>i"<esc>ea"<esc>
 
 " Faster close-window. Leader ALL THE THINGS
 map <Leader>z :q<CR>
