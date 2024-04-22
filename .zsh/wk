@@ -26,10 +26,6 @@ function wk() {
     # deactivate/workon will fail silently if project is not a virtualenv.
     deactivate 2>/dev/null
     workon $1 2>/dev/null
-    # Try adding to $VIRTUAL_ENV with something even more useful
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        export SITEPACKAGES=$(ls -1d $VIRTUAL_ENV/lib/python*/site-packages)
-    fi
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
@@ -50,6 +46,10 @@ function wk() {
             # TODO: other permutations? meh
             if [[ -d .venv ]]; then
                 source .venv/bin/activate
+            fi
+            # Site-packages env var useful in e.g. vim, cd
+            if [[ -n "$VIRTUAL_ENV" ]]; then
+                export SITEPACKAGES=$(python -c "from sysconfig import get_path; print(get_path('purelib'))")
             fi
             # Source Invoke autocompletion in case it's in use in that project
             # (be lazy and just look for a tasks tree, since otherwise the
