@@ -10,3 +10,5 @@
 --ignore-dir=.pytest_cache
 # And mypy caches
 --ignore-dir=.mypy_cache
+# And virtualenvs
+--ignore-dir=venv
