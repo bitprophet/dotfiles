@@ -1,3 +1,14 @@
-# NixOS specific!
+# Override fzf key-bindings.zsh default of 'find' (invoked in a way that skips
+# _all dotfiles_ which is really frustrating!)
+# Specifically, they include a "-path */.*" in the "prune all these mofos" bit
+# in the first half, which means "don't descend into any of these". Good for
+# not accidentally following symlinks into tmpfs; bad for when you want to look
+# into .github/ or open a .env file or etc!
+# Adapted from fzf 0.45.0 as packaged by nixos.
+export FZF_CTRL_T_COMMAND="command find -L . -mindepth 1 \\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | cut -b3-"
+
 source $(fzf-share)/completion.zsh
 source $(fzf-share)/key-bindings.zsh
