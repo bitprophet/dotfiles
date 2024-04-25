@@ -38,8 +38,8 @@ unset LS_COLORS
 export GIT_MERGE_AUTOEDIT=no
 
 # No real less conf file but it honors this; I want it to basically always
-# interpret ANSI colors & such.
-export LESS="-R"
+# interpret ANSI colors & such; case insensitive search; etc.
+export LESS="-Ri"
 
 # Standardize SSH auth socket location, otherwise frequent reconnections to
 # tmux means a stale auth sock. If randomizing it would otherwise have saved me
