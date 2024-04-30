@@ -64,7 +64,7 @@ let g:vimclojure#ParenRainbow=1
 let g:vimclojure#DynamicHighlighting=1
 
 " CtrlP
-let g:ctrlp_custom_ignore = '\v\.git$|\.gz$|\.egg-info|htmlcov|\.swp|^[_.]build|\.gradle|node_modules|sites/[^/]+/_build|\.pytest_cache|\.mypy_cache|__pycache__|target/|public/|\.venv/'
+let g:ctrlp_custom_ignore = '\v\.git$|\.gz$|\.egg-info|htmlcov|\.swp|^[_.]build|\.gradle|node_modules|sites/[^/]+/_build|\.pytest_cache|\.mypy_cache|__pycache__|target/|public/|\.?venv/'
 " Used to set clear-cache-on-exit to 0 for cross-session caching, but this is
 " actually way more annoying than the default behavior!
 let g:ctrlp_clear_cache_on_exit = 1

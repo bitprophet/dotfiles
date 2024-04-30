@@ -40,6 +40,9 @@ function wk() {
             if [[ -d .venv ]]; then
                 source .venv/bin/activate
             fi
+            if [[ -d venv ]]; then
+                source venv/bin/activate
+            fi
             # Site-packages env var useful in e.g. vim, cd
             if [[ -n "$VIRTUAL_ENV" ]]; then
                 export SITEPACKAGES=$(python -c "from sysconfig import get_path; print(get_path('purelib'))")
