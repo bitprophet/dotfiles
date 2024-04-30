@@ -11,4 +11,5 @@
 # And mypy caches
 --ignore-dir=.mypy_cache
 # And virtualenvs
+--ignore-dir=.venv
 --ignore-dir=venv
