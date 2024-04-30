@@ -28,6 +28,7 @@ DOTFILES=(
     prompt
     zmv
     fzf
+    aws
     local
 )
 for file in $DOTFILES; do
