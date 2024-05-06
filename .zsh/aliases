@@ -177,6 +177,7 @@ alias h=history
 alias hg='history | grep'
 alias l=ls -al
 alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut -d " " -f 1,3,9 | sort -u | column -t'
+alias d='docker'
 
 # Functions
 
@@ -279,3 +280,4 @@ function mux() {
 
     tmuxp load $conf --append
 }
+
