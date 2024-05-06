@@ -256,3 +256,6 @@ alias tss='ts -s "%H:%M:%.S"'
 function profile() {
     tss | logparse $@
 }
+
+# Docker
+alias d='docker'
