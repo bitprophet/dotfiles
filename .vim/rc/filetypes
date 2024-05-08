@@ -63,3 +63,6 @@ autocmd BufNewFile,BufRead Pipfile.lock setlocal ft=json
 
 " Don't wrap kube config as it may contain big blobs of auth key stuff
 autocmd BufNewFile,BufRead ~/.kube/config setlocal ft=yaml nowrap
+
+" .secrets files are usually dotenv-like
+autocmd BufNewFile,BufRead *.secret,*.secrets setlocal ft=dotenv
