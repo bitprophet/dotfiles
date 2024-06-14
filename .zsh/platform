@@ -20,6 +20,10 @@ Linux)
     ;;
 
 Darwin)
+    alias b="brew"
+    alias bf="b info"
+    alias bi="b install"
+    alias bs="b search"
     ;;
 
 esac
