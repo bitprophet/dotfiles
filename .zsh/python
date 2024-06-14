@@ -5,3 +5,5 @@ test -d $WORKON_HOME || mkdir $WORKON_HOME
 export PIP_LOG_FILE='/tmp/pip-log.txt'
 # No .pyc's please
 export PYTHONDONTWRITEBYTECODE=1
+# Use ipdb for breakpoint()
+export PYTHONBREAKPOINT="ipdb.set_trace"
