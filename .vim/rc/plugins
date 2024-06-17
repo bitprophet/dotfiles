@@ -29,6 +29,8 @@ Plug 'vim-python/python-syntax', {'commit': '2cc00ba'}
 Plug 'LnL7/vim-nix', {'commit': '7d23e97'}
 " Ack (or w/e you want) project search
 Plug 'mileszs/ack.vim', {'commit': '36e40f9'}
+" TF/OpenTofu
+Plug 'hashivim/vim-terraform', {'commit': '24de93a'}
 " Rust syntax, rustfmt integration, etc
 " (the syntax plugin bundled w/ vim _is_ from the same repo, but from like
 " 2016? heh.)
