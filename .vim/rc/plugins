@@ -33,6 +33,8 @@ Plug 'mileszs/ack.vim', {'commit': '36e40f9'}
 Plug 'rust-lang/rust.vim', {'commit': '889b9a7'}
 " LSP experimentation (for rust-analyzer first)
 Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
+" TF/OpenTofu
+Plug 'hashivim/vim-terraform', {'commit': '24de93a'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
