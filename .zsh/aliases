@@ -138,7 +138,7 @@ alias gemu='gem uninstall'
 alias rmv='deactivate; rmvirtualenv'
 
 function mkv() {
-    virtualenv $1
+    python -m venv $1
     source $1/bin/activate
     cd $1
 }
