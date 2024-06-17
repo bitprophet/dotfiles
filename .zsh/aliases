@@ -140,7 +140,6 @@ alias rmv='deactivate; rmvirtualenv'
 function mkv() {
     python -m venv $1
     source $1/bin/activate
-    cd $1
 }
 
 # Sphinx built dirs browsing (for headless dev w/o a 'open' binary).
