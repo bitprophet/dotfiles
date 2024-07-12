@@ -19,7 +19,7 @@ for key in ${(k)PALETTE}; do
 done
 
 # System => color/hostname map:
-#   NAME: username color
+#   NAME: hostname color
 #   CWD: location/cwd color
 # Defaults:
 NAME=$C[green]
