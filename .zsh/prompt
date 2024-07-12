@@ -37,7 +37,7 @@ fi
 # Ditto IS_SERVER, IS_VM (latter much less oft used now)
 if [[ -z $IS_SERVER ]]; then
     case $HOST in
-        gosroth ) IS_SERVER=1 ;;
+        gosroth | circe ) IS_SERVER=1 ;;
     esac
 fi
 if [[ -z $IS_VM ]]; then
