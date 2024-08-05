@@ -1,0 +1,5 @@
+[global]
+# tl;dr use pipefail, not on by default
+strict_env = true
+# default was 5s, too slow for eg AWS login dance
+warn_timeout = "30s"  

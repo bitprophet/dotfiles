@@ -133,6 +133,8 @@ etc/clusto*.conf
 !.config/bat/*
 !.config/bat/themes
 !.config/bat/themes/*
+!.config/direnv
+!.config/direnv/direnv.toml
 !.config/xfce4
 !.config/xfce4/terminal
 !.config/xfce4/terminal/terminalrc
