@@ -24,6 +24,8 @@ Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
 Plug 'raimon49/requirements.txt.vim', {'tag': 'v-1.2.0'}
 " More up-to-date Python syntax than the builtin (eg Python 3, f-strings, etc)
+" NOTE: builtin Python syntax now covers match/case but somehow not f-strings,
+" or at least, not well. Keeping this plugin for now.
 Plug 'vim-python/python-syntax', {'commit': '2cc00ba'}
 " Nix syntax
 Plug 'LnL7/vim-nix', {'commit': '7d23e97'}
