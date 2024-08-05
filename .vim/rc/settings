@@ -154,6 +154,11 @@ set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ '$*'
 set grepformat=%f:%l:%m
 " When writing encrypted files, use blowfish instead of...zip?! WTF
 set cryptmethod=blowfish2
+" Automatically reload buffers w/ no pending writes, when :checktime is
+" executed. (Or when shell commands are executed, but I almost never do that.
+" Point is tho, there's no timer loop, vim shouldn't automatically notice eg a
+" 'git checkout' underneath it - should wait for a checktime to be run.)
+set autoread
 
 " Jump to last known location in file
 if has("autocmd")
