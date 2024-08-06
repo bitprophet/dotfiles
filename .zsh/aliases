@@ -1,7 +1,7 @@
 # Overrides/shadowing, tho see-also some "alias x = sudo x" stuff elsewhere
 alias tree='tree --filesfirst -C -a -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache|target"'
-alias ls='k'
-alias ll='k -Ah'
+alias ls='ls --color=always'
+alias ll='ls -al'
 alias l=ll
 
 # bat, a nicer cat, plus warm its cache on new systems
