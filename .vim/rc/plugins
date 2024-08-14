@@ -69,7 +69,7 @@ let g:vimclojure#DynamicHighlighting=1
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(\.(git|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build)$',
+  \ 'dir': '\v(\.(git|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build|node_modules)$',
   \ 'file': '\v\.(gz|swp)$',
   \ 'link': '\vtarget',
 \ }
