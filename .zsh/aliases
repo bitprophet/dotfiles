@@ -169,6 +169,7 @@ alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
 alias g=grep
+alias eg='env | grep'
 # History but with ISO8601 timestamp, duration, show entire history
 # TODO: maybe I should try Atuin sometime
 alias history="fc -liD -${HISTSIZE}"
