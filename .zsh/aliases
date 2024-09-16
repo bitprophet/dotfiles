@@ -249,11 +249,6 @@ function nl2comma() {
     python -c "import sys; print ','.join(sys.stdin.read().splitlines())"
 }
 
-# Gnuplot junk
-function asciigraph() {
-    gnuplot -e "set term dumb; plot '-' with lines"
-}
-
 # Heh.
 function _lolvim() {
     _msg="THIS AIN'T VIM, BUDDY"
