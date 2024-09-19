@@ -190,6 +190,17 @@ function displayhost() {
     echo "$HOSTNAME"
 }
 
+function reach_env() {
+    if [[ -n "$REACH_ENV" ]]; then
+        case $REACH_ENV in
+            test | local ) ENV_COLOR=$C[cyan] ;;
+            staging ) ENV_COLOR=$C[orange] ;;
+            prod ) ENV_COLOR=$C[red] ;;
+        esac
+        echo "(${ENV_COLOR}${REACH_ENV}%f) "
+    fi
+}
+
 #
 # Prompt itself
 #
@@ -201,10 +212,11 @@ function precmd() {
     git_status
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
+    # NOTE: %f is zsh colorspeak for "stop showing a different fg color"
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} $(reach_env){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }
