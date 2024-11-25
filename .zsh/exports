@@ -21,7 +21,13 @@ if [ ! `hostname -f 2>/dev/null` ] && test -e $_id_file; then
     HOST=`cat $_id_file`
     DOMAIN=
     HOSTNAME=$HOST
-# Otherwise, assume FQDN provides deets
+# If we're on a Mac, use scutil as it will always match what's in the sharing
+# prefpane, even if eg a VPN profile is fucking up `hostname` output
+elif have scutil; then
+    HOST=`scutil --get LocalHostName`
+    DOMAIN=
+    HOSTNAME=$HOST
+# Fallback, assume FQDN provides deets
 else
     HOST=`hostname -f | cut -d '.' -f 1`
     DOMAIN=`hostname -f | cut -d '.' -f 2-`
