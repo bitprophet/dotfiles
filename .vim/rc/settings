@@ -77,7 +77,7 @@ if exists('+breakindent')
     " This tweaks its behavior. For now, assume most wrapping is in bullet list
     " items, and set to 2 spaces. TODO: figure out how to ONLY make it set when in
     " a list-item.
-    set breakindentopt=shift:2
+    set breakindentopt=list:2
 endif
 " Make tabbing/deleting honor 'shiftwidth' as well as 'softtab' and 'tabstop'
 set smarttab
