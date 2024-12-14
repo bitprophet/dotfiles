@@ -1,3 +1,2 @@
-# NixOS specific!
-source $(fzf-share)/completion.zsh
-source $(fzf-share)/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
