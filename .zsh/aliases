@@ -41,6 +41,7 @@ alias pl='pf'
 alias yi='yum install'
 alias yiss='yi -y'
 alias ys='yum search'
+alias pacman='sudo pacman'
 
 # Git helper (TODO: start using 'gh' tool instead, 'hub' unmaintained)
 if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
