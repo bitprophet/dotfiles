@@ -33,9 +33,10 @@ fi
 super_path=/sbin:/usr/sbin
 regular_path=/bin:/usr/bin
 my_path=$HOME/bin
+pipx_path=$HOME/.local/bin
 local_path=/usr/local/bin:/usr/local/sbin
 # TODO: probably rejigger all this sometime to be nix focused??
-export PATH=$PATH:$local_path:$regular_path:$super_path:$my_path
+export PATH=$PATH:$local_path:$regular_path:$super_path:$my_path:$pipx_path
 
 # For some reason, some systems (eg UA CentOS) give me a blank LS_COLORS, which
 # is worse than no LS_COLORS as it kills eg tree's colorization.
