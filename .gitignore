@@ -105,8 +105,8 @@ etc/clusto*.conf
 # RTorrent
 !.rtorrent.rc
 
-# Ack
-!.ackrc
+# Ag
+!.agrc
 
 # Teamocil
 !.teamocil
