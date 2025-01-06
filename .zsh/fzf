@@ -5,7 +5,7 @@
 # not accidentally following symlinks into tmpfs; bad for when you want to look
 # into .github/ or open a .env file or etc!
 # Adapted from fzf 0.45.0 as packaged by nixos.
-export FZF_CTRL_T_COMMAND="cat =(ack -f) =(ack -f | xargs dirname | sort -u)"
+export FZF_CTRL_T_COMMAND="cat =(ag -l) =(ag -l | xargs dirname | sort -u)"
 
 source $(fzf-share)/completion.zsh
 source $(fzf-share)/key-bindings.zsh
