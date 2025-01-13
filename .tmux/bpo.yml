@@ -1,4 +1,0 @@
-cmd_all: "wk bpo"
-right_panes:
-  - gpl
-  - inv serve

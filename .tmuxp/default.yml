@@ -1,0 +1,13 @@
+session_name: "${MUX_SESSION}"
+windows:
+  # TODO: change this to eg 'code' and embrace per-project sessions?
+- window_name: "${MUX_SESSION}"
+  focus: true
+  layout: main-vertical
+  options:
+    main-pane-width: 242
+  shell_command_before: "wk ${MUX_SESSION}"
+  panes:
+    - vim .
+    - focus: true
+    - lazygit
