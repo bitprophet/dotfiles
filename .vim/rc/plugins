@@ -78,6 +78,8 @@ map <C-t> :CtrlPTag<CR>
 let g:python_highlight_all = 1
 
 " ack.vim
+" Use ag, not ack, yey
+let g:ackprg = "ag --vimgrep"
 " Any empty ack search will search for the work the cursor is on
 let g:ack_use_cword_for_empty_search = 1
 " See mappings config for leader-mappings used with ack.vim
