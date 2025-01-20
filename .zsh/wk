@@ -39,13 +39,6 @@ function wk() {
             # Also execute any project init file
             if [[ -f $RCFILE ]]; then
                 source $RCFILE
-            # And as a last resort, see if there's a Nix flake to develop in.
-            # (But only if we're not already inside a nix develop shell!)
-            # (and not for nixpkgs checkouts themselves, because yikes, so big)
-            else
-                if [[ $1 != "nixpkgs" && -f flake.nix && -z $IN_NIX_SHELL ]]; then
-                    exec nix develop
-                fi
             fi
             # And source Invoke autocompletion in case it's in use in that
             # project (be lazy and just look for a tasks tree, since otherwise
