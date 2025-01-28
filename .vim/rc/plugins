@@ -5,7 +5,9 @@
 
 " vim-plug!
 
-call plug#begin('~/.vim/plugged')
+let plugins_dir = '~/.vim/plugged'
+
+call plug#begin(plugins_dir)
 
 " Improved JSON syntax formatting, display, etc
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
@@ -33,6 +35,13 @@ Plug 'mileszs/ack.vim', {'commit': '36e40f9'}
 Plug 'rust-lang/rust.vim', {'commit': '889b9a7'}
 " LSP experimentation (for rust-analyzer first)
 Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
+" And for Python (but also generally; uses npm to install sub-plugins)
+" TODO: as with fugitive, CoC appears to have an order of operations issue
+" where you cannot call CocInstall until a full reload occurs. otherwise could
+" slap a function reference or lambda into the 'do' key in this dict, to
+" install things like coc-basedpyright.
+" TODO: for now I'm likely to work around this with a small shell script.
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
