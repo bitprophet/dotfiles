@@ -28,7 +28,7 @@ DOTFILES=(
     zmv
     fzf
     direnv
-    aws
+    #aws
     local
 )
 for file in $DOTFILES; do
