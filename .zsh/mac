@@ -1,3 +1,0 @@
-fzf_shell=$(brew --prefix fzf)/shell
-source $fzf_shell/completion.zsh
-source $fzf_shell/key-bindings.zsh
