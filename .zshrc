@@ -28,6 +28,7 @@ DOTFILES=(
     zmv
     fzf
     direnv
+    aws
     local
 )
 for file in $DOTFILES; do

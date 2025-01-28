@@ -1,0 +1,20 @@
+# AWS CLI v2 related things
+if have aws; then
+    function get-creds() {
+        aws configure export-credentials --format env 2>/dev/null
+    }
+    creds=$(get-creds)
+    if [[ -z "$creds" ]]; then
+        # awscli is both unfriendly and lacks idempotency...
+        if ! grep sso ~/.aws/config &>/dev/null; then
+            aws configure sso
+        fi
+        aws sso login --no-browser
+        creds=$(get-creds)
+    fi
+    if [[ -z "$creds" ]]; then
+        echo "SSO config and/or login went south, please fix ~/.zsh/aws!"
+    else
+        eval $creds
+    fi
+fi
