@@ -15,12 +15,14 @@ function have() {
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
+    platform
     pre-local
     options
     exports
     mid-local
     completion
     aliases
+    platform
     nixos
     history
     python

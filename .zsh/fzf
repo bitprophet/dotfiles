@@ -1,2 +1,8 @@
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+case $PLATFORM in
+    mac ) fzf_shell=$(brew --prefix fzf)/shell ;;
+    # Specifically, Arch.
+    linux ) fzf_shell=/usr/share/fzf ;;
+esac
+
+source $fzf_shell/completion.zsh
+source $fzf_shell/key-bindings.zsh

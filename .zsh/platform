@@ -1,0 +1,9 @@
+case $( uname -s ) in
+    Darwin )
+        export PLATFORM="mac" ;;
+    Linux )
+        # TODO: could source /etc/os-release to derive `ID=arch`/`ID=ubuntu`
+        # type stuff, if I had need for that granularity; leaving plain 'linux'
+        # for a fallback.
+        export PLATFORM="linux" ;;
+esac
