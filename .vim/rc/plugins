@@ -90,6 +90,7 @@ let g:python_highlight_all = 1
 " Any empty ack search will search for the work the cursor is on
 let g:ack_use_cword_for_empty_search = 1
 " See mappings config for leader-mappings used with ack.vim
+let g:ackprg = "ag --vimgrep"
 
 " rust.vim
 " Don't override my textwidth, etc settings. rude!
