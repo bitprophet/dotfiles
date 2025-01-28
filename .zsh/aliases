@@ -44,6 +44,16 @@ alias yiss='yi -y'
 alias ys='yum search'
 alias pacman='sudo pacman'
 
+# Homebrew: eval only when necessary, but aliases can be unconditional, it's
+# fine
+if [[ -d /opt/homebrew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+alias b=brew
+alias bi='b install'
+alias bin='b info'
+alias bs='b search'
+
 # Git helper (TODO: start using 'gh' tool instead, 'hub' unmaintained)
 if [[ -e `which hub 2>/dev/null` && -e `which ruby 2>/dev/null` ]]; then
     alias git=hub
@@ -81,7 +91,6 @@ alias gch='git cherry-pick'
 alias amend='git commit --amend --no-edit'
 alias amende='git commit --amend'
 alias gri='git rebase -i main'
-
 
 function gremote() {
     git remote add -f $1
