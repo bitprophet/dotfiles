@@ -163,3 +163,9 @@ etc/clusto*.conf
 # Lazygit
 !.config/lazygit/
 !.config/lazygit/config.yml
+
+# 1Password CLI hooks
+!.config/1Password
+!.config/1Password/*
+!.config/1Password/ssh/
+!.config/1Password/ssh/*
