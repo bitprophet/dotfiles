@@ -27,6 +27,7 @@ DOTFILES=(
     prompt
     zmv
     fzf
+    direnv
     local
 )
 for file in $DOTFILES; do
