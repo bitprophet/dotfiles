@@ -80,11 +80,13 @@
 .vim/*/*/*/.*.swp
 
 # Local copies of tools/scripts
-!bin
-!bin/*
-bin/.*.swp
-# Concourse CLI; changes depending on target version
-bin/fly
+# (but try not to do this, it's really gross)
+# Old ruby based github helper. replace with gh sometime
+!bin/hub
+# Manual script for analyzing logfiles, still useful
+!bin/logparse
+# Manual script for 'merge up', used a lot sometimes
+!bin/mu
 
 # Config for local daemons (e.g. squid)
 !etc
