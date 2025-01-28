@@ -23,7 +23,6 @@ DOTFILES=(
     completion
     aliases
     platform
-    nixos
     history
     python
     ruby

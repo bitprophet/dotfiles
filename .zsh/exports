@@ -35,7 +35,7 @@ regular_path=/bin:/usr/bin
 my_path=$HOME/bin
 pipx_path=$HOME/.local/bin
 local_path=/usr/local/bin:/usr/local/sbin
-# TODO: probably rejigger all this sometime to be nix focused??
+# TODO: probably rejigger all this sometime?
 export PATH=$PATH:$local_path:$regular_path:$super_path:$my_path:$pipx_path
 
 # For some reason, some systems (eg UA CentOS) give me a blank LS_COLORS, which

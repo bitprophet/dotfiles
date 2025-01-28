@@ -6,10 +6,7 @@ for option (
     append_history # Keep history from all shells, not just the last one to exit
     autocd # Less typing is better typing
     correct # Spelling correction suggestions
-#    TODO: I almost never remember about ^ and ~ anyways, and EXTENDED_GLOB
-#    also includes '#', which constantly annoys me and moreso under NixOS with
-#    flakes. So, turning this back off.
-#    extended_glob # More options when globbing, like ^blah to exclude
+    extended_glob # More options when globbing, like ^blah to exclude
     extended_history # Store timestamps, elapsed time for commands
     hist_ignore_dups # Don't add contiguous duplicates to history
     no_automenu # Don't cycle thru options on subsequent Tabs
