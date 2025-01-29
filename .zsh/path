@@ -19,6 +19,12 @@ export path=(
     $HOME/.local/bin
     $HOME/.orbstack/bin
 
+    # pyenv, so its python shims come before stuff in eg homebrew.
+    # NOTE: I am eschewing pyenv's shell hooks for the time being, but you
+    # probably still need to occasionally do things like 'pyenv global 3.11.8'
+    # or 'pyenv rehash' for the shims to remain accurate.
+    $HOME/.pyenv/shims
+
     # Homebrew comes next.
     /opt/homebrew/bin
 
