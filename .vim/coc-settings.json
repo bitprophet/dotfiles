@@ -1,0 +1,5 @@
+{
+    // Only use basedpyright for location/hints, prefer mypy for typechecking
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.mypyEnabled": true
+}
