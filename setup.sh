@@ -1,3 +1,5 @@
+# vim: set ft=zsh
+
 # Let it be known that I hate this. But doing these kinds of things inside
 # .vimrc files is flaky, multiple vim-plug plugins need a full relaunch to
 # work.
