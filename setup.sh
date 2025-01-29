@@ -5,7 +5,8 @@
 # work.
 typeset -a COC_EXTENSIONS
 COC_EXTENSIONS=(
-    coc-basedpyright@1.19.0
+    coc-json@1.9.2
+    coc-pyright@1.1.390
 )
 vim '+PlugUpdate | qa!'
 # CocInstall -sync doesn't seem to show output for w/e reason. For now I think
