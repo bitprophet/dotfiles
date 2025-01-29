@@ -1,10 +1,2 @@
 # Always page, because saying --color | less -R by hand every time is annoying
 --pager=less -FXR
-# I don't care about any of this junk! (TODO: can we unify w/ other ignore
-# files? lol)
---ignore=\.cache
---ignore=\.coverage
---ignore=\.mypy_cache
---ignore=\.pytest_cache
---ignore=build
---ignore=htmlcov
