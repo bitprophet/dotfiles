@@ -5,7 +5,8 @@ windows:
   focus: true
   layout: main-vertical
   options:
-    main-pane-width: 242
+    # 3x80col vim + 2 pane splits (+ 3 signcolumns for CoC)
+    main-pane-width: 245
   shell_command_before: "wk ${MUX_SESSION}"
   panes:
     - vim .

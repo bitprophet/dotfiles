@@ -30,6 +30,9 @@ let g:gruvbox_contrast_dark = "hard"
 "colorscheme gruvbox
 colorscheme jellybeans
 
+" Always show 'sign' column since it's used by CoC extensions
+set signcolumn=yes
+
 " Show additional info in the command line (very last line on screen) where
 " appropriate.
 set showcmd
@@ -171,5 +174,19 @@ if has("autocmd")
   filetype indent plugin on
 endif
 
-" Sessions settings
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
+" Change cursor style to hint at insert (underline) vs normal (box) mode.
+" Ripped from gh:wincent/terminus plugin (which was oddly buggy for this & had
+" other stuff I didn't need besides)
+" TODO: unclear why 'set' didn't work here
+let &t_EI="\<Esc>[2 q"
+let &t_SI="\<Esc>[6 q"
+let &t_SR="\<Esc>[4 q"
+
+" Also discovered via Terminus: ttimeoutlen - should help with the ~1s delay
+" after doing things like Esc to exit insert mode and other mode-related
+" transitions?
+" Also setting regular timeoutlen (which affects all key mappings, vs
+" ttimeoutlen which is mostly Esc and similar) as its default is 1000ms and
+" that's a bit long for me.
+set timeoutlen=500
+set ttimeoutlen=10
