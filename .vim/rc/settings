@@ -173,3 +173,11 @@ endif
 if has("autocmd")
   filetype indent plugin on
 endif
+
+" Change cursor style to hint at insert (underline) vs normal (box) mode.
+" Ripped from gh:wincent/terminus plugin (which was oddly buggy for this & had
+" other stuff I didn't need besides)
+" TODO: unclear why 'set' didn't work here
+let &t_EI="\<Esc>[2 q"
+let &t_SI="\<Esc>[6 q"
+let &t_SR="\<Esc>[4 q"
