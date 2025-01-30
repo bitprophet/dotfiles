@@ -173,6 +173,3 @@ endif
 if has("autocmd")
   filetype indent plugin on
 endif
-
-" Sessions settings
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
