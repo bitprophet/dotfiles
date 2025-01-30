@@ -32,6 +32,7 @@ if which brew &>/dev/null; then
         lazygit
         pyenv
         tmux
+        tmuxp
         tree
         vim
         wget
