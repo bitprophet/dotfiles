@@ -46,6 +46,8 @@ Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
 " install things like coc-basedpyright.
 " TODO: for now I'm likely to work around this with a small shell script.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Cursor changes on insert/normal mode, and other QoL things
+Plug 'wincent/terminus', {'commit': '4724747'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
