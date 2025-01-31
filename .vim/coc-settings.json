@@ -1,4 +1,5 @@
 {
+    "coc.preferences.jumpCommand": "split",
     // Only use basedpyright for location/hints, prefer mypy for typechecking
     "python.analysis.typeCheckingMode": "off",
     "pyright.disableDiagnostics": true,
