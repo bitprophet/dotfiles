@@ -181,3 +181,12 @@ endif
 let &t_EI="\<Esc>[2 q"
 let &t_SI="\<Esc>[6 q"
 let &t_SR="\<Esc>[4 q"
+
+" Also discovered via Terminus: ttimeoutlen - should help with the ~1s delay
+" after doing things like Esc to exit insert mode and other mode-related
+" transitions?
+" Also setting regular timeoutlen (which affects all key mappings, vs
+" ttimeoutlen which is mostly Esc and similar) as its default is 1000ms and
+" that's a bit long for me.
+set timeoutlen=500
+set ttimeoutlen=10
