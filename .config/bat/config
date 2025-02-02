@@ -2,3 +2,4 @@
 --theme="base2tone-evening.light"
 --map-syntax="flake.lock:JSON"
 --map-syntax="/etc/os-release:DotENV"
+--map-syntax="/etc/pacman*:INI"
