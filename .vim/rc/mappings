@@ -211,7 +211,10 @@ nmap <Leader>v :r ! xclip -o<CR>
 " Easy reload of vimrc tree
 nmap <Leader>r :source $MYVIMRC<CR>
 
+"
 " CoC related stuff
+"
+
 " Basic tab-complete behavior (default bindings are weird), taken directly from
 " their REAADME.
 inoremap <silent><expr> <TAB>
@@ -229,3 +232,15 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Jump bindings (slightly modified from CoC readme)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>d <Plug>(coc-diagnostic-next)
+
+" Hover/docs (vanilla vim 'D' is ~= 'cut til EOL', I don't ever use it)
+" NOTE: LSPs also expose 'definitionHover' but at least in Python/pyright/CoC
+" it appears functionally identical to the more common 'doHover'...
+nmap <silent> D :call CocActionAsync('doHover')<CR>
