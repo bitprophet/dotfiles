@@ -1,12 +1,22 @@
 {
+    // When jumping to definition/etc, split pane horizontally (default is to replace/edit)
     "coc.preferences.jumpCommand": "split",
+    // formats-and-reloads on save (using eg ruff, per below)
+    "coc.preferences.formatOnSave": true,
     // Only use pyright for location/hints, prefer mypy for typechecking
     "python.analysis.typeCheckingMode": "off",
-    // seemingly, we need to disableDiagnostics to fully prevent pyright-itself
-    // from showing up / stomping mypy?
-    "pyright.disableDiagnostics": true,
-    // Hi mypy.
+    // MAY need to disableDiagnostics to fully prevent pyright-itself
+    // from showing up / stomping mypy? (tho that also seems to prevent ruff?)
+    "pyright.disableDiagnostics": false,
+    // Hi mypy. (NOTE: becomes noop if no mypy binary in visible $PATH.)
     "python.linting.mypyEnabled": true,
-    // Turn off the inline type hints, for now, the space hogging isn't quite worth the occasional value? Maybe add a map to enable/disable live?
+    // And ruff (ditto - must be present)
+    "python.linting.ruffEnabled": true,
+    // Trying out ruff instead of isort
+    "pyright.organizeimports.provider": "ruff",
+    // And ruff instead of black
+    "python.formatting.provider": "ruff",
+    // Turn off the inline/implicit type hints, for now, the space hogging isn't quite
+    // worth the occasional value? Maybe add a vim mapping to enable/disable live?
     "inlayHint.enable": false
 }
