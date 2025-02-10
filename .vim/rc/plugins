@@ -125,6 +125,13 @@ if executable('rust-analyzer')
     let g:lsp_document_code_action_signs_enabled = 0
 endif
 
+" coc.nvim (mostly for Python atm, see above for rust-analyzer)
+" So, coc/coc-pyright have settings for format-on-save, but for some reason,
+" not organizeImports-on-save, so folks seem to simply do this instead. Ok
+" sure.
+autocmd BufWritePre *.py :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
+
 " Colorscheme twiddles
 " TODO: on my Ventura personal box's iTerm2 with seemingly identical settings,
 " I didn't need to do this, jellybeans' background was still pretty dark. Here,

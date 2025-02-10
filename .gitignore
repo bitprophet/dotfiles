@@ -83,6 +83,8 @@
 # (but try not to do this, it's really gross)
 # Old ruby based github helper. replace with gh sometime
 !bin/hub
+# Python script to parse vim mappings (lmfao)
+!bin/leaders
 # Manual script for analyzing logfiles, still useful
 !bin/logparse
 # Manual script for 'merge up', used a lot sometimes

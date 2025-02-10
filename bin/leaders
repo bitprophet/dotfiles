@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+
+from collections import defaultdict
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass
+class Mapping:
+    map_type: str
+    keyseq: str
+    mapped_to: str
+
+mappings = Path.home() / ".vim" / "rc" / "mappings"
+leader = "<Leader>"
+
+processed = defaultdict(list)
+
+for line in mappings.read_text().splitlines():
+    if leader not in line:
+        continue
+    try:
+        map_type, _, mapping = line.partition(leader)
+    except ValueError:
+        print(line)
+        raise
+    map_type = map_type.strip()
+    # NOTE: could arguably use mapping.partition(" ")...
+    keyseq, mapped_to = mapping.split(maxsplit=1)
+    processed[keyseq].append(Mapping(map_type=map_type, keyseq=keyseq, mapped_to=mapped_to))
+
+
+# Calculate shitty column shit
+# TODO: try out ruff's cute little script requirements crap to get rich?
+max_seq, max_type = 0, 0
+for maplist in processed.values():
+    for mapping in maplist:
+        seqlen = len(mapping.keyseq)
+        if seqlen > max_seq:
+            max_seq = seqlen
+        typelen = len(mapping.map_type)
+        if typelen > max_type:
+            max_type = typelen
+col_width = max_seq + max_type + 2
+
+# Sort and show
+for keyseq in sorted(processed):
+    mappings = processed[keyseq]
+    for m in mappings:
+        seq = m.keyseq
+        if len(mappings) > 1:
+            seq += f" ({m.map_type})"
+        prefix = f"{seq}".ljust(col_width)
+        print(prefix + " ->   " + m.mapped_to)
