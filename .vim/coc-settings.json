@@ -2,7 +2,10 @@
     "coc.preferences.jumpCommand": "split",
     // Only use pyright for location/hints, prefer mypy for typechecking
     "python.analysis.typeCheckingMode": "off",
+    // seemingly, we need to disableDiagnostics to fully prevent pyright-itself
+    // from showing up / stomping mypy?
     "pyright.disableDiagnostics": true,
+    // Hi mypy.
     "python.linting.mypyEnabled": true,
     // Turn off the inline type hints, for now, the space hogging isn't quite worth the occasional value? Maybe add a map to enable/disable live?
     "inlayHint.enable": false
