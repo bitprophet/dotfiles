@@ -1,4 +1,5 @@
 # Overrides/shadowing, tho see-also some "alias x = sudo x" stuff elsewhere
+# NOTE: --filesfirst requires tree 2.0+
 alias tree='tree --filesfirst -C -a -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache|target"'
 alias ls='ls --color=auto'
 alias ll='ls -al'
@@ -174,7 +175,6 @@ function enter() {
 }
 
 # Misc
-# NOTE: --filesfirst requires tree 2.0+
 alias rmpyc='rm **/*.pyc'
 alias v=vim
 alias be='bundle exec'
