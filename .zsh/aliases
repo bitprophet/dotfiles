@@ -286,3 +286,7 @@ function mux() {
     tmuxp load $conf --append
 }
 
+function xdr() {
+    cat ~/Documents/customer-data/xdr/$1 \
+    | jq "[.profiles_table[].PROFILE_MODULES.$2|values]|unique"
+}
