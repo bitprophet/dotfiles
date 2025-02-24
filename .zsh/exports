@@ -74,3 +74,11 @@ export LESS="-Ri"
 #    ln -nfs $SSH_AUTH_SOCK $MY_AUTH_SOCK
 #    export SSH_AUTH_SOCK=$MY_AUTH_SOCK
 #fi
+
+# For system package manager installed httpie or other requests-using
+# Python-implemented utilities; they sometimes have trouble finding Linux CA
+# SSL certs. (NOTE: this path is Arch Linux specific...)
+case $PLATFORM in
+    linux )
+        export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-bundle.crt" ;;
+esac

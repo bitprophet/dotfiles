@@ -98,21 +98,15 @@ let g:rust_recommended_style = 0
 
 " vim-lsp (+ rust-analyzer)
 " Debuggery
-"let g:lsp_log_verbose = 1
-"let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
-"let g:lsp_use_native_client = 1
-"let g:lsp_show_message_log_level = 'log'
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
+" let g:lsp_show_message_log_level = 'log'
+" let g:lsp_use_native_client = 1
 if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
          \   'name': 'Rust Language Server',
          \   'cmd': {server_info->['rust-analyzer']},
-         \   'env': {'RUSTFLAGS': '-D warnings'},
          \   'allowlist': ['rust'],
-         \   'initialization_options': {
-         \       'cargo': {
-         \           'sysroot': trim(system('cargo -Z unstable-options rustc --print sysroot')),
-         \       },
-         \   },
          \ })
     " r-a/lsp version of what rust.vim's rustfmt_autosave did
     autocmd BufWritePre *.rs LspDocumentFormatSync
