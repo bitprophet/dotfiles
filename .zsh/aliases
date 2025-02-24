@@ -2,7 +2,8 @@
 # NOTE: --filesfirst requires tree 2.0+
 alias tree='tree --filesfirst -C -a -I ".git|*.pyc|*.swp|dist|*.egg-info|.pytest_cache|target"'
 alias ls='ls --color=auto'
-alias ll='ls -al'
+# List output, hidden files (besides ./..), sort by last-modified timestamp desc
+alias ll='ls -Alt'
 
 # bat, a nicer cat, plus warm its cache on new systems
 # (otherwise it won't know about my dotfiles' extra themes)
