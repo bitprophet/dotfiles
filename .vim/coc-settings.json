@@ -1,5 +1,6 @@
 {
     // When jumping to definition/etc, split pane horizontally (default is to replace/edit)
+    // NOTE: individual bindings can usually override this with optional arg too.
     "coc.preferences.jumpCommand": "split",
     // formats-and-reloads on save (using eg ruff, per below)
     "coc.preferences.formatOnSave": true,
