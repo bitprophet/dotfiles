@@ -132,6 +132,8 @@ endf
 " Inject ipython embed
 nmap <Leader>ipy ofrom IPython import embed; embed()<C-C>
 nmap <Leader>pdb oimport ipdb; ipdb.set_trace()<C-C>
+" NEW, MODERN! ALSO SHORTER!!!
+nmap <Leader>bp obreakpoint()<C-C>:w<CR>
 " Inject python debug logs
 nmap <Leader>dbg oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
@@ -233,11 +235,25 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Jump bindings (slightly modified from CoC readme)
+"
+" CoC jump bindings (slightly modified from CoC readme)
+"
+
+" Go to definition (in split, by default, due to :CocConfig file)
 nmap <silent> gd <Plug>(coc-definition)
+" Note: default gD is 'global definition' and can be thought of (for Python
+" anyhow) as "go to import" - i.e. it looks from start of file.
+" Go to definition (via edit/buffer replace, i.e. when drilling down >1 deep)
+" Mnemonic: "GO" harder? eh
+nmap <silent> Gd :call CocAction('jumpDefinition', "edit")<CR>
+" Type definition, usually helpful on variable names
 nmap <silent> gy <Plug>(coc-type-definition)
+" Implementation is a noop for Python but adding anyway.
 nmap <silent> gi <Plug>(coc-implementation)
+" Smarter version of my :Ack mapping, w/ some foibles (eg opens 2 extra
+" windows, a list /and/ a preview)
 nmap <silent> gr <Plug>(coc-references)
+" Next diagnostic issue in current buffer.
 nmap <silent> <Leader>d <Plug>(coc-diagnostic-next)
 
 " Hover/docs (vanilla vim 'D' is ~= 'cut til EOL', I don't ever use it)
