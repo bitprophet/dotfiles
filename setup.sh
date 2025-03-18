@@ -35,6 +35,12 @@ if which brew &>/dev/null; then
         # sometimes zsh, ditto
     )
     brew install $CLI_FORMULAE
+
+    typeset -a GUI_FORMULAE
+    GUI_FORMULAE=(
+        firefox
+    )
+    brew install $GUI_FORMULAE
 fi
 
 # Let it be known that I hate this. But doing these kinds of things inside
