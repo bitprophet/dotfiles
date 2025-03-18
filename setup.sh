@@ -1,5 +1,8 @@
 # vim: set ft=zsh
 
+# Exit on error.
+set -e
+
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
 if which brew &>/dev/null; then
