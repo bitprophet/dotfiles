@@ -10,8 +10,8 @@ mkdir -p ~/Code/{others,oss,personal}
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
 if which brew &>/dev/null; then
-    typeset -a FORMULAE
-    FORMULAE=(
+    typeset -a CLI_FORMULAE
+    CLI_FORMULAE=(
         asciinema
         bat
         btop
@@ -34,7 +34,7 @@ if which brew &>/dev/null; then
         wget
         # sometimes zsh, ditto
     )
-    brew install $FORMULAE
+    brew install $CLI_FORMULAE
 fi
 
 # Let it be known that I hate this. But doing these kinds of things inside
