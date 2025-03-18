@@ -3,6 +3,10 @@
 # Exit on error.
 set -e
 
+# Make a few dirs that I like to populate automatically, or from scratch, vs
+# copying from $lastmachine.
+mkdir -p ~/Code/{others,oss,personal}
+
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
 if which brew &>/dev/null; then
