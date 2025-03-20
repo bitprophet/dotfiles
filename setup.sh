@@ -1,10 +1,17 @@
 # vim: set ft=zsh
 
+# Exit on error.
+set -e
+
+# Make a few dirs that I like to populate automatically, or from scratch, vs
+# copying from $lastmachine.
+mkdir -p ~/Code/{others,oss,personal}
+
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
 if which brew &>/dev/null; then
-    typeset -a FORMULAE
-    FORMULAE=(
+    typeset -a CLI_FORMULAE
+    CLI_FORMULAE=(
         asciinema
         bat
         btop
@@ -27,7 +34,13 @@ if which brew &>/dev/null; then
         wget
         # sometimes zsh, ditto
     )
-    brew install $FORMULAE
+    brew install $CLI_FORMULAE
+
+    typeset -a GUI_FORMULAE
+    GUI_FORMULAE=(
+        firefox
+    )
+    brew install $GUI_FORMULAE
 fi
 
 # Let it be known that I hate this. But doing these kinds of things inside
