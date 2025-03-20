@@ -239,11 +239,15 @@ endfunction
 " CoC jump bindings (slightly modified from CoC readme)
 "
 
-" Go to definition (in split, by default, due to :CocConfig file)
-nmap <silent> gd <Plug>(coc-definition)
 " Note: default gD is 'global definition' and can be thought of (for Python
-" anyhow) as "go to import" - i.e. it looks from start of file.
-" Go to definition (via edit/buffer replace, i.e. when drilling down >1 deep)
+" anyhow) as "go to import" - i.e. it looks from start of file. So we don't
+" override that one, it's occasionally useful as-is.
+
+" Go to definition in split, by default, due to :CocConfig file
+nmap <silent> gd <Plug>(coc-definition)
+" Go to definition via vertical split.
+nmap <silent> gv :call CocAction('jumpDefinition', "vsplit")<CR>
+" Go to definition via edit/buffer replace, i.e. when drilling down >1 deep
 " Mnemonic: "GO" harder? eh
 nmap <silent> Gd :call CocAction('jumpDefinition', "edit")<CR>
 " Type definition, usually helpful on variable names
