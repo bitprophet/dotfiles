@@ -18,7 +18,7 @@ if which brew &>/dev/null; then
         fswatch
         fzf
         gh
-        # sometimes git, depending on what version macOS shipped
+        # sometimes git, depending on how old builtin is
         httpie
         iperf3
         jq
@@ -32,13 +32,24 @@ if which brew &>/dev/null; then
         tree
         vim
         wget
-        # sometimes zsh, ditto
+        # sometimes zsh, depending on how old builtin is
     )
     brew install $CLI_FORMULAE
 
     typeset -a GUI_FORMULAE
     GUI_FORMULAE=(
+        arq
         firefox
+        istat-menus
+        iterm2
+        lunar
+        # TODO: trying out Sequoia new built-in tiling
+        # TODO: assuming that's meh, see what else is out there besides
+        # rectangle? otherwise...rectangle.
+        # rectangle
+        rocket
+        tailscale
+        zoom
     )
     brew install $GUI_FORMULAE
 fi
