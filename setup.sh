@@ -13,11 +13,13 @@ if which brew &>/dev/null; then
     typeset -a CLI_FORMULAE
     CLI_FORMULAE=(
         asciinema
+        age
         bat
         btop
         fswatch
         fzf
         gh
+        gnu-sed
         # sometimes git, depending on how old builtin is
         httpie
         iperf3
@@ -31,6 +33,7 @@ if which brew &>/dev/null; then
         tmuxp
         tree
         vim
+        watch
         wget
         # sometimes zsh, depending on how old builtin is
     )
@@ -38,7 +41,9 @@ if which brew &>/dev/null; then
 
     typeset -a GUI_FORMULAE
     GUI_FORMULAE=(
+        alfred
         arq
+        daisydisk
         firefox
         istat-menus
         iterm2
@@ -48,7 +53,10 @@ if which brew &>/dev/null; then
         # rectangle? otherwise...rectangle.
         # rectangle
         rocket
+        signal
+        slack
         tailscale
+        vlc
         zoom
     )
     brew install $GUI_FORMULAE
