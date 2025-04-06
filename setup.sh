@@ -59,7 +59,7 @@ if which brew &>/dev/null; then
         vlc
         zoom
     )
-    brew install $GUI_FORMULAE
+    brew install --cask $GUI_FORMULAE
 fi
 
 # Let it be known that I hate this. But doing these kinds of things inside
