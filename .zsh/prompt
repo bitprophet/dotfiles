@@ -31,7 +31,7 @@ CWD=$C[blue]
 # If $IS_WORKSTATION not already set, determine it from short hostname
 if [[ -z $IS_WORKSTATION ]]; then
     case $HOST in
-        basroil ) IS_WORKSTATION=1 ;;
+        basroil | Boshi ) IS_WORKSTATION=1 ;;
     esac
 fi
 # Ditto IS_SERVER, IS_VM (latter much less oft used now)
@@ -46,8 +46,6 @@ if [[ -z $IS_VM ]]; then
         # Not really but lol whatever, I don't VM much anymore and in flavor,
         # testbed NUC is more like a VM than a prod server!
         epiphron )  IS_VM=1 ;;
-        # Ditto...
-        Foxhead )  IS_VM=1 ;;
     esac
 fi
 
