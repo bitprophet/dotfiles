@@ -65,10 +65,7 @@ if which brew &>/dev/null; then
         istat-menus
         iterm2
         lunar
-        # TODO: trying out Sequoia new built-in tiling
-        # TODO: assuming that's meh, see what else is out there besides
-        # rectangle? otherwise...rectangle.
-        # rectangle
+        rectangle
         rocket
         signal
         slack
