@@ -25,6 +25,8 @@ if which brew &>/dev/null; then
         age
         bat
         btop
+        # For gls, and many etc's.
+        coreutils
         fswatch
         fzf
         gh
