@@ -3,13 +3,22 @@
 # Exit on error.
 set -e
 
-# Make a few dirs that I like to populate automatically, or from scratch, vs
-# copying from $lastmachine.
-mkdir -p ~/Code/{others,oss,personal}
-
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
+
+# Weird how brew has no 'install only if not installed' command or flag? I read
+# the whole damn manpage...
+INSTALLED_FORMULAE=$(brew list -1)
+function brew-install() {
+    formula=$@[-1]
+    if $(echo $INSTALLED_FORMULAE | grep -q "^${formula}$"); then
+        return
+    fi
+    brew install $@
+}
+
 if which brew &>/dev/null; then
+    echo "Checking/installing CLI brew formulae..."
     typeset -a CLI_FORMULAE
     CLI_FORMULAE=(
         asciinema
@@ -26,8 +35,10 @@ if which brew &>/dev/null; then
         jq
         lazygit
         # Node mostly for CoC/LSP in vim.
-        nodejs
-        npm
+        # NOTE: 'nodejs' seems to be an alias somehow? but it shows up in `brew
+        # list` as 'node', so for idempotency...
+        # NOTE: as is 'npm' so having both was dumb lol
+        node
         pyenv
         tmux
         tmuxp
@@ -37,8 +48,11 @@ if which brew &>/dev/null; then
         wget
         # sometimes zsh, depending on how old builtin is
     )
-    brew install $CLI_FORMULAE
+    for formula in $CLI_FORMULAE; do
+        brew-install $formula
+    done
 
+    echo "Checking/installing GUI brew formulae..."
     typeset -a GUI_FORMULAE
     GUI_FORMULAE=(
         alfred
@@ -59,8 +73,17 @@ if which brew &>/dev/null; then
         vlc
         zoom
     )
-    brew install --cask $GUI_FORMULAE
+    for formula in $GUI_FORMULAE; do
+        brew-install --cask $formula
+    done
 fi
+
+
+
+return
+
+
+
 
 # Let it be known that I hate this. But doing these kinds of things inside
 # .vimrc files is flaky, multiple vim-plug plugins need a full relaunch to
@@ -75,3 +98,8 @@ vim '+PlugUpdate | qa!'
 # it's least-bad to let it run normally (async but w/ output visible) at cost
 # of having to manually quit vim after (the horror!)
 vim "+CocInstall ${COC_EXTENSIONS}"
+
+# Make a few dirs that I like to populate automatically, or from scratch, vs
+# copying from $lastmachine.
+mkdir -p ~/Code/{others,oss,personal}
+# And let's extend this to git clones, why the fuck not!
