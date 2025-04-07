@@ -59,6 +59,7 @@ if which brew &>/dev/null; then
     GUI_FORMULAE=(
         alfred
         arq
+        breaktimer
         daisydisk
         firefox
         istat-menus
