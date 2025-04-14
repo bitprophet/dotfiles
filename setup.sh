@@ -45,6 +45,7 @@ if which brew &>/dev/null; then
         tmux
         tmuxp
         tree
+        uv
         vim
         watch
         wget
