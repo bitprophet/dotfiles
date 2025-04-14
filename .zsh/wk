@@ -17,15 +17,15 @@
 FOLDERS=(~/Code/*)  # expands into an array result!
 RCFILE=".wkrc"
 
-# No more virtualenvwrapper maybe I guess probably?
-function workon() {
-    source ${WORKON_HOME}/${1}/bin/activate
-}
-
 function wk() {
-    # deactivate/workon will fail silently if project is not a virtualenv.
+    # Try 'global' (to user) virtualenvs folder ($WORKON_HOME, set in
+    # .zsh/python) first, as it's most common. (And try exiting any active
+    # virtualenv first, JIC.)
+    # NOTE: both deactivate and workon will fail silently if project is not a
+    # virtualenv.
     deactivate 2>/dev/null
-    workon $1 2>/dev/null
+    source ${WORKON_HOME}/${1}/bin/activate $1 2>/dev/null
+
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
