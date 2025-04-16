@@ -1,5 +1,5 @@
 # 'workon xxx' should use my global venv folder
-export WORKON_HOME=~/.virtualenvs
+export WORKON_HOME=~/.cache/virtualenvs
 test -d $WORKON_HOME || mkdir $WORKON_HOME
 # Don't litter pip_log.txt files in cwd!
 export PIP_LOG_FILE='/tmp/pip-log.txt'
