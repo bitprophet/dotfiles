@@ -18,13 +18,17 @@ FOLDERS=(~/Code/*)  # expands into an array result!
 RCFILE=".wkrc"
 
 function wk() {
-    # Try 'global' (to user) virtualenvs folder ($WORKON_HOME, set in
-    # .zsh/python) first, as it's most common. (And try exiting any active
-    # virtualenv first, JIC.)
-    # NOTE: both deactivate and workon will fail silently if project is not a
-    # virtualenv.
+    # Exit any active venv, JIC.
     deactivate 2>/dev/null
-    source ${WORKON_HOME}/${1}/bin/activate $1 2>/dev/null
+    # Try 'global' (to user) virtualenvs folder ($WORKON_HOME, set in
+    # .zsh/python) first, as it's most common.
+    GLOBAL_VENV=${WORKON_HOME}/${1}
+    # When using `uv`, prefer global venv, not local .venv
+    # (Set unconditionally: sometimes you'll want it for venv creation)
+    export UV_PROJECT_ENVIRONMENT=$GLOBAL_VENV
+    if [[ -d $GLOBAL_VENV ]]; then
+        source ${GLOBAL_VENV}/bin/activate
+    fi
 
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
