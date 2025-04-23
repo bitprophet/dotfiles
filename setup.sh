@@ -6,18 +6,20 @@ set -e
 # Fuckit, I guess we're just going back to the early 2000s, config management
 # via shell script.
 
-# Weird how brew has no 'install only if not installed' command or flag? I read
-# the whole damn manpage...
-INSTALLED_FORMULAE=$(brew list -1)
-function brew-install() {
-    formula=$@[-1]
-    if $(echo $INSTALLED_FORMULAE | grep -q "^${formula}$"); then
-        return
-    fi
-    brew install $@
-}
-
 if which brew &>/dev/null; then
+    # Weird how brew has no 'install only if not installed' command or flag? I read
+    # the whole damn manpage...
+
+    INSTALLED_FORMULAE=$(brew list -1)
+
+    function brew-install() {
+        formula=$@[-1]
+        if $(echo $INSTALLED_FORMULAE | grep -q "^${formula}$"); then
+            return
+        fi
+        brew install $@
+    }
+
     echo "Checking/installing CLI brew formulae..."
     typeset -a CLI_FORMULAE
     CLI_FORMULAE=(
