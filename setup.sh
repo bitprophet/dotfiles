@@ -3,8 +3,42 @@
 # Exit on error.
 set -e
 
-# Fuckit, I guess we're just going back to the early 2000s, config management
-# via shell script.
+# Minimum viable bootstrap to run Hemera. UV makes this a little easier now! as
+# do my dotfiles, which set $PLATFORM based on whatever heuristics.
+# Linux is noop on assumption system installed via custom ISO. Which leaves
+# Mac.
+case $PLATFORM in
+    linux )
+        echo "Why are you running setup.sh on Linux? Just use Hemera directly."
+        return 1
+        ;;
+    mac )
+        brew install uv
+        # TODO: I /could/ set up hemera to be a truly /installable/ python
+        # project with a CLI entrypoint, then aim uv at it like so:
+        #
+        #   uv tool run --from "git@ssh://git@github.com/bitprophet/hemera" \
+        #       nameofclitoolhere --args
+        #
+        # which would use an ephemeral venv to execute.
+        # TODO: however that got a bit messy fast and it's not like I /don't/
+        # want to end up with a real project checkout eventually, so this just
+        # duplicates a teensy bit of what Hemera does internally re: such
+        # checkouts...probably fine for now? esp given how infrequently I set
+        # up new macs?
+        _CHECKOUT=~/Code/personal
+        mkdir -p $_CHECKOUT
+        git clone git@github.com:bitprophet/hemera ${_CHECKOUT}/hemera
+        echo
+        wk hemera
+        inv mac
+        ;;
+esac
+
+return
+
+
+# TODO: move below into Hemera
 
 if which brew &>/dev/null; then
     # Weird how brew has no 'install only if not installed' command or flag? I read
@@ -101,9 +135,3 @@ if [[ ! -d ~/.vim/plugged || ! -d ~/.config/coc/extensions/node_modules ]]; then
     # of having to manually quit vim after (the horror!)
     vim "+CocInstall ${COC_EXTENSIONS}"
 fi
-
-
-# Make a few dirs that I like to populate automatically, or from scratch, vs
-# copying from $lastmachine.
-mkdir -p ~/Code/{others,oss,personal}
-# And let's extend this to git clones, why the fuck not!
