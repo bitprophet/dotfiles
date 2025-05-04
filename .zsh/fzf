@@ -1,7 +1,6 @@
 case $PLATFORM in
     mac ) fzf_shell=$(brew --prefix fzf)/shell ;;
-    # Specifically, Arch.
-    linux ) fzf_shell=/usr/share/fzf ;;
+    arch ) fzf_shell=/usr/share/fzf ;;
 esac
 
 # fzf 0.5X is /somewhat/ smarter about its builtin ctrl-t file 'walker' than

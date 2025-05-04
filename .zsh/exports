@@ -79,6 +79,6 @@ export LESS="-Ri"
 # Python-implemented utilities; they sometimes have trouble finding Linux CA
 # SSL certs. (NOTE: this path is Arch Linux specific...)
 case $PLATFORM in
-    linux )
+    arch )
         export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-bundle.crt" ;;
 esac
