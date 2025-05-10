@@ -45,6 +45,7 @@ alias yi='yum install'
 alias yiss='yi -y'
 alias ys='yum search'
 alias pacman='sudo pacman'
+alias systemctl='sudo systemctl'
 
 # Homebrew: eval only when necessary, but aliases can be unconditional, it's
 # fine
