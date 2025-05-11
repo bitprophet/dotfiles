@@ -1,6 +1,8 @@
 case $( uname -s ) in
     Darwin )
-        export PLATFORM="mac" ;;
+        export PLATFORM="mac"
+        alias ls="gls --color"
+        ;;
     Linux )
         if [[ -f /etc/os-release ]]; then
             source /etc/os-release
