@@ -58,7 +58,6 @@ function wk() {
             return 0
         fi
     done
-    # TODO: offer to setup project if doesn't exist
     return 1
 }
 
