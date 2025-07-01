@@ -15,9 +15,6 @@ fi
 # Sudo
 alias svim='sudo vim'
 alias stail="sudo tail"
-# Used to have alias become="sudo su -" but that is hard to complete.
-# so now it's in ~/bin/. Hrrgh. The below sets up completion for it.
-compdef _users become
 
 # Package managers
 # Sudo-ify apt/yum things if sourcing user is not root (which is a thing on eg
