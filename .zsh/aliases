@@ -224,7 +224,7 @@ function mux() {
 
 # Edit-then-source for zsh rc files, because forgetting to source stinks!
 function modify() {
-    target=~/.zsh/$1
+    target=$ZSH/$1
     vim $target && source $target
 }
 compdef "_files -W ~/.zsh/" modify
