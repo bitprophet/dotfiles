@@ -15,9 +15,6 @@ fi
 # Sudo
 alias svim='sudo vim'
 alias stail="sudo tail"
-# Used to have alias become="sudo su -" but that is hard to complete.
-# so now it's in ~/bin/. Hrrgh. The below sets up completion for it.
-compdef _users become
 
 # Package managers
 # Sudo-ify apt/yum things if sourcing user is not root (which is a thing on eg
@@ -45,6 +42,7 @@ alias yi='yum install'
 alias yiss='yi -y'
 alias ys='yum search'
 alias pacman='sudo pacman'
+alias systemctl='sudo systemctl'
 
 # Homebrew: eval only when necessary, but aliases can be unconditional, it's
 # fine
@@ -94,31 +92,8 @@ alias amend='git commit --amend --no-edit'
 alias amende='git commit --amend'
 alias gri='git rebase -i main'
 
-function gremote() {
-    git remote add -f $1
-    if [[ $? == 128 ]]; then
-        git fetch $1
-    fi
-}
-
-function gcamp() {
-    gcam "$1" && gps
-}
-
 function get_branch() {
     export CURRENT_BRANCH=`git symbolic-ref --short HEAD`
-}
-
-function gu() {
-    get_branch
-    TARGET=${2:-main}
-    METHOD=${1:-merge}
-    gco "$TARGET" && gpl && gco "$CURRENT_BRANCH" && git $METHOD "$TARGET"
-}
-
-function nuke() {
-    get_branch
-    gco main && gpl && gb -d $CURRENT_BRANCH
 }
 
 function marge() {
@@ -140,21 +115,6 @@ function mg() {
     done
 }
 
-# RubyGems
-alias gems='gem search -b'
-alias geml='gem list -l'
-alias gemi='gem install -b --no-rdoc --no-ri'
-alias gemu='gem uninstall'
-
-# Python
-alias rmv='deactivate; rmvirtualenv'
-
-function mkv() {
-    python -m venv $1
-    source $1/bin/activate
-    cd $1
-}
-
 # Sphinx built dirs browsing (for headless dev w/o a 'open' binary).
 # Will try to intelligently detect if it needs to slap a 'sites' prefix on the
 # build dir path or not. Just give it 'docs' or 'www' as necessary.
@@ -170,15 +130,9 @@ function browse() {
     inv $1 && pushd ${sitesdir}${2:-$1}/_build && python -m http.server -b $(hostname).localdomain 8888 && popd
 }
 
-# For arbitrary, non-venvwrapper-managed envs
-function enter() {
-    source $1/bin/activate
-}
-
 # Misc
 alias rmpyc='rm **/*.pyc'
 alias v=vim
-alias be='bundle exec'
 alias g=grep
 alias eg='env | grep -i'
 # History but with ISO8601 timestamp, duration, show entire history
@@ -218,18 +172,6 @@ function json() {
     fi | less -FR
 }
 
-# File pull request via 'hub', automatically inserting current HEAD as the
-# source and the 'origin' remote account name as the source account.
-# Useful for company-owned repos where hub's default assumptions don't work.
-# TODO: make this usable in a forked-repo context
-function pull() { # 'pr' already exists :(
-    HEAD=`git symbolic-ref HEAD`
-    # Probably a better way to do this. /lazy
-    ACCOUNT=`git remote show -n origin | grep "Fetch URL" | cut -d ':' -f 3 | cut -d '/' -f 1`
-    git push origin HEAD
-    git pull-request -b ${1:-main} -h $ACCOUNT:${HEAD#refs/heads/} $2
-}
-
 # Fetch pull request X so its SHAs are available.
 function fetch-pr() {
     git fetch origin pull/$1/head$2
@@ -258,13 +200,6 @@ function _lolvim() {
 function :wq() { _lolvim }
 function :qa() { _lolvim }
 
-# Helpers to go from non-timestamped log output to something bin/logparse can
-# profile. Expects stdin.
-alias tss='ts -s "%H:%M:%.S"'
-function profile() {
-    tss | logparse $@
-}
-
 # Replaces old bin/mux invoke-based script - wraps tmuxp
 # TODO: probably move this and wk to the same place maybe? ehh
 # NOTE: .zsh/completion has hooks for this (again maybe good to consolidate
@@ -286,6 +221,13 @@ function mux() {
 
     tmuxp load $conf --append
 }
+
+# Edit-then-source for zsh rc files, because forgetting to source stinks!
+function modify() {
+    target=$ZSH/$1
+    vim $target && source $target
+}
+compdef "_files -W ~/.zsh/" modify
 
 function xdr() {
     cat ~/Documents/customer-data/xdr/$1 \

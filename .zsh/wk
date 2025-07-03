@@ -14,18 +14,25 @@
 # made to see if we're a new pane in an existing titled window, and 'wk
 # <that window name>' is called if it matches a wk session name.
 
-FOLDERS=(~/Code/*)  # expands into an array result!
+# Expand into array of glob results, with qualifiers in the trailing ():
+# - /: directory results only
+# - N: null_glob, don't error if no results, just result in empty array
+FOLDERS=(~/Code/*(/N))
 RCFILE=".wkrc"
 
-# No more virtualenvwrapper maybe I guess probably?
-function workon() {
-    source ${WORKON_HOME}/${1}/bin/activate
-}
-
 function wk() {
-    # deactivate/workon will fail silently if project is not a virtualenv.
+    # Exit any active venv, JIC.
     deactivate 2>/dev/null
-    workon $1 2>/dev/null
+    # Try 'global' (to user) virtualenvs folder ($WORKON_HOME, set in
+    # .zsh/python) first, as it's most common.
+    GLOBAL_VENV=${WORKON_HOME}/${1}
+    # When using `uv`, prefer global venv, not local .venv
+    # (Set unconditionally: sometimes you'll want it for venv creation)
+    export UV_PROJECT_ENVIRONMENT=$GLOBAL_VENV
+    if [[ -d $GLOBAL_VENV ]]; then
+        source ${GLOBAL_VENV}/bin/activate
+    fi
+
     # Try to find the given folder and cd to it.
     for folder in $FOLDERS; do
         target=$folder/$1
@@ -54,7 +61,6 @@ function wk() {
             return 0
         fi
     done
-    # TODO: offer to setup project if doesn't exist
     return 1
 }
 

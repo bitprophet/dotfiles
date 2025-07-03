@@ -1,9 +1,17 @@
 case $( uname -s ) in
     Darwin )
-        export PLATFORM="mac" ;;
+        export PLATFORM="mac"
+        alias ls="gls --color"
+        ;;
     Linux )
-        # TODO: could source /etc/os-release to derive `ID=arch`/`ID=ubuntu`
-        # type stuff, if I had need for that granularity; leaving plain 'linux'
-        # for a fallback.
-        export PLATFORM="linux" ;;
+        if [[ -f /etc/os-release ]]; then
+            source /etc/os-release
+            # Typically 'arch', 'ubuntu', etc
+            export PLATFORM=$ID
+        else
+            # Fallback, though most of my kit (in dotfiles and hemera) will be
+            # looking for the above specific distro values...
+            export PLATFORM="linux"
+        fi
+        ;;
 esac

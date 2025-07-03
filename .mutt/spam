@@ -1,4 +1,0 @@
-nospam *
-spam "^X-Spam: (yes|disagree|unsure) \\(crm114:((sp|h)am/)?([-.0-9]+) SA:((sp|h)am/)?([-.0-9]+)\\)$" "%7|%4"
-
-# vim:ft=muttrc
