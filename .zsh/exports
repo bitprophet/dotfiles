@@ -4,6 +4,9 @@
 export TERM="screen-256color"
 export DISPLAY=:0.0
 export EDITOR=vim
+# Will already be this on Linux but some CLI apps on macOS require this to look
+# in ~/.config (looking at you, lazygit). can't hurt?
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Mostly for prompt things
 
