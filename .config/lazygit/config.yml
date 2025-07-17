@@ -1,4 +1,8 @@
 gui:
+  # since 0.5x or so, new top level wrapper in file tree for '/', root of
+  # project, which IDGI so go away plz kthxbai. NOTE: this config option was
+  # added in 0.52.0.
+  showRootItemInFileTree: false
   # branchColorPatterns?
   # customIcons?
   # scrollOffMargin?
