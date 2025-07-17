@@ -139,7 +139,10 @@ nmap <Leader>dbg oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
 nmap <Leader>tb oimport traceback; traceback.print_stack()<C-C>
 " Yum
-nmap <Leader>ic ofrom icecream import ic<C-C>
+nmap <Leader>ic ofrom icecream import ic<CR>ic(
+" Generally better than rich.inspect, which is more for objects you /don't/
+" know much about yet.
+nmap <Leader>pp ofrom rich.pretty import pprint<CR>pprint(
 
 " for vim-lsp (no idea why I couldn't define this in the plugins conf file...)
 " Mnemonic: hOver
