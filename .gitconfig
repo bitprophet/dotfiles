@@ -6,6 +6,13 @@
 [core]
     # Global excludes config. Fits better in my head than the default paths
     excludesfile = "~/.gitexcludes"
+[diff]
+    # Generally-better merge algo that makes things clearer/groups changes
+    # together more intelligently.
+    algorithm = histogram
+    # Show moved lines in different color than truly new/added ones.
+    # ('plain' meaning not to go extra mile re: blocks/zebra/etc)
+    colorMoved = plain
 [init]
     # New repos start with main, not master. Only works on Git 2.28+
     defaultBranch = main
@@ -21,6 +28,9 @@
     # Rebase by default when pull-merging
     rebase = true
 [push]
+    # For god's sake just push new branches and set them up w/ the remote by
+    # default instead of asking me to run --set-upstream.
+    autoSetupRemote = true
     # Push all branches that exist on both ends, by default
     default = matching
     # Push annotated tags too, by default, when pushing branches
