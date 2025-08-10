@@ -9,6 +9,12 @@ function have() {
     which $1 &>/dev/null
 }
 
+# Load, initialize advanced completion
+# (Do this early so any other rc files may use eg compdef, compctl. Used to
+# live inside completion file but that needed to move late so it could 'see'
+# other functions etc!)
+autoload -U compinit && compinit
+
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
@@ -17,7 +23,6 @@ DOTFILES=(
     options
     exports
     path
-    completion
     aliases
     platform
     history
@@ -28,6 +33,7 @@ DOTFILES=(
     zmv
     fzf
     direnv
+    completion
     local
 )
 for file in $DOTFILES; do
