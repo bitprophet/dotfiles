@@ -1,6 +1,6 @@
 # TODO: if it REALLY bugs me, find a way to do inheritance or templating,
 # probably using the tmuxp python api (plugins)
-session_name: "${MUX_SESSION}"
+session_name: main
 windows:
 - window_name: "${MUX_SESSION}"
   focus: true
