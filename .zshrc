@@ -24,6 +24,7 @@ DOTFILES=(
     exports
     path
     aliases
+    mux
     platform
     history
     python

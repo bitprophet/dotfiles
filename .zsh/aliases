@@ -200,28 +200,6 @@ function _lolvim() {
 function :wq() { _lolvim }
 function :qa() { _lolvim }
 
-# Replaces old bin/mux invoke-based script - wraps tmuxp
-# TODO: probably move this and wk to the same place maybe? ehh
-# NOTE: .zsh/completion has hooks for this (again maybe good to consolidate
-# tho!)
-function mux() {
-    # tmuxp doesn't seem to have any config templating type stuff, /but/ it
-    # does allow env var interpolation in many fields, including window/session
-    # names.
-    # NOTE: using MUX_ prefix to avoid clash with TMUX_*
-    export MUX_SESSION=$1
-    # Used by ~/.zsh/wk to know it should auto-wk() on new panes inside tmux
-    # windows managed by mux).
-    export IN_MUX=1
-    # Use standard config unless there's a custom one.
-    conf=default
-    if [[ -f ~/.tmuxp/$1 ]]; then
-        conf=$1
-    fi
-
-    tmuxp load $conf --append
-}
-
 # Edit-then-source for zsh rc files, because forgetting to source stinks!
 function modify() {
     target=$ZSH/$1
