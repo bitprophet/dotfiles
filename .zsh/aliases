@@ -233,3 +233,11 @@ function xdr() {
     cat ~/Documents/customer-data/xdr/$1 \
     | jq "[.profiles_table[].PROFILE_MODULES.$2|values]|unique"
 }
+
+# 1Password / op helper:
+#   ope 'Name of Entry or anything else `op` accepts' 'name of field eg 'username'
+# so eg,
+#   export FOOSRV_USERNAME="$(ope 'Foo Service' 'username')"
+function ope() {
+    op item get "$1" --format json --fields label="$2" | jq --raw-output '.value'
+}
