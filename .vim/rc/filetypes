@@ -22,6 +22,8 @@ autocmd FileType rst setlocal ai comments=n:> spell
 
 " YAML
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" Obsidian .base files are YAML
+autocmd BufNewFile,BufRead *.base setlocal filetype=yaml
 
 " No more need to drop modelines into common Apache files
 " (both Debian and RedHat style Apache conf dirs)
