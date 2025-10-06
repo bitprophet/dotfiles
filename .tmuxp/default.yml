@@ -1,4 +1,4 @@
-session_name: "${MUX_SESSION}"
+session_name: main
 windows:
   # TODO: change this to eg 'code' and embrace per-project sessions?
 - window_name: "${MUX_SESSION}"

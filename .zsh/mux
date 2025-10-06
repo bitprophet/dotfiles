@@ -1,0 +1,34 @@
+# Replaces old bin/mux invoke-based script - wraps tmuxp
+# TODO: probably move this and wk to the same place maybe? ehh
+# NOTE: .zsh/completion has hooks for this (again maybe good to consolidate
+# tho!)
+function mux() {
+    # TODO: replace this function with libtmux, the below starts to break when
+    # tmuxp is the main way of launching tmux, because then the tmux server's
+    # global env has eg MUX_SESSION/IN_MUX set to whatever project you
+    # initially launched after most recent reboot. which sucks. AND it means
+    # new panes in a project window think they're "still in mux setup" and
+    # don't run wk().
+    # TODO: so if I control things better I can eg just use the input to the
+    # new script as the window name (not relying on env var transmission) and
+    # update .zsh/wk to simply _always_ use tmux window name as its guide
+    # (since it's quietly a noop if no project match, I think that's fine??)
+    # (worst case I can just use libtmux approach to set a _per window_ shell
+    # env for wk() to pick up on on its initial runs maybe, or give wk()
+    # another argument or something)
+    # tmuxp doesn't seem to have any config templating type stuff, /but/ it
+    # does allow env var interpolation in many fields, including window/session
+    # names.
+    # NOTE: using MUX_ prefix to avoid clash with TMUX_*
+    export MUX_SESSION=$1
+    # Used by ~/.zsh/wk to know it should auto-wk() on new panes inside tmux
+    # windows managed by mux).
+    export IN_MUX=1
+    # Use standard config unless there's a custom one.
+    _conf=default
+    if [[ -f $HOME/.tmuxp/$1.yml ]]; then
+        _conf=$1
+    fi
+    tmuxp load $_conf --append
+}
+

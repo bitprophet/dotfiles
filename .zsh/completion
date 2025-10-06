@@ -1,6 +1,3 @@
-# Load, initialize advanced completion
-autoload -U compinit && compinit
-
 # Enable completion cache
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH/data/completion.cache
@@ -10,7 +7,7 @@ zstyle ':completion::complete:*' cache-path $ZSH/data/completion.cache
 # NOTE: (:r) in a globexpr means 'trim extension'.
 # NOTE: ^foo* says "everything not starting with foo"
 # NOTE: see 'Modifiers' under 'History Expansion' in zshall for deets
-compctl -g '~/.tmux/*(:t:r)' -g '~/.virtualenvs/*(:t)' -g '~/Code/^archives*/*(:t)' mux
+compctl -g '~/.tmux/*(:t:r)' -g "${WORKON_HOME}/*(:t)" -g '~/Code/^archives*/*(:t)' mux
 
 # Skip some common files I don't care about basically ever
 zstyle ':completion:*:(all-|)files' ignored-patterns "(*.pyc|*.egg-info)"
