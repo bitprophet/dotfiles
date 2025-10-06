@@ -68,3 +68,6 @@ autocmd BufNewFile,BufRead ~/.kube/config setlocal ft=yaml nowrap
 
 " .secrets files are usually dotenv-like
 autocmd BufNewFile,BufRead *.secret,*.secrets setlocal ft=dotenv
+
+" Textual(ize) CSS
+autocmd BufNewFile,BufRead *.tcss setlocal ft=css

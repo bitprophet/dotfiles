@@ -7,6 +7,8 @@ export EDITOR=vim
 # Will already be this on Linux but some CLI apps on macOS require this to look
 # in ~/.config (looking at you, lazygit). can't hurt?
 export XDG_CONFIG_HOME="$HOME/.config"
+# Auto-report runtime for long running commands (given in seconds)
+export REPORTTIME=30
 
 # Mostly for prompt things
 
