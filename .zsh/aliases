@@ -36,13 +36,15 @@ alias pi='pip install'
 alias pie='pip install -e'
 alias pir='pip install -r'
 alias pu='pip uninstall'
-alias pf='pip list'
-alias pl='pf'
 alias yi='yum install'
 alias yiss='yi -y'
 alias ys='yum search'
 alias pacman='sudo pacman'
 alias systemctl='sudo systemctl'
+
+function pf() {
+    have uv && uv tree --depth 1 || pip list
+}
 
 # Homebrew: eval only when necessary, but aliases can be unconditional, it's
 # fine
