@@ -43,7 +43,10 @@ alias pacman='sudo pacman'
 alias systemctl='sudo systemctl'
 
 function pf() {
-    have uv && uv tree --depth 1 || pip list
+    # Pipe uv error output to /dev/null because sometimes you have uv _but_
+    # current checkout has no pyproject.toml, so you still wanna fallback to
+    # pip. lmfao
+    have uv && uv tree --depth 1 2>/dev/null || pip list
 }
 
 # Homebrew: eval only when necessary, but aliases can be unconditional, it's
