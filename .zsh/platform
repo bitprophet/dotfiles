@@ -2,7 +2,12 @@ case $( uname -s ) in
     Darwin )
         export PLATFORM="mac"
         alias ls="gls --color"
+        # Homebrew!
+        if [[ -d /opt/homebrew ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
         ;;
+
     Linux )
         if [[ -f /etc/os-release ]]; then
             source /etc/os-release

@@ -49,11 +49,6 @@ function pf() {
     have uv && uv tree --depth 1 2>/dev/null || pip list
 }
 
-# Homebrew: eval only when necessary, but aliases can be unconditional, it's
-# fine
-if [[ -d /opt/homebrew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 alias b=brew
 alias bi='b install'
 alias bin='b info'
