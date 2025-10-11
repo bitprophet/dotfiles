@@ -1,7 +1,5 @@
 # Replaces old bin/mux invoke-based script - wraps tmuxp
 # TODO: probably move this and wk to the same place maybe? ehh
-# NOTE: .zsh/completion has hooks for this (again maybe good to consolidate
-# tho!)
 function mux() {
     # TODO: replace this function with libtmux, the below starts to break when
     # tmuxp is the main way of launching tmux, because then the tmux server's
@@ -32,3 +30,9 @@ function mux() {
     tmuxp load $_conf --append
 }
 
+# completion hooks - specific layouts & virtualenvs too.
+# NOTE: (:t) in a globexpr means 'basename'.
+# NOTE: (:r) in a globexpr means 'trim extension'.
+# NOTE: ^foo* says "everything not starting with foo"
+# NOTE: see 'Modifiers' under 'History Expansion' in zshall for deets
+compctl -g '~/.tmux/*(:t:r)' -g "${WORKON_HOME}/*(:t)" -g '~/Code/^archives*/*(:t)' mux

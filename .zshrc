@@ -9,23 +9,24 @@ function have() {
     which $1 &>/dev/null
 }
 
-# Load, initialize advanced completion
-# (Do this early so any other rc files may use eg compdef, compctl. Used to
-# live inside completion file but that needed to move late so it could 'see'
-# other functions etc!)
-autoload -U compinit && compinit
-
 # Source my dotfiles (in explicit order)
 typeset -a DOTFILES
 DOTFILES=(
-    platform
+    # Non-source-controlled local early hooks.
     pre-local
+    # Very early platform-specific things like loading homebrew and setting
+    # $PLATFORM which other files might reference.
+    platform
+    # Completion system initialization/global config. Also wants to be early so
+    # other files can use eg compdef, compctl.
+    completion
+    # Everything below here is in rough order of priority but should generally
+    # be interchangeable?
     options
     exports
     path
     aliases
     mux
-    platform
     history
     python
     ruby
@@ -34,7 +35,7 @@ DOTFILES=(
     zmv
     fzf
     direnv
-    completion
+    # Non-source-controlled local late hooks.
     local
 )
 for file in $DOTFILES; do
