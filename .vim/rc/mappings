@@ -205,7 +205,8 @@ endfunction
 nmap <Leader>w :%s/\s\+$//g<CR>
 
 " ack.vim or quickfix related bindings
-nmap <Leader>/ :Ack<CR>
+" Trailing '!' on :Ack means /don't/ auto jump to first result.
+nmap <Leader>/ :Ack!<CR>
 nmap <Leader>; :cope<CR>
 nmap <Leader>. :cn<CR>
 nmap <Leader>, :cp<CR>
