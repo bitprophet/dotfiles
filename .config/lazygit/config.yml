@@ -9,11 +9,11 @@ gui:
   # scrollOffbehavior?
   # Ehhhh no thx
   mouseEvents: off
-  scrollHeight: 10  # default 2
+  scrollHeight: 10 # default 2
   timeFormat: "2006-01-02 @ 15:04 MST"
   #showIcons: true  # requires nerdfonts.com font in terminal
   showNumstatInFilesView: true
-  sidePanelWidth: 0.4  # default 0.33(%)
+  sidePanelWidth: 0.4 # default 0.33(%)
 git:
   # Really a gui setting...renders eg :rocket:
   parseEmoji: true
