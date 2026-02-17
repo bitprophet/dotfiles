@@ -19,6 +19,8 @@ Plug 'guns/vim-clojure-static', {'commit': 'bc1bebf'}
 Plug 'cespare/vim-toml', {'commit': 'f6f79f3'}
 " Git integration (blame, diff formatting, etc)
 Plug 'tpope/vim-fugitive', {'commit': '0095769'}
+" Git status in the gutter (fugitive doesn't seem to do this)
+Plug 'airblade/vim-gitgutter', {'commit': '0acb772'}
 " Weak/redundant/etc word checker
 Plug 'reedes/vim-wordy', {'tag': 'v1.1'}
 " requirements.txt syntax
