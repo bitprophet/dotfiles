@@ -17,3 +17,52 @@ gui:
 git:
   # Really a gui setting...renders eg :rocket:
   parseEmoji: true
+# Use `tig` for a bunch of stuff lazygit doesn't do itself.
+# Adapted (with a number of fixes for lazygit 0.5x config syntax) from
+# https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#blame-via-tig
+# + subsequent
+promptToReturnFromSubprocess: false
+customCommands:
+  # Blaming
+  - key: b
+    command: tig blame -- {{.SelectedFile.Name}}
+    context: files
+    description: blame file at tree
+    output: terminal
+  - key: b
+    command: tig blame {{.SelectedCommit.Sha}} -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at revision
+    output: terminal
+  - key: B
+    command: tig blame -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: blame file at tree
+    output: terminal
+  # Browsing files
+  - key: t
+    command: tig show {{.SelectedCommit.Sha}}
+    context: subCommits
+    description: tig commit (`t` again to browse files at revision)
+    output: terminal
+  - key: t
+    command: tig show {{.SelectedLocalBranch.Name}}
+    context: localBranches
+    description: tig branch (`t` again to browse files at revision)
+    output: terminal
+  - key: t
+    command: tig show {{.SelectedRemoteBranch.RemoteName}}/{{.SelectedRemoteBranch.Name}}
+    context: remoteBranches
+    description: tig branch (`t` again to browse files at revision)
+    output: terminal
+  # Browsing file history
+  - key: t
+    command: tig {{.SelectedCommit.Sha}} -- {{.SelectedCommitFile.Name}}
+    context: commitFiles
+    description: tig file (history of commits affecting file)
+    output: terminal
+  - key: t
+    command: tig -- {{.SelectedFile.Name}}
+    context: files
+    description: tig file (history of commits affecting file)
+    output: terminal
