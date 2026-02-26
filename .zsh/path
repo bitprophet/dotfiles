@@ -27,6 +27,7 @@ export path=(
 
     # Homebrew comes next.
     /opt/homebrew/bin
+    /opt/homebrew/sbin
 
     # Some software still puts things in /usr/local, and we'd naturally expect
     # that to win out over the system base.
