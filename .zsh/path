@@ -29,6 +29,9 @@ export path=(
     /opt/homebrew/bin
     /opt/homebrew/sbin
 
+    # Obsidian CLI.
+    /Applications/Obsidian.app/Contents/MacOS
+
     # Some software still puts things in /usr/local, and we'd naturally expect
     # that to win out over the system base.
     /usr/local/bin
