@@ -48,6 +48,8 @@ Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
 " install things like coc-basedpyright.
 " TODO: for now I'm likely to work around this with a small shell script.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Context.vim, might be more elegant than just folding a lot?
+Plug 'wellle/context.vim', {'commit': 'b779a19'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
