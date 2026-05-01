@@ -54,6 +54,9 @@
 !.virtualenvs
 !.virtualenvs/postmkvirtualenv
 
+# Mypy personal config
+!.mypy.ini
+
 # IRb config
 !.irbrc
 # RVM config
