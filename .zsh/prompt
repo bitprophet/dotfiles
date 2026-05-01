@@ -195,10 +195,38 @@ function reach_env() {
             staging ) ENV_COLOR=$C[orange] ;;
             prod ) ENV_COLOR=$C[red] ;;
         esac
-        echo "(${ENV_COLOR}${REACH_ENV}%f) "
+        export reach_env_display="${ENV_COLOR}${REACH_ENV}%f"
     fi
 }
 
+function reach_cloud() {
+    if [[ -n "$AWS_PROFILE" ]]; then
+        case $AWS_PROFILE in
+            dev ) ENV_COLOR=$C[cyan] ;;
+            staging | stage ) ENV_COLOR=$C[orange] ;;
+            prod | prod-ro ) ENV_COLOR=$C[red] ;;
+        esac
+        export reach_cloud_display="${ENV_COLOR}${AWS_PROFILE}%f"
+    fi
+}
+
+function reach_context() {
+    reach_env
+    reach_cloud
+    if [[ -n "$reach_env_display" || -n "$reach_cloud_display" ]]; then
+        echo -n "("
+        if [[ -n "$reach_env_display" ]]; then
+            echo -n "$reach_env_display"
+            if [[ -n "$reach_cloud_display" ]]; then
+                echo -n ", "
+            fi
+        fi
+        if [[ -n "$reach_cloud_display" ]]; then
+            echo -n "$reach_cloud_display"
+        fi
+        echo -n ") "
+    fi
+}
 #
 # Prompt itself
 #
@@ -214,7 +242,7 @@ function precmd() {
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} $(reach_env){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} $(reach_context){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }
