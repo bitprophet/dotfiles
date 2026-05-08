@@ -268,3 +268,17 @@ nmap <silent> <Leader>d <Plug>(coc-diagnostic-next)
 " NOTE: LSPs also expose 'definitionHover' but at least in Python/pyright/CoC
 " it appears functionally identical to the more common 'doHover'...
 nmap <silent> D :call CocActionAsync('doHover')<CR>
+
+"
+" Buffer cleanup
+" (adapted from https://vi.stackexchange.com/a/27105)
+"
+function! NukeUnusedBuffers() abort
+    let l:buffers = filter(getbufinfo(), {_, v -> !v.loaded})
+    if !empty(l:buffers)
+        execute 'bwipeout' join(map(l:buffers, {_, v -> v.bufnr}))
+    endif
+endfunction
+
+" Mnemonic: (U)nload hidden buffers
+nnoremap <silent> <Leader>u :call NukeUnusedBuffers()<CR>
