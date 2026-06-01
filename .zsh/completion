@@ -28,3 +28,6 @@ zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 # Eg: 1password's CLI
 have op && source =(op completion zsh)
 have pulumi && source =(pulumi gen-completion zsh)
+
+# Docker when via Docker Desktop on macOS
+have docker && source =(docker completion zsh)
