@@ -191,11 +191,11 @@ function displayhost() {
 function reach_env() {
     if [[ -n "$REACH_ENV" ]]; then
         case $REACH_ENV in
-            test | local ) ENV_COLOR=$C[cyan] ;;
-            staging ) ENV_COLOR=$C[orange] ;;
             prod ) ENV_COLOR=$C[red] ;;
+            staging ) ENV_COLOR=$C[orange] ;;
+            * ) ENV_COLOR=$C[cyan] ;;
         esac
-        export reach_env_display="${ENV_COLOR}${REACH_ENV}%f"
+        export reach_env_display="env=${ENV_COLOR}${REACH_ENV}%f"
     fi
 }
 
@@ -206,7 +206,7 @@ function reach_cloud() {
             staging | stage ) ENV_COLOR=$C[orange] ;;
             prod | prod-ro ) ENV_COLOR=$C[red] ;;
         esac
-        export reach_cloud_display="${ENV_COLOR}${AWS_PROFILE}%f"
+        export reach_cloud_display="aws=${ENV_COLOR}${AWS_PROFILE}%f"
     fi
 }
 
