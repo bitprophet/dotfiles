@@ -137,6 +137,7 @@ function browse() {
 # Misc
 alias rmpyc='rm **/*.pyc'
 alias v=vim
+alias vc='vim --clean'
 alias g=grep
 alias eg='env | grep -i'
 # History but with ISO8601 timestamp, duration, show entire history
@@ -147,6 +148,7 @@ alias hg='history | grep'
 alias l=ls -al
 alias ports='sudo lsof -nP 2>/dev/null | grep LISTEN | sed -re "s/ +/ /g" | cut -d " " -f 1,3,9 | sort -u | column -t'
 alias d='docker'
+alias jq='jq --sort-keys'
 
 # Functions
 
