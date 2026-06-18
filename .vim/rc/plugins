@@ -63,7 +63,7 @@ call plug#end()
 " Default to tree view 
 let g:netrw_liststyle = 3
 " Hide common hidden files
-let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+let g:netrw_list_hide = '.*\.py[co]$,\.(git|jj)$,\.swp$'
 " Don't use frickin elinks, wtf
 let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 
@@ -73,7 +73,7 @@ let g:vimclojure#DynamicHighlighting=1
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(\.(git|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build|node_modules)$',
+  \ 'dir': '\v(\.(git|jj|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build|node_modules)$',
   \ 'file': '\v\.(gz|swp)$',
   \ 'link': '\vtarget',
 \ }
