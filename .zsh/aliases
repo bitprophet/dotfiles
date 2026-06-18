@@ -119,6 +119,13 @@ function authors() {
     git log --pretty='format:%an' ${1}  | sort | uniq -c | sort -nr
 }
 
+# OH HEY JJ??? (lol, back to pile of aliases huh?)
+# every character counts...
+alias j=jj
+alias js='jj status'
+alias jl='jj log'
+alias jls='jj log -s'
+alias jgp='jj git push'
 # Sphinx built dirs browsing (for headless dev w/o a 'open' binary).
 # Will try to intelligently detect if it needs to slap a 'sites' prefix on the
 # build dir path or not. Just give it 'docs' or 'www' as necessary.
