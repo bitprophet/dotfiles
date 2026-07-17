@@ -7,7 +7,9 @@ esac
 # 0.4X was, but one would still have to configure --walker-skip=xxx,
 # duplicating all my ~/.agrc ignore flags. So let's just reuse ag like I did at
 # one point in the recent past: list-all-files in cwd, then list-all-dirs too.
-export FZF_CTRL_T_COMMAND="cat =(ag -l) =(ag -l | xargs dirname | sort -u)"
+# And look in 'hidden' dirs (so eg .github/ and friends; but this still ignores
+# anything VCS-config-ignored eg .gitignored, which is 'fine' ish)
+export FZF_CTRL_T_COMMAND="cat =(ag -l --hidden) =(ag -l --hidden | xargs dirname | sort -u)"
 
 source $fzf_shell/completion.zsh
 source $fzf_shell/key-bindings.zsh
