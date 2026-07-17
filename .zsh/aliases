@@ -233,3 +233,6 @@ compdef "_files -W ~/.zsh/" modify
 function ope() {
     op item get "$1" --format json --fields label="$2" | jq --raw-output '.value'
 }
+
+# k8s shit
+alias k=kubectl
