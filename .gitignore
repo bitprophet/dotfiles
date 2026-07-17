@@ -140,6 +140,12 @@ etc/clusto*.conf
 !.config/bat/*
 !.config/bat/themes
 !.config/bat/themes/*
+!.config/broot
+!.config/broot/*
+!.config/broot/launcher
+!.config/broot/launcher/*
+!.config/broot/skins
+!.config/broot/skins/*
 !.config/direnv
 !.config/direnv/direnv.toml
 !.config/xfce4
