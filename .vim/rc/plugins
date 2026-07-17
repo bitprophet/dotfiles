@@ -11,6 +11,9 @@ call plug#begin(plugins_dir)
 
 " Improved JSON syntax formatting, display, etc
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+" And for the hjson variant (which adds comments; eg, used as conf files by
+" apps such as broot)
+Plug 'hjson/vim-hjson', {'commit': '265ec4f'}
 " Fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim', {'commit': '8b4a952'}
 " Clojure
