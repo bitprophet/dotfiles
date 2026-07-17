@@ -192,8 +192,8 @@ function reach_env() {
     if [[ -n "$REACH_ENV" ]]; then
         case $REACH_ENV in
             prod ) ENV_COLOR=$C[red] ;;
-            staging ) ENV_COLOR=$C[orange] ;;
-            * ) ENV_COLOR=$C[cyan] ;;
+            staging ) ENV_COLOR=$C[yellow] ;;
+            * ) ENV_COLOR=$C[green] ;;
         esac
         export reach_env_display="env=${ENV_COLOR}${REACH_ENV}%f"
     fi
@@ -202,18 +202,29 @@ function reach_env() {
 function reach_cloud() {
     if [[ -n "$AWS_PROFILE" ]]; then
         case $AWS_PROFILE in
-            dev ) ENV_COLOR=$C[cyan] ;;
-            staging | stage ) ENV_COLOR=$C[orange] ;;
+            dev ) ENV_COLOR=$C[green] ;;
+            staging | stage ) ENV_COLOR=$C[yellow] ;;
             prod | prod-ro ) ENV_COLOR=$C[red] ;;
         esac
         export reach_cloud_display="aws=${ENV_COLOR}${AWS_PROFILE}%f"
     fi
 }
 
+function kube_context() {
+    cluster=$(kubectl config current-context)
+    case $cluster in
+        # TODO: prod-like
+        stage-core ) ENV_COLOR=$C[yellow] ;;
+        * ) ENV_COLOR=$C[green] ;;
+    esac
+    export kube_context_display="k8s=${ENV_COLOR}${cluster}%f"
+}
+
 function reach_context() {
     reach_env
     reach_cloud
-    if [[ -n "$reach_env_display" || -n "$reach_cloud_display" ]]; then
+    kube_context
+    if [[ -n "$reach_env_display" || -n "$reach_cloud_display" || -n "$kube_context_display" ]]; then
         echo -n "("
         if [[ -n "$reach_env_display" ]]; then
             echo -n "$reach_env_display"
@@ -223,6 +234,12 @@ function reach_context() {
         fi
         if [[ -n "$reach_cloud_display" ]]; then
             echo -n "$reach_cloud_display"
+            if [[ -n "$kube_context_display" ]]; then
+                echo -n ", "
+            fi
+        fi
+        if [[ -n "$kube_context_display" ]]; then
+            echo -n "$kube_context_display"
         fi
         echo -n ") "
     fi
