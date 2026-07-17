@@ -24,6 +24,7 @@
 # you can launch broot with `br -H`).
 # A popular flag is the `g` one which displays git related info.
 #
+# TODO: is there a way to show hidden files /besides/ .git/.jj?
 default_flags: -hg
 
 ###############################################################
