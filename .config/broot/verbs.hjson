@@ -27,9 +27,9 @@ verbs: [
     {
         invocation: edit
         shortcut: e
-        key: ctrl-e
+        key: enter
         apply_to: text_file
-        external: "$EDITOR {file:space-separated}"
+        external: "$EDITOR +{line} {file:space-separated}"
         leave_broot: false
     }
 

@@ -159,6 +159,7 @@ etc/clusto*.conf
 .config/systemd/user/gpg-agent.service
 # And don't see swaps as usual (sigh)
 .config/systemd/user/.*.swp
+.config/broot/.*.swp
 
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
