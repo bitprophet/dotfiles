@@ -31,3 +31,5 @@ have pulumi && source =(pulumi gen-completion zsh)
 
 # Docker when via Docker Desktop on macOS
 have docker && source =(docker completion zsh)
+
+have k9s && source =(k9s completion zsh)
