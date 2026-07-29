@@ -1,0 +1,83 @@
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.14"
+# dependencies = ["rich", "pendulum"]
+# ///
+
+"""
+CLI script to take JSON input and create a table out of it.
+"""
+
+import json
+import sys
+
+import pendulum
+from pendulum.parsing.exceptions import ParserError
+from rich.console import Console
+from rich.pretty import pprint
+from rich.table import Table
+from rich.text import Text
+
+# TODO: handle streaming (obviously must be exclusive with any sort features)
+text = sys.stdin.read().strip()
+# TODO: do any other json libs handle things "jq-style" re: sequence-of-objects
+# that isn't wrapped in a list? for now, too much of a PITA to manually wrap,
+# so inputs really gotta do it on their end.
+try:
+    data = json.loads(text)
+except json.JSONDecodeError as e:
+    if e.msg == "Extra data":
+        raise ValueError(
+            "Remember to coerce input into a JSON array, eg using `jq --slurp` or similar!"
+        )
+    raise
+
+if not data:
+    raise ValueError("Input array or object seems to be empty? What are you doing?")
+
+# TODO: handle one-big-object, in some cases? hmm. for now, arrays only.
+
+first = data.pop(0)
+# Preserve column/key order, at least initially, in case input had load-bearing
+# key order
+columns = list(first.keys())
+columnset = set(columns)
+table = Table(*columns, box=None)
+for i, row in enumerate(data):
+    if diff := columnset.symmetric_difference(set(row.keys())):
+        raise ValueError(f"Row {i+2} doesn't match row 1's keys, diff: {diff}")
+    cells = [row[key] for key in columns]
+    for ci, value in enumerate(cells):
+        # Turn biglong full ISO8601 datetimes into shorter ones
+        try:
+            # TODO: even smaller format?
+            cells[ci] = pendulum.parse(value).to_datetime_string()
+            continue
+        except ParserError:
+            pass
+        # Crunch down ARNs a bit
+        if isinstance(value, str) and value.startswith("arn:aws:"):
+            value = value.removeprefix("arn:aws:")
+            for source, dest in {
+                # Account IDs
+                "869935110155": "staging",
+                "820242946290": "dev",
+                # Regions
+                "us-west-1": "usw1",
+                "us-west-2": "usw2",
+                # Services
+                "secretsmanager": "SM",
+            }.items():
+                value = value.replace(source, dest)
+        # Preempt Table's automatic Text markup rendering so it doesn't turn eg
+        # ARNs into faux emojis, sigh
+        if isinstance(value, str):
+            value = Text.from_markup(value, emoji=False)
+        cells[ci] = value
+
+    table.add_row(*cells)
+
+Console().print(table)
+
+# vim: set ft=python :

@@ -84,6 +84,7 @@
 
 # Local copies of tools/scripts
 # (but try not to do this, it's really gross)
+!bin
 # Old ruby based github helper. replace with gh sometime
 !bin/hub
 # Python script to parse vim mappings (lmfao)
@@ -92,6 +93,8 @@
 !bin/logparse
 # Manual script for 'merge up', used a lot sometimes
 !bin/mu
+# JSON Tail helper
+!bin/jt
 
 # Config for local daemons (e.g. squid)
 !etc
