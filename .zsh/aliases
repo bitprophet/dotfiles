@@ -167,32 +167,6 @@ alias jq='jq --sort-keys'
 
 # Functions
 
-# Prettyprint some JSON text with a few back-ends, w/ optional CURL:
-# - 'json a-url-here' to curl-and-prettify
-# - '<command emitting JSON> | json' to just-prettify
-function json() {
-    # Obtain prettyprinter command string
-    if which jq > /dev/null; then
-        # Default to using jq as prettyprinter, it's quite nice for that alone
-        _pretty="jq -C ."
-    else
-        # Otherwise, fallback to Python's json module; Python is errywhere.
-        _pretty="python -m json.tool"
-        # Add pygmentize if it exists. (So, our absolute worst case is
-        # pretty-printed, but not colorized. Still useful.)
-        if which pygmentize > /dev/null; then
-            _pretty="${_pretty} | pygmentize -l json"
-        fi
-    fi
-    
-    # Insert a curl if args were given; otherwise assume stdin is being used.
-    if [[ -z $1 ]]; then
-        eval ${_pretty}
-    else
-        eval "curl -ks $2 \"$1\" | ${_pretty}"
-    fi | less -FR
-}
-
 # Fetch pull request X so its SHAs are available.
 function fetch-pr() {
     git fetch origin pull/$1/head$2
