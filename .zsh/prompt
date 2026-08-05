@@ -14,6 +14,8 @@ PALETTE=(
     orange  167
 )
 # Wrap in %F{} and use short array name
+# TODO: this seems silly since zsh appears to let you just use...those names
+# now?
 for key in ${(k)PALETTE}; do
     C[$key]="%F{$PALETTE[$key]}"
 done
@@ -259,7 +261,7 @@ function precmd() {
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} $(reach_context){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} $(reach_context){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] UTC=%F{26}$(date -u +%T)%f ET=%F{130}$(date +%T)%f
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }
