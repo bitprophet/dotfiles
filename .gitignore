@@ -95,6 +95,8 @@
 !bin/mu
 # JSON Tail helper
 !bin/jt
+# HTTP endpoint scanner
+!bin/whats-up-with
 
 # Config for local daemons (e.g. squid)
 !etc
