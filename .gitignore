@@ -153,18 +153,17 @@ etc/clusto*.conf
 !.config/broot/skins/*
 !.config/direnv
 !.config/direnv/direnv.toml
-!.config/xfce4
-!.config/xfce4/terminal
-!.config/xfce4/terminal/terminalrc
 !.config/systemd/
 !.config/systemd/user
 !.config/systemd/user/*
 !.config/systemd/user/*/*
+!.config/xfce4
+!.config/xfce4/terminal
+!.config/xfce4/terminal/terminalrc
 # Keep ignoring this, it comes from the OS.
 .config/systemd/user/gpg-agent.service
 # And don't see swaps as usual (sigh)
 .config/systemd/user/.*.swp
-.config/broot/.*.swp
 
 # Random arbitrary not-really-a-config file,
 # for use with hexdump
