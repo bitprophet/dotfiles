@@ -153,6 +153,9 @@ etc/clusto*.conf
 !.config/broot/skins/*
 !.config/direnv
 !.config/direnv/direnv.toml
+# jj config (but not its per-repo bits, for now)
+!.config/jj
+!.config/jj/config.toml
 !.config/systemd/
 !.config/systemd/user
 !.config/systemd/user/*
