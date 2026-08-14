@@ -5,3 +5,4 @@
 --map-syntax="flake.lock:JSON"
 --map-syntax="/etc/os-release:DotENV"
 --map-syntax="/etc/pacman*:INI"
+--paging=never

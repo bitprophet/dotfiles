@@ -7,7 +7,9 @@ alias ll='ls -Alt'
 
 # bat, a nicer cat, plus warm its cache on new systems
 # (otherwise it won't know about my dotfiles' extra themes)
-alias cat=bat
+# (prettybat is an extra-special wrapper that prettifies before catting, from
+# bat-extras package)
+alias cat=prettybat
 if [[ ! -d $HOME/.cache/bat ]]; then
     bat cache --build &>/dev/null
 fi
