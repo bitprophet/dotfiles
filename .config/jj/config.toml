@@ -11,6 +11,10 @@ email = "jeff@reach.security"
 # (Put another way, regular git doesn't auto delete the local branch like
 # this...)
 abandon-unreachable-commits = false
+# Backstop to the 'keep private commits separate from regular ones somehow'
+# approaches (eg, merge commits or floating them on top): never, ever push
+# commits in the denylist (see revset-aliases) to git remotes.
+private-commits = 'denylist()'
 
 [ui]
 # Use delta to format diffs
@@ -47,6 +51,8 @@ bookmark-advance-to = "closest_pushable(@)"
 # be masking) - basically feature branch lifetime
 # - PRIVATE: could be long term, eg my own breakpoint/debug hacks -
 # essentially permanent lifetime
+# SEE ALSO: git.private-commits above, which is a backstop that reuses
+# denylist() here to ensure never pushing below commits remotely.
 'denylist()' = 'deleteme() | private()'
 'deleteme()' = 'description(glob-i:"deleteme:*")'
 'private()' = 'description(glob-i:"private:*")'
