@@ -132,6 +132,7 @@ alias jgf='j git fetch'
 alias jgp='j git push'
 alias jcm='j commit -m'
 alias jba='j bookmark advance'
+alias jro='j rebase --onto'
 
 # Pulumi
 alias p=pulumi
