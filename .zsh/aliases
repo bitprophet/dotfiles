@@ -124,13 +124,13 @@ function authors() {
 # OH HEY JJ??? (lol, back to pile of aliases huh?)
 # every character counts...
 alias j=jj
-alias js='jj status'
-alias jl='jj log --limit 25'
-alias jd='jj diff'
-alias jls='jj log -s'
-alias jgf='jj git fetch'
-alias jgp='jj git push'
-alias jcm='jj commit -m'
+alias js='j status'
+alias jl='j log --limit 25'
+alias jd='j diff'
+alias jls='j log -s'
+alias jgf='j git fetch'
+alias jgp='j git push'
+alias jcm='j commit -m'
 alias jba='j bookmark advance'
 
 # Pulumi
