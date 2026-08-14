@@ -51,11 +51,13 @@ bookmark-advance-to = "closest_pushable(@)"
 # 'private', eg:
 # - DELETEME: should be short lived and not carried around for a _long_ time by
 # mistake (that can lead to not noticing certain problems those commits might
-# be masking) - basically feature branch lifetime
+# be masking) - basically feature branch lifetime. (later: yea, backing this
+# out of denylist() for now, too many times I need debuggery pushed to a branch
+# for CI/deploy reasons.)
 # - PRIVATE: could be long term, eg my own breakpoint/debug hacks -
 # essentially permanent lifetime
 # SEE ALSO: git.private-commits above, which is a backstop that reuses
 # denylist() here to ensure never pushing below commits remotely.
-'denylist()' = 'deleteme() | private()'
+'denylist()' = 'private()'
 'deleteme()' = 'description(glob-i:"deleteme:*")'
 'private()' = 'description(glob-i:"private:*")'
