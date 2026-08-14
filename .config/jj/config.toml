@@ -19,6 +19,9 @@ private-commits = 'denylist()'
 [ui]
 # Use delta to format diffs
 diff-formatter = "delta"
+# Sort bookmarks and tags by freshness (descending authored date), not name
+bookmark-list-sort-keys = ["author-date-", "name"]
+tag-list-sort-keys = ["author-date-", "name"]
 
 [merge-tools.delta]
 # Make sure delta (when used as diff-formatter, above) gets the right info
