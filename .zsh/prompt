@@ -255,6 +255,10 @@ function precmd() {
     ssh_auth_sock
     # Set git vars
     git_status
+    # Any work related shit here
+    have work_precmd && work_precmd
+
+    # Display!
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
     # NOTE: %f is zsh colorspeak for "stop showing a different fg color"
