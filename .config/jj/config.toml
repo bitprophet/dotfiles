@@ -28,6 +28,16 @@ tag-list-sort-keys = ["author-date-", "name"]
 #diff-args = ["--side-by-side", "$left", "$right", "--width=$width"]
 diff-expected-exit-codes = [0,1]
 
+# basically 'snippets' used inside templates; much of the time you just wanna
+# edit one of these, as used by the default templates, vs creating your own
+# entire template.
+[template-aliases]
+# 'jeff' instead of 'jeff@bitprophet.org'/work email
+'format_short_signature(signature)' = 'signature.email().local()'
+# Relative timestamps. (TODO: can I make these only kick in for recent-ish
+# timestamps, and revert to ISO8601 default for older commits?)
+'format_timestamp(timestamp)' = 'timestamp.ago()'
+
 [revsets]
 # See revset-aliases for explanation.
 bookmark-advance-to = "closest_pushable(@)"
