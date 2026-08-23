@@ -54,6 +54,9 @@
 !.virtualenvs
 !.virtualenvs/postmkvirtualenv
 
+# Mypy personal config
+!.mypy.ini
+
 # IRb config
 !.irbrc
 # RVM config
@@ -81,6 +84,7 @@
 
 # Local copies of tools/scripts
 # (but try not to do this, it's really gross)
+!bin
 # Old ruby based github helper. replace with gh sometime
 !bin/hub
 # Python script to parse vim mappings (lmfao)
@@ -89,6 +93,10 @@
 !bin/logparse
 # Manual script for 'merge up', used a lot sometimes
 !bin/mu
+# JSON Tail helper
+!bin/jt
+# HTTP endpoint scanner
+!bin/whats-up-with
 
 # Config for local daemons (e.g. squid)
 !etc
@@ -137,15 +145,24 @@ etc/clusto*.conf
 !.config/bat/*
 !.config/bat/themes
 !.config/bat/themes/*
+!.config/broot
+!.config/broot/*
+!.config/broot/launcher
+!.config/broot/launcher/*
+!.config/broot/skins
+!.config/broot/skins/*
 !.config/direnv
 !.config/direnv/direnv.toml
-!.config/xfce4
-!.config/xfce4/terminal
-!.config/xfce4/terminal/terminalrc
+# jj config (but not its per-repo bits, for now)
+!.config/jj
+!.config/jj/config.toml
 !.config/systemd/
 !.config/systemd/user
 !.config/systemd/user/*
 !.config/systemd/user/*/*
+!.config/xfce4
+!.config/xfce4/terminal
+!.config/xfce4/terminal/terminalrc
 # Keep ignoring this, it comes from the OS.
 .config/systemd/user/gpg-agent.service
 # And don't see swaps as usual (sigh)

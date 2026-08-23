@@ -11,6 +11,9 @@ call plug#begin(plugins_dir)
 
 " Improved JSON syntax formatting, display, etc
 Plug 'elzr/vim-json', {'commit': 'f5e3181'}
+" And for the hjson variant (which adds comments; eg, used as conf files by
+" apps such as broot)
+Plug 'hjson/vim-hjson', {'commit': '265ec4f'}
 " Fuzzy file finder
 Plug 'ctrlpvim/ctrlp.vim', {'commit': '8b4a952'}
 " Clojure
@@ -48,6 +51,8 @@ Plug 'prabirshrestha/vim-lsp', {'commit': 'c20c665'}
 " install things like coc-basedpyright.
 " TODO: for now I'm likely to work around this with a small shell script.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Context.vim, might be more elegant than just folding a lot?
+Plug 'wellle/context.vim', {'commit': 'b779a19'}
 
 " Colorschemes-as-plugins
 Plug 'morhetz/gruvbox', {'commit': 'f1ecde8'}
@@ -61,7 +66,7 @@ call plug#end()
 " Default to tree view 
 let g:netrw_liststyle = 3
 " Hide common hidden files
-let g:netrw_list_hide = '.*\.py[co]$,\.git$,\.swp$'
+let g:netrw_list_hide = '.*\.py[co]$,\.(git|jj)$,\.swp$'
 " Don't use frickin elinks, wtf
 let g:netrw_http_cmd = "wget -q -O" " or 'curl -Ls -o'
 
@@ -71,7 +76,7 @@ let g:vimclojure#DynamicHighlighting=1
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(\.(git|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build|node_modules)$',
+  \ 'dir': '\v(\.(git|jj|egg-info|gradle|build|(pytest|mypy)_cache|venv)|htmlcov|__pycache__|public|venv|_build|build|node_modules)$',
   \ 'file': '\v\.(gz|swp)$',
   \ 'link': '\vtarget',
 \ }

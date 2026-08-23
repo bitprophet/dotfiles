@@ -1,0 +1,207 @@
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.14"
+# dependencies = ["httpx2", "invoke"]
+# ///
+
+import json
+from datetime import datetime, UTC
+from pathlib import Path
+from enum import StrEnum, auto
+from queue import Queue
+from sys import exit, argv
+from urllib.parse import urlparse
+from threading import Thread
+from time import sleep
+
+import httpx2
+from invoke import run
+
+
+TIMEOUT = 30
+
+
+def i_sleep():  # as opposed to 'real shit' which idk I guess that's the main thread?
+    # 1 second for all loops for now
+    sleep(1)
+
+
+class Event(StrEnum):
+    @staticmethod
+    def _generate_next_value_(
+        name: str, start: int, count: int, last_values: list[str]
+    ) -> str:
+        """
+        Use literal name, not lower(). (Odd that there's no version of this in stdlib IMHO)
+        """
+        return name
+
+    DnsQuery = auto()
+    PortCheck = auto()
+    HttpRequest = auto()
+
+
+def watch_http(output: Queue, url: str) -> None:
+    while True:
+        start_ts = datetime.now(UTC).timestamp()
+        status_msg = "Success"
+        try:
+            # TODO: try both GET and HEAD in case issue somehow sensitive to
+            # GET only, though so far that seems unlikely (eg we've also seen
+            # it on POST!)
+            # NOTE: high timeout because we sometimes legit see up to ~15s
+            # delays on some otherwise-successful requests and capturing that
+            # is useful (maybe)
+            httpx2.request("HEAD", url, timeout=TIMEOUT)
+            # TODO: possibly useful result attributes:
+            # .elapsed.total_seconds()
+            # .is_success / .is_((client|server)_)?error
+            # NOTE: for now just using "wasn't None" as the signal lol
+        except httpx2.RequestError as e:
+            status_msg = f"Request-level error: {e}"
+        except httpx2.HTTPStatusError as e:
+            status_msg = f"HTTP-level error: {e}"
+        end_ts = datetime.now(UTC).timestamp()
+        output.put(
+            dict(
+                event=Event.HttpRequest,
+                start_ts=start_ts,
+                end_ts=end_ts,
+                # NOTE: for httprequest in particular we could also ask the
+                # response for .elapsed, but since we also care about error
+                # conditions, may as well do our own wallclock math.
+                elapsed=end_ts - start_ts,
+                status=status_msg,
+            )
+        )
+        i_sleep()
+
+
+def watch_port(output: Queue, hostname: str, port: int):
+    while True:
+        start_ts = datetime.now(UTC).timestamp()
+        status_msg = "Success"
+        # TODO: yea I could do this in raw python but for now, this is faster
+        # and more bulletproof
+        result = run(
+            f"nc -G {TIMEOUT} -z {hostname} {port}",
+            hide=True,  # no output to terminal to foul up the JSON
+            warn=True,  # no need to try/except
+            pty=True,  # merge stdout/err for convenience
+        )
+        if not result.ok:
+            status_msg = f"Failed: {result.stdout}"
+        end_ts = datetime.now(UTC).timestamp()
+        output.put(
+            dict(
+                event=Event.PortCheck,
+                start_ts=start_ts,
+                end_ts=end_ts,
+                elapsed=end_ts - start_ts,
+                status=status_msg,
+            )
+        )
+        i_sleep()
+
+
+def watch_resolution(output: Queue, hostname: str):
+    while True:
+        start_ts = datetime.now(UTC).timestamp()
+        status_msg = "Success"
+        # TODO: yea I could (also do this in raw python but for now, this is
+        # faster and more bulletproof
+        result = run(
+            f"host {hostname}",
+            hide=True,  # no output to terminal to foul up the JSON
+            warn=True,  # no need to try/except
+            pty=True,  # merge stdout/err for convenience
+        )
+        if not result.ok:
+            status_msg = f"Failed: {result.stdout}"
+        end_ts = datetime.now(UTC).timestamp()
+        output.put(
+            dict(
+                event=Event.DnsQuery,
+                start_ts=start_ts,
+                end_ts=end_ts,
+                elapsed=end_ts - start_ts,
+                status=status_msg,
+            )
+        )
+        i_sleep()
+
+
+# TODO: do we have a better paradigm for this in 2026 lmao
+def main():
+    # Arg parsin'
+    # TODO: fix up Invoke parser/etc so it's trivial to just blast out a @task
+    # inside a script like this and it just works as expected
+    if len(argv) < 2:
+        exit("Please supply a URL to test against. https:// prefix is optional.")
+    # NOTE: urlparse is dumb and can't handle schema-less things well /at all/
+    raw_url = f"https://{argv[1].removeprefix('https://')}"
+    parsed_url = urlparse(raw_url)
+    url = parsed_url.geturl()
+    hostname = parsed_url.netloc
+    # NOTE: urlparse is dumb and can't handle eg foo.com:8080/path/ - it ONLY
+    # works if the scheme is explicit. so let's just not bloody bother for now.
+    # TODO: find a more flexible url parser library perhaps
+    port = 443
+    # TODO: controllable
+    # TODO: prob just use structlog + multiple sinks tbh
+    path = Path.cwd() / f"{datetime.now(UTC).isoformat(timespec='seconds')}.json"
+
+    # Setup
+    print("Warming up...press Ctrl-C at any time to shutdown.")
+    print(f"Logging a copy of output to: {path}")
+    queue = Queue()
+    threads = {
+        Thread(
+            name="http",
+            target=watch_http,
+            kwargs=dict(output=queue, url=url),
+            daemon=True,
+        ),
+        Thread(
+            name="port",
+            target=watch_port,
+            kwargs=dict(output=queue, hostname=hostname, port=port),
+            daemon=True,
+        ),
+        Thread(
+            name="dns",
+            target=watch_resolution,
+            kwargs=dict(output=queue, hostname=hostname),
+            daemon=True,
+        ),
+    }
+
+    # Kickoff
+    for thread in threads:
+        thread.start()
+
+    # Blocking-queue-read eternal loop.
+    # NOTE: Should be no need for its own sleep() due to the blocking + worker
+    # threads broadly operating on a per-second period? And should croak when
+    # we Ctrl-C to stop the script (and as the workers are daemonized they
+    # should not prevent process shutdown).
+    with path.open(mode="a", buffering=1) as fd:
+        while True:
+            try:
+                # TODO: nicer formatting when not being piped, eg:
+                # - rich.pprint
+                # - highlight line if elapsed >1.0 or status != success (depending
+                # on event type)
+                event = json.dumps(queue.get())
+                print(event)
+                fd.write(event + "\n")
+            except KeyboardInterrupt:
+                print("Stopping!")
+                exit()
+
+
+if __name__ == "__main__":
+    main()
+
+# vim: set ft=python :

@@ -1,5 +1,8 @@
+# TODO: why tf was I using light variants????
 #--theme="base2tone-cave.light"
---theme="base2tone-evening.light"
+#--theme="base2tone-evening.light"
+--theme="Catppuccin Mocha"
 --map-syntax="flake.lock:JSON"
 --map-syntax="/etc/os-release:DotENV"
 --map-syntax="/etc/pacman*:INI"
+--paging=never

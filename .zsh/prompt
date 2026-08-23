@@ -14,6 +14,8 @@ PALETTE=(
     orange  167
 )
 # Wrap in %F{} and use short array name
+# TODO: this seems silly since zsh appears to let you just use...those names
+# now?
 for key in ${(k)PALETTE}; do
     C[$key]="%F{$PALETTE[$key]}"
 done
@@ -197,12 +199,16 @@ function precmd() {
     ssh_auth_sock
     # Set git vars
     git_status
+    # Any work related shit here
+    have work_precmd && work_precmd
+
+    # Display!
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f]
+    export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] UTC=%F{130}$(date -u +%T)%f
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }

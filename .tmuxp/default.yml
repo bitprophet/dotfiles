@@ -9,6 +9,5 @@ windows:
     main-pane-width: 245
   shell_command_before: "wk ${MUX_SESSION}"
   panes:
-    - vim .
-    - focus: true
-    - lazygit
+    - broot
+    - js && jl

@@ -25,7 +25,9 @@ export path=(
     # or 'pyenv rehash' for the shims to remain accurate.
     $HOME/.pyenv/shims
 
-    # Homebrew comes next.
+    # Homebrew comes next, including some keg-only formulae that need special
+    # handling.
+    /opt/homebrew/opt/node@22/bin
     /opt/homebrew/bin
     /opt/homebrew/sbin
 

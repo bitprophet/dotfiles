@@ -1,0 +1,73 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Jeff Forcier"
+email = "jeff@bitprophet.org"
+
+[git]
+# Don't auto-abandon local commits whose remote git HEAD has been removed. I
+# found that confusing and frustrating since I was in "I'm using jj here" mode
+# and was intending to eg make a new eventual branch to push or w/e.
+# (Put another way, regular git doesn't auto delete the local branch like
+# this...)
+abandon-unreachable-commits = false
+# Backstop to the 'keep private commits separate from regular ones somehow'
+# approaches (eg, merge commits or floating them on top): never, ever push
+# commits in the denylist (see revset-aliases) to git remotes.
+private-commits = 'denylist()'
+
+[ui]
+# Use delta to format diffs
+diff-formatter = "delta"
+# Sort bookmarks and tags by freshness (descending authored date), not name
+bookmark-list-sort-keys = ["author-date-", "name"]
+tag-list-sort-keys = ["author-date-", "name"]
+
+[merge-tools.delta]
+# Make sure delta (when used as diff-formatter, above) gets the right info
+#diff-args = ["--side-by-side", "$left", "$right", "--width=$width"]
+diff-expected-exit-codes = [0, 1]
+
+# basically 'snippets' used inside templates; much of the time you just wanna
+# edit one of these, as used by the default templates, vs creating your own
+# entire template.
+[template-aliases]
+# 'jeff' instead of 'jeff@bitprophet.org'/work email
+'format_short_signature(signature)' = 'signature.email().local()'
+# Relative timestamps. (TODO: can I make these only kick in for recent-ish
+# timestamps, and revert to ISO8601 default for older commits?)
+'format_timestamp(timestamp)' = 'timestamp.ago()'
+
+[revsets]
+# See revset-aliases for explanation.
+bookmark-advance-to = "closest_pushable(@)"
+
+[revset-aliases]
+# Cribbed from https://offby1.website/posts/how-i-jujutsu-bookmark-advance.html:
+# - defaultish bits of reachable-from-mutable-heads
+# - a denylist, further down, to prevent updating bookmarks to point to commits
+# whose messages contain certain prefixes
+# - also exclude empty or empty-description commits, which means _when_ you
+# have just ran eg `jj new/commit/etc`, `bookmark advance` won't update to @
+# but will be ~= @- instead
+# - makes sure to exempt merge commits (which appear empty to jj) from the "no
+# empty commits" denial tho
+'closest_pushable(to)' = 'heads(::to & mutable() & ~denylist() & ~description(exact:"") & (~empty() | merges()))'
+
+# Chris included 'WIP' in his denylist, but I use that as an intermediate state
+# where I wanna push it but also want the reminder to tidy up or squash before
+# code review.
+# Instead I've added DELETEME which I use sometimes, tho I may try also using
+# 'private', eg:
+# - DELETEME: should be short lived and not carried around for a _long_ time by
+# mistake (that can lead to not noticing certain problems those commits might
+# be masking) - basically feature branch lifetime. (later: yea, backing this
+# out of denylist() for now, too many times I need debuggery pushed to a branch
+# for CI/deploy reasons.)
+# - PRIVATE: could be long term, eg my own breakpoint/debug hacks -
+# essentially permanent lifetime
+# SEE ALSO: git.private-commits above, which is a backstop that reuses
+# denylist() here to ensure never pushing below commits remotely.
+'denylist()' = 'private()'
+'deleteme()' = 'description(glob-i:"deleteme:*")'
+'private()' = 'description(glob-i:"private:*")'

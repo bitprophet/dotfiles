@@ -448,3 +448,6 @@ ok
 nixos
 nixpkgs
 relatedly
+configurators
+babelfish
+dockerized

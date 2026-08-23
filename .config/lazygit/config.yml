@@ -17,6 +17,9 @@ gui:
 git:
   # Really a gui setting...renders eg :rocket:
   parseEmoji: true
+  # trying out delta/git-delta
+  pagers:
+    - pager: delta --paging=never --dark --syntax-theme="Catppuccin Mocha"
 # Use `tig` for a bunch of stuff lazygit doesn't do itself.
 # Adapted (with a number of fixes for lazygit 0.5x config syntax) from
 # https://github.com/jesseduffield/lazygit/wiki/Custom-Commands-Compendium#blame-via-tig
