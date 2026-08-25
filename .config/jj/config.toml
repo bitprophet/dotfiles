@@ -2,7 +2,7 @@
 
 [user]
 name = "Jeff Forcier"
-email = "jeff@bitprophet.org"
+email = "jeff@reach.security"
 
 [remotes.origin]
 auto-track-created-bookmarks = "*"
