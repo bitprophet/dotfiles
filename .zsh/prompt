@@ -33,13 +33,13 @@ CWD=$C[blue]
 # If $IS_WORKSTATION not already set, determine it from short hostname
 if [[ -z $IS_WORKSTATION ]]; then
     case $HOST in
-        basroil | Boshi ) IS_WORKSTATION=1 ;;
+        basroil | Hecate | Boshi) IS_WORKSTATION=1 ;;
     esac
 fi
 # Ditto IS_SERVER, IS_VM (latter much less oft used now)
 if [[ -z $IS_SERVER ]]; then
     case $HOST in
-        gosroth ) IS_SERVER=1 ;;
+        gosroth | circe ) IS_SERVER=1 ;;
     esac
 fi
 if [[ -z $IS_VM ]]; then
@@ -190,6 +190,62 @@ function displayhost() {
     echo "$HOSTNAME"
 }
 
+function reach_env() {
+    if [[ -n "$REACH_ENV" ]]; then
+        case $REACH_ENV in
+            prod ) ENV_COLOR=$C[red] ;;
+            staging ) ENV_COLOR=$C[yellow] ;;
+            * ) ENV_COLOR=$C[green] ;;
+        esac
+        export reach_env_display="env=${ENV_COLOR}${REACH_ENV}%f"
+    fi
+}
+
+function reach_cloud() {
+    if [[ -n "$AWS_PROFILE" ]]; then
+        case $AWS_PROFILE in
+            dev ) ENV_COLOR=$C[green] ;;
+            staging | stage ) ENV_COLOR=$C[yellow] ;;
+            prod | prod-ro ) ENV_COLOR=$C[red] ;;
+        esac
+        export reach_cloud_display="aws=${ENV_COLOR}${AWS_PROFILE}%f"
+    fi
+}
+
+function kube_context() {
+    cluster=$(kubectl config current-context)
+    case $cluster in
+        # TODO: prod-like
+        stage-core ) ENV_COLOR=$C[yellow] ;;
+        * ) ENV_COLOR=$C[green] ;;
+    esac
+    export kube_context_display="k8s=${ENV_COLOR}${cluster}%f"
+}
+
+function reach_context() {
+    reach_env
+    reach_cloud
+    kube_context
+    if [[ -n "$reach_env_display" || -n "$reach_cloud_display" || -n "$kube_context_display" ]]; then
+        echo -n "("
+        if [[ -n "$reach_env_display" ]]; then
+            echo -n "$reach_env_display"
+            if [[ -n "$reach_cloud_display" ]]; then
+                echo -n ", "
+            fi
+        fi
+        if [[ -n "$reach_cloud_display" ]]; then
+            echo -n "$reach_cloud_display"
+            if [[ -n "$kube_context_display" ]]; then
+                echo -n ", "
+            fi
+        fi
+        if [[ -n "$kube_context_display" ]]; then
+            echo -n "$kube_context_display"
+        fi
+        echo -n ") "
+    fi
+}
 #
 # Prompt itself
 #
@@ -205,10 +261,11 @@ function precmd() {
     # Display!
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
+    # NOTE: %f is zsh colorspeak for "stop showing a different fg color"
     hostname="${NAME}$(displayhost)%f"
     _path="${CWD}%~%f"
     end="${CWD}»%f"
-    export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] UTC=%F{130}$(date -u +%T)%f
+    export PS1="${hostname}:${_path} $(reach_context){$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] UTC=%F{130}$(date -u +%T)%f
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
 }

@@ -1,2 +1,4 @@
+# NOTE: don't need access to my personal 1P vault's ssh keys, I'm instead just
+# granting @jforcier-reach collab access on eg this dotfiles repo.
 [[ssh-keys]]
-vault = "Jeff"
+vault = "Reach Security"
