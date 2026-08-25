@@ -2,7 +2,7 @@
 
 [user]
 name = "Jeff Forcier"
-email = "jeff@bitprophet.org"
+email = "jeff@reach.security"
 
 [git]
 # Don't auto-abandon local commits whose remote git HEAD has been removed. I
