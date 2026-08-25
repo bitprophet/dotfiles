@@ -139,7 +139,7 @@ function jro() {
         target=$1
     else
         # Try these branches in this preference order.
-        for branch in develop main; do
+        for branch in develop main upstream; do
             if jj show $branch &>/dev/null; then
                 target=$branch
                 break
