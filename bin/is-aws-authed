@@ -1,0 +1,134 @@
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.14"
+# dependencies = ["invoke", "pendulum"]
+# ///
+
+"""
+Interrogate AWS auth caches to see if re-auth is needed.
+"""
+
+import json
+import sys
+from pathlib import Path
+from typing import cast
+
+from invoke import run
+import pendulum
+
+AWS_DIR = Path.home() / ".aws"
+
+
+def name_for(path: Path) -> str:
+    relative = path.relative_to(AWS_DIR)
+    return str(relative.with_stem(relative.stem[:3] + "..." + relative.stem[-3:]))
+
+
+def sso_seems_valid() -> bool:
+    # AWS sso cache files seem to come in 'registration' and 'session'
+    # forms; the latter is what interests us, but the former has long (many
+    # weeks or months long) expiresAt values. We can tell them apart by the
+    # fact that session files also have eg a startUrl field. Thus:
+    # - filter only for session-type files
+    # - then filter those for any with an expiresAt in the future
+    #
+    #    'select(.startUrl)|select((.expiresAt|fromdateiso8601) > now)' \
+    #    ~/.aws/sso/cache/*.json \
+    for sso_cache in (AWS_DIR / "sso" / "cache").glob("*.json"):
+        name = name_for(sso_cache)
+        parsed = json.loads(sso_cache.read_text())
+        if "startUrl" not in parsed:
+            print(f"{name}: no startUrl, ignoring")
+            continue
+        # Way more ergonomic than trying to juggle different formats in jq's
+        # time stuff, ugh.
+        if not (expiry := parsed.get("expiresAt")):
+            print(f"{name}: no .expiresAt, ignoring")
+            continue
+        parsed_expiry = cast(pendulum.DateTime, pendulum.parse(expiry))
+        now = pendulum.now()
+        if parsed_expiry > now:
+            print(f"{name}: {parsed_expiry} > {now}, seems valid")
+            return True
+        else:
+            print()
+    return False
+
+
+def cli_seems_valid() -> bool:
+    # OMG, and even here, my assumption that SSO gets refreshed when your overall
+    # auth does: not correct! However there's also a 'regular' CLI auth cache we
+    # can look at. Same deal: exit truthy if we observe expiration is in the
+    # future.
+    # TODO: this /may/ want to take over from the SSO check but I suspect we need
+    # all three for this to work gracefully.
+    # NOTE: fucking incredible work, Amazon. Lemme guess, completely separate
+    # teams, one of which is too dumb to use real ISO8601?
+    # TODO: wait sometimes it's +00:00 and sometimes it's Z? in the same file? omfg
+    # TODO: ok maybe it's that there's two flavors of CLI config, one that's
+    # per-role and one that's for the sso?? let's filter for the latter for now.
+    # TODO: 'select((.Credentials.Expiration|strptime("%Y-%m-%dT%H:%M:%S+00:00")|mktime) > now)' \
+    # function cached-aws-cli-auth() {
+    #    jq --exit-status \
+    #        'select(.ProviderType == "sso")|select((.Credentials.Expiration|try fromdateiso8601 catch (strptime("%Y-%m-%dT%H:%M:%S+00:00")|mktime)) > now)' \
+    #        ~/.aws/cli/cache/*.json \
+    #        >/dev/null
+    # }
+    for cli_cache in (AWS_DIR / "cli" / "cache").glob("*.json"):
+        name = name_for(cli_cache)
+        parsed = json.loads(cli_cache.read_text())
+        if parsed.get("ProviderType") != "sso":
+            print(f"{name}: ProviderType not 'sso', ignoring")
+            continue
+        if not (expiry := parsed.get("Credentials", {}).get("Expiration")):
+            print(f"{name}: no .Credentials.Expiration, ignoring")
+            continue
+        parsed_expiry = cast(pendulum.DateTime, pendulum.parse(expiry))
+        now = pendulum.now()
+        if parsed_expiry > now:
+            print(f"{name}: {parsed_expiry} > {now}, seems valid")
+            return True
+        else:
+            print()
+    return False
+
+
+def sts_seems_valid() -> bool:
+    # UGH! .expiresAt only seems to be an ~hour in future, and actual attempts to
+    # talk to AWS APIs will often transparently refresh it. Frustratingly there is
+    # no way to tell about the actual SSO session expiry (which is ~8h), just that
+    # too-short expiresAt and the too-long registrationExpiresAt (which is often
+    # days or weeks away).
+    # SO: we can at least keep the roundtrip API cost limited to ~once an hour when
+    # we know expiresAt is actually in the past.
+    # TODO: I'm /still/ not sure this suffices as I'm sure I've seen this return
+    # cleanly even if SSO is logged out. Could be two-step caching
+    # (~/.aws/sso/cache and ~/.aws/cli/cache) perhaps?
+    # TODO: this may not be cutting it somehow?
+    print("Attempting to refresh AWS auth via STS...", file=sys.stderr)
+    # NOTE: using real awscli because I'm assuming using via boto will /not/
+    # refresh cached auth. TODO: confirm sometime idk
+    return run("aws sts get-caller-identity", warn=True, hide=True, in_stream=False).ok
+
+
+def main():
+    # NOTE: lazily evaluate the 'or' branches so we only hit live AWS API if
+    # all caches appear expired.
+    # TODO: hmm so SOMETHING is still fucky here. Add moer debuggery cuz I
+    # think sometimes you can end up with "good looking" CLI auth cache expiry
+    # but your ~8h 'real' SSO session is expired so you can't do
+    # active-aws-auth.
+    # TODO: I think the right play is to tease out these three so that if
+    # cached-aws-cli-auth appears truthy but cached-aws-sso appears falsey, hit
+    # up active-aws-auth anyways. Right now, if either of the cached bits
+    # appears truthy (eg the above scenario) we never try active-aws-auth, and
+    # just end up dead in the water.
+    authed = sso_seems_valid() or cli_seems_valid() or sts_seems_valid()
+    sys.exit(0 if authed else 1)
+
+
+if __name__ == "__main__":
+    main()
+
+# vim: set ft=python :

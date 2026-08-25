@@ -97,6 +97,8 @@
 !bin/jt
 # HTTP endpoint scanner
 !bin/whats-up-with
+# AWS auth helper
+!bin/is-aws-authed
 
 # Config for local daemons (e.g. squid)
 !etc
