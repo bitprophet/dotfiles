@@ -125,7 +125,7 @@ special_paths: {
 # to cancel (for example when you just opened broot), uncomment
 # this parameter
 # 
-# quit_on_last_cancel: true
+quit_on_last_cancel: true
 
 ###############################################################
 # Search modes
