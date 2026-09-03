@@ -201,3 +201,5 @@ etc/clusto*.conf
 # Reach-only shit
 !.claude/
 !.claude/settings.json
+!.claude/output-styles/
+!.claude/output-styles/minimal-direct.md
