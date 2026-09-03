@@ -197,3 +197,7 @@ etc/clusto*.conf
 !.config/1Password/*
 !.config/1Password/ssh/
 !.config/1Password/ssh/*
+
+# Reach-only shit
+!.claude/
+!.claude/settings.json
