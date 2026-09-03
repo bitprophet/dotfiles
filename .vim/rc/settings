@@ -150,8 +150,13 @@ set nobackup
 " This prevents some file watchdog programs from noticing file updates.
 set nowritebackup
 " Persistent (across edits/sessions) undo history \o/
+" NOTE: you must make sure this exists, by hand!
 set undodir=~/.vim/undo
 set undofile
+" Centralized swapfiles please (default starts with '.' which means to use file
+" CWD)
+" NOTE: you must make sure this exists, by hand!
+set directory=~/.vim/swap
 " Grep better
 set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ '$*'
 set grepformat=%f:%l:%m

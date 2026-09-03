@@ -74,6 +74,9 @@
 .vim/.netrwhist
 # Do ignore vim-plug stuff, sigh
 .vim/plugged
+# Ignore persistent undo, swap data files
+.vim/undo
+.vim/swap
 # Vim settings
 !.vimrc
 # Ignore swapfiles
