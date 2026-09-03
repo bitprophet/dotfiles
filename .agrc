@@ -1,2 +1,4 @@
 # Always page, because saying --color | less -R by hand every time is annoying
 --pager="less -FXR"
+# Always search hidden (typically dot-prefixed) files.
+--hidden
