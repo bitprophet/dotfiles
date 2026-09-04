@@ -145,6 +145,11 @@ function jro() {
                 target=$branch
                 break
             fi
+            # Try unmirrored remotes too
+            if jj show ${branch}@origin &>/dev/null; then
+                target=${branch}@origin
+                break
+            fi
         done
     fi
     # No arg and no expected branches? Paddling.
