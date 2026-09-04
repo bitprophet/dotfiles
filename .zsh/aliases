@@ -135,6 +135,7 @@ alias jba='j bookmark advance'
 
 # Smart-ish jj rebase --onto
 function jro() {
+    local target
     if [[ -n "$1" ]]; then
         target=$1
     else
