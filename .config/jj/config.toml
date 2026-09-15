@@ -71,3 +71,15 @@ bookmark-advance-to = "closest_pushable(@)"
 'denylist()' = 'private()'
 'deleteme()' = 'description(glob-i:"deleteme:*")'
 'private()' = 'description(glob-i:"private:*")'
+
+# New, from me! (tho I should probably compare this to what other people share
+# for similar purpose) - "what are all of my 'branches'?, with a spot of
+# context" - basically should include all actual branches, regardless of
+# whether they had a bookmark attached or not.
+# - visible_heads() & mine(): my heads, but only visible ones (eg don't show
+# ones that are in other ppl's branches not normally visible to me)
+# - ancestors(..., 2): show one parent of each head for more context, similar
+# to behavior of default revset.log
+# - hide stuff marked divergent, it's almost always dumb git stuff in other
+# folks' work on top of my own
+'my_branches()' = 'ancestors((visible_heads() & mine()), 2) & ~divergent()'

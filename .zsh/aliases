@@ -144,6 +144,9 @@ function jl() {
     j log --limit $smaller
 }
 
+# Jj My Branches
+alias jmb='jl --revision "my_branches()"'
+
 # Smart-ish jj rebase --onto
 function jro() {
     local target
