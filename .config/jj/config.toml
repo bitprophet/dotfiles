@@ -4,6 +4,11 @@
 name = "Jeff Forcier"
 email = "jeff@reach.security"
 
+# Reach-specific: autotrack jef/* branches/bookmarks.
+[remotes.origin]
+auto-track-bookmarks = "jef/*"
+
+
 [git]
 # Don't auto-abandon local commits whose remote git HEAD has been removed. I
 # found that confusing and frustrating since I was in "I'm using jj here" mode
