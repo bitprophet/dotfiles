@@ -141,7 +141,7 @@ function jl() {
     (( sized = (height / 2) - 3 ))
     # No min(), huh.
     (( smaller = (sized < 25) ? sized : 25 ))
-    j log --limit $smaller
+    j log --limit $smaller $@
 }
 
 # Jj My Branches
