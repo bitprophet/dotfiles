@@ -125,6 +125,7 @@ function authors() {
 # every character counts...
 alias j=jj
 alias js='j status'
+alias jsq='j squash'
 alias jd='j diff'
 alias jls='j log -s'
 alias jgf='j git fetch'
