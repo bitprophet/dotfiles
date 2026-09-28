@@ -146,7 +146,7 @@ function jl() {
 }
 
 # (jj) My Branches
-alias mb='jl --revision "my_branches()"'
+alias mb='j log --revision "my_branches()"'
 
 # Smart-ish jj rebase --onto
 function jro() {
