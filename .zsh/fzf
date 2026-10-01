@@ -1,3 +1,5 @@
+have fzf || return
+
 case $PLATFORM in
     mac ) fzf_shell=$(brew --prefix fzf)/shell ;;
     arch ) fzf_shell=/usr/share/fzf ;;
