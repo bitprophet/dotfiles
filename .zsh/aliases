@@ -254,7 +254,7 @@ function modify() {
     target=$ZSH/$1
     vim $target && source $target
 }
-compdef "_files -W ~/.zsh/" modify
+compdef "_files -W ${ZSH}" modify
 
 # 1Password / op helper:
 #   ope 'Name of Entry or anything else `op` accepts' 'name of field eg 'username'
