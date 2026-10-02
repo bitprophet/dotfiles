@@ -146,7 +146,9 @@ function jl() {
 }
 
 # (jj) My Branches
-alias mb='j log --revision "my_branches()"'
+# NOTE: committer date 'feels better' than author date, and is also what is
+# usually displayed in log output by default
+alias mb='j log --revision "my_branches() & committer_date(after:\"2 weeks ago\")"'
 
 # Smart-ish jj rebase --onto
 function jro() {
