@@ -28,4 +28,10 @@ zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 have docker && source <(docker completion zsh)
 have pulumi && source <(pulumi gen-completion zsh)
 have k9s && source <(k9s completion zsh)
-have jj && source <(jj util completion zsh)
+# NOTE:
+# https://docs.jj-vcs.dev/latest/install-and-setup/#command-line-completion -
+# this is the DYNAMIC completion type, which is also what brew happens to ship;
+# it's powered by the 'clap' Rust crate bundled inside jj. The output of `jj
+# util completion` is /significantly/ less useful and can't complete things
+# like branches or refs!
+have jj && source <(COMPLETE=zsh jj)
