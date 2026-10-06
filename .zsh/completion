@@ -25,6 +25,6 @@ zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 
 # Tools that self-host their own completion & which have no other zshrc file
 # that 'owns' them, can do their thing here.
-have docker && source =(docker completion zsh)
-have pulumi && source =(pulumi gen-completion zsh)
-have k9s && source =(k9s completion zsh)
+have docker && source <(docker completion zsh)
+have pulumi && source <(pulumi gen-completion zsh)
+have k9s && source <(k9s completion zsh)
