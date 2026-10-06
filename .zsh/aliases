@@ -9,8 +9,12 @@ alias ll='ls -Alt'
 # (otherwise it won't know about my dotfiles' extra themes)
 # (prettybat is an extra-special wrapper that prettifies before catting, from
 # bat-extras package)
-alias cat=prettybat
-if [[ ! -d $HOME/.cache/bat ]]; then
+if have prettybat; then
+    alias cat=prettybat
+elif have bat; then
+    alias cat=bat
+fi
+if have bat && [[ ! -d $HOME/.cache/bat ]]; then
     bat cache --build &>/dev/null
 fi
 
