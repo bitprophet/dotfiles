@@ -18,6 +18,9 @@ if have bat && [[ ! -d $HOME/.cache/bat ]]; then
     bat cache --build &>/dev/null
 fi
 
+# Also, fuckit, we love single letter aliases now.
+alias c=cat
+
 # Sudo
 alias svim='sudo vim'
 alias stail="sudo tail"
