@@ -59,8 +59,9 @@ if [[ -n $IS_WORKSTATION ]]; then
     HOSTNAME=$HOST
 fi
 if [[ -n $IS_SERVER ]]; then
-    NAME=$C[red]
+    NAME="%B%F{#cf7e77}"
     HOSTNAME=$HOST
+    CWD="%B%F{#a7aaec}"
 fi
 if [[ -n $IS_VM ]]; then
     NAME=$C[orange]
@@ -205,9 +206,9 @@ function precmd() {
     # Display!
     # <NAME>HOST</NAME>:<CWD>pwd</CWD>
     #     {<magenta>venv</magenta>} [<magenta>branch</magenta>] <CWD>end</CWD>
-    hostname="${NAME}$(displayhost)%f"
-    _path="${CWD}%~%f"
-    end="${CWD}»%f"
+    hostname="${NAME}$(displayhost)%b%f"
+    _path="${CWD}%~%b%f"
+    end="${CWD}»%b%f"
     export PS1="${hostname}:${_path} {$C[purple]$(dev_env)%f} [$C[purple]$(branch)$C[red]$(dirty)%f$C[yellow]$(untracked)%f] UTC=%F{130}$(date -u +%T)%f
 ${end} "
     export RPS1="%(?..$C[red]%?%f)"
