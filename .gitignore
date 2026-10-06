@@ -156,6 +156,8 @@ etc/clusto*.conf
 !.config/broot/launcher/*
 !.config/broot/skins
 !.config/broot/skins/*
+!.config/btop
+!.config/btop/btop.conf
 !.config/direnv
 !.config/direnv/direnv.toml
 # jj config (but not its per-repo bits, for now)
