@@ -28,3 +28,4 @@ zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 have docker && source <(docker completion zsh)
 have pulumi && source <(pulumi gen-completion zsh)
 have k9s && source <(k9s completion zsh)
+have jj && source <(jj util completion zsh)
