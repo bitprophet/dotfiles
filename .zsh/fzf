@@ -1,9 +1,8 @@
 have fzf || return
 
-case $PLATFORM in
-    mac ) fzf_shell=$(brew --prefix fzf)/shell ;;
-    arch ) fzf_shell=/usr/share/fzf ;;
-esac
+# No more relying on packager to have crapped out the key bindings and
+# completion stuff? Wonder when that changed.
+source <(fzf --zsh)
 
 # fzf 0.5X is /somewhat/ smarter about its builtin ctrl-t file 'walker' than
 # 0.4X was, but one would still have to configure --walker-skip=xxx,
@@ -12,6 +11,3 @@ esac
 # And look in 'hidden' dirs (so eg .github/ and friends; but this still ignores
 # anything VCS-config-ignored eg .gitignored, which is 'fine' ish)
 export FZF_CTRL_T_COMMAND="cat =(ag -l --hidden) =(ag -l --hidden | xargs dirname | sort -u)"
-
-source $fzf_shell/completion.zsh
-source $fzf_shell/key-bindings.zsh
