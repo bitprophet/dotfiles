@@ -133,7 +133,7 @@ endf
 nmap <Leader>ipy ofrom IPython import embed; embed()<C-C>
 nmap <Leader>pdb oimport ipdb; ipdb.set_trace()<C-C>
 " NEW, MODERN! ALSO SHORTER!!!
-nmap <Leader>bp obreakpoint()<C-C>:w<CR>
+nmap <Leader>bp obreakpoint()<Esc>:w<CR>
 " Inject python debug logs
 nmap <Leader>dbg oimport logging; logging.basicConfig(level=logging.DEBUG)<C-C>
 " Inject traceback print
