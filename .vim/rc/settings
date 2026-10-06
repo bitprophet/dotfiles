@@ -24,6 +24,12 @@ let g:kanagawa_mini = {'transparent': v:true}
 let g:gruvbox_transparent_bg = 1
 " So this is as contrasty as it gets if using gruvbox
 let g:gruvbox_contrast_dark = "hard"
+" TODO: on my Ventura personal box's iTerm2 with seemingly identical settings,
+" I didn't need to do this, jellybeans' background was still pretty dark. Here,
+" it defaulted to a much lighter tone with worse contrast properties, so I am
+" overriding it.
+" TODO: thankfully this appears backwards compat on said Ventura box
+let g:jellybeans_overrides = {'background': {'guibg': '000000'}}
 
 " My ca 2024 'big three'.
 "colorscheme kanagawa-mini
