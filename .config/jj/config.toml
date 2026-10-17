@@ -4,6 +4,9 @@
 name = "Jeff Forcier"
 email = "jeff@bitprophet.org"
 
+[remotes.origin]
+auto-track-created-bookmarks = "*"
+
 [git]
 # Don't auto-abandon local commits whose remote git HEAD has been removed. I
 # found that confusing and frustrating since I was in "I'm using jj here" mode
