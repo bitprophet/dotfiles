@@ -162,7 +162,10 @@ set undofile
 " Centralized swapfiles please (default starts with '.' which means to use file
 " CWD)
 " NOTE: you must make sure this exists, by hand!
-set directory=~/.vim/swap
+" NOTE: double trailing slash means files within will have their full path
+" prefix (with some munging to be safe, eg s/\//%/g) for cases like having two
+" different "config.py" files open
+set directory=~/.vim/swap//
 " Grep better
 set grepprg=ack\ -H\ --nopager\ --nogroup\ --nocolor\ --sort-files\ '$*'
 set grepformat=%f:%l:%m
