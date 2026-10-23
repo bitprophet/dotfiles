@@ -21,3 +21,14 @@ for option (
 
 # Use Emacs style line editing for now.
 bindkey -e
+
+# Make Escape Q push the current line, or the whole edit if it’s multi-line,
+# into a 'queue' which gets pasted out after next command is run.
+# I.e.:
+# touch foo/bar.txt # oh whoops I gotta mkdir foo
+# Esc-q -> above line goes 'poof'
+# mkdir foo
+# the 'touch' line magically appears here!
+# Per: https://adamj.eu/tech/2026/10/06/zsh-push-line/
+# (Overrides default Esc-Q which is bound to just 'push-line')
+bindkey '^[q' push-line-or-edit
