@@ -178,6 +178,11 @@ vmap <Leader>" o<esc>i"<esc>ea"<esc>
 " Faster close-window. Leader ALL THE THINGS
 map <Leader>z :q<CR>
 
+" Python docstring:
+" - trigger while on the func, class, etc to be docstring'd
+" - should leave you in edit mode between the triplequote lines
+map <Leader>ds o"""<esc>yypO
+
 " Taken from an IBM DeveloperWorks article on Vim scripting -- prompts for
 " creation of nonexistent directories.
 augroup AutoMkdir
