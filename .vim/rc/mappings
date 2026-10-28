@@ -151,6 +151,7 @@ nmap <Leader>o :LspHover<CR>
 " Inject ci skip line in a git commit msg
 nmap <Leader>cs o[ci skip]<C-C>
 
+" Restructured Text (ReST) headers
 nnoremap <expr> <F1> H1()
 nnoremap <expr> <F2> H("=")
 nnoremap <expr> <F3> H("-")
